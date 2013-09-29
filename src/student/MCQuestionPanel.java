@@ -20,10 +20,17 @@ public class MCQuestionPanel extends JPanel {
 	public MCQuestionPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
+		
+		JLabel lblQuestion = new JLabel("Question 1");
+		GridBagConstraints gbc_lblQuestion = new GridBagConstraints();
+		gbc_lblQuestion.insets = new Insets(0, 0, 5, 0);
+		gbc_lblQuestion.gridx = 0;
+		gbc_lblQuestion.gridy = 0;
+		add(lblQuestion, gbc_lblQuestion);
 		
 		JPanel panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
@@ -32,7 +39,7 @@ public class MCQuestionPanel extends JPanel {
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
+		gbc_panel.gridy = 1;
 		add(panel, gbc_panel);
 		
 		JLabel lblHowMuchIs = new JLabel("How much is 2+2?");
@@ -42,7 +49,7 @@ public class MCQuestionPanel extends JPanel {
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 1;
+		gbc_panel_1.gridy = 2;
 		add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{225, 225, 0};

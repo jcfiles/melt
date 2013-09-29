@@ -1,27 +1,24 @@
 package student;
 
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import java.awt.Insets;
-import java.awt.Rectangle;
-import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.Dimension;
 import java.awt.Font;
 
 public class StudentStartJPanel extends JPanel {
+
+	/**
+	 * 
+	 */
+
+	/**
+	 * 
+	 */
 
 	/**
 	 * Create the panel.
