@@ -53,6 +53,6 @@ public class MainGui {
 		
 		StudentStartJPanel studentpanel = new StudentStartJPanel();
 		frame.add(studentpanel);
-		frame.validate();
+		//frame.validate();
 	}
 }
