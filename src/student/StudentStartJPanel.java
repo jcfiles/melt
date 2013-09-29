@@ -1,11 +1,15 @@
 package student;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
@@ -49,7 +53,8 @@ public class StudentStartJPanel extends JPanel {
 		JButton btnNewButton = new JButton("Start");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				TestPanel testpanel = new TestPanel();
+				MainGui.setComposite(testpanel);;
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();

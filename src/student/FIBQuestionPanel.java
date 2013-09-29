@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
 
 public class FIBQuestionPanel extends JPanel {
 	private JTextField textField;
@@ -15,6 +16,7 @@ public class FIBQuestionPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public FIBQuestionPanel() {
+		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{10, 0};
 		gridBagLayout.rowHeights = new int[]{0, 10, 0, 0};
@@ -22,7 +24,7 @@ public class FIBQuestionPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel lblQuestion = new JLabel("Question 3");
+		JLabel lblQuestion = new JLabel("Question 2");
 		GridBagConstraints gbc_lblQuestion = new GridBagConstraints();
 		gbc_lblQuestion.insets = new Insets(0, 0, 5, 0);
 		gbc_lblQuestion.gridx = 0;

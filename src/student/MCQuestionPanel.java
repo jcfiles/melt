@@ -1,28 +1,45 @@
 package student;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JRadioButton;
+
 import java.awt.Insets;
-import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
 
 public class MCQuestionPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6648494571735411196L;
+
+	/**
+	 * 
+	 */
+
 	/**
 	 * Create the panel.
 	 */
 	public MCQuestionPanel() {
+		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblQuestion = new JLabel("Question 1");
@@ -32,25 +49,38 @@ public class MCQuestionPanel extends JPanel {
 		gbc_lblQuestion.gridy = 0;
 		add(lblQuestion, gbc_lblQuestion);
 		
+		JPanel panel_2 = new JPanel();
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 1;
+		add(panel_2, gbc_panel_2);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[]{0, 0};
+		gbl_panel_2.rowHeights = new int[]{0, 0, 0};
+		gbl_panel_2.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		panel_2.setLayout(gbl_panel_2);
+		
 		JPanel panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 0;
+		panel_2.add(panel, gbc_panel);
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 5, 0);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
-		add(panel, gbc_panel);
 		
 		JLabel lblHowMuchIs = new JLabel("How much is 2+2?");
 		panel.add(lblHowMuchIs);
 		
-		JPanel panel_1 = new JPanel();
+		final JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 2;
-		add(panel_1, gbc_panel_1);
+		gbc_panel_1.gridy = 1;
+		panel_2.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{225, 225, 0};
 		gbl_panel_1.rowHeights = new int[]{23, 0};
@@ -81,8 +111,12 @@ public class MCQuestionPanel extends JPanel {
 		gbc_rdbtnNewRadioButton.gridy = 2;
 		panel_1.add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
 		
-		
-
+		for(int i=0;i<panel_1.getComponentCount();i++){
+			ButtonGroup group = new ButtonGroup();
+			if(panel_1.getComponent(i) instanceof JRadioButton){
+				group.add((JRadioButton)panel_1.getComponent(i));
+			}
+		}
 	}
 
 }
