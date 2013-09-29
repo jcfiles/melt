@@ -1,12 +1,15 @@
 package student;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 
 public class MainGui {
 
-	private JFrame frame;
+	private static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -30,6 +33,14 @@ public class MainGui {
 	public MainGui() {
 		initialize();
 	}
+	
+	public static void setComposite(Component component){
+		if(frame.getContentPane().getComponentCount()>0){
+			frame.getContentPane().removeAll();
+		}
+		frame.getContentPane().add(component);
+		frame.getContentPane().validate();
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -38,6 +49,6 @@ public class MainGui {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 	}
-
 }
