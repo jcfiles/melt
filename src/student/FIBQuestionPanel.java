@@ -4,12 +4,15 @@ import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 public class FIBQuestionPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2289297585604116875L;
 	private JTextField textField;
 
 	/**

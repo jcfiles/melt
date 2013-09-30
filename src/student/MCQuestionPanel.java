@@ -13,12 +13,7 @@ import javax.swing.JRadioButton;
 
 import java.awt.Insets;
 import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
 
 public class MCQuestionPanel extends JPanel {
 	/**
@@ -111,8 +106,9 @@ public class MCQuestionPanel extends JPanel {
 		gbc_rdbtnNewRadioButton.gridy = 2;
 		panel_1.add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
 		
+		ButtonGroup group = new ButtonGroup();
+
 		for(int i=0;i<panel_1.getComponentCount();i++){
-			ButtonGroup group = new ButtonGroup();
 			if(panel_1.getComponent(i) instanceof JRadioButton){
 				group.add((JRadioButton)panel_1.getComponent(i));
 			}

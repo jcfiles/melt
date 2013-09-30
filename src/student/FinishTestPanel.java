@@ -10,6 +10,11 @@ import java.awt.Font;
 public class FinishTestPanel extends JPanel {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 389409352371905605L;
+
+	/**
 	 * Create the panel.
 	 */
 	public FinishTestPanel() {

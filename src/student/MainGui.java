@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
-import javax.swing.JPanel;
 
 public class MainGui {
 
@@ -19,7 +18,7 @@ public class MainGui {
 			public void run() {
 				try {
 					MainGui window = new MainGui();
-					window.frame.setVisible(true);
+					MainGui.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

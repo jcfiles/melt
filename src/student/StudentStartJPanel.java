@@ -1,6 +1,5 @@
 package student;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
@@ -15,14 +14,10 @@ import java.awt.GridBagConstraints;
 import java.awt.Font;
 
 public class StudentStartJPanel extends JPanel {
-
 	/**
 	 * 
 	 */
-
-	/**
-	 * 
-	 */
+	private static final long serialVersionUID = 5624695781144447672L;
 
 	/**
 	 * Create the panel.
