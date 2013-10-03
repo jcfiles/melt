@@ -35,6 +35,7 @@ public class Test_
     private File file;
     
     private Map<Integer, Integer> mapWrite;
+    private Map<Integer, Integer> mapRead;
 
 
     /**
@@ -132,8 +133,8 @@ public class Test_
     
     /**
      * Read from File. 
-     * This version basically writes the studenID and testResult in a single text file.
-     * This method uses Map as its input parameter.
+     * This version basically reads the student results from a text file.
+     * This method uses String filename as its input parameter.
      */ 	
 	public void getTextFromFile (String filename)  {
 		
@@ -142,11 +143,22 @@ public class Test_
 			BufferedReader input = null;
 			String lineOutput = "";
 			input = new BufferedReader(new FileReader(filename));
+			mapRead = new HashMap<Integer, Integer>();
+			
 			while (input!= null) {
 				lineOutput = input.readLine();
+				int studentIDposition = lineOutput.indexOf('|'); 
+				String studentID = lineOutput.substring(0,studentIDposition);  
+				int studentIDint = Integer.parseInt(studentID);
+				String studentResult = lineOutput.substring(lineOutput.lastIndexOf('|') + 1);
+				int studentResultInt = Integer.parseInt(studentResult);
 				System.out.println(lineOutput);
+				
+				mapRead.put(studentIDint, studentResultInt);
 			}
 			input.close();
+
+			
 		}
 		catch (IOException ex) {
 			ex.printStackTrace();
