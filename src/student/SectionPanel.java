@@ -2,15 +2,19 @@ package student;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
+
 import java.awt.SystemColor;
 import java.awt.Font;
+import java.util.List;
 
 public class SectionPanel extends JPanel {
 
@@ -18,7 +22,7 @@ public class SectionPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 3815318201709212642L;
-
+	private List<Questions> questions;
 	/**
 	 * 
 	 */
@@ -26,7 +30,8 @@ public class SectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SectionPanel() {
+	public SectionPanel(List<Questions> questions) {
+		this.questions = questions;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
@@ -94,7 +99,10 @@ public class SectionPanel extends JPanel {
 		gbc_questionpanel2.fill = GridBagConstraints.BOTH;
 		gbc_questionpanel2.gridx = 0;
 		gbc_questionpanel2.gridy = 1;
-		panel_2.add(questionpanel2, gbc_questionpanel2);
-		
+		panel_2.add(questionpanel2, gbc_questionpanel2);	
+	}
+
+	public List<Questions> getQuestions() {
+		return questions;
 	}
 }

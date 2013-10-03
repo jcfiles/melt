@@ -10,6 +10,10 @@ public class MainGui {
 
 	private static JFrame frame;
 
+	public static JFrame getFrame() {
+		return frame;
+	}
+
 	/**
 	 * Launch the application.
 	 */

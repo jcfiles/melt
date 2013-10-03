@@ -13,7 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 
-public class StudentStartJPanel extends JPanel {
+public class StudentStartJPanel extends JPanel implements ActionListener{
 	/**
 	 * 
 	 */
@@ -46,12 +46,7 @@ public class StudentStartJPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -10, SpringLayout.SOUTH, this);
 		
 		JButton btnNewButton = new JButton("Start");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TestPanel testpanel = new TestPanel();
-				MainGui.setComposite(testpanel);;
-			}
-		});
+		btnNewButton.addActionListener(this);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnNewButton.gridx = 0;
@@ -74,4 +69,10 @@ public class StudentStartJPanel extends JPanel {
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		TestPanel testpanel = new TestPanel();
+		MainGui.setComposite(testpanel);
+	} 
 }

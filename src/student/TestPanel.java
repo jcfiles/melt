@@ -20,6 +20,7 @@ public class TestPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1939041461035877329L;
+	private JPanel panel;
 
 	/**
 	 * Create the panel.
@@ -39,7 +40,7 @@ public class TestPanel extends JPanel {
 		gbc_lblYouHave.gridy = 0;
 		add(lblYouHave, gbc_lblYouHave);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -48,7 +49,7 @@ public class TestPanel extends JPanel {
 		add(panel, gbc_panel);
 		panel.setLayout(new CardLayout(0, 0));
 		
-		SectionPanel sectionpanel = new SectionPanel();
+		SectionPanel sectionpanel = new SectionPanel(null);
 		panel.add(sectionpanel, "name_1380485611736349000");
 		
 		JPanel panel_1 = new JPanel();
@@ -65,9 +66,9 @@ public class TestPanel extends JPanel {
 				MainGui.setComposite(finishpanel);
 			}
 		});
-		
-		panel_1.add(btnNewButton);
+		panel_1.add(btnNewButton);	
+	}
+	private void addSection(Questions[] questions){
 		
 	}
-
 }

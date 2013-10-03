@@ -8,7 +8,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
-public class FIBQuestionPanel extends JPanel {
+public class FIBQuestionPanel extends Questions {
 	/**
 	 * 
 	 */
@@ -49,7 +49,7 @@ public class FIBQuestionPanel extends JPanel {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblMyDick = new JLabel("my dick");
+		JLabel lblMyDick = new JLabel("my hand");
 		panel.add(lblMyDick);
 
 	}

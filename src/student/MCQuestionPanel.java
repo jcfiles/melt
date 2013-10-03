@@ -15,7 +15,7 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.border.BevelBorder;
 
-public class MCQuestionPanel extends JPanel {
+public class MCQuestionPanel extends Questions {
 	/**
 	 * 
 	 */
