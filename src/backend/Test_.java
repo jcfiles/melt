@@ -1,7 +1,16 @@
 package backend;
 
 import java.util.ArrayList;
+
+// Importing the classes below for importing files: 
 import java.util.Iterator;
+import java.util.Map;
+import java.util.HashMap;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 /**
  * Representation of a test
@@ -20,6 +29,12 @@ public class Test_
     private int allocatedTime;
     
     private long testTime;
+    
+    //Importing the classes below to write student result to text file.
+    private PrintWriter printWriter; 
+    private File file;
+    
+    private Map<Integer, Integer> mapWrite;
 
 
     /**
@@ -83,6 +98,62 @@ public class Test_
         testTime = testTimeToBeSet;
     }
     
+    
+    /**
+     * Write to File. 
+     * This version basically writes the studenID and testResult in a single text file.
+     * This method uses Map as its input parameter.
+     */   
+	public void writeToFile (Map mapWrite) {
+		
+		this.mapWrite = mapWrite;
+		String stringResults = "studentID | testResult";
+
+        // Using an iterator
+        Iterator<Map.Entry<Integer, Integer>> it = mapWrite.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry e = (Map.Entry<Integer, Integer>)it.next();
+            stringResults = stringResults + e.getKey() + " | " + e.getValue();
+        }
+		try
+		{
+			file = new File ("studentTestResults.txt");
+			
+			printWriter = new PrintWriter ("studentTestResults.txt");
+			printWriter.println (stringResults);
+			printWriter.close ();
+
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}		
+	}
+    
+    /**
+     * Read from File. 
+     * This version basically writes the studenID and testResult in a single text file.
+     * This method uses Map as its input parameter.
+     */ 	
+	public void getTextFromFile (String filename)  {
+		
+		try 
+		{
+			BufferedReader input = null;
+			String lineOutput = "";
+			input = new BufferedReader(new FileReader(filename));
+			while (input!= null) {
+				lineOutput = input.readLine();
+				System.out.println(lineOutput);
+			}
+			input.close();
+		}
+		catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+	}	
+	
     /**
      * Ends the test
      */
