@@ -17,7 +17,6 @@ public class Section
     private int possibleMarks; // not used yet!
     private double sectionMarksAwarded = 0;
     public boolean isLocked = true;
-    
     private TestTimer sectionProgram; //the testTimer class
     private long sectionTime;
     

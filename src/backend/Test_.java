@@ -18,7 +18,6 @@ public class Test_
     private double totalMarksAwarded = 0;
     public boolean isLocked = true;
     private int allocatedTime;
-    
     private long testTime;
 
 

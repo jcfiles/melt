@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import backend.TestController;
+import backend.Test_;
 
 
 public class TestPanel extends JPanel {
@@ -19,13 +21,14 @@ public class TestPanel extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1939041461035877329L;
+    private TestController controller;
+    private static final long serialVersionUID = 1939041461035877329L;
 	private JPanel panel;
 
 	/**
 	 * Create the panel.
 	 */
-	public TestPanel() {
+	public TestPanel(TestController controller, Test_ test) { // A Test_ instance passed in as parameter
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -60,15 +63,15 @@ public class TestPanel extends JPanel {
 		add(panel_1, gbc_panel_1);
 		
 		JButton btnNewButton = new JButton("Finish");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FinishTestPanel finishpanel = new FinishTestPanel();
-				MainGui.setComposite(finishpanel);
-			}
-		});
+		btnNewButton.addActionListener(controller); //(new ActionListener() { // Replaced new actionListener wiht 'controller'
+			//public void actionPerformed(ActionEvent e) {
+			//	FinishTestPanel finishpanel = new FinishTestPanel();
+			//	MainGui.setComposite(finishpanel);
+			//}
+		//});
 		panel_1.add(btnNewButton);	
 	}
-	private void addSection(Questions[] questions){
+	//private void addSection(Questions[] questions){
 		
-	}
+	//}
 }

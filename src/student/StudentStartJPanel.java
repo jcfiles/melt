@@ -12,17 +12,20 @@ import javax.swing.SpringLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
+import backend.TestController;
 
-public class StudentStartJPanel extends JPanel implements ActionListener{
+public class StudentStartJPanel extends JPanel { //implements ActionListener{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5624695781144447672L;
+    private TestController controller;
+    private static final long serialVersionUID = 5624695781144447672L;
 
 	/**
 	 * Create the panel.
 	 */
-	public StudentStartJPanel() {
+	public StudentStartJPanel(TestController controller) {
+            this.controller = controller;
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
@@ -46,7 +49,7 @@ public class StudentStartJPanel extends JPanel implements ActionListener{
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -10, SpringLayout.SOUTH, this);
 		
 		JButton btnNewButton = new JButton("Start");
-		btnNewButton.addActionListener(this);
+		btnNewButton.addActionListener(controller); // Changed from 'this' to controller 
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnNewButton.gridx = 0;
@@ -69,10 +72,10 @@ public class StudentStartJPanel extends JPanel implements ActionListener{
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		TestPanel testpanel = new TestPanel();
-		MainGui.setComposite(testpanel);
-	} 
+        // MOVED TO TESTCONTROLLER CLASS
+	//@Override
+	//public void actionPerformed(ActionEvent e) {
+		//TestPanel testpanel = new TestPanel();
+		//MainGui.setComposite(testpanel);
+	//} 
 }
