@@ -62,7 +62,7 @@ public class NavigationPanel extends JPanel {
 		sl_backPanel.putConstraint(SpringLayout.EAST, btnBack, -10, SpringLayout.EAST, backPanel);
 		backPanel.add(btnBack);
 		
-		/// clickin the Save button
+		/// clicking the Save button
 		btnSave.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 			    btnEdit.setVisible(true);
@@ -72,7 +72,7 @@ public class NavigationPanel extends JPanel {
 			 }
 			});
 		
-		/// clickin the Ok button
+		/// clicking the Ok button
 		btnAdd.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 			    btnEdit.setVisible(false);
@@ -82,12 +82,14 @@ public class NavigationPanel extends JPanel {
 			 }
 			});
 		
+		//clicking the Delete button
 		btnDelete.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 			  
 			 }
 			});
 		
+		//clicking the edit button
 		btnEdit.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 			    btnEdit.setVisible(false);

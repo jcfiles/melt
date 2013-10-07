@@ -228,7 +228,7 @@ public class AddQuestionPanel extends JPanel {
 			    }
 		});
 		
-		/// clickin the Ok button we save the new possible answer
+		/// clicking the Ok button we save the new possible answer
 		btnOk.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
