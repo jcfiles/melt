@@ -15,6 +15,12 @@ import javax.swing.SpringLayout;
 
 public class NavigationPanel extends JPanel {
 
+	
+	final JButton btnDelete = new JButton("Delete");
+	final JButton btnEdit = new JButton("Edit");
+	final JButton btnSave = new JButton("Save");
+	final JButton btnAdd = new JButton("Add New Question");
+	
 	/**
 	 * Create the panel.
 	 */
@@ -25,16 +31,16 @@ public class NavigationPanel extends JPanel {
 		add(buttonsPanel);
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		final JButton btnAdd = new JButton("Add New Question");
+		
 		btnAdd.setVisible(false);
 		buttonsPanel.add(btnAdd);
-		final JButton btnDelete = new JButton("Delete");
+		
 		btnDelete.setVisible(false);
 		buttonsPanel.add(btnDelete);
-		final JButton btnEdit = new JButton("Edit");
+		
 		btnEdit.setVisible(false);
 		buttonsPanel.add(btnEdit);
-		final JButton btnSave = new JButton("Save");
+		
 		buttonsPanel.add(btnSave);
 		
 		JPanel navigationPanel = new JPanel();
@@ -56,14 +62,13 @@ public class NavigationPanel extends JPanel {
 		sl_backPanel.putConstraint(SpringLayout.EAST, btnBack, -10, SpringLayout.EAST, backPanel);
 		backPanel.add(btnBack);
 		
-		/// clickin the Ok button
+		/// clickin the Save button
 		btnSave.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 			    btnEdit.setVisible(true);
 			   	btnDelete.setVisible(true);
 			   	btnAdd.setVisible(true);  	
-			   	btnSave.setVisible(false);
-			   				   	
+			   	btnSave.setVisible(false);			   	
 			 }
 			});
 		
@@ -76,6 +81,20 @@ public class NavigationPanel extends JPanel {
 			   	btnSave.setVisible(true);
 			 }
 			});
-
+		
+		btnDelete.addActionListener(new ActionListener(){
+		    public void actionPerformed(ActionEvent e) {
+			  
+			 }
+			});
+		
+		btnEdit.addActionListener(new ActionListener(){
+		    public void actionPerformed(ActionEvent e) {
+			    btnEdit.setVisible(false);
+			   	btnDelete.setVisible(false);
+			   	btnAdd.setVisible(false);  	
+			   	btnSave.setVisible(true);
+			 }
+			});
 	}
 }

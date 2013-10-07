@@ -26,16 +26,18 @@ public class MultichoicePanel extends JPanel {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
-		JLabel lblPoints = new JLabel("Marks: 10");
-		springLayout.putConstraint(SpringLayout.NORTH, lblPoints, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblPoints, -10, SpringLayout.EAST, this);
-		add(lblPoints);
+		//load the marks of the question
+		JLabel lblMarks = new JLabel("Marks: 10");
+		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 10, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, lblMarks, -10, SpringLayout.EAST, this);
+		add(lblMarks);
 		
 		JLabel lblSub = new JLabel("Subsection:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblSub, 47, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblSub, 10, SpringLayout.WEST, this);
 		add(lblSub);
 		
+		//load the subsection of the question
 		JLabel lblSubsection = new JLabel("SubsectionA");
 		springLayout.putConstraint(SpringLayout.NORTH, lblSubsection, 0, SpringLayout.NORTH, lblSub);
 		springLayout.putConstraint(SpringLayout.WEST, lblSubsection, 30, SpringLayout.EAST, lblSub);
@@ -46,6 +48,7 @@ public class MultichoicePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblQ, 10, SpringLayout.WEST, this);
 		add(lblQ);
 		
+		//load the question
 		JLabel lblQuestion = new JLabel("How much is 2+2?");
 		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 0, SpringLayout.WEST, lblSubsection);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblQuestion, 0, SpringLayout.SOUTH, lblQ);
@@ -56,15 +59,19 @@ public class MultichoicePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblAnswer, 0, SpringLayout.WEST, lblSub);
 		add(lblAnswer);
 		
+		//load the possible answers with the count
 		PossibleAnswers panel = new PossibleAnswers(3);
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 19, SpringLayout.SOUTH, lblQuestion);
-		springLayout.putConstraint(SpringLayout.WEST, panel, 46, SpringLayout.EAST, lblAnswer);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -27, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, panel, 297, SpringLayout.EAST, lblAnswer);
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, lblAnswer);
+		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblSubsection);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -26, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, this);
 		add(panel);
+
+		
 
 	}
 	
+	//for each possible answer set a radio button
 	 public class PossibleAnswers extends JPanel {
 
 	        private JPanel answers;
@@ -76,8 +83,9 @@ public class MultichoicePanel extends JPanel {
 	            answers = new JPanel(new GridBagLayout());
 	            GridBagConstraints gbc = new GridBagConstraints();
 	            gbc.gridwidth = GridBagConstraints.REMAINDER;
-	            gbc.weightx = 1;
-	            gbc.weighty = 1;
+	            gbc.weightx = 20;
+	            gbc.weighty = 20;
+	            
 	            answers.add(new JPanel(), gbc);
 	            count=num;
 	            add(new JScrollPane(answers));
@@ -87,24 +95,18 @@ public class MultichoicePanel extends JPanel {
 	                	{
 	                		//JRadioButton
 		                    JPanel panel = new JPanel();
-		                    JRadioButton rdbtn =new JRadioButton("...");	                
+		                    JRadioButton rdbtn =new JRadioButton("...");	     //set the possible answer ex. true/false           
 		                    panel.add(rdbtn);
-		                    //panel.setBorder(new MatteBorder(0, 0, 1, 0, Color.GRAY));
 		                    GridBagConstraints gbc1 = new GridBagConstraints();
 		                    gbc1.gridwidth = GridBagConstraints.REMAINDER;
 		                    gbc1.weightx = 1;
-		                    gbc1.fill = GridBagConstraints.HORIZONTAL;
+		                    gbc1.weighty = 1;
+		                    gbc1.anchor=GridBagConstraints.NORTHWEST;
 		                    answers.add(panel, gbc1, i);
 		                    
 		                    validate();
 		                    repaint();
 	                	}
-	                	
-
-	                    
-	                
-	           
-
 	        }
 
 	        @Override

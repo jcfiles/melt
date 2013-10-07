@@ -20,7 +20,10 @@ import java.awt.event.ActionListener;
 
 public class AddQuestionPanel extends JPanel {
 	private JTextField txtSubsection;
-	private JTextField textField;
+	private JTextField txtMarks;
+	public ButtonGroup group_type = new ButtonGroup();
+	JRadioButton rdbtnMultipleChoice = new JRadioButton("Multiple choice");
+	JRadioButton rdbtnFillBlanks = new JRadioButton("Fill blanks");
 
 	/**
 	 * Create the panel.
@@ -52,31 +55,30 @@ public class AddQuestionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 10, SpringLayout.WEST, this);
 		add(lblQuestion);
 		
-		JTextArea textArea = new JTextArea();
-		springLayout.putConstraint(SpringLayout.NORTH, textArea, 15, SpringLayout.SOUTH, txtSubsection);
-		springLayout.putConstraint(SpringLayout.WEST, textArea, 0, SpringLayout.WEST, txtSubsection);
-		springLayout.putConstraint(SpringLayout.EAST, textArea, -22, SpringLayout.EAST, this);
-		add(textArea);
+		JTextArea txtQuestion = new JTextArea();
+		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 15, SpringLayout.SOUTH, txtSubsection);
+		springLayout.putConstraint(SpringLayout.WEST, txtQuestion, 0, SpringLayout.WEST, txtSubsection);
+		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -22, SpringLayout.EAST, this);
+		add(txtQuestion);
 		
 		JLabel lblType = new JLabel("Type:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblType, 84, SpringLayout.SOUTH, lblQuestion);
 		springLayout.putConstraint(SpringLayout.WEST, lblType, 0, SpringLayout.WEST, lblSubsection);
 		add(lblType);
 		
-		JRadioButton rdbtnMultipleChoice = new JRadioButton("Multiple choice");
+		
 		rdbtnMultipleChoice.setSelected(true);
-		springLayout.putConstraint(SpringLayout.SOUTH, textArea, -12, SpringLayout.NORTH, rdbtnMultipleChoice);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtQuestion, -12, SpringLayout.NORTH, rdbtnMultipleChoice);
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnMultipleChoice, -4, SpringLayout.NORTH, lblType);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnMultipleChoice, 52, SpringLayout.EAST, lblType);
 		add(rdbtnMultipleChoice);
 		
-		JRadioButton rdbtnFillBlanks = new JRadioButton("Fill blanks");
+		
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnFillBlanks, 11, SpringLayout.SOUTH, rdbtnMultipleChoice);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnFillBlanks, 91, SpringLayout.WEST, this);
 		add(rdbtnFillBlanks);
 		
-		//Make a button group
-		ButtonGroup group_type = new ButtonGroup();
+		//Add to button group		
 		group_type.add(rdbtnFillBlanks);
 		group_type.add(rdbtnMultipleChoice);
 		
@@ -85,12 +87,12 @@ public class AddQuestionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblMarks, 0, SpringLayout.WEST, lblSubsection);
 		add(lblMarks);
 		
-		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField, 13, SpringLayout.SOUTH, rdbtnFillBlanks);
-		springLayout.putConstraint(SpringLayout.WEST, textField, 56, SpringLayout.EAST, lblMarks);
-		springLayout.putConstraint(SpringLayout.EAST, textField, 0, SpringLayout.EAST, txtSubsection);
-		add(textField);
-		textField.setColumns(10);
+		txtMarks = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, txtMarks, 13, SpringLayout.SOUTH, rdbtnFillBlanks);
+		springLayout.putConstraint(SpringLayout.WEST, txtMarks, 56, SpringLayout.EAST, lblMarks);
+		springLayout.putConstraint(SpringLayout.EAST, txtMarks, 0, SpringLayout.EAST, txtSubsection);
+		add(txtMarks);
+		txtMarks.setColumns(10);
 		
 		//If the user selects multiple choice
 		final JPanel panel_mult = new JPanel();
@@ -147,7 +149,7 @@ public class AddQuestionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, panel_new, 419, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, panel_new, 0, SpringLayout.WEST, lblSubsection);
 		springLayout.putConstraint(SpringLayout.EAST, panel_new, 0, SpringLayout.EAST, txtSubsection);
-		//panel_new.setVisible(false);
+		panel_new.setVisible(false);
 		add(panel_new);
 		SpringLayout sl_panel_new = new SpringLayout();
 		panel_new.setLayout(sl_panel_new);
@@ -192,7 +194,8 @@ public class AddQuestionPanel extends JPanel {
 		sl_panel_new.putConstraint(SpringLayout.SOUTH, btnOk, -10, SpringLayout.SOUTH, panel_new);
 		panel_new.add(btnOk);
 		
-			
+		
+		//radio button listener to make things visible and unvisible
 		rdbtnMultipleChoice.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
@@ -203,6 +206,7 @@ public class AddQuestionPanel extends JPanel {
 			    }
 		});
 		
+		//radio button listener to make things visible and unvisible
 		rdbtnFillBlanks.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
@@ -224,7 +228,7 @@ public class AddQuestionPanel extends JPanel {
 			    }
 		});
 		
-		/// clickin the Ok button
+		/// clickin the Ok button we save the new possible answer
 		btnOk.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
@@ -234,14 +238,14 @@ public class AddQuestionPanel extends JPanel {
 		    	
 			    }
 		});
-		
-		
-
 	}
 	
-	 public class MyTableModel extends AbstractTableModel {
+	//class for the table with the possible answers
+ 	 public class MyTableModel extends AbstractTableModel {
 
-	        String[] columns = {"Answer","Corect"};
+	        String[] columns = {"Answer","Corect"};  //columns of the table
+	        
+	        //all the possible answers of the multiple choice question
 			Object[][] data = {{"", new Boolean(false)},{"", new Boolean(false)},{"", new Boolean(false)},{"", new Boolean(false)}};
 	 
 	        public int getRowCount() {

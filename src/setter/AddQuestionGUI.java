@@ -26,10 +26,18 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddQuestionGUI extends JFrame {
 
 	private JPanel contentPane;
+	AddQuestionPanel addPanel=new AddQuestionPanel();
+	NavigationPanel nav=new NavigationPanel();
+	MultichoicePanel multiPanel=new MultichoicePanel();
+	FillBlankPanel fillPanel=new FillBlankPanel();
+	int buttonType=0;
+	int questionType=1;
 
 	/**
 	 * Launch the application.
@@ -59,6 +67,8 @@ public class AddQuestionGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+		
+		
 		JPanel panelTitle = new JPanel();
 		contentPane.add(panelTitle, BorderLayout.NORTH);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
@@ -68,41 +78,109 @@ public class AddQuestionGUI extends JFrame {
 		gbl_panel_1.rowWeights = new double[]{Double.MIN_VALUE};
 		panelTitle.setLayout(gbl_panel_1);
 		
+		//Set the name of the Test and Sector
 		JLabel lblTitle=new JLabel("TestA: SectorA");
-		JButton btnSwitch=new JButton("Switch");
+		
+		JButton btnSwitch=new JButton("Switch");	//Button to switch preview
 		
 		panelTitle.add(lblTitle);
 		panelTitle.add(btnSwitch);
 		
 		//The panel in the center
-		JPanel panelCenter=new JPanel();
+		final JPanel panelCenter=new JPanel();
 		JPanel panelStep=new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
-		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));
+		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
+		panelCenter.add(addPanel);	
 		
-		
-		//panelCenter.add(new AddQuestionPanel());
-		//panelCenter.add(new MultichoicePanel());
-		panelCenter.add(new FillBlankPanel());
-		
-		NavigationPanel nav=new NavigationPanel();
+		//The navigation panel
 		contentPane.add(nav, BorderLayout.SOUTH);
+			
 		
-		
-		Component[] comp = nav.getComponents();
-        for (int i = 0; i < comp.length; i++) {
-            if (comp[i] instanceof JButton) {
-                JButton temp = (JButton) comp[i];
-                if (temp.getText().equals("Save"))
-                {
-                	
-                }
-            }
-        }
-        
-		
-		
-	
+		//button Listeners
+		nav.btnSave.addActionListener(new ActionListener(){  //button to save the question
+			public void actionPerformed(ActionEvent e) {
+				buttonType=1;
+				
+				if(questionType==1) //multiple choice question
+				{
+					panelCenter.removeAll();
+					panelCenter.add(multiPanel);
+				}
+				if(questionType==2)  //fill blank question
+				{
+					panelCenter.removeAll();
+					panelCenter.add(fillPanel);
+				}
+				
+				validate();
+				repaint();
+			 }
+			 
+		});
+		nav.btnAdd.addActionListener(new ActionListener(){	//button to add new question
+			public void actionPerformed(ActionEvent e) {
+				 buttonType=2;
+				 
+				 //which panel to remove
+				 if(questionType==1)
+					{
+					 	panelCenter.remove(multiPanel);
+						panelCenter.add(addPanel);
+												
+						
+					}
+				 if(questionType==2)
+					{
+						panelCenter.remove(fillPanel);
+						panelCenter.add(addPanel);
+						
+					}
+				 
+				panelCenter.validate();
+				panelCenter.repaint();
+			}
+		});
+		nav.btnDelete.addActionListener(new ActionListener(){  //Delete the question
+			 public void actionPerformed(ActionEvent e) {
+				 buttonType=3;
+			 }
+		});
+		nav.btnEdit.addActionListener(new ActionListener(){  //Edit the question
+		    public void actionPerformed(ActionEvent e) {
+			   buttonType=4;
+			   
+			 //which panel to remove
+			   if(questionType==1)
+				{
+				 	panelCenter.remove(multiPanel);
+					panelCenter.add(addPanel);
+					
+				}
+			   if(questionType==2)
+				{
+					panelCenter.remove(fillPanel);
+					panelCenter.add(addPanel);
+					
+				}
+			   
+			  panelCenter.validate();
+			  panelCenter.repaint();
+				
+			 }
+		});
+				
+		//Radio button listeners -- get the question type
+		addPanel.rdbtnMultipleChoice.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				questionType=1;
+			}
+		});
+		addPanel.rdbtnFillBlanks.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				questionType=2;
+			}
+		});
 
 	}
 }
