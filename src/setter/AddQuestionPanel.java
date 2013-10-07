@@ -59,6 +59,8 @@ public class AddQuestionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 15, SpringLayout.SOUTH, txtSubsection);
 		springLayout.putConstraint(SpringLayout.WEST, txtQuestion, 0, SpringLayout.WEST, txtSubsection);
 		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -22, SpringLayout.EAST, this);
+		txtQuestion.setLineWrap(true);
+		txtQuestion.setWrapStyleWord(true);
 		add(txtQuestion);
 		
 		JLabel lblType = new JLabel("Type:");

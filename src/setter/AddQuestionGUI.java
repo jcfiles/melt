@@ -61,7 +61,7 @@ public class AddQuestionGUI extends JFrame {
 	public AddQuestionGUI() {
 		super("Add Question");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 533, 700);
+		setBounds(200, 0, 533, 720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -88,7 +88,6 @@ public class AddQuestionGUI extends JFrame {
 		
 		//The panel in the center
 		final JPanel panelCenter=new JPanel();
-		JPanel panelStep=new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
 		panelCenter.add(addPanel);	
