@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +20,13 @@ public class AddSectionGUI extends JFrame {
 
 	private JPanel contentPane;
 	AddSectionPanel addPanel=new AddSectionPanel();
+	ViewSectionPanel viewPanel=new ViewSectionPanel();
+	SectionNavigationPanel nav=new SectionNavigationPanel();
+	
+	JLabel lblTitle=new JLabel("Title:");
+	JTextField txtTest=new JTextField();
+	JLabel lblTest=new JLabel("TestA");
+	
 
 	/**
 	 * Launch the application.
@@ -62,10 +71,11 @@ public class AddSectionGUI extends JFrame {
 		panelTitle.add(panelA);
 		
 		//Set the name of the Test and Sector
-		JLabel lblTitle=new JLabel("Title:");
-		JTextField txtTest=new JTextField();
+		
+		lblTest.setVisible(false);
 		txtTest.setColumns(20);
 		panelA.add(lblTitle);
+		panelA.add(lblTest);
 		panelA.add(txtTest);				
 		
 		//Switch button 
@@ -78,9 +88,57 @@ public class AddSectionGUI extends JFrame {
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
 		panelCenter.add(addPanel);	
 		
+		//The navigation panel
+		contentPane.add(nav, BorderLayout.SOUTH);
+		
+		//button Listeners
+		nav.btnSave.addActionListener(new ActionListener(){  //button to save the question
+		public void actionPerformed(ActionEvent e) {
+			
+			panelCenter.removeAll();
+			panelCenter.add(viewPanel);
+			
+			txtTest.setVisible(false);
+			lblTest.setVisible(true);
+			
+			
+			validate();
+			repaint();
+			} 
+		});
+		
+		nav.btnAdd.addActionListener(new ActionListener(){	//button to add new question
+		public void actionPerformed(ActionEvent e) {
+			
+			panelCenter.removeAll();
+			panelCenter.add(addPanel);
+			
+			panelCenter.validate();
+			panelCenter.repaint();
+			
+			txtTest.setVisible(true);
+			lblTest.setVisible(false);
+					}
+				});
 		
 		
+		nav.btnDelete.addActionListener(new ActionListener(){  //Delete the question
+		public void actionPerformed(ActionEvent e) {
+			 }
+				});
 		
+		nav.btnEdit.addActionListener(new ActionListener(){  //Edit the question
+		public void actionPerformed(ActionEvent e) {
+			panelCenter.removeAll();
+			panelCenter.add(addPanel);
+						
+			panelCenter.validate();
+			panelCenter.repaint();
+			
+			txtTest.setVisible(true);
+			lblTest.setVisible(false);
+		 }
+		});
 	}
 
 }
