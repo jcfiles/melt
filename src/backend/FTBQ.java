@@ -46,7 +46,12 @@ public class FTBQ extends Question
     @Override
     public int getMark()
     {
-        return  givenAnswer.equals(getTheAnswer().getAnswerText()) ? possibleMarks : 0;
+        if(givenAnswer==null){
+            return 0;
+        }
+        else{
+            return  givenAnswer.equals(getTheAnswer().getAnswerText()) ? possibleMarks : 0;
+        }
     }
     
      /**

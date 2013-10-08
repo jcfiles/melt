@@ -1,5 +1,6 @@
 package student;
 
+import backend.StudentTestController;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
@@ -19,13 +20,15 @@ public class StudentStartJPanel extends JPanel { //implements ActionListener{
 	/**
 	 * 
 	 */
+    private StudentTestController controller;
     private final Test_ test;
     private static final long serialVersionUID = 5624695781144447672L;
 
 	/**
 	 * Create the panel.
 	 */
-	public StudentStartJPanel(final Test_ test) {
+	public StudentStartJPanel(final StudentTestController controller, final Test_ test) {
+            this.controller = controller;
             this.test = test;
             SpringLayout springLayout = new SpringLayout();
             setLayout(springLayout);	
@@ -51,7 +54,7 @@ public class StudentStartJPanel extends JPanel { //implements ActionListener{
                 startButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    SectionIndexPanel sectionIndexPanel = new SectionIndexPanel(test);
+                    SectionIndexPanel sectionIndexPanel = new SectionIndexPanel(controller, test);
                     MainGui.setComposite(sectionIndexPanel);}
                 });
 		GridBagConstraints gbc_startButton = new GridBagConstraints();

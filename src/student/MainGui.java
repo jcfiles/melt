@@ -1,5 +1,6 @@
 package student;
 
+import backend.StudentTestController;
 import java.awt.Component;
 import java.awt.EventQueue;
 
@@ -9,6 +10,7 @@ import backend.Test_;
 
 public class MainGui {
 
+    StudentTestController controller;
     private Test_ test;
     private StudentStartJPanel studentpanel;
     private static JFrame frame;
@@ -52,14 +54,13 @@ public class MainGui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-            
             test = Test_.getDemoTest(); // INSTANTIATE THE DEMO TEST
-            
+            StudentTestController controller = new StudentTestController(test);
             frame = new JFrame();
             frame.setBounds(100, 100, 450, 300);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-            studentpanel = new StudentStartJPanel(test);
+            studentpanel = new StudentStartJPanel(controller, test);
             frame.add(studentpanel);
             frame.validate();
 	}

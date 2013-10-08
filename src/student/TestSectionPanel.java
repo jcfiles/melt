@@ -1,5 +1,6 @@
 package student;
 
+import java.util.Iterator;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.JScrollPane;
 
+import backend.StudentTestController;
 import backend.FTBQ;
 import backend.Question;
 import backend.Section;
@@ -30,14 +32,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class TestSectionPanel extends JPanel {
-	private JTable tableQuestions;
+    private StudentTestController controller;
+    private JTable tableQuestions;
 	private ArrayList<Question> questions;
 	private int questionPanelsIndex;
+        ArrayList<JPanel> jPanelQuestions;
 	/**
 	 * Create the panel.
 	 */
-	public TestSectionPanel(Section section) {
-		questionPanelsIndex=0;
+	public TestSectionPanel(final StudentTestController controller, final Section section) {
+		this.controller = controller;
+                questionPanelsIndex=0;
 		questions = section.getQuestionsList();
 		setLayout(new BorderLayout(0, 0));
 		
@@ -159,14 +164,14 @@ public class TestSectionPanel extends JPanel {
 		scrollPane.setViewportView(questionHolderPanel);
 		questionHolderPanel.setLayout(new CardLayout(0, 0));
 		
-		ArrayList<JPanel> jPanelQuestions = new ArrayList<JPanel>();
+		jPanelQuestions = new ArrayList<JPanel>();
 		for(int i=0; i<questions.size(); i++){
 			if(questions.get(i) instanceof FTBQ){
 				FIBQuestionPanel fibqPanel = new FIBQuestionPanel((FTBQ)questions.get(i));
 				questionHolderPanel.add(fibqPanel, "name_"+Integer.toString(i));
 				jPanelQuestions.add(fibqPanel);
 			}
-			if(questions.get(i) instanceof Question){
+                        else if(questions.get(i) instanceof Question){
 				MCQuestionPanel mcqPanel = new MCQuestionPanel((Question)questions.get(i));
 				questionHolderPanel.add(mcqPanel, "name_"+Integer.toString(i));
 				jPanelQuestions.add(mcqPanel);
@@ -194,7 +199,7 @@ public class TestSectionPanel extends JPanel {
 				if(questionPanelsIndex>0){
 					questionPanelsIndex--;
 					((CardLayout)questionHolderPanel.getLayout()).previous(questionHolderPanel);
-					scrollPane.setSize(scrollPane.getComponents()[0].getSize());
+					scrollPane.setSize(scrollPane.getComponents()[questionPanelsIndex].getSize());
 				}
 			}
 		});
@@ -212,7 +217,7 @@ public class TestSectionPanel extends JPanel {
 				if(questionPanelsIndex<questions.size()-1){
 					questionPanelsIndex++;
 					((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
-					scrollPane.setSize(scrollPane.getComponents()[0].getSize());
+					scrollPane.setSize(scrollPane.getComponents()[questionPanelsIndex].getSize());
 				}
 			}
 		});
@@ -234,7 +239,18 @@ public class TestSectionPanel extends JPanel {
 		buttonSubmitSection.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			}
+                            Iterator<JPanel> it = jPanelQuestions.iterator();
+                            while(it.hasNext()) {
+                                JPanel panel = it.next();
+                                if(panel instanceof FIBQuestionPanel) {
+                                    ((FIBQuestionPanel)panel).submitAnswer();
+                                }
+                                else if(panel instanceof MCQuestionPanel) {
+                                    ((MCQuestionPanel)panel).submitAnswer();
+                                }
+                            }
+                        controller.endSection(section);
+                        }
 		});
 		GridBagConstraints gbc_buttonSubmitSection = new GridBagConstraints();
 		gbc_buttonSubmitSection.anchor = GridBagConstraints.NORTH;
@@ -243,5 +259,4 @@ public class TestSectionPanel extends JPanel {
 		panel_1.add(buttonSubmitSection, gbc_buttonSubmitSection);
 
 	}
-
 }

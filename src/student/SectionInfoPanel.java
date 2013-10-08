@@ -13,7 +13,9 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+
 import backend.Section;
+import backend.StudentTestController;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -23,11 +25,13 @@ import java.awt.event.MouseEvent;
 
 public class SectionInfoPanel extends JPanel {
 
+    StudentTestController controller;
 	/**
 	 * Create the panel.
 	 */
-	public SectionInfoPanel(final Section section, final SectionIndexPanel sectionIndexPanel) {
-		setLayout(new BorderLayout(0, 0));
+	public SectionInfoPanel(final StudentTestController controller, final Section section, final SectionIndexPanel sectionIndexPanel) {
+            this.controller = controller;
+            setLayout(new BorderLayout(0, 0));
 		
 		JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
 		labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -160,7 +164,7 @@ public class SectionInfoPanel extends JPanel {
 		buttonStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TestSectionPanel testSectionPanel = new TestSectionPanel(section);
+				TestSectionPanel testSectionPanel = new TestSectionPanel(controller, section);
 				MainGui.setComposite(testSectionPanel);
 			}
 		});

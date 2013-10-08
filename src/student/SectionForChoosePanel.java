@@ -19,6 +19,7 @@ import java.awt.Color;
 import javax.swing.SpringLayout;
 
 import backend.Section;
+import backend.StudentTestController;
 
 import java.awt.GridLayout;
 import java.awt.Font;
@@ -27,11 +28,14 @@ import java.awt.event.MouseEvent;
 
 public class SectionForChoosePanel extends JPanel {
 
-	/**
+    StudentTestController controller;	
+    
+        /**
 	 * Create the panel.
 	 */
-	public SectionForChoosePanel( final Section section, final SectionIndexPanel sectionIndexPanel) {
-		setBorder(new LineBorder(new Color(0, 0, 0)));
+	public SectionForChoosePanel(final StudentTestController controller, final Section section, final SectionIndexPanel sectionIndexPanel) {
+            this.controller = controller;
+            setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
@@ -85,7 +89,7 @@ public class SectionForChoosePanel extends JPanel {
 		buttonSelect.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SectionInfoPanel sectionifoInfoPanel = new SectionInfoPanel(section, sectionIndexPanel);
+				SectionInfoPanel sectionifoInfoPanel = new SectionInfoPanel(controller, section, sectionIndexPanel);
 				MainGui.setComposite(sectionifoInfoPanel);
 			}
 		});
