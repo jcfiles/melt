@@ -13,10 +13,6 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
