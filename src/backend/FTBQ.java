@@ -9,7 +9,7 @@ package backend;
 public class FTBQ extends Question
 {
     private String qFirstPart, qSecondPart;
-    private String givenAnswer = null; // index of the blank is in the question string
+    private String givenAnswer = ""; // index of the blank is in the question string
     
     /**
      * Constructor for objects of class FTBQ
@@ -46,12 +46,7 @@ public class FTBQ extends Question
     @Override
     public int getMark()
     {
-        if(givenAnswer==null){
-            return 0;
-        }
-        else{
-            return  givenAnswer.equals(getTheAnswer().getAnswerText()) ? possibleMarks : 0;
-        }
+        return  givenAnswer.equals(getTheAnswer().getAnswerText()) ? possibleMarks : 0;
     }
     
      /**
