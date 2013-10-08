@@ -15,21 +15,21 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.border.BevelBorder;
 
-public class MCQuestionPanel extends Questions {
-	/**
-	 * 
-	 */
+import backend.Question;
+import backend.Answer;
+
+public class MCQuestionPanel extends QuestionPanel {
+	
 	private static final long serialVersionUID = 6648494571735411196L;
-
-	/**
-	 * 
-	 */
-
+        private Question question;
+        
 	/**
 	 * Create the panel.
 	 */
-	public MCQuestionPanel() {
-		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+	public MCQuestionPanel(Question question) {
+            this.question = question;
+		
+            setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0};
@@ -114,5 +114,9 @@ public class MCQuestionPanel extends Questions {
 			}
 		}
 	}
+        
+    public void submitAnswer() {
+        //question.
+    }
 
 }

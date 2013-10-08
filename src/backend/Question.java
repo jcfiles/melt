@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @author Bruce Steedman
  * @version 2013.09.27
  */
-public class Question
+public class Question implements java.io.Serializable
 {
     protected String questionText;
     protected int possibleMarks = 1;
@@ -103,6 +103,14 @@ public class Question
             }
         }
         return marksAwarded;
+    }
+    
+    /**
+     * Returns the mark awarded for the question. Is 0 if wrong or unanswered
+     */
+    public int getPossibleMark()
+    {
+        return possibleMarks;
     }
     
     /**

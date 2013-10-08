@@ -16,6 +16,7 @@ public class FinishTestPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+         * @param marks is total marks awarded for the test
 	 */
 	public FinishTestPanel(String marks) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -53,7 +54,7 @@ public class FinishTestPanel extends JPanel {
 		JLabel lblYourMarkIs = new JLabel("Your mark is");
 		panel.add(lblYourMarkIs);
 		
-		JLabel label = new JLabel(marks); // pass the marks awarded so it can be displayed
+		JLabel label = new JLabel(marks);
 		panel.add(label);
 
 	}

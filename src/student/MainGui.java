@@ -5,11 +5,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
-import backend.TestController;
+import backend.Test_;
 
 public class MainGui {
 
-    private TestController controller;
+    private Test_ test;
     private StudentStartJPanel studentpanel;
     private static JFrame frame;
     public static JFrame getFrame() {
@@ -51,16 +51,18 @@ public class MainGui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-            controller = new TestController(this); // Instantiates the TestController & passes a reference to the main gui
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-		studentpanel = new StudentStartJPanel(controller); // pass controller to contained panel
-		frame.add(studentpanel);
-		frame.validate();
+            
+            test = Test_.getDemoTest(); // INSTANTIATE THE DEMO TEST
+            
+            frame = new JFrame();
+            frame.setBounds(100, 100, 450, 300);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
+            studentpanel = new StudentStartJPanel(test);
+            frame.add(studentpanel);
+            frame.validate();
 	}
-        // Accessor method, so contoller can access this from main gui
+        
         public StudentStartJPanel getStudentPanel() {
             return studentpanel;
         }

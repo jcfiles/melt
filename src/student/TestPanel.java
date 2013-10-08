@@ -1,5 +1,6 @@
 package student;
 
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import java.awt.CardLayout;
@@ -12,7 +13,6 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import backend.TestController;
 import backend.Test_;
 
 
@@ -21,14 +21,18 @@ public class TestPanel extends JPanel {
 	/**
 	 * 
 	 */
-    private TestController controller;
+    private Test_ test;
     private static final long serialVersionUID = 1939041461035877329L;
-	private JPanel panel;
+    private JPanel panel;
+    private SectionPanel sectionPanel;
+    private ArrayList<SectionPanel> sectionPanels;
+    //private ArrayList<QuestionPanel> questionPanels;
 
 	/**
 	 * Create the panel.
 	 */
-	public TestPanel(TestController controller, Test_ test) { // A Test_ instance passed in as parameter
+	public TestPanel(final Test_ test) { // A Test_ instance passed in as parameter
+            sectionPanels = new ArrayList<SectionPanel>();
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -51,9 +55,12 @@ public class TestPanel extends JPanel {
 		gbc_panel.gridy = 1;
 		add(panel, gbc_panel);
 		panel.setLayout(new CardLayout(0, 0));
-		
-		SectionPanel sectionpanel = new SectionPanel(null);
-		panel.add(sectionpanel, "name_1380485611736349000");
+                
+		sectionPanel = new SectionPanel(this, test.getSection(0)); //JUST THE ONE FOR NOW!!!!
+                
+		panel.add(sectionPanel, "name_1380485611736349000");
+                
+                sectionPanels.add(sectionPanel);
 		
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -62,16 +69,21 @@ public class TestPanel extends JPanel {
 		gbc_panel_1.gridy = 2;
 		add(panel_1, gbc_panel_1);
 		
-		JButton btnNewButton = new JButton("Finish");
-		btnNewButton.addActionListener(controller); //(new ActionListener() { // Replaced new actionListener wiht 'controller'
-			//public void actionPerformed(ActionEvent e) {
-			//	FinishTestPanel finishpanel = new FinishTestPanel();
-			//	MainGui.setComposite(finishpanel);
-			//}
-		//});
-		panel_1.add(btnNewButton);	
+		JButton finishButton = new JButton("Finish");
+		finishButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        
+                        sectionPanels.get(0).getFIBQuestionPanel(0).submitAnswer();
+                        
+                        test.endTest();
+                        String marks = String.valueOf(test.getTotalMarks());
+                        FinishTestPanel finishpanel = new FinishTestPanel(marks);
+                        MainGui.setComposite(finishpanel);}
+                    });
+		panel_1.add(finishButton);	
 	}
-	//private void addSection(Questions[] questions){
-		
-	//}
+        
+        private SectionPanel getSectionPanel(int index) {
+            return sectionPanels.get(index);
+        }
 }
