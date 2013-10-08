@@ -179,7 +179,7 @@ public class Test_ implements java.io.Serializable
         t1.addSection(s1);
         Section s2 = new Section("Section B", "Vocabulary section...");
         t1.addSection(s2); 
-        //s1.addQuestion(q1);
+        s1.addQuestion(q1);
         q1.addAnswer("5", false);
         q1.addAnswer("3", false);
         q1.addAnswer("4", true);

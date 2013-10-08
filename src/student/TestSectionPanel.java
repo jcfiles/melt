@@ -177,7 +177,7 @@ public class TestSectionPanel extends JPanel {
 				jPanelQuestions.add(mcqPanel);
 			}
 		}
-		scrollPane.setSize(scrollPane.getComponents()[0].getSize());
+		scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
 		
 		JPanel panel_7 = new JPanel();
 		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
@@ -199,7 +199,7 @@ public class TestSectionPanel extends JPanel {
 				if(questionPanelsIndex>0){
 					questionPanelsIndex--;
 					((CardLayout)questionHolderPanel.getLayout()).previous(questionHolderPanel);
-					scrollPane.setSize(scrollPane.getComponents()[questionPanelsIndex].getSize());
+                                        scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
 				}
 			}
 		});
@@ -217,7 +217,8 @@ public class TestSectionPanel extends JPanel {
 				if(questionPanelsIndex<questions.size()-1){
 					questionPanelsIndex++;
 					((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
-					scrollPane.setSize(scrollPane.getComponents()[questionPanelsIndex].getSize());
+                                        scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
+
 				}
 			}
 		});
