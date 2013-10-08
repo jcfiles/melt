@@ -79,6 +79,6 @@ public class Test_Test
         t1.getSection(0).getQuestion(0).getIndexedAnswer(1).select(); // comment out to see marks awarded change
         t1.getSection(0).getQuestion(1).getTheAnswer().select(); // ditto
         t1.endTest();
-        assertEquals(true, t1.getTotalMarks() >= 0);
+        assertEquals(true, t1.getTotalMarks() == 2);
     }
 }

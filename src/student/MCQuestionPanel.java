@@ -15,21 +15,26 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.border.BevelBorder;
 
-public class MCQuestionPanel extends Questions {
-	/**
-	 * 
-	 */
+import backend.Question;
+import backend.Answer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JCheckBox;
+
+public class MCQuestionPanel extends JPanel {
+	
 	private static final long serialVersionUID = 6648494571735411196L;
-
-	/**
-	 * 
-	 */
-
+        private Question question;
+        private ArrayList<Answer> answers;
+        private JPanel panel_1;
+        
 	/**
 	 * Create the panel.
 	 */
-	public MCQuestionPanel() {
-		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+	public MCQuestionPanel(Question question) {
+            this.question = question;
+		answers = question.getAllAnswers();
+            setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0};
@@ -67,10 +72,10 @@ public class MCQuestionPanel extends Questions {
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		
-		JLabel lblHowMuchIs = new JLabel("How much is 2+2?");
+		JLabel lblHowMuchIs = new JLabel(question.getQuestionText());
 		panel.add(lblHowMuchIs);
 		
-		final JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 0;
@@ -83,36 +88,32 @@ public class MCQuestionPanel extends Questions {
 		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JRadioButton radioButton = new JRadioButton("3");
-		GridBagConstraints gbc_radioButton = new GridBagConstraints();
-		gbc_radioButton.fill = GridBagConstraints.BOTH;
-		gbc_radioButton.insets = new Insets(0, 0, 0, 5);
-		gbc_radioButton.gridx = 0;
-		gbc_radioButton.gridy = 0;
-		panel_1.add(radioButton, gbc_radioButton);
-		
-		JRadioButton radioButton_1 = new JRadioButton("4");
-		GridBagConstraints gbc_radioButton_1 = new GridBagConstraints();
-		gbc_radioButton_1.anchor = GridBagConstraints.WEST;
-		gbc_radioButton_1.gridx = 0;
-		gbc_radioButton_1.gridy = 3;
-		panel_1.add(radioButton_1, gbc_radioButton_1);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("5");
-		GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnNewRadioButton.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnNewRadioButton.gridx = 0;
-		gbc_rdbtnNewRadioButton.gridy = 2;
-		panel_1.add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
-		
-		ButtonGroup group = new ButtonGroup();
-
-		for(int i=0;i<panel_1.getComponentCount();i++){
-			if(panel_1.getComponent(i) instanceof JRadioButton){
-				group.add((JRadioButton)panel_1.getComponent(i));
-			}
-		}
+                createRadioButtons();
+	
 	}
 
+    private void createRadioButtons() {
+        Iterator<Answer> it = answers.iterator();
+        int i=0;
+        while(it.hasNext()){
+            JCheckBox checkAnswer = new JCheckBox(it.next().getAnswerText());
+            GridBagConstraints gbc_radioButton = new GridBagConstraints();
+            gbc_radioButton.fill = GridBagConstraints.BOTH;
+            gbc_radioButton.insets = new Insets(0, 0, 0, 5);
+            gbc_radioButton.gridx = 0;
+            gbc_radioButton.gridy = i;
+            panel_1.add(checkAnswer, gbc_radioButton);
+            i++;
+        }
+    }
+    
+    public void submitAnswer() {
+        for(int i=0; i<panel_1.getComponentCount(); i++){
+            if(panel_1.getComponent(i) instanceof JCheckBox){
+                if(((JCheckBox)panel_1.getComponent(i)).isSelected()){
+                    answers.get(i).select();
+                }
+            }
+        }
+    }
 }

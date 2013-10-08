@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Representation of a test
+ * Representation of a section
  * 
  * @author Lok Chan, assisted by Bruce
  * @version 2013.09.28
  */
-public class Section
+public class Section implements java.io.Serializable
 {
     private String sectionTitle;
     private String sectionIntroText;
     private ArrayList<Question> questions;
     private int possibleMarks; // not used yet!
-    private double sectionMarksAwarded = 0;
+    private int sectionMarksAwarded;
     public boolean isLocked = true;
-    
     private TestTimer sectionProgram; //the testTimer class
     private long sectionTime;
     
@@ -32,65 +31,60 @@ public class Section
         questions = new ArrayList<Question>();        
     }
 
-    /**
-     * Adds a question to the test
-     * 
-     */
+    public String getSectionTitle()
+    {
+        return sectionTitle;
+    }
+    
+    public String getSectionIntroText()
+    {
+        return sectionIntroText;
+    }
+    
     public void addQuestion(Question q)
     {
         questions.add(q);
     }
     
-     /**
-     * Removes a question from the test
-     * 
-     */
     public void removeQuestion(Question q)
     {
         questions.remove(q);
     }
     
-     /**
+    /**
      * Returns an question by index, starting at 0
      */
     public Question getQuestion(int questionNum)
     {
         return questions.get(questionNum);
     }
-
-     /**
-     * Starts the section
-     */
-/**    public void startSection() 
-    {
-         sectionProgram = new TestTimer(); //initializes Timer object
-         sectionProgram.runSection(sectionTime); //runs section in "testTime" seconds.
-    }
-*/    
-     /**
-     * sets the timer for the entire test
-     */    
-/**    public void setSectionTime(long sectionTimeToBeSet)
-    {
-        sectionTime = sectionTimeToBeSet;
-    }    
-*/ 
+    
     /**
-     * Grades the test for a particular section only. 
+     * Returns a list of all question in the section
      */
-    private void gradeQuestionTest()
+    public ArrayList<Question> getQuestionsList()
     {
+        return questions;
+    }
+
+    /**
+     * Grades the section 
+     */
+    public int gradeSection()
+    {
+        sectionMarksAwarded = 0;
         Iterator<Question> it = questions.iterator();
         while (it.hasNext()) {
             Question q = it.next();
-            sectionMarksAwarded = q.getMark();
+            sectionMarksAwarded += q.getMark();
         }
+        return sectionMarksAwarded;
     }
     
     /**
      * Gets the test marks
      */
-    public double getSectionMarks()
+    public int getSectionMarks()
     {
         return sectionMarksAwarded;
     }
