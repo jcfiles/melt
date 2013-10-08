@@ -19,15 +19,26 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.JScrollPane;
 
+import backend.FTBQ;
+import backend.Question;
+import backend.Section;
+import backend.Test_;
+
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class TestPanelNew extends JPanel {
-	private JTable table;
-
+public class TestSectionPanel extends JPanel {
+	private JTable tableQuestions;
+	private ArrayList<Question> questions;
+	private int questionPanelsIndex;
 	/**
 	 * Create the panel.
 	 */
-	public TestPanelNew() {
+	public TestSectionPanel(Section section) {
+		questionPanelsIndex=0;
+		questions = section.getQuestionsList();
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -53,7 +64,7 @@ public class TestPanelNew extends JPanel {
 		gbl_panel_8.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_8.setLayout(gbl_panel_8);
 		
-		JLabel lblTestA = new JLabel("Test A:");
+		JLabel lblTestA = new JLabel("");
 		GridBagConstraints gbc_lblTestA = new GridBagConstraints();
 		gbc_lblTestA.anchor = GridBagConstraints.EAST;
 		gbc_lblTestA.insets = new Insets(0, 0, 0, 5);
@@ -61,12 +72,12 @@ public class TestPanelNew extends JPanel {
 		gbc_lblTestA.gridy = 0;
 		panel_8.add(lblTestA, gbc_lblTestA);
 		
-		JLabel lblSectionA = new JLabel("Section A");
-		GridBagConstraints gbc_lblSectionA = new GridBagConstraints();
-		gbc_lblSectionA.anchor = GridBagConstraints.WEST;
-		gbc_lblSectionA.gridx = 1;
-		gbc_lblSectionA.gridy = 0;
-		panel_8.add(lblSectionA, gbc_lblSectionA);
+		JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
+		GridBagConstraints gbc_labelSectionTitle = new GridBagConstraints();
+		gbc_labelSectionTitle.anchor = GridBagConstraints.WEST;
+		gbc_labelSectionTitle.gridx = 1;
+		gbc_labelSectionTitle.gridy = 0;
+		panel_8.add(labelSectionTitle, gbc_labelSectionTitle);
 		
 		JPanel panel_9 = new JPanel();
 		GridBagConstraints gbc_panel_9 = new GridBagConstraints();
@@ -81,13 +92,13 @@ public class TestPanelNew extends JPanel {
 		gbl_panel_9.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_9.setLayout(gbl_panel_9);
 		
-		JLabel lblNewLabel = new JLabel("30");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		panel_9.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel labelTimeRemaining = new JLabel("30");
+		GridBagConstraints gbc_labelTimeRemaining = new GridBagConstraints();
+		gbc_labelTimeRemaining.anchor = GridBagConstraints.EAST;
+		gbc_labelTimeRemaining.insets = new Insets(0, 0, 0, 5);
+		gbc_labelTimeRemaining.gridx = 0;
+		gbc_labelTimeRemaining.gridy = 0;
+		panel_9.add(labelTimeRemaining, gbc_labelTimeRemaining);
 		
 		JLabel lblNewLabel_2 = new JLabel("minutes remaining");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -103,28 +114,29 @@ public class TestPanelNew extends JPanel {
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel_1 = new JLabel("Vocabulary");
-		panel_3.add(lblNewLabel_1);
+		JLabel labelSubsection = new JLabel("Example Subsection Heading");
+		panel_3.add(labelSubsection);
 		
 		JLabel label = new JLabel(">");
 		panel_3.add(label);
 		
-		JLabel lblHospital = new JLabel("Hospital");
-		panel_3.add(lblHospital);
-		
 		JPanel scrollPane_1 = new JPanel();
 		panel_2.add(scrollPane_1, BorderLayout.WEST);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Q1"},
-			},
+		String q = "Q";
+		Object[][] object = new Object[questions.size()][1];
+		for(int i=0; i<questions.size();i++){
+			object[i][0]=q+Integer.toString(i+1);
+		}
+		
+		tableQuestions = new JTable();
+		tableQuestions.setModel(new DefaultTableModel(
+			object,
 			new String[] {
 				"Questions"
 			}
 		));
-		scrollPane_1.add(table);
+		scrollPane_1.add(tableQuestions);
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.CENTER);
@@ -135,7 +147,7 @@ public class TestPanelNew extends JPanel {
 		gbl_panel_5.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		panel_5.setLayout(gbl_panel_5);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		final JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
@@ -143,9 +155,24 @@ public class TestPanelNew extends JPanel {
 		gbc_scrollPane.gridy = 0;
 		panel_5.add(scrollPane, gbc_scrollPane);
 		
-		JPanel panel_6 = new JPanel();
-		scrollPane.setViewportView(panel_6);
-		panel_6.setLayout(new CardLayout(0, 0));
+		final JPanel questionHolderPanel = new JPanel();
+		scrollPane.setViewportView(questionHolderPanel);
+		questionHolderPanel.setLayout(new CardLayout(0, 0));
+		
+		ArrayList<JPanel> jPanelQuestions = new ArrayList<JPanel>();
+		for(int i=0; i<questions.size(); i++){
+			if(questions.get(i) instanceof FTBQ){
+				FIBQuestionPanel fibqPanel = new FIBQuestionPanel((FTBQ)questions.get(i));
+				questionHolderPanel.add(fibqPanel, "name_"+Integer.toString(i));
+				jPanelQuestions.add(fibqPanel);
+			}
+			if(questions.get(i) instanceof Question){
+				MCQuestionPanel mcqPanel = new MCQuestionPanel((Question)questions.get(i));
+				questionHolderPanel.add(mcqPanel, "name_"+Integer.toString(i));
+				jPanelQuestions.add(mcqPanel);
+			}
+		}
+		scrollPane.setSize(scrollPane.getComponents()[0].getSize());
 		
 		JPanel panel_7 = new JPanel();
 		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
@@ -160,19 +187,39 @@ public class TestPanelNew extends JPanel {
 		gbl_panel_7.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_7.setLayout(gbl_panel_7);
 		
-		JButton btnPrevious = new JButton("Previous");
-		GridBagConstraints gbc_btnPrevious = new GridBagConstraints();
-		gbc_btnPrevious.insets = new Insets(0, 0, 0, 5);
-		gbc_btnPrevious.anchor = GridBagConstraints.EAST;
-		gbc_btnPrevious.gridx = 0;
-		gbc_btnPrevious.gridy = 0;
-		panel_7.add(btnPrevious, gbc_btnPrevious);
+		JButton buttonPrevious = new JButton("Previous");
+		buttonPrevious.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(questionPanelsIndex>0){
+					questionPanelsIndex--;
+					((CardLayout)questionHolderPanel.getLayout()).previous(questionHolderPanel);
+					scrollPane.setSize(scrollPane.getComponents()[0].getSize());
+				}
+			}
+		});
+		GridBagConstraints gbc_buttonPrevious = new GridBagConstraints();
+		gbc_buttonPrevious.insets = new Insets(0, 0, 0, 5);
+		gbc_buttonPrevious.anchor = GridBagConstraints.EAST;
+		gbc_buttonPrevious.gridx = 0;
+		gbc_buttonPrevious.gridy = 0;
+		panel_7.add(buttonPrevious, gbc_buttonPrevious);
 		
-		JButton btnNext = new JButton("Next");
-		GridBagConstraints gbc_btnNext = new GridBagConstraints();
-		gbc_btnNext.anchor = GridBagConstraints.WEST;
-		gbc_btnNext.gridx = 1;
-		panel_7.add(btnNext, gbc_btnNext);
+		JButton buttonNext = new JButton("Next");
+		buttonNext.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(questionPanelsIndex<questions.size()-1){
+					questionPanelsIndex++;
+					((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
+					scrollPane.setSize(scrollPane.getComponents()[0].getSize());
+				}
+			}
+		});
+		GridBagConstraints gbc_buttonNext = new GridBagConstraints();
+		gbc_buttonNext.anchor = GridBagConstraints.WEST;
+		gbc_buttonNext.gridx = 1;
+		panel_7.add(buttonNext, gbc_buttonNext);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
@@ -183,12 +230,17 @@ public class TestPanelNew extends JPanel {
 		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JButton btnNewButton = new JButton("Submit");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.anchor = GridBagConstraints.NORTH;
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 0;
-		panel_1.add(btnNewButton, gbc_btnNewButton);
+		JButton buttonSubmitSection = new JButton("Submit");
+		buttonSubmitSection.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		GridBagConstraints gbc_buttonSubmitSection = new GridBagConstraints();
+		gbc_buttonSubmitSection.anchor = GridBagConstraints.NORTH;
+		gbc_buttonSubmitSection.gridx = 0;
+		gbc_buttonSubmitSection.gridy = 0;
+		panel_1.add(buttonSubmitSection, gbc_buttonSubmitSection);
 
 	}
 

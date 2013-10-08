@@ -18,7 +18,7 @@ import javax.swing.border.BevelBorder;
 import backend.Question;
 import backend.Answer;
 
-public class MCQuestionPanel extends QuestionPanel {
+public class MCQuestionPanel extends JPanel {
 	
 	private static final long serialVersionUID = 6648494571735411196L;
         private Question question;

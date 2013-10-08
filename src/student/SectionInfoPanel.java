@@ -1,26 +1,35 @@
 package student;
 
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import backend.Section;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SectionInfoPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public SectionInfoPanel() {
+	public SectionInfoPanel(final Section section, final SectionIndexPanel sectionIndexPanel) {
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel labelSectionTitle = new JLabel("Section A");
+		JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
 		labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		labelSectionTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		add(labelSectionTitle, BorderLayout.NORTH);
@@ -61,7 +70,7 @@ public class SectionInfoPanel extends JPanel {
 		panel_2.add(lblInstructions, gbc_lblInstructions);
 		
 		JTextArea textAreaInstructions = new JTextArea();
-		textAreaInstructions.setText("There are some instructions");
+		textAreaInstructions.setText(section.getSectionIntroText());
 		GridBagConstraints gbc_textAreaInstructions = new GridBagConstraints();
 		gbc_textAreaInstructions.anchor = GridBagConstraints.WEST;
 		gbc_textAreaInstructions.gridx = 0;
@@ -139,9 +148,22 @@ public class SectionInfoPanel extends JPanel {
 		add(panel_1, BorderLayout.SOUTH);
 		
 		JButton buttonBack = new JButton("Back");
+		buttonBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainGui.setComposite(sectionIndexPanel);
+			}
+		});
 		panel_1.add(buttonBack);
 		
 		JButton buttonStart = new JButton("Start");
+		buttonStart.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TestSectionPanel testSectionPanel = new TestSectionPanel(section);
+				MainGui.setComposite(testSectionPanel);
+			}
+		});
 		panel_1.add(buttonStart);
 
 	}

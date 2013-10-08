@@ -11,7 +11,7 @@ import javax.swing.border.BevelBorder;
 import backend.FTBQ;
 import backend.Answer;
 
-public class FIBQuestionPanel extends QuestionPanel {
+public class FIBQuestionPanel extends JPanel{
 	
     private static final long serialVersionUID = -2289297585604116875L;
     private JTextField textField;
@@ -22,7 +22,7 @@ public class FIBQuestionPanel extends QuestionPanel {
     */
     public FIBQuestionPanel(FTBQ ftbq) {
         this.ftbq = ftbq;
-	setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 	GridBagLayout gridBagLayout = new GridBagLayout();
 	gridBagLayout.columnWidths = new int[]{10, 0};
 	gridBagLayout.rowHeights = new int[]{0, 10, 0, 0};

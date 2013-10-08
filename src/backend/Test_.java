@@ -174,13 +174,15 @@ public class Test_ implements java.io.Serializable
     public static Test_ getDemoTest()
     {
         Test_ t1 = new Test_("A test..","Instructions for the test....",5);
-        //Question q1 = new Question("What is 2 + 2?");
+        Question q1 = new Question("What is 2 + 2?");
         Section s1 = new Section("Section A", "Grammar section...");
         t1.addSection(s1);
+        Section s2 = new Section("Section B", "Vocabulary section...");
+        t1.addSection(s2); 
         //s1.addQuestion(q1);
-        //q1.addAnswer("5", false);
-        //q1.addAnswer("3", false);
-        //q1.addAnswer("4", true);
+        q1.addAnswer("5", false);
+        q1.addAnswer("3", false);
+        q1.addAnswer("4", true);
         FTBQ q2 = null;
         try {
             q2 = new FTBQ("You can suck my [thumb].");
@@ -188,6 +190,13 @@ public class Test_ implements java.io.Serializable
         catch(InvalidFTBQFormatException e) {
         }
         s1.addQuestion(q2);
+        FTBQ q3 = null;
+        try {
+            q3 = new FTBQ("You can hold my [hand].");
+        }
+        catch(InvalidFTBQFormatException e) {
+        }
+        s1.addQuestion(q3);
         return t1;
     }
     
@@ -198,9 +207,9 @@ public class Test_ implements java.io.Serializable
     public static void main(String[] args)
     {
         Test_ t = Test_.getDemoTest();
-        System.out.println(t);
-        FTBQ q1 = (FTBQ)t.getSection(0).getQuestion(0);
-        String a = q1.getTheAnswer().getAnswerText();
-        q1.setGivenAnswer("thumb");
+        //System.out.println(t);
+        //FTBQ q1 = (FTBQ)t.getSection(0).getQuestion(0);
+        //String a = q1.getTheAnswer().getAnswerText();
+        //q1.setGivenAnswer("thumb");
     }
 }

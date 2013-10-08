@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import backend.Test_;
+import java.awt.Insets;
 
 public class StudentStartJPanel extends JPanel { //implements ActionListener{
 	/**
@@ -50,8 +51,8 @@ public class StudentStartJPanel extends JPanel { //implements ActionListener{
                 startButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    TestPanel testpanel = new TestPanel(test);
-                    MainGui.setComposite(testpanel);}
+                    SectionIndexPanel sectionIndexPanel = new SectionIndexPanel(test);
+                    MainGui.setComposite(sectionIndexPanel);}
                 });
 		GridBagConstraints gbc_startButton = new GridBagConstraints();
 		gbc_startButton.fill = GridBagConstraints.HORIZONTAL;

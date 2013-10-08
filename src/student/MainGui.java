@@ -43,6 +43,7 @@ public class MainGui {
 		if(frame.getContentPane().getComponentCount()>0){
 			frame.getContentPane().removeAll();
 		}
+		frame.getContentPane().validate();
 		frame.getContentPane().add(component);
 		frame.getContentPane().validate();
 	}
