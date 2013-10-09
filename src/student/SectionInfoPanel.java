@@ -120,14 +120,14 @@ public class SectionInfoPanel extends JPanel {
 	gbl_panel_4.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 	panel_4.setLayout(gbl_panel_4);
 		
-	JLabel lblTotalPoints = new JLabel("Total Points:");
-	lblTotalPoints.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-	GridBagConstraints gbc_lblTotalPoints = new GridBagConstraints();
-	gbc_lblTotalPoints.anchor = GridBagConstraints.WEST;
-	gbc_lblTotalPoints.insets = new Insets(0, 10, 0, 5);
-	gbc_lblTotalPoints.gridx = 0;
-	gbc_lblTotalPoints.gridy = 0;
-	panel_4.add(lblTotalPoints, gbc_lblTotalPoints);
+	JLabel lblTotalMarks = new JLabel("Total Marks:");
+	lblTotalMarks.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	GridBagConstraints gbc_lblTotalMarks = new GridBagConstraints();
+	gbc_lblTotalMarks.anchor = GridBagConstraints.WEST;
+	gbc_lblTotalMarks.insets = new Insets(0, 10, 0, 5);
+	gbc_lblTotalMarks.gridx = 0;
+	gbc_lblTotalMarks.gridy = 0;
+	panel_4.add(lblTotalMarks, gbc_lblTotalMarks);
 		
         JLabel labelPoints = new JLabel(String.valueOf(section.getPossibleSectionMarks()));
 	GridBagConstraints gbc_labelPoints = new GridBagConstraints();

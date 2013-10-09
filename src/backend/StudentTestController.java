@@ -1,11 +1,7 @@
 package backend;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JPanel;
-import student.FIBQuestionPanel;
 import student.FinishTestPanel;
-import student.MCQuestionPanel;
 import student.MainGui;
 import student.QuestionPanel;
 import student.TestSectionPanel;
@@ -32,6 +28,9 @@ public class StudentTestController {
         return test;
     }
     
+    /**
+     * User starts a section, timer is started and test section panel displayed.
+     */
     public void startSection(Section section) {
         TestSectionPanel testSectionPanel = new TestSectionPanel(this, section);
         MainGui.setComposite(testSectionPanel);
@@ -39,13 +38,13 @@ public class StudentTestController {
     }
     
     /**
-     * TBC
+     * User or timer stops a section, section is graded and finish test panel displayed.
      */
     public void endSection(TestSectionPanel sectionPanel) {
         Iterator<QuestionPanel> it = sectionPanel.getQuestionPanels().iterator();
         while(it.hasNext()) {
             QuestionPanel questionPanel = it.next();
-            questionPanel.submitAnswer(); // Calls method according the subclass of QuestionPanel
+            questionPanel.submitAnswer(); // Calls method according the subclass of QuestionPanel :)
         }
         String sectionMarks = String.valueOf(sectionPanel.getSection().gradeSection());
         FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks);
