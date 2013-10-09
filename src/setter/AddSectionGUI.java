@@ -31,6 +31,7 @@ public class AddSectionGUI extends JFrame {
 	JLabel lblTest=new JLabel("TestA");
 	
 	SetterTestController obj=new SetterTestController();
+	int currentSection=1;
 	
 	/**
 	 * Launch the application.
@@ -162,6 +163,39 @@ public class AddSectionGUI extends JFrame {
 				
 				AddQuestionGUI frame = new AddQuestionGUI(obj);
 				frame.setVisible(true);
+			 }
+			});
+		
+		nav.btnNext.addActionListener(new ActionListener(){  //Edit the question
+			public void actionPerformed(ActionEvent e) {
+								
+				currentSection++;
+				obj.setCurrentSection(currentSection);
+				if(currentSection==obj.section.size()+1)
+				{
+					nav.btnNext.setVisible(false);
+				}
+				else
+				{
+					nav.btnNext.setVisible(true);
+				}
+			 }
+			});
+		
+		nav.btnPrevious.addActionListener(new ActionListener(){  //Edit the question
+			public void actionPerformed(ActionEvent e) {
+				
+				currentSection--;
+				obj.setCurrentSection(currentSection);
+				if(currentSection==1)
+				{
+					nav.btnPrevious.setVisible(false);
+				}
+				else
+				{
+					nav.btnPrevious.setVisible(true);
+				}
+				
 			 }
 			});
 	}

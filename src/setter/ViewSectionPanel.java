@@ -3,6 +3,7 @@ package setter;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,12 +20,16 @@ public class ViewSectionPanel extends JPanel {
 	final JButton btnAddQuestion= new JButton("Add Question");
 	final JButton btnAdd = new JButton("Add New Section");
 	
+	
 	/**
 	 * Create the panel.
 	 */
 	public ViewSectionPanel(SetterTestController obj) {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
+		
+		ArrayList<String> list = new ArrayList<String>();
+		list=obj.setSection(obj.getCurrentSection()-1);
 		
 		JLabel lblS = new JLabel("Section:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblS, 47, SpringLayout.NORTH, this);
@@ -63,7 +68,7 @@ public class ViewSectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, 118, SpringLayout.EAST, lblM);
 		add(lblTotalMarks);
 		
-		JLabel lblInstructions = new JLabel("******Instructions********");
+		JLabel lblInstructions = new JLabel(list.get(1));
 		springLayout.putConstraint(SpringLayout.NORTH, lblInstructions, 10, SpringLayout.SOUTH, lblTotalMarks);
 		springLayout.putConstraint(SpringLayout.WEST, lblInstructions, 65, SpringLayout.EAST, lblI);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblInstructions, -338, SpringLayout.SOUTH, this);
@@ -71,12 +76,12 @@ public class ViewSectionPanel extends JPanel {
 		//lblInstructions.setWrapStyleWord(true);
 		add(lblInstructions);
 		
-		JLabel lblSection = new JLabel("SectionA");
+		JLabel lblSection = new JLabel(list.get(0));
 		springLayout.putConstraint(SpringLayout.WEST, lblSection, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblSection, 0, SpringLayout.SOUTH, lblS);
 		add(lblSection);
 		
-		JLabel lblTotalTime = new JLabel("0 mins");
+		JLabel lblTotalTime = new JLabel(list.get(0)+"mins");
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalTime, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblTotalTime, 0, SpringLayout.SOUTH, lblT);
 		add(lblTotalTime);
