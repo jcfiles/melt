@@ -26,12 +26,43 @@ public class Question implements java.io.Serializable
     }
     
     /**
-     * Constructor for objects of class question, with answer provided
+     * Constructor questions, with a single answer provided,
      */
     public Question(String questionText, Answer a)
     {
         this(questionText);
+        answers = new ArrayList<Answer>();
         answers.add(a);
+    }
+    
+    /**
+     * Constructor questions, with a multiple answers provided,
+     */
+    public Question(String questionText, ArrayList<Answer> answers)
+    {
+        this(questionText);
+        this.answers = answers;
+    }
+    
+    /**
+     * Constructor questions, with a single answer and number of marks provided,
+     */
+    public Question(String questionText, Answer a, int mark)
+    {
+        this(questionText);
+        answers = new ArrayList<Answer>();
+        answers.add(a);
+        possibleMarks = mark;
+    }
+    
+    /**
+     * Constructor questions, with multiple answers and number of marks provided,
+     */
+    public Question(String questionText, ArrayList<Answer> answers, int mark)
+    {
+        this(questionText);
+        this.answers = answers;
+        possibleMarks = mark;
     }
     
     /**
