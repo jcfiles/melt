@@ -17,7 +17,7 @@ public class Section implements java.io.Serializable
     private int possibleSectionMarks = 0; // Built as questions added/removed
     private int sectionMarksAwarded;
     public boolean isLocked = true;
-    private TestTimer sectionProgram;
+    private SectionTimer sectionProgram;
     private int sectionTime;
     
 
@@ -30,9 +30,9 @@ public class Section implements java.io.Serializable
         this.sectionTitle = sectionTitle;
         this.sectionIntroText = sectionIntroText;
         this.sectionTime = sectionTime;
-        questions = new ArrayList<Question>();        
+        this.questions = new ArrayList<Question>();        
     }
-
+    
     public String getSectionTitle()
     {
         return sectionTitle;
@@ -80,7 +80,19 @@ public class Section implements java.io.Serializable
     {
         return questions;
     }
-
+    
+    /**
+     * Starts the test
+     */
+    //public void startSection() 
+    //{
+      //   new SectionTimer(this, sectionTime);
+    //}
+    
+    public void endSection() {
+        gradeSection();
+    }
+    
     /**
      * Grades the section 
      */
@@ -92,14 +104,6 @@ public class Section implements java.io.Serializable
             Question q = it.next();
             sectionMarksAwarded += q.getMark();
         }
-        return sectionMarksAwarded;
-    }
-    
-    /**
-     * Gets the test marks
-     */
-    public int getSectionMarks()
-    {
         return sectionMarksAwarded;
     }
     

@@ -148,7 +148,7 @@ public class SectionInfoPanel extends JPanel {
 	JButton buttonStart = new JButton("Start");
 	buttonStart.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {MainGui.setComposite(new TestSectionPanel(controller, section));}
+            public void mouseClicked(MouseEvent e) {controller.startSection(section);}
 	});
 	panel_1.add(buttonStart);
     }

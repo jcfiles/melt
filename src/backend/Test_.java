@@ -29,11 +29,9 @@ public class Test_ implements java.io.Serializable
     private String testTitle;
     private String testIntroText;
     private ArrayList<Section> sections;
-    private int possibleMarks; // not used yet!
+    private int possibleTestMarks;
     private int totalMarksAwarded;
     public boolean isLocked = true;
-    private int allocatedTime;
-    private long testTime;
     
     //Importing the classes below to write student result to text file.
     private PrintWriter printWriter; 
@@ -51,7 +49,6 @@ public class Test_ implements java.io.Serializable
         this.testTitle = testTitle;
         this.testIntroText = testIntroText;
         sections = new ArrayList<Section>();
-        this.testTime = 0;
     }
 
     /**
@@ -91,13 +88,13 @@ public class Test_ implements java.io.Serializable
     public void addSection(Section s)
     {
         sections.add(s);
-        testTime += s.getSectionTime();
+        possibleTestMarks += s.getSectionTime();
     }
     
     public void removeSection(Section s)
     {
         sections.remove(s);
-        testTime -= s.getSectionTime();
+        possibleTestMarks -= s.getSectionTime();
     }
     
     /**
@@ -123,23 +120,6 @@ public class Test_ implements java.io.Serializable
     {
         isLocked = false;
     }
-    
-     /**
-     * Starts the test
-     */
-    public void startTest() 
-    {
-         new TestTimer(this, allocatedTime);
-    }
-    
-     /**
-     * sets the timer for the entire test. 
-     */    
-    public void setTestTime(long testTimeToBeSet)
-    {
-        testTime = testTimeToBeSet;
-    }
-    
     
     /**
      * Write to File. 
@@ -210,10 +190,11 @@ public class Test_ implements java.io.Serializable
     /**
      * Ends the test
      */
-    public void endTest()
+    public int endTest()
     {
-        gradeTest(); // test can only be grade when it is ended
+        int marks = gradeTest(); // test can only be grade when it is ended
         isLocked = true; // it is then automatically locked
+        return marks;
     }
     
     /**
@@ -227,14 +208,6 @@ public class Test_ implements java.io.Serializable
             Section s = it.next();
             totalMarksAwarded += s.gradeSection();
         }
-        return totalMarksAwarded;
-    }
-    
-    /**
-     * Gets the test marks
-     */
-    public int getTotalMarks()
-    {
         return totalMarksAwarded;
     }
     

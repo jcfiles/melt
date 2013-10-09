@@ -2,6 +2,7 @@ package backend;
 
 import student.FinishTestPanel;
 import student.MainGui;
+import student.TestSectionPanel;
 
 /**
  * This class delegates all UI functionality to the application 'backend' for
@@ -23,6 +24,11 @@ public class StudentTestController {
     
     public Test_ getTest() {
         return test;
+    }
+    
+    public void startSection(Section section) {
+        MainGui.setComposite(new TestSectionPanel(this, section));
+        SectionTimer timer = new SectionTimer(this, section, section.getSectionTime());
     }
     
     /**

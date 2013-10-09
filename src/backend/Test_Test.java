@@ -27,7 +27,6 @@ public class Test_Test
     public void setUp()
     {
         t1 = new Test_("Demo test 1", "This is the intro text to this test... \nblah blah blah\n");
-        t1.setTestTime(5);
         s1 = new Section("Section Fill in the Blanks", "This is a section to fill in the blanks", 5);
         
         
@@ -70,7 +69,7 @@ public class Test_Test
     @Test
     public void testGetMarksNoAnswers()
     {
-        assertEquals(true, t1.getTotalMarks() == 0);
+        assertEquals(true, t1.endTest() == 0);
     }
     
     @Test
@@ -79,6 +78,6 @@ public class Test_Test
         t1.getSection(0).getQuestion(0).getIndexedAnswer(1).select(); // comment out to see marks awarded change
         t1.getSection(0).getQuestion(1).getTheAnswer().select(); // ditto
         t1.endTest();
-        assertEquals(true, t1.getTotalMarks() == 2);
+        assertEquals(true, t1.endTest() == 2);
     }
 }
