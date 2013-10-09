@@ -26,10 +26,10 @@ public class SectionNavigationPanel extends JPanel {
 		ImageIcon imgP = new ImageIcon("images\\previous.png");
 		ImageIcon imgN = new ImageIcon("images\\next.png");
 		JButton btnPrevious = new JButton();
-		btnPrevious.setIcon(imgP);
+		btnPrevious.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/images/previous.png")));
 		navigationPanel.add(btnPrevious);		
 		JButton btnNext = new JButton();
-		btnNext.setIcon(imgN);
+		btnNext.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/images/next.png")));
 		navigationPanel.add(btnNext);				
 		
 		JPanel backPanel = new JPanel();
