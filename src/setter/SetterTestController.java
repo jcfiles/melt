@@ -42,4 +42,9 @@ public class SetterTestController
     
   }
   
+  public ArrayList<String> setSection(){
+    ArrayList<String> sectionList = new ArrayList<String>();
+    
+    return sectionList;
+  }
 }
