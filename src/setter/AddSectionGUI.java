@@ -31,7 +31,6 @@ public class AddSectionGUI extends JFrame {
 	JLabel lblTest=new JLabel("TestA");
 	
 	SetterTestController obj=new SetterTestController();
-	int currentSection=1;
 	
 	/**
 	 * Launch the application.
@@ -56,7 +55,7 @@ public class AddSectionGUI extends JFrame {
 	 */
 	public AddSectionGUI(final SetterTestController obj) {
 		super("Create new Test");
-		this.obj=obj;		
+		this.obj=obj;	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 0, 533, 720);
 		contentPane = new JPanel();
@@ -169,9 +168,9 @@ public class AddSectionGUI extends JFrame {
 		nav.btnNext.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 								
-				currentSection++;
-				obj.setCurrentSection(currentSection);
-				if(currentSection==obj.section.size()+1)
+				int num=obj.getCurrentSection()+1;
+				obj.setCurrentSection(num);
+				if(num==obj.section.size()+1)
 				{
 					nav.btnNext.setVisible(false);
 				}
@@ -185,9 +184,10 @@ public class AddSectionGUI extends JFrame {
 		nav.btnPrevious.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 				
-				currentSection--;
-				obj.setCurrentSection(currentSection);
-				if(currentSection==1)
+				int num=obj.getCurrentSection()-1;
+						
+				obj.setCurrentSection(num);
+				if(num==1)
 				{
 					nav.btnPrevious.setVisible(false);
 				}
