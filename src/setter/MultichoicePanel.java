@@ -3,12 +3,14 @@ package setter;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -19,6 +21,10 @@ import javax.swing.border.MatteBorder;
 
 public class MultichoicePanel extends JPanel {
 
+	final JButton btnDelete = new JButton("Delete");
+	final JButton btnEdit = new JButton("Edit");
+	final JButton btnAdd = new JButton("Add New Question");
+	
 	/**
 	 * Create the panel.
 	 */
@@ -63,11 +69,21 @@ public class MultichoicePanel extends JPanel {
 		PossibleAnswers panel = new PossibleAnswers(3);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, lblAnswer);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblSubsection);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -26, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, this);
 		add(panel);
-
 		
+		JPanel buttonsPanel = new JPanel();
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -44, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 440, SpringLayout.WEST, this);		
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		add(buttonsPanel);
+		
+		buttonsPanel.add(btnAdd);
+		buttonsPanel.add(btnDelete);
+		buttonsPanel.add(btnEdit);
 
 	}
 	
@@ -95,7 +111,7 @@ public class MultichoicePanel extends JPanel {
 	                	{
 	                		//JRadioButton
 		                    JPanel panel = new JPanel();
-		                    JRadioButton rdbtn =new JRadioButton("...");	     //set the possible answer ex. true/false           
+		                    JCheckBox rdbtn =new JCheckBox("...");	     //set the possible answer ex. true/false           
 		                    panel.add(rdbtn);
 		                    GridBagConstraints gbc1 = new GridBagConstraints();
 		                    gbc1.gridwidth = GridBagConstraints.REMAINDER;

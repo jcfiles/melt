@@ -1,15 +1,21 @@
 package setter;
 
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 
 public class FillBlankPanel extends JPanel {
+	
 	private JTextField txtQuestion;
-
+	final JButton btnDelete = new JButton("Delete");
+	final JButton btnEdit = new JButton("Edit");
+	final JButton btnAdd = new JButton("Add New Question");
 	/**
-	 * Create the panel.
+	 * Create the buttonsPanel.
 	 */
 	public FillBlankPanel() {
 
@@ -54,6 +60,18 @@ public class FillBlankPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblPartB, 6, SpringLayout.EAST, txtQuestion);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPartB, 0, SpringLayout.SOUTH, lblQ);
 		add(lblPartB);
+		
+		JPanel buttonsPanel = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -49, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, lblMarks);
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		add(buttonsPanel);
+		
+		buttonsPanel.add(btnAdd);
+		buttonsPanel.add(btnDelete);
+		buttonsPanel.add(btnEdit);
 	}
 
 }

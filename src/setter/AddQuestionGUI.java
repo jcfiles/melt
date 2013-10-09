@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -13,6 +14,8 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
+import javax.swing.BorderFactory;
+import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
@@ -76,7 +79,6 @@ public class AddQuestionGUI extends JFrame {
 		
 		//Set the name of the Test and Sector
 		JLabel lblTitle=new JLabel("TestA: SectorA");
-		
 		JButton btnSwitch=new JButton("Switch");	//Button to switch preview
 		
 		panelTitle.add(lblTitle);
@@ -84,6 +86,8 @@ public class AddQuestionGUI extends JFrame {
 		
 		//The panel in the center
 		final JPanel panelCenter=new JPanel();
+		Border lineBorder=BorderFactory.createLineBorder(Color.GRAY, 2, true);
+		panelCenter.setBorder(lineBorder);
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
 		panelCenter.add(addPanel);	
@@ -93,7 +97,7 @@ public class AddQuestionGUI extends JFrame {
 			
 		
 		//button Listeners
-		nav.btnSave.addActionListener(new ActionListener(){  //button to save the question
+		addPanel.btnSave.addActionListener(new ActionListener(){  //button to save the question
 			public void actionPerformed(ActionEvent e) {
 				buttonType=1;
 				
@@ -113,58 +117,58 @@ public class AddQuestionGUI extends JFrame {
 			 }
 			 
 		});
-		nav.btnAdd.addActionListener(new ActionListener(){	//button to add new question
+		fillPanel.btnAdd.addActionListener(new ActionListener(){	//button to add new question
 			public void actionPerformed(ActionEvent e) {
-				 buttonType=2;
-				 
-				 //which panel to remove
-				 if(questionType==1)
-					{
-					 	panelCenter.remove(multiPanel);
-						panelCenter.add(addPanel);
-												
-						
-					}
-				 if(questionType==2)
-					{
-						panelCenter.remove(fillPanel);
-						panelCenter.add(addPanel);
-						
-					}
-				 
+				
+				panelCenter.remove(fillPanel);
+				panelCenter.add(addPanel);
+													 
 				panelCenter.validate();
 				panelCenter.repaint();
 			}
 		});
-		nav.btnDelete.addActionListener(new ActionListener(){  //Delete the question
+		multiPanel.btnAdd.addActionListener(new ActionListener(){	//button to add new question
+			public void actionPerformed(ActionEvent e) {
+
+				panelCenter.remove(multiPanel);
+				panelCenter.add(addPanel);
+
+				panelCenter.validate();
+				panelCenter.repaint();
+			}
+		});
+		multiPanel.btnDelete.addActionListener(new ActionListener(){  //Delete the question
 			 public void actionPerformed(ActionEvent e) {
-				 buttonType=3;
+				 
 			 }
 		});
-		nav.btnEdit.addActionListener(new ActionListener(){  //Edit the question
+		fillPanel.btnDelete.addActionListener(new ActionListener(){  //Delete the question
+			 public void actionPerformed(ActionEvent e) {
+				 
+			 }
+		});
+		fillPanel.btnEdit.addActionListener(new ActionListener(){  //Edit the question
 		    public void actionPerformed(ActionEvent e) {
-			   buttonType=4;
+
+				panelCenter.remove(fillPanel);
+				panelCenter.add(addPanel);
 			   
-			 //which panel to remove
-			   if(questionType==1)
-				{
-				 	panelCenter.remove(multiPanel);
-					panelCenter.add(addPanel);
-					
-				}
-			   if(questionType==2)
-				{
-					panelCenter.remove(fillPanel);
-					panelCenter.add(addPanel);
-					
-				}
-			   
-			  panelCenter.validate();
-			  panelCenter.repaint();
+				panelCenter.validate();
+				panelCenter.repaint();
 				
 			 }
 		});
+		multiPanel.btnEdit.addActionListener(new ActionListener(){  //Edit the question
+		    public void actionPerformed(ActionEvent e) {
+		    	panelCenter.remove(multiPanel);
+				panelCenter.add(addPanel);
+			   
+				panelCenter.validate();
+				panelCenter.repaint();
 				
+			 }
+		});	
+		
 		//Radio button listeners -- get the question type
 		addPanel.rdbtnMultipleChoice.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

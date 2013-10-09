@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +25,10 @@ public class AddQuestionPanel extends JPanel {
 	public ButtonGroup group_type = new ButtonGroup();
 	JRadioButton rdbtnMultipleChoice = new JRadioButton("Multiple choice");
 	JRadioButton rdbtnFillBlanks = new JRadioButton("Fill blanks");
+	final JButton btnSave = new JButton("Save");
 
 	/**
-	 * Create the panel.
+	 * Create the buttonsPanel.
 	 */
 	public AddQuestionPanel() {
 		SpringLayout springLayout = new SpringLayout();
@@ -144,11 +146,10 @@ public class AddQuestionPanel extends JPanel {
 		panel_mult.add(lblPossibleAnswers);
 		
 		
-		//Panel for new possible answer
+		//buttonsPanel for new possible answer
 		final JPanel panel_new = new JPanel();
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -6, SpringLayout.NORTH, panel_new);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_new, -10, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.NORTH, panel_new, 419, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -6, SpringLayout.NORTH, panel_new);
 		springLayout.putConstraint(SpringLayout.WEST, panel_new, 0, SpringLayout.WEST, lblSubsection);
 		springLayout.putConstraint(SpringLayout.EAST, panel_new, 0, SpringLayout.EAST, txtSubsection);
 		panel_new.setVisible(false);
@@ -195,6 +196,17 @@ public class AddQuestionPanel extends JPanel {
 		sl_panel_new.putConstraint(SpringLayout.EAST, txtNew, 0, SpringLayout.EAST, btnOk);
 		sl_panel_new.putConstraint(SpringLayout.SOUTH, btnOk, -10, SpringLayout.SOUTH, panel_new);
 		panel_new.add(btnOk);
+		
+		JPanel buttonsPanel = new JPanel();
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_new, -6, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, txtSubsection);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -43, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 0, SpringLayout.WEST, lblSubsection);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, this);
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		add(buttonsPanel);
+		
+		buttonsPanel.add(btnSave);
 		
 		
 		//radio button listener to make things visible and unvisible

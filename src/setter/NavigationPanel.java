@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
 
@@ -27,29 +28,17 @@ public class NavigationPanel extends JPanel {
 	public NavigationPanel() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JPanel buttonsPanel =new JPanel();
-		add(buttonsPanel);
-		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		
-		btnAdd.setVisible(false);
-		buttonsPanel.add(btnAdd);
-		
-		btnDelete.setVisible(false);
-		buttonsPanel.add(btnDelete);
-		
-		btnEdit.setVisible(false);
-		buttonsPanel.add(btnEdit);
-		
-		buttonsPanel.add(btnSave);
-		
 		JPanel navigationPanel = new JPanel();
 		add(navigationPanel);
 		navigationPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnPrevious = new JButton("Previous");
+		ImageIcon imgP = new ImageIcon("images\\previous.png");
+		ImageIcon imgN = new ImageIcon("images\\next.png");
+		JButton btnPrevious = new JButton();
+		btnPrevious.setIcon(imgP);
 		navigationPanel.add(btnPrevious);		
-		JButton btnNext = new JButton("   Next   ");
+		JButton btnNext = new JButton();
+		btnNext.setIcon(imgN);
 		navigationPanel.add(btnNext);				
 		
 		JPanel backPanel = new JPanel();

@@ -1,5 +1,10 @@
 package setter;
 
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -9,6 +14,8 @@ import javax.swing.SpringLayout;
 public class AddSectionPanel extends JPanel {
 	private JTextField txtTotalTime;
 	private JTextField txtSection;
+	
+	final JButton btnSave = new JButton("Save");
 
 	/**
 	 * Create the panel.
@@ -51,14 +58,14 @@ public class AddSectionPanel extends JPanel {
 		txtTotalTime = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, txtTotalTime, 74, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, txtTotalTime, 0, SpringLayout.WEST, lblNumOfQuestions);
-		springLayout.putConstraint(SpringLayout.EAST, txtTotalTime, -46, SpringLayout.EAST, this);
 		add(txtTotalTime);
 		txtTotalTime.setColumns(10);
 		
 		txtSection = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, txtSection, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtSection, -13, SpringLayout.NORTH, txtTotalTime);
-		springLayout.putConstraint(SpringLayout.EAST, txtSection, -48, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.EAST, txtTotalTime, 0, SpringLayout.EAST, txtSection);
+		springLayout.putConstraint(SpringLayout.WEST, txtSection, 0, SpringLayout.WEST, lblNumOfQuestions);
+		springLayout.putConstraint(SpringLayout.EAST, txtSection, -10, SpringLayout.EAST, this);
 		add(txtSection);
 		txtSection.setColumns(10);
 		
@@ -70,12 +77,24 @@ public class AddSectionPanel extends JPanel {
 		
 		JTextArea txtInstructions = new JTextArea();
 		springLayout.putConstraint(SpringLayout.NORTH, txtInstructions, 10, SpringLayout.SOUTH, lblTotalMarks);
-		springLayout.putConstraint(SpringLayout.WEST, txtInstructions, 0, SpringLayout.WEST, lblNumOfQuestions);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtInstructions, -10, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, txtInstructions, 65, SpringLayout.EAST, lblI);
 		springLayout.putConstraint(SpringLayout.EAST, txtInstructions, 0, SpringLayout.EAST, txtTotalTime);
 		txtInstructions.setLineWrap(true);
 		txtInstructions.setWrapStyleWord(true);
 		add(txtInstructions);
+		
+		JPanel buttonsPanel = new JPanel();
+		springLayout.putConstraint(SpringLayout.SOUTH, txtInstructions, -6, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, txtTotalTime);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -33, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, 0, SpringLayout.SOUTH, this);
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		add(buttonsPanel);
+		
+		
+		buttonsPanel.add(btnSave);
+
 		
 	}
 }

@@ -1,6 +1,7 @@
 package setter;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -8,12 +9,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class AddSectionGUI extends JFrame {
@@ -84,6 +87,9 @@ public class AddSectionGUI extends JFrame {
 
 		//The panel in the center
 		final JPanel panelCenter=new JPanel();
+		Border lineBorder = BorderFactory.createLineBorder(Color.GRAY, 2, true);
+		panelCenter.setBorder(lineBorder);
+		
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
 		panelCenter.add(addPanel);	
@@ -92,7 +98,7 @@ public class AddSectionGUI extends JFrame {
 		contentPane.add(nav, BorderLayout.SOUTH);
 		
 		//button Listeners
-		nav.btnSave.addActionListener(new ActionListener(){  //button to save the question
+		addPanel.btnSave.addActionListener(new ActionListener(){  //button to save the question
 		public void actionPerformed(ActionEvent e) {
 			
 			panelCenter.removeAll();
@@ -107,7 +113,7 @@ public class AddSectionGUI extends JFrame {
 			} 
 		});
 		
-		nav.btnAdd.addActionListener(new ActionListener(){	//button to add new question
+		viewPanel.btnAdd.addActionListener(new ActionListener(){	//button to add new question
 		public void actionPerformed(ActionEvent e) {
 			
 			panelCenter.removeAll();
@@ -122,12 +128,12 @@ public class AddSectionGUI extends JFrame {
 				});
 		
 		
-		nav.btnDelete.addActionListener(new ActionListener(){  //Delete the question
+		viewPanel.btnDelete.addActionListener(new ActionListener(){  //Delete the question
 		public void actionPerformed(ActionEvent e) {
 			 }
 				});
 		
-		nav.btnEdit.addActionListener(new ActionListener(){  //Edit the question
+		viewPanel.btnEdit.addActionListener(new ActionListener(){  //Edit the question
 		public void actionPerformed(ActionEvent e) {
 			panelCenter.removeAll();
 			panelCenter.add(addPanel);
@@ -139,6 +145,14 @@ public class AddSectionGUI extends JFrame {
 			lblTest.setVisible(false);
 		 }
 		});
+		
+		viewPanel.btnAddQuestion.addActionListener(new ActionListener(){  //Edit the question
+			public void actionPerformed(ActionEvent e) {
+				
+				AddQuestionGUI frame = new AddQuestionGUI();
+				frame.setVisible(true);
+			 }
+			});
 	}
 
 }
