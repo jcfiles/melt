@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JCheckBox;
 
-public class MCQuestionPanel extends JPanel {
+public class MCQuestionPanel extends QuestionPanel {
 	
 	private static final long serialVersionUID = 6648494571735411196L;
         private Question question;
@@ -107,6 +107,10 @@ public class MCQuestionPanel extends JPanel {
         }
     }
     
+    /**
+     * Iterates through each check box, for any that are selected the associated Answer is selected.
+     */
+    @Override
     public void submitAnswer() {
         for(int i=0; i<panel_1.getComponentCount(); i++){
             if(panel_1.getComponent(i) instanceof JCheckBox){

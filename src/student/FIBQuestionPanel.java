@@ -11,7 +11,7 @@ import javax.swing.border.BevelBorder;
 import backend.FTBQ;
 import backend.Answer;
 
-public class FIBQuestionPanel extends JPanel{
+public class FIBQuestionPanel extends QuestionPanel {
 	
     private static final long serialVersionUID = -2289297585604116875L;
     private JTextField textField;
@@ -59,6 +59,7 @@ public class FIBQuestionPanel extends JPanel{
    /**
     * Sets the answer to the text entered
     */
+    @Override
     public void submitAnswer() {
         ftbq.setGivenAnswer(textField.getText());
     }

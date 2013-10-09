@@ -7,6 +7,7 @@ import student.FIBQuestionPanel;
 import student.FinishTestPanel;
 import student.MCQuestionPanel;
 import student.MainGui;
+import student.QuestionPanel;
 import student.TestSectionPanel;
 
 /**
@@ -41,16 +42,11 @@ public class StudentTestController {
      * TBC
      */
     public void endSection(TestSectionPanel sectionPanel) {
-        Iterator<JPanel> it = it = sectionPanel.getJPanelQuestions().iterator();
-                while(it.hasNext()) {
-                    JPanel panel = it.next();
-                    if(panel instanceof FIBQuestionPanel) {
-                        ((FIBQuestionPanel)panel).submitAnswer();
-                    }
-                    else if(panel instanceof MCQuestionPanel) {
-                        ((MCQuestionPanel)panel).submitAnswer();
-                    }
-                }
+        Iterator<QuestionPanel> it = sectionPanel.getJPanelQuestions().iterator();
+        while(it.hasNext()) {
+            QuestionPanel questionPanel = it.next();
+            questionPanel.submitAnswer(); // Calls method according the subclass of QuestionPanel
+        }
         String sectionMarks = String.valueOf(sectionPanel.getSection().gradeSection());
         FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks);
         MainGui.setComposite(finishpanel);

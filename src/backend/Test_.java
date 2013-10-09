@@ -237,7 +237,7 @@ public class Test_ implements java.io.Serializable
             "This test is designed to test your English langauge skills. " +
             "Each section will test a different aspect of those skills.");
         Question q1 = new Question("What is 2 + 2?");
-        Section s1 = new Section("Section A", "Grammar section...", 5);
+        Section s1 = new Section("Section A", "Grammar section...", 7);
         t1.addSection(s1);
         Section s2 = new Section("Section B", "Vocabulary section...", 10);
         t1.addSection(s2); 

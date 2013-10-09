@@ -130,12 +130,17 @@ public class Question implements java.io.Serializable
      */
     public int getMark()
     {
-        marksAwarded = possibleMarks;
         Iterator<Answer> it = answers.iterator();
-        while (it.hasNext()) {
+        boolean anyWrongAnswer = false;
+        while (it.hasNext() && !anyWrongAnswer) { // Ensures loop is exited if any wrong answers are selected
             Answer a = it.next();
-            if((a.getIsSelected() && !a.getIsRight()) || (!a.getIsSelected())) {
-                marksAwarded = 0;
+            if(a.getIsSelected()) {
+                if(!a.getIsRight()) {
+                    anyWrongAnswer = true;
+                }
+                else {
+                    marksAwarded = possibleMarks;
+                }
             }
         }
         return marksAwarded;

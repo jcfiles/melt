@@ -1,23 +1,14 @@
 package student;
 
-import java.util.Iterator;
 import javax.swing.JPanel;
-
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
-
 import javax.swing.JLabel;
-
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
 import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.JScrollPane;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -28,7 +19,6 @@ import backend.StudentTestController;
 import backend.FTBQ;
 import backend.Question;
 import backend.Section;
-import backend.Test_;
 
 public class TestSectionPanel extends JPanel {
     private StudentTestController controller;
@@ -36,7 +26,8 @@ public class TestSectionPanel extends JPanel {
     private JTable tableQuestions;
     private ArrayList<Question> questions;
     private int questionPanelsIndex;
-    private ArrayList<JPanel> jPanelQuestions;
+    private ArrayList<QuestionPanel> jPanelQuestions;
+    //private ArrayList<JPanel> jPanelQuestions;
 	
     /**
      * Create the panel.
@@ -164,7 +155,7 @@ public class TestSectionPanel extends JPanel {
 	scrollPane.setViewportView(questionHolderPanel);
 	questionHolderPanel.setLayout(new CardLayout(0, 0));
 		
-	jPanelQuestions = new ArrayList<JPanel>();
+	jPanelQuestions = new ArrayList<QuestionPanel>();
 	for(int i=0; i<questions.size(); i++){
             if(questions.get(i) instanceof FTBQ){
 		FIBQuestionPanel fibqPanel = new FIBQuestionPanel((FTBQ)questions.get(i));
@@ -247,7 +238,7 @@ public class TestSectionPanel extends JPanel {
 	panel_1.add(buttonSubmitSection, gbc_buttonSubmitSection);
     }
     
-    public ArrayList<JPanel> getJPanelQuestions() {
+    public ArrayList<QuestionPanel> getJPanelQuestions() {
         return jPanelQuestions;
     }
 
