@@ -14,20 +14,22 @@ public class Section implements java.io.Serializable
     private String sectionTitle;
     private String sectionIntroText;
     private ArrayList<Question> questions;
-    private int possibleMarks; // not used yet!
+    private int possibleSectionMarks = 0; // Built as questions added/removed
     private int sectionMarksAwarded;
     public boolean isLocked = true;
-    private TestTimer sectionProgram; //the testTimer class
-    private long sectionTime;
+    private TestTimer sectionProgram;
+    private int sectionTime;
     
 
     /**
      * Constructor for objects of class Section
+     * @param sectionTime in minutes
      */
-    public Section(String sectionTitle, String sectionIntroText)
+    public Section(String sectionTitle, String sectionIntroText, int sectionTime)
     {
         this.sectionTitle = sectionTitle;
         this.sectionIntroText = sectionIntroText;
+        this.sectionTime = sectionTime;
         questions = new ArrayList<Question>();        
     }
 
@@ -41,14 +43,26 @@ public class Section implements java.io.Serializable
         return sectionIntroText;
     }
     
+    public int getSectionTime()
+    {
+        return sectionTime;
+    }
+    
+    public String getPossibleSectionMarks()
+    {
+        return sectionIntroText;
+    }
+    
     public void addQuestion(Question q)
     {
         questions.add(q);
+        possibleSectionMarks += q.getPossibleMark();
     }
     
     public void removeQuestion(Question q)
     {
         questions.remove(q);
+        possibleSectionMarks -= q.getPossibleMark();
     }
     
     /**

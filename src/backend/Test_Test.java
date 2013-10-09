@@ -26,9 +26,9 @@ public class Test_Test
     @Before
     public void setUp()
     {
-        t1 = new Test_("Demo test 1", "This is the intro text to this test... \nblah blah blah\n", 5);
+        t1 = new Test_("Demo test 1", "This is the intro text to this test... \nblah blah blah\n");
         t1.setTestTime(5);
-        s1 = new Section("Section Fill in the Blanks", "This is a section to fill in the blanks");
+        s1 = new Section("Section Fill in the Blanks", "This is a section to fill in the blanks", 5);
         
         
         q1 = new Question("What is the capital of Peru?");

@@ -30,12 +30,12 @@ public class Test_ implements java.io.Serializable
     /**
      * Constructor for objects of class Test
      */
-    public Test_(String testTitle, String testIntroText, int allocatedTime) 
+    public Test_(String testTitle, String testIntroText) 
     {
         this.testTitle = testTitle;
         this.testIntroText = testIntroText;
         sections = new ArrayList<Section>();
-        this.allocatedTime = allocatedTime;
+        this.testTime = 0;
     }
 
     /**
@@ -50,6 +50,16 @@ public class Test_ implements java.io.Serializable
         return t;
     }
     
+    public String getTestTitle()
+    {
+        return testTitle;
+    }
+    
+    public String getTestIntroText()
+    {
+        return testIntroText;
+    }
+    
     /**
      * Writes a test to file
      * 
@@ -62,26 +72,20 @@ public class Test_ implements java.io.Serializable
         os.close();
     }
         
-    /**
-     * Adds a section to the test
-     * 
-     */
     public void addSection(Section s)
     {
         sections.add(s);
+        testTime += s.getSectionTime();
     }
     
-     /**
-     * Removes a section from the test
-     * 
-     */
     public void removeSection(Section s)
     {
         sections.remove(s);
+        testTime -= s.getSectionTime();
     }
     
     /**
-     * Returns a section by index, starting at 0
+     * @param SectionNum is an index for the required section, starting at 0.
      */
     public Section getSection(int sectionNum)
     {
@@ -173,11 +177,13 @@ public class Test_ implements java.io.Serializable
      */
     public static Test_ getDemoTest()
     {
-        Test_ t1 = new Test_("A test..","Instructions for the test....",5);
+        Test_ t1 = new Test_("Welcome to the Mancunia English test",
+            "This test is designed to test your English langauge skills. " +
+            "Each section will test a different aspect of those skills.");
         Question q1 = new Question("What is 2 + 2?");
-        Section s1 = new Section("Section A", "Grammar section...");
+        Section s1 = new Section("Section A", "Grammar section...", 5);
         t1.addSection(s1);
-        Section s2 = new Section("Section B", "Vocabulary section...");
+        Section s2 = new Section("Section B", "Vocabulary section...", 10);
         t1.addSection(s2); 
         s1.addQuestion(q1);
         q1.addAnswer("5", false);
