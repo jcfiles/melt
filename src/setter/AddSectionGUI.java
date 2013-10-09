@@ -63,7 +63,7 @@ public class AddSectionGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		addPanel=new AddSectionPanel(obj);
+		addPanel=new AddSectionPanel();
 		viewPanel=new ViewSectionPanel(obj);
 		nav=new SectionNavigationPanel();
 		
@@ -109,6 +109,8 @@ public class AddSectionGUI extends JFrame {
 		//button Listeners
 		addPanel.btnSave.addActionListener(new ActionListener(){  //button to save the question
 		public void actionPerformed(ActionEvent e) {
+			
+			obj.getSection(addPanel.txtSection.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()), Integer.parseInt(addPanel.lblNumOfQuestions.toString()), Integer.parseInt(addPanel.lblTotalMarks.toString()), addPanel.txtInstructions.toString());
 			
 			panelCenter.removeAll();
 			panelCenter.add(viewPanel);
@@ -163,5 +165,6 @@ public class AddSectionGUI extends JFrame {
 			 }
 			});
 	}
+
 
 }
