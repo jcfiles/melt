@@ -236,29 +236,50 @@ public class Test_ implements java.io.Serializable
         Test_ t1 = new Test_("Welcome to the Mancunia English test",
             "This test is designed to test your English langauge skills. " +
             "Each section will test a different aspect of those skills.");
-        Question q1 = new Question("What is 2 + 2?");
+        Question q1 = new Question("If I don't study I _ the test.");
         Section s1 = new Section("Section A", "Grammar section...", 7);
         t1.addSection(s1);
         Section s2 = new Section("Section B", "Vocabulary section...", 10);
         t1.addSection(s2); 
         s1.addQuestion(q1);
-        q1.addAnswer("5", false);
-        q1.addAnswer("3", false);
-        q1.addAnswer("4", true);
+        q1.addAnswer("won't pass", true);
+        q1.addAnswer("wouldn't pass", false);
+        q1.addAnswer("wouldn't have passed", false);
         FTBQ q2 = null;
         try {
-            q2 = new FTBQ("You can suck my [thumb].");
+            q2 = new FTBQ("The students are trying to [catch] up with what the professor has taught. (catch)");
         }
         catch(InvalidFTBQFormatException e) {
         }
         s1.addQuestion(q2);
         FTBQ q3 = null;
         try {
-            q3 = new FTBQ("You can hold my [hand].");
+            q3 = new FTBQ("I haven't done my homework [yet], said Johnny. (yet)");
         }
         catch(InvalidFTBQFormatException e) {
         }
         s1.addQuestion(q3);
+        
+        FTBQ q4 = null;
+		try {
+			q4 = new FTBQ("It's rainning cats and [dogs]. (dogs)");
+		} catch (InvalidFTBQFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		s2.addQuestion(q4);
+		
+		Question q5 = new Question("The _ ate my homework.");
+		q5.addAnswer("cate", false);
+		q5.addAnswer("dog", true);
+		q5.addAnswer("duck", false);
+		s2.addQuestion(q5);
+		
+		Question q6 = new Question("It's a _ walk to go to the University.");
+		q6.addAnswer("15 minute", false);
+		q6.addAnswer("15-minutes", true);
+		s2.addQuestion(q6);
+		
         return t1;
     }
     
