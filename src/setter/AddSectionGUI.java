@@ -110,7 +110,7 @@ public class AddSectionGUI extends JFrame {
 		addPanel.btnSave.addActionListener(new ActionListener(){  //button to save the question
 		public void actionPerformed(ActionEvent e) {
 			
-			obj.getSection(addPanel.txtSection.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()), Integer.parseInt(addPanel.lblNumOfQuestions.toString()), Integer.parseInt(addPanel.lblTotalMarks.toString()), addPanel.txtInstructions.toString());
+			obj.setSection(addPanel.txtSection.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()), Integer.parseInt(addPanel.lblNumOfQuestions.toString()), Integer.parseInt(addPanel.lblTotalMarks.toString()), addPanel.txtInstructions.toString());
 			
 			panelCenter.removeAll();
 			panelCenter.add(viewPanel);

@@ -44,7 +44,7 @@ public class SetterTestController
     return "";
   }
   
-  public void getSection(String name, int time, int noQuestions, int marks, String instructions)
+  public void setSection(String name, int time, int noQuestions, int marks, String instructions)
   {
     Section obj=new Section(name, instructions,time); 
     section.add(obj);
@@ -53,7 +53,7 @@ public class SetterTestController
     
   }
   
-  public ArrayList<String> setSection(int i){
+  public ArrayList<String> getSection(int i){
     ArrayList<String> sectionList = new ArrayList<String>();
     
     sectionList.add(section.get(i-1).getSectionTitle());
