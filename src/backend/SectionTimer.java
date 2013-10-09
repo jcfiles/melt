@@ -2,6 +2,7 @@ package backend;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import student.TestSectionPanel;
 
 /**
  * Write a description of class SectionTimer here.
@@ -12,19 +13,19 @@ public class SectionTimer {
     
     private StudentTestController controller;
     private Timer timer;
-    private Section section;
+    private TestSectionPanel testSectionPanel;
+    
 
-    public SectionTimer(StudentTestController controller, Section section, int seconds) {
+    public SectionTimer(StudentTestController controller, TestSectionPanel testSectionPanel, int seconds) {
         this.controller = controller;
-        this.section = section;
+        this.testSectionPanel = testSectionPanel;
         timer = new Timer();
         timer.schedule(new EndSection(), seconds*1000);
-        //this.section = section;
 	}
 
     class EndSection extends TimerTask {
         public void run() {
-            controller.endSection(section);
+            controller.endSection(testSectionPanel);
             timer.cancel(); // kills the thread
         }
     }
