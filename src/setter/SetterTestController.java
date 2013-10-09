@@ -26,8 +26,20 @@ public class SetterTestController
     noQuestions = questions.size();
   }
   
+  public void getTest(String title)
+  {
+    
+  }
   
+  public String setTest(String title)
+  {
+    
+    return "";
+  }
   
-
+  public void getSection(String name)
+  {
+    
+  }
   
 }
