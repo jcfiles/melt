@@ -6,7 +6,7 @@ package backend;
  * @author Bruce Steedman
  * @version 2013.09.27
  */
-public class Answer
+public class Answer implements java.io.Serializable
 {
     private String answerText = "";
     private boolean isRight = true;

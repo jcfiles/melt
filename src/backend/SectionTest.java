@@ -26,7 +26,7 @@ public class SectionTest
     @Before
     public void setUp()
     {
-        s1 = new Section("Fill in the Blank section", "Please fill in the blanks accordingly in the given brackets below");
+        s1 = new Section("Fill in the Blank section", "Please fill in the blanks accordingly in the given brackets below", 5);
         q1 = new Question("Does John Sergeant like pizza?");
         s1.addQuestion(q1);
         q1.addAnswer("Yes", false);

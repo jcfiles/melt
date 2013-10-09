@@ -8,7 +8,8 @@ package backend;
  */
 public class FTBQ extends Question
 {
-    private String qFirstPart, qSecondPart; // index of the blank is in the question string
+    private String qFirstPart, qSecondPart;
+    private String givenAnswer = ""; // index of the blank is in the question string
     
     /**
      * Constructor for objects of class FTBQ
@@ -22,6 +23,30 @@ public class FTBQ extends Question
         this.qFirstPart = s[1];
         this.qSecondPart = s[2];
         addAnswer(s[0], true);
+    }
+    
+    public String getQFirstPart()
+    {
+        return qFirstPart;
+    }
+    
+    public String getQSecondPart()
+    {
+        return qSecondPart;
+    }
+    
+    public void setGivenAnswer(String answer) {
+        givenAnswer = answer;
+    }
+    
+    public String getGivenAnswer() {
+        return givenAnswer;
+    }
+    
+    @Override
+    public int getMark()
+    {
+        return  givenAnswer.equals(getTheAnswer().getAnswerText()) ? possibleMarks : 0;
     }
     
      /**
