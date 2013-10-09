@@ -42,7 +42,7 @@ public class StudentTestController {
      * TBC
      */
     public void endSection(TestSectionPanel sectionPanel) {
-        Iterator<QuestionPanel> it = sectionPanel.getJPanelQuestions().iterator();
+        Iterator<QuestionPanel> it = sectionPanel.getQuestionPanels().iterator();
         while(it.hasNext()) {
             QuestionPanel questionPanel = it.next();
             questionPanel.submitAnswer(); // Calls method according the subclass of QuestionPanel

@@ -26,7 +26,7 @@ public class TestSectionPanel extends JPanel {
     private JTable tableQuestions;
     private ArrayList<Question> questions;
     private int questionPanelsIndex;
-    private ArrayList<QuestionPanel> jPanelQuestions;
+    private ArrayList<QuestionPanel> questionPanels;
     //private ArrayList<JPanel> jPanelQuestions;
 	
     /**
@@ -155,17 +155,17 @@ public class TestSectionPanel extends JPanel {
 	scrollPane.setViewportView(questionHolderPanel);
 	questionHolderPanel.setLayout(new CardLayout(0, 0));
 		
-	jPanelQuestions = new ArrayList<QuestionPanel>();
+	questionPanels = new ArrayList<QuestionPanel>();
 	for(int i=0; i<questions.size(); i++){
             if(questions.get(i) instanceof FTBQ){
 		FIBQuestionPanel fibqPanel = new FIBQuestionPanel((FTBQ)questions.get(i));
 		questionHolderPanel.add(fibqPanel, "name_"+Integer.toString(i));
-		jPanelQuestions.add(fibqPanel);
+		questionPanels.add(fibqPanel);
             }
             else if(questions.get(i) instanceof Question){
 		MCQuestionPanel mcqPanel = new MCQuestionPanel((Question)questions.get(i));
 		questionHolderPanel.add(mcqPanel, "name_"+Integer.toString(i));
-		jPanelQuestions.add(mcqPanel);
+		questionPanels.add(mcqPanel);
             }
 	}
 	scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
@@ -238,8 +238,8 @@ public class TestSectionPanel extends JPanel {
 	panel_1.add(buttonSubmitSection, gbc_buttonSubmitSection);
     }
     
-    public ArrayList<QuestionPanel> getJPanelQuestions() {
-        return jPanelQuestions;
+    public ArrayList<QuestionPanel> getQuestionPanels() {
+        return questionPanels;
     }
 
     public Section getSection() {
