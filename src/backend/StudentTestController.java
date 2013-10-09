@@ -32,7 +32,7 @@ public class StudentTestController {
     }
     
     /**
-     * TBC.
+     * TBC
      */
     public void endSection(Section section) {
         String sectionMarks = String.valueOf(section.gradeSection());
