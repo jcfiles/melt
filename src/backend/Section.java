@@ -48,9 +48,9 @@ public class Section implements java.io.Serializable
         return sectionTime;
     }
     
-    public String getPossibleSectionMarks()
+    public int getPossibleSectionMarks()
     {
-        return sectionIntroText;
+        return possibleSectionMarks;
     }
     
     public void addQuestion(Question q)

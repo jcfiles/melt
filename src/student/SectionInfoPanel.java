@@ -129,7 +129,7 @@ public class SectionInfoPanel extends JPanel {
 	gbc_lblTotalPoints.gridy = 0;
 	panel_4.add(lblTotalPoints, gbc_lblTotalPoints);
 		
-        JLabel labelPoints = new JLabel(section.getPossibleSectionMarks());
+        JLabel labelPoints = new JLabel(String.valueOf(section.getPossibleSectionMarks()));
 	GridBagConstraints gbc_labelPoints = new GridBagConstraints();
 	gbc_labelPoints.anchor = GridBagConstraints.WEST;
 	gbc_labelPoints.gridx = 1;
