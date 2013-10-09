@@ -12,6 +12,11 @@ public class SetterTestController
   ArrayList<Question> questions;
   int noQuestions;
   
+  //Empty constructor
+  public SetterTestController() {
+	  
+  }
+  
   //Constructor  
   public SetterTestController(Test_ test, ArrayList<Question> questions) {
     super();

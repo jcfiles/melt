@@ -20,6 +20,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class MenuGUI extends JFrame {
 
 	private JPanel contentPane;
@@ -27,6 +28,8 @@ public class MenuGUI extends JFrame {
 	JButton btnStudent=new JButton("Student");
 	JButton btnSetter=new JButton("Setter");
 	JPanel panelCenter = new JPanel();
+	
+	SetterTestController obj=new SetterTestController();
 
 	/**
 	 * Launch the application.
@@ -48,6 +51,7 @@ public class MenuGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuGUI() {
+		super("Main Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 0, 450, 300);
 		contentPane = new JPanel();
@@ -98,11 +102,11 @@ public class MenuGUI extends JFrame {
 			});
 		
 		//cliking the Student button
-		btnSetter.addActionListener(new ActionListener(){
+		btnStudent.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent e) {
 				   	
 				   panelCenter.removeAll();
-				   panelCenter.add(setterPanel);
+				   //panelCenter.add(setterPanel);
 						
 				   panelCenter.validate();
 				   panelCenter.repaint();		   	
@@ -112,12 +116,13 @@ public class MenuGUI extends JFrame {
 		setterPanel.btnNewTest.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent e) {
 			   
-				   AddSectionGUI gui=new AddSectionGUI();
+				   AddSectionGUI gui=new AddSectionGUI(obj);
 				   gui.setVisible(true);
 				   
 				   
 					 }
 					});
+		
 		
 	}
 

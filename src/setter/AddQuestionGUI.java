@@ -37,6 +37,8 @@ public class AddQuestionGUI extends JFrame {
 	FillBlankPanel fillPanel=new FillBlankPanel();
 	int buttonType=0;
 	int questionType=1;
+	
+	SetterTestController obj=new SetterTestController();
 
 	/**
 	 * Launch the application.
@@ -45,7 +47,8 @@ public class AddQuestionGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddQuestionGUI frame = new AddQuestionGUI();
+					SetterTestController obj=new SetterTestController();
+					AddQuestionGUI frame = new AddQuestionGUI(obj);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,8 +60,9 @@ public class AddQuestionGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddQuestionGUI() {
-		super("Add Question");
+	public AddQuestionGUI(SetterTestController obj) {		
+		super("Add Question to Section");
+		this.obj=obj;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 0, 533, 720);
 		contentPane = new JPanel();

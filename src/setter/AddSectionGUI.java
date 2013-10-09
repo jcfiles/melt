@@ -22,15 +22,16 @@ import javax.swing.border.EmptyBorder;
 public class AddSectionGUI extends JFrame {
 
 	private JPanel contentPane;
-	AddSectionPanel addPanel=new AddSectionPanel();
-	ViewSectionPanel viewPanel=new ViewSectionPanel();
+	AddSectionPanel addPanel;
+	ViewSectionPanel viewPanel;
 	SectionNavigationPanel nav=new SectionNavigationPanel();
 	
 	JLabel lblTitle=new JLabel("Title:");
 	JTextField txtTest=new JTextField();
 	JLabel lblTest=new JLabel("TestA");
 	
-
+	SetterTestController obj=new SetterTestController();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -38,7 +39,9 @@ public class AddSectionGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddSectionGUI frame = new AddSectionGUI();
+					SetterTestController obj=new SetterTestController();
+					
+					AddSectionGUI frame = new AddSectionGUI(obj);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,13 +53,19 @@ public class AddSectionGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddSectionGUI() {
+	public AddSectionGUI(final SetterTestController obj) {
+		super("Create new Test");
+		this.obj=obj;		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 0, 533, 720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		addPanel=new AddSectionPanel(obj);
+		viewPanel=new ViewSectionPanel(obj);
+		nav=new SectionNavigationPanel();
 		
 		JPanel panelTitle = new JPanel();
 		contentPane.add(panelTitle, BorderLayout.NORTH);
@@ -149,7 +158,7 @@ public class AddSectionGUI extends JFrame {
 		viewPanel.btnAddQuestion.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 				
-				AddQuestionGUI frame = new AddQuestionGUI();
+				AddQuestionGUI frame = new AddQuestionGUI(obj);
 				frame.setVisible(true);
 			 }
 			});

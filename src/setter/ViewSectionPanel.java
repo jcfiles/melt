@@ -22,7 +22,7 @@ public class ViewSectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ViewSectionPanel() {
+	public ViewSectionPanel(SetterTestController obj) {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		

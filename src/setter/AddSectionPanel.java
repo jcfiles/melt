@@ -20,7 +20,7 @@ public class AddSectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AddSectionPanel() {		
+	public AddSectionPanel(SetterTestController obj) {		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
