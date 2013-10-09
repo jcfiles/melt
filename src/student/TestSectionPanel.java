@@ -32,16 +32,18 @@ import backend.Test_;
 
 public class TestSectionPanel extends JPanel {
     private StudentTestController controller;
+    private Section section;
     private JTable tableQuestions;
     private ArrayList<Question> questions;
     private int questionPanelsIndex;
-    ArrayList<JPanel> jPanelQuestions;
+    private ArrayList<JPanel> jPanelQuestions;
 	
     /**
      * Create the panel.
      */
     public TestSectionPanel(final StudentTestController controller, final Section section) {
 	this.controller = controller;
+        this.section = section;
         questionPanelsIndex=0;
 	questions = section.getQuestionsList();
         
@@ -236,26 +238,20 @@ public class TestSectionPanel extends JPanel {
 	JButton buttonSubmitSection = new JButton("Submit");
 	buttonSubmitSection.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                //controller.submitSection();
-                
-                Iterator<JPanel> it = jPanelQuestions.iterator();
-                while(it.hasNext()) {
-                    JPanel panel = it.next();
-                    if(panel instanceof FIBQuestionPanel) {
-                        ((FIBQuestionPanel)panel).submitAnswer();
-                    }
-                    else if(panel instanceof MCQuestionPanel) {
-                        ((MCQuestionPanel)panel).submitAnswer();
-                    }
-                }
-                controller.endSection(section);
-            }
+            public void mouseClicked(MouseEvent e) {controller.endSection(TestSectionPanel.this);}
 	});
 	GridBagConstraints gbc_buttonSubmitSection = new GridBagConstraints();
 	gbc_buttonSubmitSection.anchor = GridBagConstraints.NORTH;
 	gbc_buttonSubmitSection.gridx = 0;
 	gbc_buttonSubmitSection.gridy = 0;
 	panel_1.add(buttonSubmitSection, gbc_buttonSubmitSection);
+    }
+    
+    public ArrayList<JPanel> getJPanelQuestions() {
+        return jPanelQuestions;
+    }
+
+    public Section getSection() {
+        return section;
     }
 }
