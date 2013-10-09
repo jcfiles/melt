@@ -117,6 +117,7 @@ public class MenuGUI extends JFrame {
 		   public void actionPerformed(ActionEvent e) {
 			   
 				   AddSectionGUI gui=new AddSectionGUI(obj);
+				   obj.setCurrentSection(1);
 				   gui.setVisible(true);
 				   
 				   

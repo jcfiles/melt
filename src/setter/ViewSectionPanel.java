@@ -28,8 +28,9 @@ public class ViewSectionPanel extends JPanel {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
+		if(obj.getCurrentSection()==0){
 		ArrayList<String> list = new ArrayList<String>();
-		list=obj.setSection(obj.getCurrentSection()-1);
+		list=obj.getSection(obj.getCurrentSection());
 		
 		JLabel lblS = new JLabel("Section:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblS, 47, SpringLayout.NORTH, this);
@@ -100,7 +101,7 @@ public class ViewSectionPanel extends JPanel {
 		buttonsPanel.add(btnEdit);
 		buttonsPanel.add(btnAddQuestion);
 				
-		
+		}
 	}
 
 }
