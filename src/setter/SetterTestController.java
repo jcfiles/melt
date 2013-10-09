@@ -37,7 +37,7 @@ public class SetterTestController
     return "";
   }
   
-  public void getSection(String name)
+  public void getSection(String name, int time, int noQuestions, int marks, String instructions)
   {
     
   }
