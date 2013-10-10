@@ -1,6 +1,8 @@
 package student;
 
 import backend.StudentTestController;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
@@ -13,7 +15,9 @@ import javax.swing.SpringLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
+
 import backend.Test_;
+
 import java.awt.Insets;
 
 public class StudentStartJPanel extends JPanel { //implements ActionListener{
@@ -48,7 +52,9 @@ public class StudentStartJPanel extends JPanel { //implements ActionListener{
         JButton startButton = new JButton("Start");
         startButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {MainGui.setComposite(new SectionIndexPanel(controller));}
+            public void actionPerformed(ActionEvent e) {
+            	MainGui.setComposite(new SectionIndexPanel(controller));
+            }
          });
         GridBagConstraints gbc_startButton = new GridBagConstraints();
         gbc_startButton.fill = GridBagConstraints.HORIZONTAL;
@@ -62,11 +68,13 @@ public class StudentStartJPanel extends JPanel { //implements ActionListener{
 	gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 	gbl_panel_1.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 	panel_1.setLayout(gbl_panel_1);
-	JLabel lblNewLabel = new JLabel(controller.getTest().getTestTitle() + "\n\n"
-            + controller.getTest().getTestIntroText());
+	
+	StringBuilder sb = new StringBuilder();
+	sb.append("<html>"+ "<h2>" +controller.getTest().getTestTitle() + "</h2>" + "<h3>" + controller.getTest().getTestIntroText() + "</h3>" +"</html>");
+	JLabel lblNewLabel = new JLabel(sb.toString());
 	lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 18));
 	GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-	gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
+	gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
 	gbc_lblNewLabel.gridx = 0;
 	gbc_lblNewLabel.gridy = 0;
 	panel_1.add(lblNewLabel, gbc_lblNewLabel);
