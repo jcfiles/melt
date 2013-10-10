@@ -6,14 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * The test class QuestionTest.
+ * The test class MCQTest.
  *
  * @author  Bruce Steedman
  * @version 2013.09.28
  */
-public class QuestionTest
+public class MCQTest
 {
-    Question q1; // package private
+    MCQ q1; // package private
     
     /**
      * Sets up the test fixture.
@@ -23,9 +23,9 @@ public class QuestionTest
     @Before
     public void setUp()
     {
-        q1 = new Question("What is the capital of Peru?");
-        q1.addAnswer("Bogota", false);
-        q1.addAnswer("Lima", true);
+        q1 = new MCQ("What is the capital of Peru?");
+        q1.addAnswer(new Answer("Bogota", false));
+        q1.addAnswer(new Answer("Lima", true));
     }
 
     /**

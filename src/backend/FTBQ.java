@@ -1,5 +1,7 @@
 package backend;
 
+import java.util.Iterator;
+
 /**
  * A fill in the blank question
  * 
@@ -9,20 +11,19 @@ package backend;
 public class FTBQ extends Question
 {
     private String qFirstPart, qSecondPart;
-    private String givenAnswer = ""; // index of the blank is in the question string
+    private String givenAnswer = "";
     
     /**
      * Constructor for objects of class FTBQ
      * 
      * @param Question text string must contain the answer string wrapped in [...] to be valid
      */
-    public FTBQ(String ftbqText) throws InvalidFTBQFormatException
-    {
-        super(ftbqText); // this class does not utilise the questionText parameter in parent class
+    public FTBQ(String ftbqText) throws InvalidFTBQFormatException {
+        super(ftbqText);
         String s[] = parseQandA(ftbqText);
         this.qFirstPart = s[1];
         this.qSecondPart = s[2];
-        addAnswer(s[0], true);
+        this.addAnswer(new Answer(s[0], true));
     }
     
     public String getQFirstPart()
@@ -44,9 +45,15 @@ public class FTBQ extends Question
     }
     
     @Override
-    public int getMark()
+    public int getMarksAwarded()
     {
-        return  givenAnswer.equals(getTheAnswer().getAnswerText()) ? possibleMarks : 0;
+        Iterator<Answer> it = answers.iterator();
+        while(it.hasNext()) {
+            if(givenAnswer.equals(it.next().getAnswerText())) {
+                return possibleMarks;
+            }      
+        }
+        return 0;
     }
     
      /**

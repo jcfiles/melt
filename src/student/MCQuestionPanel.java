@@ -15,7 +15,7 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.border.BevelBorder;
 
-import backend.Question;
+import backend.MCQ;
 import backend.Answer;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,14 +24,14 @@ import javax.swing.JCheckBox;
 public class MCQuestionPanel extends QuestionPanel {
 	
 	private static final long serialVersionUID = 6648494571735411196L;
-        private Question question;
+        private MCQ question;
         private ArrayList<Answer> answers;
         private JPanel panel_1;
         
 	/**
 	 * Create the panel.
 	 */
-	public MCQuestionPanel(Question question) {
+	public MCQuestionPanel(MCQ question) {
             this.question = question;
 		answers = question.getAllAnswers();
             setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));

@@ -14,7 +14,7 @@ import org.junit.Test;
 public class Test_Test
 {
     public Test_ t1;
-    public Question q1;
+    public MCQ q1;
     public Section s1;
     public FTBQ q2;
     
@@ -30,9 +30,9 @@ public class Test_Test
         s1 = new Section("Section Fill in the Blanks", "This is a section to fill in the blanks", 5);
         
         
-        q1 = new Question("What is the capital of Peru?");
-        q1.addAnswer("Bogota", false);
-        q1.addAnswer("Lima", true);
+        q1 = new MCQ("What is the capital of Peru?");
+        q1.addAnswer(new Answer("Bogota", false));
+        q1.addAnswer(new Answer("Lima", true));
         try {
             q2 = new FTBQ("Two plus [three] equals five.");
         }
@@ -76,7 +76,7 @@ public class Test_Test
     public void testGetMarksCorrectAnswers()
     {
         t1.getSection(0).getQuestion(0).getIndexedAnswer(1).select(); // comment out to see marks awarded change
-        t1.getSection(0).getQuestion(1).getTheAnswer().select(); // ditto
+        //t1.getSection(0).getQuestion(1).getMarksAwarded(); // ditto
         t1.endTest();
         assertEquals(true, t1.endTest() == 2);
     }

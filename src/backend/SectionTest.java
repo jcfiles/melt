@@ -16,7 +16,7 @@ import org.junit.Test;
 public class SectionTest
 {
     Section s1;
-    Question q1;
+    MCQ q1;
     
     /**
      * Sets up the test fixture.
@@ -27,10 +27,10 @@ public class SectionTest
     public void setUp()
     {
         s1 = new Section("Fill in the Blank section", "Please fill in the blanks accordingly in the given brackets below", 5);
-        q1 = new Question("Does John Sergeant like pizza?");
+        q1 = new MCQ("Does John Sergeant like pizza?");
         s1.addQuestion(q1);
-        q1.addAnswer("Yes", false);
-        q1.addAnswer("No", true);
+        q1.addAnswer(new Answer("Yes", false));
+        q1.addAnswer(new Answer("No", true));
     }
 
     /**

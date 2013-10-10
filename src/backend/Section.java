@@ -56,13 +56,13 @@ public class Section implements java.io.Serializable
     public void addQuestion(Question q)
     {
         questions.add(q);
-        possibleSectionMarks += q.getPossibleMark();
+        possibleSectionMarks += q.getPossibleMarks();
     }
     
     public void removeQuestion(Question q)
     {
         questions.remove(q);
-        possibleSectionMarks -= q.getPossibleMark();
+        possibleSectionMarks -= q.getPossibleMarks();
     }
     
     /**
@@ -102,7 +102,7 @@ public class Section implements java.io.Serializable
         Iterator<Question> it = questions.iterator();
         while (it.hasNext()) {
             Question q = it.next();
-            sectionMarksAwarded += q.getMark();
+            sectionMarksAwarded += q.getMarksAwarded();
         }
         return sectionMarksAwarded;
     }

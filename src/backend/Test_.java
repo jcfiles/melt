@@ -236,15 +236,15 @@ public class Test_ implements java.io.Serializable
         Test_ t1 = new Test_("Welcome to the Mancunia English test",
             "This test is designed to test your English langauge skills. " +
             "Each section will test a different aspect of those skills.");
-        Question q1 = new Question("If I don't study I _ the test.");
+        MCQ q1 = new MCQ("If I don't study I _ the test.");
         Section s1 = new Section("Section A", "Grammar section...", 30);
         t1.addSection(s1);
         Section s2 = new Section("Section B", "Vocabulary section...", 30);
         t1.addSection(s2); 
         s1.addQuestion(q1);
-        q1.addAnswer("won't pass", true);
-        q1.addAnswer("wouldn't pass", false);
-        q1.addAnswer("wouldn't have passed", false);
+        q1.addAnswer(new Answer("won't pass", true));
+        q1.addAnswer(new Answer("wouldn't pass", false));
+        q1.addAnswer(new Answer("wouldn't have passed", false));
         FTBQ q2 = null;
         try {
             q2 = new FTBQ("The students are trying to [catch] up with what the professor has taught. (catch)");
@@ -269,15 +269,15 @@ public class Test_ implements java.io.Serializable
 		}
 		s2.addQuestion(q4);
 		
-		Question q5 = new Question("The _ ate my homework.");
-		q5.addAnswer("cat", false);
-		q5.addAnswer("dog", true);
-		q5.addAnswer("duck", false);
+		MCQ q5 = new MCQ("The _ ate my homework.");
+		q5.addAnswer(new Answer("cat", false));
+		q5.addAnswer(new Answer("dog", true));
+		q5.addAnswer(new Answer("duck", false));
 		s2.addQuestion(q5);
 		
-		Question q6 = new Question("It's a _ walk to go to the University.");
-		q6.addAnswer("15-minute", true);
-		q6.addAnswer("15-minutes", false);
+		MCQ q6 = new MCQ("It's a _ walk to go to the University.");
+		q6.addAnswer(new Answer("15-minute", true));
+		q6.addAnswer(new Answer("15-minutes", false));
 		s2.addQuestion(q6);
 		
         return t1;
