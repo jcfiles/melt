@@ -49,13 +49,14 @@ public class MainGui {
 	frame.getContentPane().validate();
 	frame.getContentPane().add(component);
 	frame.getContentPane().validate();
+	frame.repaint();
     }
 
     /**
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        StudentTestController controller = new StudentTestController();
+        controller = new StudentTestController();
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
