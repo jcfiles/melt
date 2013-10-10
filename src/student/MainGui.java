@@ -49,6 +49,7 @@ public class MainGui {
 	frame.getContentPane().validate();
 	frame.getContentPane().add(component);
 	frame.getContentPane().validate();
+	frame.repaint();
     }
 
     /**
