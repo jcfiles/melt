@@ -63,6 +63,7 @@ public class FTBQ extends Question
             aText = rawQtext.substring(firstBracket + 1, lastBracket);
             firstPartQ = rawQtext.substring(0, firstBracket);
             secondPartQ = rawQtext.substring(lastBracket + 1, rawQtext.length());
+            if(lastBracket < firstBracket) throw new StringIndexOutOfBoundsException(); // Checks for ...]...[... case
         }
         catch (StringIndexOutOfBoundsException e){ 
              throw  new InvalidFTBQFormatException();
