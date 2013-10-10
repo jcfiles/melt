@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FinishTestPanel extends JPanel {
 
@@ -13,6 +16,7 @@ public class FinishTestPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 389409352371905605L;
+	private final JButton backButton = new JButton("Finish");
 
 	/**
 	 * Create the panel.
@@ -21,9 +25,9 @@ public class FinishTestPanel extends JPanel {
 	public FinishTestPanel(String marks) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{32, 0};
-		gridBagLayout.rowHeights = new int[]{16, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{16, 0, 0, 0, 0, 135, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblCongratulations = new JLabel("Congratulations!");
@@ -46,6 +50,7 @@ public class FinishTestPanel extends JPanel {
 		
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 5;
@@ -56,6 +61,14 @@ public class FinishTestPanel extends JPanel {
 		
 		JLabel label = new JLabel(marks);
 		panel.add(label);
+		GridBagConstraints gbc_backButton = new GridBagConstraints();
+		gbc_backButton.gridx = 0;
+		gbc_backButton.gridy = 6;
+		backButton.addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent arg0) { System.exit(0);
+		  }
+		});
+		add(backButton, gbc_backButton);
 
 	}
 
