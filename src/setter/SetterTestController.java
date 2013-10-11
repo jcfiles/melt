@@ -3,6 +3,9 @@ package setter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import setter.AddQuestionPanel.MyTableModel;
+import backend.FTBQ;
+import backend.InvalidFTBQFormatException;
 import backend.MCQ;
 import backend.Question;
 import backend.Section;
@@ -46,16 +49,39 @@ public class SetterTestController
     test.addSection(s);
   }
   
-  public void addFBI(String section)
+  public void addFTBQ(String subsection, String question, int marks)
   {
+    try {
+		FTBQ q=new FTBQ(question);
+		q.setPossibleMarks(marks);
+		q.setSubsectionTitle(subsection);
+		test.getSection(currentSection).addQuestion(q);
+		
+	} catch (InvalidFTBQFormatException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		
+		//re-enter the text
+	}
     
   }
   
-  public void addMC(String section)
+  public void addMCQ(String section, String question, int marks, MyTableModel possibleAnswers)
   {
-    
+	  MCQ q=new MCQ(question);
+	  q.setSubsectionTitle(section);
+	  q.setPossibleMarks(marks);
+	  
+	  for(int i=0; i<possibleAnswers.getRowCount(); i++)
+	  {
+		  q.setAnswer(possibleAnswers.getValueAt(i, 0).toString(), new Boolean(possibleAnswers.getValueAt(i, 1).toString()), i);
+	  }
   }
 
+  public void getPossibleAnswers()
+  {
+	  
+  }
   
   
   /*
@@ -91,11 +117,10 @@ public class SetterTestController
     return sectionList;
   }
   */
-  public int  getCurrertSectionTitle()
+  public String getCurrertSectionTitle()
   {
-    test.getSection(currentSection);
-    
-    return 0;
+    return test.getSection(currentSection).toString();
+
   }
   
   public void setCurrentSection(int section)
