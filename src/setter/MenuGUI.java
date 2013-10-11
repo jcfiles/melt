@@ -32,7 +32,7 @@ public class MenuGUI extends JFrame {
 	private JButton btnSetter=new JButton("Setter");
 	private static JPanel panelCenter = new JPanel();
 	
-	SetterTestController obj = new SetterTestController();
+	SetterTestController obj;
 
 	/**
 	 * Launch the application.
@@ -116,11 +116,11 @@ public class MenuGUI extends JFrame {
 		setterPanel.btnNewTest.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent e) {
 			   
-				   AddSectionGUI gui=new AddSectionGUI(obj);
-				   obj=new SetterTestController();
-				   obj.createTest("");
-				   obj.setCurrentSection(1);
-				   gui.setVisible(true);
+		     obj=new SetterTestController();
+         obj.createTest("");
+         obj.setCurrentSection(0);
+         AddSectionGUI gui=new AddSectionGUI(obj);
+         gui.setVisible(true);
 				   
 				   
 					 }
