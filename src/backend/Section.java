@@ -65,6 +65,11 @@ public class Section implements java.io.Serializable
         possibleSectionMarks -= q.getPossibleMarks();
     }
     
+    public void insertSection(Question q, int index)
+    {
+        questions.set(index, q);
+    }
+    
     /**
      * Returns an question by index, starting at 0
      */
