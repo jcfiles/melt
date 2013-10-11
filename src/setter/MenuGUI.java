@@ -118,6 +118,7 @@ public class MenuGUI extends JFrame {
 			   
 				   AddSectionGUI gui=new AddSectionGUI(obj);
 				   obj=new SetterTestController();
+				   obj.createTest("");
 				   obj.setCurrentSection(1);
 				   gui.setVisible(true);
 				   

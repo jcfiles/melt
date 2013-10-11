@@ -34,6 +34,12 @@ public class SetterTestController
 	  //
   }
   
+  public void newSection()
+  {
+	  Section s=new Section("","",1);
+	  test.addSection(s);
+  }
+  
   //Constructor  
  /* public SetterTestController(Test_ test, ArrayList<Question> questions) {
     super();
