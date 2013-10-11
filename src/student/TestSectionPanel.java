@@ -16,8 +16,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import backend.StudentTestController;
-import backend.FTBQ;
 import backend.Question;
+import backend.FTBQ;
+import backend.MCQ;
 import backend.Section;
 
 public class TestSectionPanel extends JPanel {
@@ -162,8 +163,8 @@ public class TestSectionPanel extends JPanel {
 		questionHolderPanel.add(fibqPanel, "name_"+Integer.toString(i));
 		questionPanels.add(fibqPanel);
             }
-            else if(questions.get(i) instanceof Question){
-		MCQuestionPanel mcqPanel = new MCQuestionPanel((Question)questions.get(i));
+            else if(questions.get(i) instanceof MCQ){
+		MCQuestionPanel mcqPanel = new MCQuestionPanel((MCQ)questions.get(i));
 		questionHolderPanel.add(mcqPanel, "name_"+Integer.toString(i));
 		questionPanels.add(mcqPanel);
             }

@@ -12,6 +12,9 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
 
+import backend.StudentTestController;
+import student.StudentStartJPanel;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
@@ -22,12 +25,12 @@ import java.awt.event.ActionListener;
 
 
 public class MenuGUI extends JFrame {
-
+	private StudentTestController studentTestController;
 	private JPanel contentPane;
 	SetterPanel setterPanel=new SetterPanel();
 	JButton btnStudent=new JButton("Student");
 	JButton btnSetter=new JButton("Setter");
-	JPanel panelCenter = new JPanel();
+	private static JPanel panelCenter = new JPanel();
 	
 	SetterTestController obj=new SetterTestController();
 
@@ -90,24 +93,21 @@ public class MenuGUI extends JFrame {
 		panelCenter.add(setterPanel);
 		
 		//cliking the Student button
-		btnSetter.addActionListener(new ActionListener(){
+		btnStudent.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
-		    	
+		    	studentTestController = new StudentTestController();
 		    	panelCenter.removeAll();
-				panelCenter.add(setterPanel);
-				
+				panelCenter.add(new StudentStartJPanel(studentTestController));
 				panelCenter.validate();
 				panelCenter.repaint();		   	
 			 }
 			});
 		
-		//cliking the Student button
-		btnStudent.addActionListener(new ActionListener(){
+		//cliking the Setter button
+		btnSetter.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent e) {
-				   	
 				   panelCenter.removeAll();
-				   //panelCenter.add(setterPanel);
-						
+				   panelCenter.add(setterPanel);
 				   panelCenter.validate();
 				   panelCenter.repaint();		   	
 					 }
@@ -126,5 +126,13 @@ public class MenuGUI extends JFrame {
 		
 		
 	}
+	/*public static void setComposites(JPanel jPanel){
+		if(panelCenter.getComponentCount()>0){
+			panelCenter.removeAll();
+		}
+		panelCenter.add(jPanel);
+		panelCenter.validate();
+		panelCenter.repaint();
+	}*/
 
 }

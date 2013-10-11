@@ -3,14 +3,14 @@ package setter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import backend.Question;
+import backend.MCQ;
 import backend.Section;
 import backend.Test_;
 
 public class SetterTestController
 {
 	//HashMap
-	static HashMap<String,ArrayList<Question>> all = new HashMap<String,ArrayList<Question>>();
+	static HashMap<String,ArrayList<MCQ>> all = new HashMap<String,ArrayList<MCQ>>();
 	ArrayList<Section> section=new ArrayList<Section>();
 	
 	//
