@@ -32,7 +32,7 @@ public class MenuGUI extends JFrame {
 	private JButton btnSetter=new JButton("Setter");
 	private static JPanel panelCenter = new JPanel();
 	
-	SetterTestController obj;
+	SetterTestController obj = new SetterTestController();
 
 	/**
 	 * Launch the application.
