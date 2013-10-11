@@ -102,6 +102,11 @@ public class Test_ implements java.io.Serializable
         possibleTestMarks -= s.getSectionTime();
     }
     
+    public void insertSection(Section s, int index)
+    {
+        sections.set(index, s);
+    }
+    
     /**
      * @param SectionNum is an index for the required section, starting at 0.
      */
