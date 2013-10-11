@@ -24,13 +24,14 @@ public class SectionNavigationPanel extends JPanel {
 		add(navigationPanel);
 		navigationPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		ImageIcon imgP = new ImageIcon("images\\previous.png");
-		ImageIcon imgN = new ImageIcon("images\\next.png");
+		ImageIcon imgP = new ImageIcon("/images/previous.png");
+		ImageIcon imgN = new ImageIcon("/images/next.png");
 		
-		btnPrevious.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/images/previous.png")));
+		btnPrevious.setIcon(imgP);
 		navigationPanel.add(btnPrevious);		
 		
-		btnNext.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/images/next.png")));
+		btnNext.setIcon(imgN);
+		//btnNext.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/images/next.png")));
 		navigationPanel.add(btnNext);				
 		
 		JPanel backPanel = new JPanel();
