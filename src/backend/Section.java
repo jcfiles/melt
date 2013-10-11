@@ -13,6 +13,7 @@ public class Section implements java.io.Serializable
 {
     private String sectionTitle;
     private String sectionIntroText;
+    private String subsectionTitle;
     private ArrayList<Question> questions;
     private int possibleSectionMarks = 0; // Built as questions added/removed
     private int sectionMarksAwarded;
@@ -25,10 +26,11 @@ public class Section implements java.io.Serializable
      * Constructor for objects of class Section
      * @param sectionTime in minutes
      */
-    public Section(String sectionTitle, String sectionIntroText, int sectionTime)
+    public Section(String sectionTitle, String sectionIntroText, String subsectionTitle, int sectionTime)
     {
         this.sectionTitle = sectionTitle;
         this.sectionIntroText = sectionIntroText;
+        this.subsectionTitle = subsectionTitle;
         this.sectionTime = sectionTime;
         this.questions = new ArrayList<Question>();        
     }

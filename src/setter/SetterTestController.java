@@ -36,7 +36,7 @@ public class SetterTestController
   
   public void newSection()
   {
-	  Section s=new Section("","",1);
+	  Section s=new Section("","","",1);
 	  test.addSection(s);
   }
   
@@ -60,9 +60,9 @@ public class SetterTestController
     return "";
   }
   
-  public void setSection(String name, int time, int noQuestions, int marks, String instructions)
+  public void setSection(String name, String instructions, String subsection, int time)
   {
-    Section obj=new Section(name, instructions,time); 
+    Section obj=new Section(name, instructions, subsection, time); 
     section.add(obj);
     all.put(name, null);
     
@@ -98,6 +98,4 @@ public class SetterTestController
   {
 	  return currentQuestion;
   }
-
-
 }

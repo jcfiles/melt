@@ -247,9 +247,9 @@ public class Test_ implements java.io.Serializable
             "This test is designed to test your English langauge skills. " +
             "Each section will test a different aspect of those skills.");
         MCQ q1 = new MCQ("If I don't study I _ the test.");
-        Section s1 = new Section("Section A", "Grammar section...", 30);
+        Section s1 = new Section("Section A", "Grammar section...", "Subsection title...", 30);
         t1.addSection(s1);
-        Section s2 = new Section("Section B", "Vocabulary section...", 30);
+        Section s2 = new Section("Section B", "Vocabulary section...", "Another subsection title...", 30);
         t1.addSection(s2); 
         s1.addQuestion(q1);
         q1.addAnswer(new Answer("won't pass", true));
