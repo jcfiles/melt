@@ -10,18 +10,34 @@ import backend.Test_;
 public class SetterTestController
 {
 	//HashMap
-	static HashMap<String,ArrayList<MCQ>> all = new HashMap<String,ArrayList<MCQ>>();
+	private static HashMap<String,ArrayList<MCQ>> all = new HashMap<String,ArrayList<MCQ>>();
 	ArrayList<Section> section=new ArrayList<Section>();
 	
-	//
-	int currentSection=1,currentQuestion=0;
-  
-  
+	
+	private int currentSection=1,currentQuestion=0;
+	private Test_ test;
+  	
   
   
   //Empty constructor
   public SetterTestController() {
-	  
+
+  }
+  
+  public void createTest(String title)
+  {
+	  test=new Test_(title,"");
+  }
+  
+  public void setTitle(String title)
+  {
+	  //
+  }
+  
+  public void newSection()
+  {
+	  Section s=new Section("","",1);
+	  test.addSection(s);
   }
   
   //Constructor  
@@ -70,7 +86,7 @@ public class SetterTestController
   
   public void setCurrentQuestion(int question)
   {
-	  currentSection=question;
+	  currentQuestion=question;
   }
   
   public int getCurrentSection()
@@ -80,7 +96,7 @@ public class SetterTestController
   
   public int getCurrentQuestion()
   {
-	  return currentSection;
+	  return currentQuestion;
   }
 
 

@@ -27,12 +27,12 @@ import java.awt.event.ActionListener;
 public class MenuGUI extends JFrame {
 	private StudentTestController studentTestController;
 	private JPanel contentPane;
-	SetterPanel setterPanel=new SetterPanel();
-	JButton btnStudent=new JButton("Student");
-	JButton btnSetter=new JButton("Setter");
+	private SetterPanel setterPanel=new SetterPanel();
+	private JButton btnStudent=new JButton("Student");
+	private JButton btnSetter=new JButton("Setter");
 	private static JPanel panelCenter = new JPanel();
 	
-	SetterTestController obj=new SetterTestController();
+	SetterTestController obj;
 
 	/**
 	 * Launch the application.
@@ -117,6 +117,8 @@ public class MenuGUI extends JFrame {
 		   public void actionPerformed(ActionEvent e) {
 			   
 				   AddSectionGUI gui=new AddSectionGUI(obj);
+				   obj=new SetterTestController();
+				   obj.createTest("");
 				   obj.setCurrentSection(1);
 				   gui.setVisible(true);
 				   

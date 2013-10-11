@@ -22,13 +22,13 @@ import javax.swing.border.EmptyBorder;
 public class AddSectionGUI extends JFrame {
 
 	private JPanel contentPane;
-	AddSectionPanel addPanel;
-	ViewSectionPanel viewPanel;
-	SectionNavigationPanel nav=new SectionNavigationPanel();
+	private AddSectionPanel addPanel;
+	private ViewSectionPanel viewPanel;
+	private SectionNavigationPanel nav=new SectionNavigationPanel();
 	
-	JLabel lblTitle=new JLabel("Title:");
-	JTextField txtTest=new JTextField();
-	JLabel lblTest=new JLabel("TestA");
+	private JLabel lblTitle=new JLabel("Title:");
+	private JTextField txtTest=new JTextField();
+	private JLabel lblTest=new JLabel("TestA");
 	
 	SetterTestController obj=new SetterTestController();
 	
@@ -55,7 +55,7 @@ public class AddSectionGUI extends JFrame {
 	 */
 	public AddSectionGUI(final SetterTestController obj) {
 		super("Create new Test");
-		this.obj=obj;	
+		this.obj=obj;			
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 0, 533, 720);
 		contentPane = new JPanel();
@@ -110,7 +110,11 @@ public class AddSectionGUI extends JFrame {
 		addPanel.btnSave.addActionListener(new ActionListener(){  //button to save the question
 		public void actionPerformed(ActionEvent e) {
 			
-			obj.setSection(addPanel.txtSection.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()), Integer.parseInt(addPanel.lblNumOfQuestions.toString()), Integer.parseInt(addPanel.lblTotalMarks.toString()), addPanel.txtInstructions.toString());
+			obj.setTitle(lblTest.toString());
+			
+			
+			
+			//obj.setSection(addPanel.txtSection.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()), Integer.parseInt(addPanel.lblNumOfQuestions.toString()), Integer.parseInt(addPanel.lblTotalMarks.toString()), addPanel.txtInstructions.toString());
 			
 			panelCenter.removeAll();
 			panelCenter.add(viewPanel);

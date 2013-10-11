@@ -63,6 +63,11 @@ public class Test_ implements java.io.Serializable
         return t;
     }
     
+    public void setTestTitle(String title)
+    {
+        testTitle = title;
+    }
+    
     public String getTestTitle()
     {
         return testTitle;
