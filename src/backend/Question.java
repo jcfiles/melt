@@ -13,6 +13,7 @@ public abstract class Question implements java.io.Serializable {
     protected String questionText;
     protected int possibleMarks = 1;
     protected int marksAwarded = 0;
+    protected String subsectionTitle = "";
     protected ArrayList<Answer> answers;
     
     /**
@@ -32,6 +33,11 @@ public abstract class Question implements java.io.Serializable {
     public void setQuestionText(String text) // for editing
     {
         questionText = text;
+    }
+    
+    public void setSubsectionTitle(String text) // for editing
+    {
+        subsectionTitle = text;
     }
     
     /**

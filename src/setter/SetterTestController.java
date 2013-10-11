@@ -36,7 +36,7 @@ public class SetterTestController
   
   public void newSection()
   {
-	  Section s=new Section("","","",1);
+	  Section s=new Section("", "", 1);
 	  test.addSection(s);
   }
   
@@ -62,7 +62,7 @@ public class SetterTestController
   
   public void setSection(String name, String instructions, String subsection, int time)
   {
-    Section obj=new Section(name, instructions, subsection, time); 
+    Section obj=new Section(name, instructions, time); 
     section.add(obj);
     all.put(name, null);
     
