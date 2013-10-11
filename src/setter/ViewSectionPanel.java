@@ -30,7 +30,7 @@ public class ViewSectionPanel extends JPanel {
 		
 		if(obj.getCurrentSection()==0){
 		ArrayList<String> list = new ArrayList<String>();
-		list=obj.getSection(obj.getCurrentSection());
+		//list=obj.getSection(obj.getCurrentSection());
 		
 		JLabel lblS = new JLabel("Section:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblS, 47, SpringLayout.NORTH, this);

@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import backend.MCQ;
+import backend.Question;
 import backend.Section;
 import backend.Test_;
 
 public class SetterTestController
 {
-	//HashMap
-	private static HashMap<String,ArrayList<MCQ>> all = new HashMap<String,ArrayList<MCQ>>();
-	ArrayList<Section> section=new ArrayList<Section>();
-	
-	
-	private int currentSection=1,currentQuestion=0;
-	private Test_ test;
-  	
+  //HashMap
+  private static HashMap<String,ArrayList<MCQ>> all = new HashMap<String,ArrayList<MCQ>>();
+  ArrayList<Section> section=new ArrayList<Section>();
+  
+  
+  private int currentSection=1,currentQuestion=0;
+  private Test_ test;
+    
   
   
   //Empty constructor
@@ -26,29 +27,39 @@ public class SetterTestController
   
   public void createTest(String title)
   {
-	  test=new Test_(title,"");
+    test=new Test_(title,"");
   }
   
   public void setTitle(String title)
   {
-	  //
+    test.setTestTitle(title);
   }
   
-  public void newSection()
+  public String getTitle()
   {
-	  Section s=new Section("", "", 1);
-	  test.addSection(s);
+   return test.getTestTitle();
   }
   
-  //Constructor  
- /* public SetterTestController(Test_ test, ArrayList<Question> questions) {
-    super();
-    this.test = test;
-    this.questions = questions;
-    
-    noQuestions = questions.size();
+  public void addSection(String sectionTitle, String sectionIntroText, int sectionTime)
+  {
+    Section s=new Section(sectionTitle,sectionIntroText,sectionTime);
+    test.addSection(s);
   }
-  */
+  
+  public void addFBI(String section)
+  {
+    
+  }
+  
+  public void addMC(String section)
+  {
+    
+  }
+
+  
+  
+  /*
+
   public void getTest(String title)
   {
     
@@ -60,9 +71,10 @@ public class SetterTestController
     return "";
   }
   
-  public void setSection(String name, String instructions, String subsection, int time)
+ /* public void setSection(String name, int time, int noQuestions, int marks, String instructions)
+
   {
-    Section obj=new Section(name, instructions, time); 
+    Section obj=new Section(name, instructions, subsection, time); 
     section.add(obj);
     all.put(name, null);
     
@@ -78,24 +90,31 @@ public class SetterTestController
     
     return sectionList;
   }
+  */
+  public int  getCurrertSectionTitle()
+  {
+    test.getSection(currentSection);
+    
+    return 0;
+  }
   
   public void setCurrentSection(int section)
   {
-	  currentSection=section;
+    currentSection=section;
   }
   
   public void setCurrentQuestion(int question)
   {
-	  currentQuestion=question;
+    currentQuestion=question;
   }
   
   public int getCurrentSection()
   {
-	  return currentSection;
+    return currentSection;
   }
   
   public int getCurrentQuestion()
   {
-	  return currentQuestion;
+    return currentQuestion;
   }
 }

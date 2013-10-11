@@ -111,10 +111,8 @@ public class AddSectionGUI extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			obj.setTitle(lblTest.toString());
+			obj.addSection(addPanel.txtSection.toString(), addPanel.txtInstructions.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()));			
 			
-			
-			
-			//obj.setSection(addPanel.txtSection.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()), Integer.parseInt(addPanel.lblNumOfQuestions.toString()), Integer.parseInt(addPanel.lblTotalMarks.toString()), addPanel.txtInstructions.toString());
 			
 			panelCenter.removeAll();
 			panelCenter.add(viewPanel);
