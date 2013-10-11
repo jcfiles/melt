@@ -122,7 +122,6 @@ public class MenuGUI extends JFrame {
          AddSectionGUI gui=new AddSectionGUI(obj);
          gui.setVisible(true);
 				   
-				   
 					 }
 					});
 		
