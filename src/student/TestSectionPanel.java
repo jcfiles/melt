@@ -26,7 +26,9 @@ import backend.Question;
 import backend.FTBQ;
 import backend.MCQ;
 import backend.Section;
-
+/*
+ * @author Chondrokoukis Dimitrios
+ */
 public class TestSectionPanel extends JPanel {
 	private JLabel labelTimeRemaining;
     private StudentTestController controller;
@@ -35,6 +37,7 @@ public class TestSectionPanel extends JPanel {
     private ArrayList<Question> questions;
     private int questionPanelsIndex;
     private ArrayList<QuestionPanel> questionPanels;
+    private JPanel questionHolderPanel;
     //private ArrayList<JPanel> jPanelQuestions;
 	
     /**
@@ -139,8 +142,10 @@ public class TestSectionPanel extends JPanel {
 	tableQuestions.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			int row = tableQuestions.rowAtPoint(e.getPoint());
-			System.out.println(row);
+			((CardLayout)questionHolderPanel.getLayout()).first(questionHolderPanel);
+			for(int i=0; i<tableQuestions.rowAtPoint(e.getPoint()); i++){
+				((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
+			}
 		}
 	});
 	tableQuestions.setModel(new DefaultTableModel(
@@ -168,7 +173,7 @@ public class TestSectionPanel extends JPanel {
 	gbc_scrollPane.gridy = 0;
 	panel_5.add(scrollPane, gbc_scrollPane);
 		
-	final JPanel questionHolderPanel = new JPanel();
+	questionHolderPanel = new JPanel();
 	scrollPane.setViewportView(questionHolderPanel);
 	questionHolderPanel.setLayout(new CardLayout(0, 0));
 		
@@ -265,6 +270,9 @@ public class TestSectionPanel extends JPanel {
         return section;
     }
     
+    /*
+     * Return the JLabel that will have the countdown
+     */
     public JLabel getLabelForTimer(){
     	return this.labelTimeRemaining;
     }
