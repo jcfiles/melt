@@ -63,4 +63,14 @@ public class FIBQuestionPanel extends QuestionPanel {
     public void submitAnswer() {
         ftbq.setGivenAnswer(textField.getText());
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see student.QuestionPanel#isAnswered()
+     * 
+     * Returns true if the student has filled in the blank
+     */
+    public boolean isAnswered(){
+    	return textField.getText().equals("")?false:true;
+    }
 }

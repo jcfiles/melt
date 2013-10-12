@@ -13,5 +13,6 @@ import javax.swing.JPanel;
 public abstract class QuestionPanel extends JPanel {
     
     public abstract void submitAnswer();
+    public abstract boolean isAnswered();
     
 }

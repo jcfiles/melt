@@ -1,8 +1,11 @@
 package student;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -15,10 +18,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import com.sun.org.apache.bcel.internal.util.ClassPath;
+
+import sun.misc.GC;
+
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import backend.CountdownTimer;
 import backend.StudentTestController;
@@ -146,6 +155,7 @@ public class TestSectionPanel extends JPanel {
 			for(int i=0; i<tableQuestions.rowAtPoint(e.getPoint()); i++){
 				((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
 			}
+			questionPanelsIndex = tableQuestions.rowAtPoint(e.getPoint());
 		}
 	});
 	tableQuestions.setModel(new DefaultTableModel(
@@ -209,11 +219,15 @@ public class TestSectionPanel extends JPanel {
 	buttonPrevious.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-		if(questionPanelsIndex>0){
+            	if(questionPanelsIndex>0){
+        			//Puts tick in the table
+                    if(questionPanels.get(questionPanelsIndex).isAnswered()){
+                    	System.out.println(true);
+                    }
                     questionPanelsIndex--;
                     ((CardLayout)questionHolderPanel.getLayout()).previous(questionHolderPanel);
                     scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
-		}
+                }
             }
 	});
 	GridBagConstraints gbc_buttonPrevious = new GridBagConstraints();
@@ -227,9 +241,23 @@ public class TestSectionPanel extends JPanel {
 	buttonNext.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-		if(questionPanelsIndex<questions.size()-1){
+            	if(questionPanelsIndex<questions.size()-1){
+        			//Puts tick in the table
+                    if(questionPanels.get(questionPanelsIndex).isAnswered()){
+                    	System.out.println(true);
+                    	BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+                    	FontMetrics fm = img.getGraphics().getFontMetrics(getFont());
+                    	int width = fm.stringWidth((String) tableQuestions.getModel().getValueAt(questionPanelsIndex,0));
+                    	try {
+							BufferedImage img2 = ImageIO.read(TestSectionPanel.class.getResource("/lib/images/tick.png"));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+                    }
                     questionPanelsIndex++;
                     ((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
+                  
                     scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
                 }
             }

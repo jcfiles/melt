@@ -120,4 +120,22 @@ public class MCQuestionPanel extends QuestionPanel {
             }
         }
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see student.QuestionPanel#isAnswered()
+     * 
+     * Returns true if the student has checked an answer
+     */
+    public boolean isAnswered(){
+    	boolean isanswered = false;
+    	for(int i=0; i<panel_1.getComponentCount(); i++){
+            if(panel_1.getComponent(i) instanceof JCheckBox){
+                if(((JCheckBox)panel_1.getComponent(i)).isSelected()){
+                	isanswered = true;
+                }
+            }
+        }
+    	return isanswered;
+    }
 }
