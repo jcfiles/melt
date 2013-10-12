@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -18,9 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
-import com.sun.org.apache.bcel.internal.util.ClassPath;
 
-import sun.misc.GC;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -29,17 +26,15 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import backend.CountdownTimer;
 import backend.StudentTestController;
 import backend.Question;
-import backend.FTBQ;
-import backend.MCQ;
 import backend.Section;
+import java.util.Iterator;
 /*
  * @author Chondrokoukis Dimitrios
  */
 public class TestSectionPanel extends JPanel {
-	private JLabel labelTimeRemaining;
+    private JLabel labelTimeRemaining;
     private StudentTestController controller;
     private Section section;
     private JTable tableQuestions;
@@ -188,20 +183,14 @@ public class TestSectionPanel extends JPanel {
 	questionHolderPanel.setLayout(new CardLayout(0, 0));
 		
 	questionPanels = new ArrayList<QuestionPanel>();
-	for(int i=0; i<questions.size(); i++){
-            if(questions.get(i) instanceof FTBQ){
-		FIBQuestionPanel fibqPanel = new FIBQuestionPanel((FTBQ)questions.get(i));
-		questionHolderPanel.add(fibqPanel, "name_"+Integer.toString(i));
-		questionPanels.add(fibqPanel);
-            }
-            else if(questions.get(i) instanceof MCQ){
-		MCQuestionPanel mcqPanel = new MCQuestionPanel((MCQ)questions.get(i));
-		questionHolderPanel.add(mcqPanel, "name_"+Integer.toString(i));
-		questionPanels.add(mcqPanel);
-            }
+        Iterator<Question> it = questions.iterator();
+        int qNum = 0;
+	while(it.hasNext()){      
+            QuestionPanel qp = QuestionPanelFactory.getInstance().createQuestionPanel(it.next());
+            questionHolderPanel.add(qp, "name_"+ Integer.toString(qNum++));
+            questionPanels.add(qp);
 	}
-	scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
-		
+	scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());	
 	JPanel panel_7 = new JPanel();
 	GridBagConstraints gbc_panel_7 = new GridBagConstraints();
 	gbc_panel_7.fill = GridBagConstraints.BOTH;
@@ -244,20 +233,19 @@ public class TestSectionPanel extends JPanel {
             	if(questionPanelsIndex<questions.size()-1){
         			//Puts tick in the table
                     if(questionPanels.get(questionPanelsIndex).isAnswered()){
-                    	System.out.println(true);
+                    	//System.out.println(true);
                     	BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
                     	FontMetrics fm = img.getGraphics().getFontMetrics(getFont());
                     	int width = fm.stringWidth((String) tableQuestions.getModel().getValueAt(questionPanelsIndex,0));
                     	try {
-							BufferedImage img2 = ImageIO.read(TestSectionPanel.class.getResource("/lib/images/tick.png"));
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+                            BufferedImage img2 = ImageIO.read(TestSectionPanel.class.getResource("/lib/images/tick.png"));
+                        } catch (IOException e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
+			}
                     }
                     questionPanelsIndex++;
                     ((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
-                  
                     scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());
                 }
             }
