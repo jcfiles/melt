@@ -32,6 +32,7 @@ import backend.Section;
 import java.util.Iterator;
 /*
  * @author Chondrokoukis Dimitrios
+ * @contributor Steedman Bruce
  */
 public class TestSectionPanel extends JPanel {
     private JLabel labelTimeRemaining;
