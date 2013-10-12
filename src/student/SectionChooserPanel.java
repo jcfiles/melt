@@ -45,7 +45,9 @@ public class SectionChooserPanel extends JPanel {
 	gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 	gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 	panel.setLayout(gbl_panel);
-	JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
+        
+	JLabel labelSectionTitle = new JLabel(section.getSectionTitle() + ": " + section.getSectionIntroText());
+        
 	labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 	GridBagConstraints gbc_labelSectionTitle = new GridBagConstraints();
 	gbc_labelSectionTitle.anchor = GridBagConstraints.WEST;

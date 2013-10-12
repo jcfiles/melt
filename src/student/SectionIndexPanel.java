@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import backend.StudentTestController;
 import backend.Test_;
 import backend.Section;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 public class SectionIndexPanel extends JPanel {
 	
@@ -17,8 +20,11 @@ public class SectionIndexPanel extends JPanel {
     /**
      * Create the panel.
      */
-    public SectionIndexPanel(StudentTestController controller) {
+    public SectionIndexPanel(final StudentTestController controller) {
         this.controller = controller;
+        
+        controller.setSectionIndexPanel(this); // Passes a reference to section index panel to the controller
+        
 	GridBagLayout gridBagLayout = new GridBagLayout();
 	gridBagLayout.columnWidths = new int[]{0, 0};
 	gridBagLayout.rowHeights = new int[]{0, 0};
@@ -30,6 +36,17 @@ public class SectionIndexPanel extends JPanel {
 	for(Section section: sections){
             buildSectionChooserPanel(i++);
         }
+        
+        JButton buttonSubmitTest = new JButton("Submit Test");
+	buttonSubmitTest.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {controller.endTest();}
+	});
+	GridBagConstraints gbc_buttonSubmitTest = new GridBagConstraints();
+	//gbc_buttonSubmitTest.anchor = GridBagConstraints.NORTH;
+	gbc_buttonSubmitTest.gridx = 0;
+	gbc_buttonSubmitTest.gridy = 1000;
+	this.add(buttonSubmitTest, gbc_buttonSubmitTest); 
     }
     
     private void buildSectionChooserPanel(int index) {

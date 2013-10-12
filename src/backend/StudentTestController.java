@@ -4,6 +4,7 @@ import java.util.Iterator;
 import student.FinishTestPanel;
 import student.MainGui;
 import student.QuestionPanel;
+import student.SectionIndexPanel;
 import student.TestSectionPanel;
 
 /**
@@ -16,12 +17,14 @@ import student.TestSectionPanel;
 public class StudentTestController {
     
     private Test_ test;
+    private SectionIndexPanel sectionIndexPanel;
     
     /**
      * Constructor instantiates a demo test.
      */
     public StudentTestController() {
         this.test = Test_.getDemoTest();
+        this.sectionIndexPanel = sectionIndexPanel;
     }
     
     public Test_ getTest() {
@@ -40,7 +43,7 @@ public class StudentTestController {
     }
     
     /**
-     * User or timer stops a section, section is graded and finish test panel displayed.
+     * User or timer stops a section, section is graded and user is returned to the section chooser panel.
      */
     public void endSection(TestSectionPanel sectionPanel) {
         Iterator<QuestionPanel> it = sectionPanel.getQuestionPanels().iterator();
@@ -48,8 +51,26 @@ public class StudentTestController {
             QuestionPanel questionPanel = it.next();
             questionPanel.submitAnswer(); // Calls method according the subclass of QuestionPanel :)
         }
-        String sectionMarks = String.valueOf(sectionPanel.getSection().gradeSection());
-        FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks);
+        MainGui.setComposite(sectionIndexPanel);
+        
+        //String sectionMarks = String.valueOf(sectionPanel.getSection().gradeSection());
+        //FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks);
+        //MainGui.setComposite(finishpanel);
+    }
+    
+    /**
+     * User opts to end the test.
+     */
+    public void endTest() {
+        String testMarks = String.valueOf(test.endTest());
+        FinishTestPanel finishpanel = new FinishTestPanel(testMarks);
         MainGui.setComposite(finishpanel);
+    }
+
+    /**
+     * Passes a reference to the section index panel, so submit section can return user to the section index panel.
+     */
+    public void setSectionIndexPanel(SectionIndexPanel sectionIndexPanel) {
+        this.sectionIndexPanel = sectionIndexPanel;
     }
 }

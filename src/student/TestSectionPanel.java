@@ -42,7 +42,6 @@ public class TestSectionPanel extends JPanel {
     private int questionPanelsIndex;
     private ArrayList<QuestionPanel> questionPanels;
     private JPanel questionHolderPanel;
-    //private ArrayList<JPanel> jPanelQuestions;
 	
     /**
      * Create the panel.
@@ -270,7 +269,7 @@ public class TestSectionPanel extends JPanel {
 	gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 	panel_1.setLayout(gbl_panel_1);
 		
-	JButton buttonSubmitSection = new JButton("Submit");
+	JButton buttonSubmitSection = new JButton("Submit Section");
 	buttonSubmitSection.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
