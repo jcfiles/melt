@@ -32,6 +32,7 @@ import backend.Section;
 import java.util.Iterator;
 /*
  * @author Chondrokoukis Dimitrios
+ * @contributor Steedman Bruce
  */
 public class TestSectionPanel extends JPanel {
     private JLabel labelTimeRemaining;
@@ -185,8 +186,14 @@ public class TestSectionPanel extends JPanel {
 	questionPanels = new ArrayList<QuestionPanel>();
         Iterator<Question> it = questions.iterator();
         int qNum = 0;
-	while(it.hasNext()){      
-            QuestionPanel qp = QuestionPanelFactory.getInstance().createQuestionPanel(it.next());
+        QuestionPanel qp = null;
+	while(it.hasNext()){
+            try {
+                qp = QuestionPanelFactory.getInstance().createQuestionPanel(it.next());
+            }
+            catch(Exception e) {
+                //Handle exceptions if for any reason a panel cannot be instantiated
+            }
             questionHolderPanel.add(qp, "name_"+ Integer.toString(qNum++));
             questionPanels.add(qp);
 	}
