@@ -24,13 +24,14 @@ public class QuestionPanelFactory {
     
     public static QuestionPanelFactory getInstance() { return INSTANCE; }
     
-    public QuestionPanel createQuestionPanel(Question question) {//throws Exception {
-        if(question.getClass().getName().equals("backend.FTBQ")) { return new FTBQuestionPanel((FTBQ)question); }
-        else if(question.getClass().getName().equals("backend.MCQ")) { return new MCQuestionPanel((MCQ)question); }
-        return null;
-        //Class questionClass = question.getClass();
-        //Class questionPanelClass = questionPanelMap.get(questionClass);
-        //Constructor productConstructor = questionPanelClass.getDeclaredConstructor(new Class[] { String.class });
-	//return (QuestionPanel)productConstructor.newInstance(new Object[] { });
-   }
+    
+    /**
+     * Method to create the appropriate question panel for the given question type - uses reflection. 
+     */
+    public QuestionPanel createQuestionPanel(Question question) throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Class questionClass = question.getClass();
+        Class questionPanelClass = questionPanelMap.get(questionClass);
+        Constructor productConstructor = questionPanelClass.getDeclaredConstructor(questionClass);
+	return (QuestionPanel)productConstructor.newInstance(question);
+    }
 }
