@@ -25,19 +25,8 @@ public class QuestionPanelFactory {
     public static QuestionPanelFactory getInstance() { return INSTANCE; }
     
     public QuestionPanel createQuestionPanel(Question question) {//throws Exception {
-        System.out.println(question.getClass().getName());
-        if(question.getClass().getName().equals("backend.FTBQ")) {
-            System.out.println(question.getClass().getName());
-            FTBQuestionPanel qp = new FTBQuestionPanel((FTBQ)question);
-            System.out.println(qp);
-            return qp;
-        }
-        else if(question.getClass().getName().equals("backend.MCQ")) {
-            System.out.println(question.getClass().getName());
-            MCQuestionPanel qp = new MCQuestionPanel((MCQ)question);
-            System.out.println(qp);
-            return qp;
-        }
+        if(question.getClass().getName().equals("backend.FTBQ")) { return new FTBQuestionPanel((FTBQ)question); }
+        else if(question.getClass().getName().equals("backend.MCQ")) { return new MCQuestionPanel((MCQ)question); }
         return null;
         //Class questionClass = question.getClass();
         //Class questionPanelClass = questionPanelMap.get(questionClass);
