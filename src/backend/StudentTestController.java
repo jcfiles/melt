@@ -35,6 +35,8 @@ public class StudentTestController {
         TestSectionPanel testSectionPanel = new TestSectionPanel(this, section);
         MainGui.setComposite(testSectionPanel);
         SectionTimer timer = new SectionTimer(this, testSectionPanel, section.getSectionTime());
+        CountdownTimer countdownTimer = new CountdownTimer(section.getSectionTime(),testSectionPanel.getLabelForTimer());
+    	countdownTimer.start();
     }
     
     /**

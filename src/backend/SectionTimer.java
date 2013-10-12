@@ -20,7 +20,7 @@ public class SectionTimer {
         this.controller = controller;
         this.testSectionPanel = testSectionPanel;
         timer = new Timer();
-        timer.schedule(new EndSection(), seconds*1000);
+        timer.schedule(new EndSection(), seconds*1000*60);
 	}
 
     class EndSection extends TimerTask {

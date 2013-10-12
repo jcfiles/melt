@@ -1,20 +1,26 @@
 package student;
 
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import backend.CountdownTimer;
 import backend.StudentTestController;
 import backend.Question;
 import backend.FTBQ;
@@ -22,6 +28,7 @@ import backend.MCQ;
 import backend.Section;
 
 public class TestSectionPanel extends JPanel {
+	private JLabel labelTimeRemaining;
     private StudentTestController controller;
     private Section section;
     private JTable tableQuestions;
@@ -91,7 +98,7 @@ public class TestSectionPanel extends JPanel {
 	gbl_panel_9.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 	panel_9.setLayout(gbl_panel_9);
 		
-	JLabel labelTimeRemaining = new JLabel("30");
+	labelTimeRemaining = new JLabel("");
 	GridBagConstraints gbc_labelTimeRemaining = new GridBagConstraints();
 	gbc_labelTimeRemaining.anchor = GridBagConstraints.EAST;
 	gbc_labelTimeRemaining.insets = new Insets(0, 0, 0, 5);
@@ -129,11 +136,20 @@ public class TestSectionPanel extends JPanel {
 	}
 		
 	tableQuestions = new JTable();
+	tableQuestions.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			int row = tableQuestions.rowAtPoint(e.getPoint());
+			System.out.println(row);
+		}
+	});
 	tableQuestions.setModel(new DefaultTableModel(
             object,
             new String[] {"Questions"}
 	));
 	scrollPane_1.add(tableQuestions);
+	
+	
 		
 	JPanel panel_5 = new JPanel();
 	panel_2.add(panel_5, BorderLayout.CENTER);
@@ -230,7 +246,9 @@ public class TestSectionPanel extends JPanel {
 	JButton buttonSubmitSection = new JButton("Submit");
 	buttonSubmitSection.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {controller.endSection(TestSectionPanel.this);}
+            public void mouseClicked(MouseEvent e) {
+            	controller.endSection(TestSectionPanel.this);
+            }
 	});
 	GridBagConstraints gbc_buttonSubmitSection = new GridBagConstraints();
 	gbc_buttonSubmitSection.anchor = GridBagConstraints.NORTH;
@@ -245,5 +263,9 @@ public class TestSectionPanel extends JPanel {
 
     public Section getSection() {
         return section;
+    }
+    
+    public JLabel getLabelForTimer(){
+    	return this.labelTimeRemaining;
     }
 }
