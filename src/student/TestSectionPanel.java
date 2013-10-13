@@ -1,34 +1,31 @@
 package student;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
-import java.awt.FontMetrics;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 
 import javax.swing.JLabel;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
-
-
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import backend.StudentTestController;
 import backend.Question;
 import backend.Section;
+
 import java.util.Iterator;
 /*
  * @author Chondrokoukis Dimitrios
@@ -43,11 +40,18 @@ public class TestSectionPanel extends JPanel {
     private int questionPanelsIndex;
     private ArrayList<QuestionPanel> questionPanels;
     private JPanel questionHolderPanel;
+    private ImageIcon tickImageIcon, exImageIcon, scaledTickImageIcon, scaledExImageIcon;
+    private Image tickImage, scaledTickImage, exImage, scaledExImage;
+    
 	
     /**
      * Create the panel.
      */
     public TestSectionPanel(final StudentTestController controller, final Section section) {
+    	tickImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/tick.png"));
+    	tickImage = tickImageIcon.getImage();
+    	exImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/ex.png"));
+    	exImage = exImageIcon.getImage();
 	this.controller = controller;
         this.section = section;
         questionPanelsIndex=0;
@@ -137,12 +141,25 @@ public class TestSectionPanel extends JPanel {
 	panel_2.add(scrollPane_1, BorderLayout.WEST);
 		
 	String q = "Q";
-	Object[][] object = new Object[questions.size()][1];
+	Object[][] object = new Object[questions.size()][2];
 	for(int i=0; i<questions.size();i++){
             object[i][0]=q+Integer.toString(i+1);
+            //object[i][1]= exImage;
 	}
-		
-	tableQuestions = new JTable();
+	
+	String[] columnNames = new String[] {"Questions", ""};
+	
+	DefaultTableModel model = new DefaultTableModel(object, columnNames);
+	tableQuestions = new JTable( model )
+    {
+        //  Returning the Class of each column will allow different
+        //  renderers to be used based on Class
+        public Class getColumnClass(int column)
+        {
+            return getValueAt(0, column).getClass();
+        }
+    };
+    tableQuestions.setPreferredScrollableViewportSize(tableQuestions.getPreferredSize());
 	tableQuestions.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -155,11 +172,18 @@ public class TestSectionPanel extends JPanel {
 	});
 	tableQuestions.setModel(new DefaultTableModel(
             object,
-            new String[] {"Questions"}
+            columnNames
 	));
 	scrollPane_1.add(tableQuestions);
 	
+	scaledTickImage = tickImage.getScaledInstance(-1, tableQuestions.getRowHeight(),  java.awt.Image.SCALE_SMOOTH);  
+	scaledTickImageIcon = new ImageIcon(scaledTickImage);
+	scaledExImage = exImage.getScaledInstance(-1, tableQuestions.getRowHeight(),  java.awt.Image.SCALE_SMOOTH);
+	scaledExImageIcon = new ImageIcon(scaledExImage);
 	
+	for(int i=0; i<tableQuestions.getRowCount(); i++){
+		tableQuestions.setValueAt(scaledExImageIcon, i, 1);
+	}
 		
 	JPanel panel_5 = new JPanel();
 	panel_2.add(panel_5, BorderLayout.CENTER);
@@ -218,6 +242,10 @@ public class TestSectionPanel extends JPanel {
         			//Puts tick in the table
                     if(questionPanels.get(questionPanelsIndex).isAnswered()){
                     	System.out.println(true);
+                    	tableQuestions.setValueAt(scaledTickImageIcon, questionPanelsIndex, 1);
+                    }
+                    else{
+                    	tableQuestions.setValueAt(scaledExImageIcon, questionPanelsIndex, 1);
                     }
                     questionPanelsIndex--;
                     ((CardLayout)questionHolderPanel.getLayout()).previous(questionHolderPanel);
@@ -239,16 +267,10 @@ public class TestSectionPanel extends JPanel {
             	if(questionPanelsIndex<questions.size()-1){
         			//Puts tick in the table
                     if(questionPanels.get(questionPanelsIndex).isAnswered()){
-                    	//System.out.println(true);
-                    	BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-                    	FontMetrics fm = img.getGraphics().getFontMetrics(getFont());
-                    	int width = fm.stringWidth((String) tableQuestions.getModel().getValueAt(questionPanelsIndex,0));
-                    	try {
-                            BufferedImage img2 = ImageIO.read(TestSectionPanel.class.getResource("/lib/images/tick.png"));
-                        } catch (IOException e1) {
-                            // TODO Auto-generated catch block
-                            e1.printStackTrace();
-			}
+                    	tableQuestions.setValueAt(scaledTickImageIcon, questionPanelsIndex, 1);
+                    }
+                    else{
+                    	tableQuestions.setValueAt(scaledExImageIcon, questionPanelsIndex, 1);
                     }
                     questionPanelsIndex++;
                     ((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
