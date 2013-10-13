@@ -13,11 +13,18 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+import java.awt.Checkbox;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+/*
+ * @author Erotokritou Zoe
+ */
 
 public class AddQuestionPanel extends JPanel {
 	private JTextField txtSubsection;
@@ -114,7 +121,20 @@ public class AddQuestionPanel extends JPanel {
 		panel_mult.add(scrollPane);
 		
 		//Add table of the possible answers
-		JTable table = new JTable(new MyTableModel());		
+		final JTable table = new JTable(new MyTableModel());		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(table.columnAtPoint(e.getPoint())==1){
+					if((boolean)table.getValueAt(table.rowAtPoint(e.getPoint()), 1)==true){
+						table.setValueAt(false, table.rowAtPoint(e.getPoint()), 1);
+					}
+					else{
+						table.setValueAt(true, table.rowAtPoint(e.getPoint()), 1);
+					}
+				}
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		
@@ -260,7 +280,7 @@ public class AddQuestionPanel extends JPanel {
 	        String[] columns = {"Answer","Corect"};  //columns of the table
 	        
 	        //all the possible answers of the multiple choice question
-			Object[][] data = {{"", new Boolean(false)},{"", new Boolean(false)},{"", new Boolean(false)},{"", new Boolean(false)}};
+			Object[][] data = {{"", new Boolean(false) },{"", new Boolean(false)},{"", new Boolean(false)},{"", new Boolean(false)}};
 	 
 	        public int getRowCount() {
 	            return data.length;
