@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.Checkbox;
 import java.awt.Dimension;
@@ -121,16 +122,19 @@ public class AddQuestionPanel extends JPanel {
 		panel_mult.add(scrollPane);
 		
 		//Add table of the possible answers
-		final JTable table = new JTable(new MyTableModel());		
+		final JTable table = new JTable(new MyTableModel());
+		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(table.columnAtPoint(e.getPoint())==1){
-					if((boolean)table.getValueAt(table.rowAtPoint(e.getPoint()), 1)==true){
-						table.setValueAt(false, table.rowAtPoint(e.getPoint()), 1);
+					if((boolean)table.getModel().getValueAt(table.rowAtPoint(e.getPoint()), 1)==true){
+						table.getModel().setValueAt(new Boolean(false), table.rowAtPoint(e.getPoint()), 1);
+						table.repaint();
 					}
 					else{
-						table.setValueAt(true, table.rowAtPoint(e.getPoint()), 1);
+						table.getModel().setValueAt(new Boolean(true), table.rowAtPoint(e.getPoint()), 1);
+						table.repaint();
 					}
 				}
 			}
@@ -289,6 +293,10 @@ public class AddQuestionPanel extends JPanel {
 	        public int getColumnCount() {
 	            return columns.length;
 	        }
+	        
+	        public void setValueAt(Object object, int rowIndex, int columnIndex){
+	        	data[rowIndex][columnIndex] = object;
+	        }
 	 
 	        public Object getValueAt(int rowIndex, int columnIndex) {
 	            return data[rowIndex][columnIndex];
@@ -301,7 +309,7 @@ public class AddQuestionPanel extends JPanel {
 
 	        @Override
 	        public Class<?> getColumnClass(int columnIndex) {
-	            return data[0][columnIndex].getClass();
+	            return getValueAt(0, columnIndex).getClass();
 	        }	    	 
 	}
 }
