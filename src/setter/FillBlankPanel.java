@@ -1,6 +1,9 @@
 package setter;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,13 +20,17 @@ public class FillBlankPanel extends JPanel {
 	/**
 	 * Create the buttonsPanel.
 	 */
-	public FillBlankPanel() {
+	public FillBlankPanel(final SetterTestController obj, final AddQuestionGUI gui) {
 
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
+		if(obj.countQuestion()!=0){
+			ArrayList<String> list = new ArrayList<String>();
+			list=obj.getQuestion();
+		
 		//load the marks of the question
-		JLabel lblMarks = new JLabel("Marks: 10");
+		JLabel lblMarks = new JLabel("Marks: "+ list.get(0));
 		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, lblMarks, -10, SpringLayout.EAST, this);
 		add(lblMarks);
@@ -34,7 +41,7 @@ public class FillBlankPanel extends JPanel {
 		add(lblSub);
 		
 		//load the subsection
-		JLabel lblSubsection = new JLabel("SubsectionA");
+		JLabel lblSubsection = new JLabel(list.get(1));
 		springLayout.putConstraint(SpringLayout.NORTH, lblSubsection, 0, SpringLayout.NORTH, lblSub);
 		springLayout.putConstraint(SpringLayout.WEST, lblSubsection, 30, SpringLayout.EAST, lblSub);
 		add(lblSubsection);
@@ -45,7 +52,7 @@ public class FillBlankPanel extends JPanel {
 		add(lblQ);
 		
 		//load the question
-		JLabel lblPartA = new JLabel("He is a math teacher. He is 19");
+		JLabel lblPartA = new JLabel(list.get(2));
 		springLayout.putConstraint(SpringLayout.WEST, lblPartA, 0, SpringLayout.WEST, lblSubsection);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPartA, 0, SpringLayout.SOUTH, lblQ);
 		add(lblPartA);
@@ -56,7 +63,7 @@ public class FillBlankPanel extends JPanel {
 		add(txtQuestion);
 		txtQuestion.setColumns(10);
 		
-		JLabel lblPartB = new JLabel("old.");
+		JLabel lblPartB = new JLabel(list.get(3));
 		springLayout.putConstraint(SpringLayout.WEST, lblPartB, 6, SpringLayout.EAST, txtQuestion);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPartB, 0, SpringLayout.SOUTH, lblQ);
 		add(lblPartB);
@@ -72,6 +79,40 @@ public class FillBlankPanel extends JPanel {
 		buttonsPanel.add(btnAdd);
 		buttonsPanel.add(btnDelete);
 		buttonsPanel.add(btnEdit);
+		
+		btnAdd.addActionListener(new ActionListener(){  //button to add new question
+		      public void actionPerformed(ActionEvent e) {
+		        
+		    	  AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui);
+		    	  
+		    	  gui.panelCenter.removeAll();
+		    	  gui.panelCenter.add(addPanel);
+		                           
+		    	  gui.panelCenter.validate();
+		    	  gui.panelCenter.repaint();
+		      }
+		    });
+		
+		btnDelete.addActionListener(new ActionListener(){  //Delete the question
+		       public void actionPerformed(ActionEvent e) {
+		         
+		       }
+		    });
+		
+		btnEdit.addActionListener(new ActionListener(){  //Edit the question
+	        public void actionPerformed(ActionEvent e) {
+
+	        	AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui);
+	        	gui.panelCenter.removeAll();
+	        	gui.panelCenter.add(addPanel);
+	         
+	        	gui.panelCenter.validate();
+	        	gui.panelCenter.repaint();
+	        
+	       }
+	    });
+		
+		}
 	}
 
 }

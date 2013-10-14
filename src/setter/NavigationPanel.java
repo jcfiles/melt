@@ -15,17 +15,11 @@ import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
 
 public class NavigationPanel extends JPanel {
-
-	
-	final JButton btnDelete = new JButton("Delete");
-	final JButton btnEdit = new JButton("Edit");
-	final JButton btnSave = new JButton("Save");
-	final JButton btnAdd = new JButton("Add New Question");
 	
 	/**
 	 * Create the panel.
 	 */
-	public NavigationPanel() {
+	public NavigationPanel(final SetterTestController obj, final AddQuestionGUI gui) {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel navigationPanel = new JPanel();
@@ -36,10 +30,10 @@ public class NavigationPanel extends JPanel {
 		ImageIcon imgN = new ImageIcon("/images/next.png");
 		
 		JButton btnPrevious = new JButton();
-		btnPrevious.setIcon(imgP);
+		btnPrevious.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/lib/images/previous.png")));
 		navigationPanel.add(btnPrevious);		
 		JButton btnNext = new JButton();
-		btnNext.setIcon(imgN);
+		btnNext.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/lib/images/next.png")));
 		navigationPanel.add(btnNext);				
 		
 		JPanel backPanel = new JPanel();
@@ -52,41 +46,44 @@ public class NavigationPanel extends JPanel {
 		sl_backPanel.putConstraint(SpringLayout.EAST, btnBack, -10, SpringLayout.EAST, backPanel);
 		backPanel.add(btnBack);
 		
-		/// clicking the Save button
-		btnSave.addActionListener(new ActionListener(){
-		    public void actionPerformed(ActionEvent e) {
-			    btnEdit.setVisible(true);
-			   	btnDelete.setVisible(true);
-			   	btnAdd.setVisible(true);  	
-			   	btnSave.setVisible(false);			   	
+		btnNext.addActionListener(new ActionListener(){  //Edit the question
+			public void actionPerformed(ActionEvent e) {
+								
+			/*	int num=obj.getCurrentQuestion()+1;
+				obj.setCurrentQuestion(num);
+				
+				ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
+				
+				gui.panelCenter.removeAll();
+				gui.panelCenter.add(viewPanel);
+				
+				gui.validate();
+				gui.repaint();
+				*/
+				
 			 }
 			});
 		
-		/// clicking the Ok button
-		btnAdd.addActionListener(new ActionListener(){
-		    public void actionPerformed(ActionEvent e) {
-			    btnEdit.setVisible(false);
-			   	btnDelete.setVisible(false);
-			   	btnAdd.setVisible(false);  	
-			   	btnSave.setVisible(true);
+		btnPrevious.addActionListener(new ActionListener(){  //Edit the question
+			public void actionPerformed(ActionEvent e) {
+							
+				/*int num=obj.getCurrentSection()-1;
+				obj.setCurrentSection(num);
+				
+				ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
+				
+				gui.panelCenter.removeAll();
+				gui.panelCenter.add(viewPanel);
+				
+				gui.txtTest.setVisible(false);
+				gui.lblTest.setVisible(true);
+				
+				gui.validate();
+				gui.repaint();
+				
+				*/
 			 }
 			});
 		
-		//clicking the Delete button
-		btnDelete.addActionListener(new ActionListener(){
-		    public void actionPerformed(ActionEvent e) {
-			  
-			 }
-			});
-		
-		//clicking the edit button
-		btnEdit.addActionListener(new ActionListener(){
-		    public void actionPerformed(ActionEvent e) {
-			    btnEdit.setVisible(false);
-			   	btnDelete.setVisible(false);
-			   	btnAdd.setVisible(false);  	
-			   	btnSave.setVisible(true);
-			 }
-			});
 	}
 }

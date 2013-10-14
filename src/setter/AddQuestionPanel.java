@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
+import backend.Answer;
+
 import java.awt.Checkbox;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -22,6 +24,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 
 /*
  * @author Erotokritou Zoe
@@ -30,15 +34,21 @@ import java.awt.event.MouseEvent;
 public class AddQuestionPanel extends JPanel {
 	private JTextField txtSubsection;
 	private JTextField txtMarks;
+	private JTextArea txtQuestion = new JTextArea();
+	private JTextField txtNew = new JTextField();
+	private Boolean bMCQ=false,bCorrect=false;
 	public ButtonGroup group_type = new ButtonGroup();
 	JRadioButton rdbtnMultipleChoice = new JRadioButton("Multiple choice");
 	JRadioButton rdbtnFillBlanks = new JRadioButton("Fill blanks");
 	final JButton btnSave = new JButton("Save");
+	ArrayList<Answer> possible=new ArrayList<Answer>();
+	Object[][] d=new Object[possible.size()][possible.size()];
+
 
 	/**
 	 * Create the buttonsPanel.
 	 */
-	public AddQuestionPanel() {
+	public AddQuestionPanel(final SetterTestController obj, final AddQuestionGUI gui) {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
@@ -65,7 +75,6 @@ public class AddQuestionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 10, SpringLayout.WEST, this);
 		add(lblQuestion);
 		
-		JTextArea txtQuestion = new JTextArea();
 		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 15, SpringLayout.SOUTH, txtSubsection);
 		springLayout.putConstraint(SpringLayout.WEST, txtQuestion, 0, SpringLayout.WEST, txtSubsection);
 		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -22, SpringLayout.EAST, this);
@@ -185,8 +194,7 @@ public class AddQuestionPanel extends JPanel {
 		sl_panel_new.putConstraint(SpringLayout.NORTH, lblEnterNewPossible, 10, SpringLayout.NORTH, panel_new);
 		sl_panel_new.putConstraint(SpringLayout.WEST, lblEnterNewPossible, 10, SpringLayout.WEST, panel_new);
 		panel_new.add(lblEnterNewPossible);
-		
-		JTextField txtNew = new JTextField();
+	
 		sl_panel_new.putConstraint(SpringLayout.NORTH, txtNew, 46, SpringLayout.SOUTH, lblEnterNewPossible);
 		sl_panel_new.putConstraint(SpringLayout.WEST, txtNew, 57, SpringLayout.WEST, panel_new);
 		sl_panel_new.putConstraint(SpringLayout.NORTH, txtNew, -3, SpringLayout.NORTH, lblEnterNewPossible);
@@ -255,6 +263,51 @@ public class AddQuestionPanel extends JPanel {
 			    }
 		});
 		
+		//radio button listener to make things visible and unvisible
+		rdbtnYes.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				    	
+				bCorrect=true;
+				    	
+			}
+		});
+		//radio button listener to make things visible and unvisible
+		rdbtnYes.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+						    	
+				 bCorrect=true;
+						    	
+			}
+		});
+
+		
+		//button Listeners
+	    btnSave.addActionListener(new ActionListener(){  //button to save the question
+	      public void actionPerformed(ActionEvent e) {
+	    	  
+	        if(bMCQ==true) //multiple choice question
+	        {
+	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
+	        	obj.addMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), table);
+	        	gui.panelCenter.removeAll();
+	        	gui.panelCenter.add(multiPanel);
+	        }
+	        else
+	        {
+	        	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
+	        	obj.addFTBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	        	gui.panelCenter.removeAll();
+	        	gui.panelCenter.add(fillPanel);
+	        }
+	        
+	        gui.validate();
+	        gui.repaint();
+	       }
+	       
+	    });
+
+	    
+		
 		/// clicking the Add new possible answer
 		btnAdd.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
@@ -276,6 +329,38 @@ public class AddQuestionPanel extends JPanel {
 		    	
 			    }
 		});
+		
+		/// clicking the Ok button we save the new possible answer
+				btnOk.addActionListener(new ActionListener(){
+				    public void actionPerformed(ActionEvent e) {
+
+				    	panel_mult.setVisible(true);
+				    	panel_new.setVisible(false);
+				    	lblFill.setVisible(false);
+				    	
+				    	Answer a=new Answer(txtNew.getText(),bCorrect);
+				    	possible.add(a);
+				    	
+				    	Object[][] temp=new Object[1][possible.size()];
+				    	
+				    	int i=0;
+				    	for(i=0; i<d.length; i++)
+				    	{
+				    		temp[i][0]=d[i][0];
+				    		temp[0][i]=d[0][i];
+				    	}
+				    	temp[i][0] = txtNew.getText();
+				    	temp[0][i] = new Boolean(bCorrect);
+				    	
+				    	d=temp;
+				    	
+				    	table.repaint();
+			        	
+				    	
+					    }
+				});
+
+				
 	}
 	
 	//class for the table with the possible answers

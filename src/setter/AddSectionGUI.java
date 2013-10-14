@@ -24,12 +24,12 @@ public class AddSectionGUI extends JFrame {
 	private JPanel contentPane;
 	private AddSectionPanel addPanel;
 	private ViewSectionPanel viewPanel;
-	private SectionNavigationPanel nav=new SectionNavigationPanel();
+	private SectionNavigationPanel nav;
 	
 	private JLabel lblTitle=new JLabel("Title:");
-	private JTextField txtTest=new JTextField();
-	private JLabel lblTest=new JLabel("TestA");
-	
+	JTextField txtTest=new JTextField();
+	JLabel lblTest=new JLabel("TestA");
+	final JPanel panelCenter=new JPanel();
 	SetterTestController obj=new SetterTestController();
 	
 	/**
@@ -63,10 +63,6 @@ public class AddSectionGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		addPanel=new AddSectionPanel();
-		viewPanel=new ViewSectionPanel(obj);
-		nav=new SectionNavigationPanel();
-		
 		JPanel panelTitle = new JPanel();
 		contentPane.add(panelTitle, BorderLayout.NORTH);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
@@ -95,111 +91,25 @@ public class AddSectionGUI extends JFrame {
 		panelTitle.add(btnSwitch);
 
 		//The panel in the center
-		final JPanel panelCenter=new JPanel();
+		
 		Border lineBorder = BorderFactory.createLineBorder(Color.GRAY, 2, true);
 		panelCenter.setBorder(lineBorder);
+		
+		addPanel=new AddSectionPanel(obj,this);
+		
+		//viewPanel=new ViewSectionPanel(obj, this);
+		
 		
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
 		panelCenter.add(addPanel);	
+		//panelCenter.add(viewPanel);
 		
 		//The navigation panel
+		nav=new SectionNavigationPanel(obj,this);
 		contentPane.add(nav, BorderLayout.SOUTH);
+			
 		
-		//button Listeners
-		addPanel.btnSave.addActionListener(new ActionListener(){  //button to save the question
-		public void actionPerformed(ActionEvent e) {
-			
-			obj.setTitle(lblTest.toString());
-			obj.addSection(addPanel.txtSection.toString(), addPanel.txtInstructions.toString(), Integer.parseInt(addPanel.txtTotalTime.toString()));			
-			
-			
-			panelCenter.removeAll();
-			panelCenter.add(viewPanel);
-			
-			txtTest.setVisible(false);
-			lblTest.setVisible(true);
-			
-			
-			validate();
-			repaint();
-			} 
-		});
-		
-		viewPanel.btnAdd.addActionListener(new ActionListener(){	//button to add new question
-		public void actionPerformed(ActionEvent e) {
-			
-			panelCenter.removeAll();
-			panelCenter.add(addPanel);
-			
-			panelCenter.validate();
-			panelCenter.repaint();
-			
-			txtTest.setVisible(true);
-			lblTest.setVisible(false);
-					}
-				});
-		
-		
-		viewPanel.btnDelete.addActionListener(new ActionListener(){  //Delete the question
-		public void actionPerformed(ActionEvent e) {
-			 }
-				});
-		
-		viewPanel.btnEdit.addActionListener(new ActionListener(){  //Edit the question
-		public void actionPerformed(ActionEvent e) {
-			panelCenter.removeAll();
-			panelCenter.add(addPanel);
-						
-			panelCenter.validate();
-			panelCenter.repaint();
-			
-			txtTest.setVisible(true);
-			lblTest.setVisible(false);
-		 }
-		});
-		
-		viewPanel.btnAddQuestion.addActionListener(new ActionListener(){  //Edit the question
-			public void actionPerformed(ActionEvent e) {
-				
-				AddQuestionGUI frame = new AddQuestionGUI(obj);
-				frame.setVisible(true);
-			 }
-			});
-		
-		nav.btnNext.addActionListener(new ActionListener(){  //Edit the question
-			public void actionPerformed(ActionEvent e) {
-								
-				int num=obj.getCurrentSection()+1;
-				obj.setCurrentSection(num);
-				if(num==obj.section.size()+1)
-				{
-					nav.btnNext.setVisible(false);
-				}
-				else
-				{
-					nav.btnNext.setVisible(true);
-				}
-			 }
-			});
-		
-		nav.btnPrevious.addActionListener(new ActionListener(){  //Edit the question
-			public void actionPerformed(ActionEvent e) {
-				
-				int num=obj.getCurrentSection()-1;
-						
-				obj.setCurrentSection(num);
-				if(num==1)
-				{
-					nav.btnPrevious.setVisible(false);
-				}
-				else
-				{
-					nav.btnPrevious.setVisible(true);
-				}
-				
-			 }
-			});
 	}
 
 

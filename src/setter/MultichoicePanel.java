@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -24,16 +25,22 @@ public class MultichoicePanel extends JPanel {
 	final JButton btnDelete = new JButton("Delete");
 	final JButton btnEdit = new JButton("Edit");
 	final JButton btnAdd = new JButton("Add New Question");
+	private ArrayList<String> list = new ArrayList<String>();
+	AddQuestionGUI gui;
 	
 	/**
 	 * Create the panel.
 	 */
-	public MultichoicePanel() {
+	public MultichoicePanel(final SetterTestController obj,final AddQuestionGUI g) {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
+		gui=g;
+		if(obj.countQuestion()!=0){
+		list=obj.getQuestion();
+		
 		//load the marks of the question
-		JLabel lblMarks = new JLabel("Marks: 10");
+		JLabel lblMarks = new JLabel("Marks: "+ list.get(0));
 		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, lblMarks, -10, SpringLayout.EAST, this);
 		add(lblMarks);
@@ -44,7 +51,7 @@ public class MultichoicePanel extends JPanel {
 		add(lblSub);
 		
 		//load the subsection of the question
-		JLabel lblSubsection = new JLabel("SubsectionA");
+		JLabel lblSubsection = new JLabel(list.get(1));
 		springLayout.putConstraint(SpringLayout.NORTH, lblSubsection, 0, SpringLayout.NORTH, lblSub);
 		springLayout.putConstraint(SpringLayout.WEST, lblSubsection, 30, SpringLayout.EAST, lblSub);
 		add(lblSubsection);
@@ -55,7 +62,7 @@ public class MultichoicePanel extends JPanel {
 		add(lblQ);
 		
 		//load the question
-		JLabel lblQuestion = new JLabel("How much is 2+2?");
+		JLabel lblQuestion = new JLabel(list.get(2));
 		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 0, SpringLayout.WEST, lblSubsection);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblQuestion, 0, SpringLayout.SOUTH, lblQ);
 		add(lblQuestion);
@@ -66,7 +73,7 @@ public class MultichoicePanel extends JPanel {
 		add(lblAnswer);
 		
 		//load the possible answers with the count
-		PossibleAnswers panel = new PossibleAnswers(3);
+		PossibleAnswers panel = new PossibleAnswers(list.size()-3);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, lblAnswer);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblSubsection);
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, this);
@@ -84,6 +91,40 @@ public class MultichoicePanel extends JPanel {
 		buttonsPanel.add(btnAdd);
 		buttonsPanel.add(btnDelete);
 		buttonsPanel.add(btnEdit);
+		
+		btnAdd.addActionListener(new ActionListener(){  //button to add new question
+		      public void actionPerformed(ActionEvent e) {
+		        
+		    	  AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui);
+		    	  
+		    	  gui.panelCenter.removeAll();
+		    	  gui.panelCenter.add(addPanel);
+		                           
+		    	  gui.panelCenter.validate();
+		    	  gui.panelCenter.repaint();
+		      }
+		    });
+
+		btnDelete.addActionListener(new ActionListener(){  //Delete the question
+		       public void actionPerformed(ActionEvent e) {
+		         
+		       }
+		    });
+		
+		btnEdit.addActionListener(new ActionListener(){  //Edit the question
+	        public void actionPerformed(ActionEvent e) {
+
+	        	AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui);
+	        	gui.panelCenter.removeAll();
+	        	gui.panelCenter.add(addPanel);
+	         
+	        	gui.panelCenter.validate();
+	        	gui.panelCenter.repaint();
+	        
+	       }
+	    });
+		
+		}
 
 	}
 	
@@ -111,7 +152,7 @@ public class MultichoicePanel extends JPanel {
 	                	{
 	                		//JRadioButton
 		                    JPanel panel = new JPanel();
-		                    JCheckBox rdbtn =new JCheckBox("...");	     //set the possible answer ex. true/false           
+		                    JCheckBox rdbtn =new JCheckBox(list.get(3+i));	     //set the possible answer ex. true/false           
 		                    panel.add(rdbtn);
 		                    GridBagConstraints gbc1 = new GridBagConstraints();
 		                    gbc1.gridwidth = GridBagConstraints.REMAINDER;
@@ -120,8 +161,8 @@ public class MultichoicePanel extends JPanel {
 		                    gbc1.anchor=GridBagConstraints.NORTHWEST;
 		                    answers.add(panel, gbc1, i);
 		                    
-		                    validate();
-		                    repaint();
+		                    gui.validate();
+		                    gui.repaint();
 	                	}
 	        }
 
