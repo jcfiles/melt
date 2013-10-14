@@ -163,6 +163,12 @@ public class TestSectionPanel extends JPanel {
 	tableQuestions.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			if(questionPanels.get(questionPanelsIndex).isAnswered()){
+            	tableQuestions.setValueAt(scaledTickImageIcon, questionPanelsIndex, 1);
+            }
+            else{
+            	tableQuestions.setValueAt(scaledExImageIcon, questionPanelsIndex, 1);
+            }
 			((CardLayout)questionHolderPanel.getLayout()).first(questionHolderPanel);
 			for(int i=0; i<tableQuestions.rowAtPoint(e.getPoint()); i++){
 				((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
