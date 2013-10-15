@@ -142,6 +142,8 @@ public class SetterTestController
 		//re-enter the text
 	}
     
+    k=10;
+    
   }
   
   
@@ -155,8 +157,41 @@ public class SetterTestController
 	  
 	  for(int i=0; i<possibleAnswers.getRowCount(); i++)
 	  {
-		  q.setAnswer(possibleAnswers.getValueAt(i, 0).toString(), new Boolean(possibleAnswers.getValueAt(i, 1).toString()), i);
+		  String s=possibleAnswers.getValueAt(i, 0).toString();
+		  String img=possibleAnswers.getValueAt(i, 1).toString();
+		  
+		  if(img.contains("check"))
+		  {
+			  q.setAnswer(s,true,i);
+		  }
+		  else
+		  {
+			  q.setAnswer(s,false,i);
+		  }
+		  
+		 // q.setAnswer(possibleAnswers.getValueAt(i, 0).toString(), new Boolean(possibleAnswers.getValueAt(i, 1).toString()), i);
 	  }
+	  
+	  test.getSection(currentSection).addQuestion(q);
+	  
+	  k=9;
+  }
+  
+  public int getQuestionType()
+  {
+	  ArrayList<String> s=new ArrayList<String>();
+	  ArrayList<Answer> a=new ArrayList<Answer>();
+	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
+  
+	  if (q instanceof FTBQ)
+	  {		  		
+		  return 1;
+	  }
+	  else if(q instanceof MCQ)
+	  {
+		  return 0;
+	  }
+	  return 0;
   }
   
   public ArrayList<String> getQuestion()
@@ -168,12 +203,12 @@ public class SetterTestController
 	  s.add(q.getPossibleMarks()+"");
 	  s.add("Subsection");
 	  
-	  if (q instanceof FTBQ)
+	  if (getQuestionType()==1)
 	  {		  
 		  s.add(((FTBQ) q).getQFirstPart());
 		  s.add(((FTBQ) q).getQSecondPart());		  
 	  }
-	  else if(q instanceof MCQ)
+	  else 
 	  {
 		  s.add(q.getQuestionText());
 		  a=((MCQ) q).getAllAnswers();

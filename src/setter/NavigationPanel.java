@@ -49,39 +49,53 @@ public class NavigationPanel extends JPanel {
 		btnNext.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 								
-			/*	int num=obj.getCurrentQuestion()+1;
+				int num=obj.getCurrentQuestion()+1;
 				obj.setCurrentQuestion(num);
 				
-				ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
+				int type=obj.getQuestionType();
 				
-				gui.panelCenter.removeAll();
-				gui.panelCenter.add(viewPanel);
+				if(type==0)
+				{
+					MultichoicePanel panel=new MultichoicePanel(obj,gui);
+					gui.panelCenter.removeAll();
+					gui.panelCenter.add(panel);
+				}
+				else
+				{
+					FillBlankPanel panel=new FillBlankPanel(obj,gui);
+					gui.panelCenter.removeAll();
+					gui.panelCenter.add(panel);
+				}
 				
 				gui.validate();
 				gui.repaint();
-				*/
-				
 			 }
 			});
 		
 		btnPrevious.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 							
-				/*int num=obj.getCurrentSection()-1;
-				obj.setCurrentSection(num);
+				int num=obj.getCurrentQuestion()-1;
+				obj.setCurrentQuestion(num);
 				
-				ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
+				int type=obj.getQuestionType();
 				
-				gui.panelCenter.removeAll();
-				gui.panelCenter.add(viewPanel);
-				
-				gui.txtTest.setVisible(false);
-				gui.lblTest.setVisible(true);
+				if(type==0)
+				{
+					MultichoicePanel panel=new MultichoicePanel(obj,gui);
+					gui.panelCenter.removeAll();
+					gui.panelCenter.add(panel);
+				}
+				else
+				{
+					FillBlankPanel panel=new FillBlankPanel(obj,gui);
+					gui.panelCenter.removeAll();
+					gui.panelCenter.add(panel);
+				}
 				
 				gui.validate();
 				gui.repaint();
-				
-				*/
+								
 			 }
 			});
 		
