@@ -3,6 +3,7 @@ package setter;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
@@ -18,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 import student.TestSectionPanel;
 import backend.Answer;
+import backend.FTBQ;
+import backend.InvalidFTBQFormatException;
 
 import java.awt.Checkbox;
 import java.awt.Dimension;
@@ -40,9 +43,7 @@ public class AddQuestionPanel extends JPanel {
 	private JTextField txtSubsection;
 	private JTextField txtMarks;
 	private JTextArea txtQuestion = new JTextArea();
-	private JTextField txtNew = new JTextField();
-	private Boolean bMCQ=true,bCorrect=false;
-	private JTable table = new JTable(new MyTableModel());
+	private Boolean bMCQ=true;
 	private JTable possibleAnswers;
 	public ButtonGroup group_type = new ButtonGroup();
 	private JRadioButton rdbtnMultipleChoice = new JRadioButton("Multiple choice");
@@ -52,8 +53,6 @@ public class AddQuestionPanel extends JPanel {
 	private DefaultTableModel model;
 	private ImageIcon correctAnswerImage,wrongAnswerImage;
 	private Object[][] data;
-	//ArrayList<Answer> possible=new ArrayList<Answer>();
-	//Object[][] d=new Object[possible.size()][possible.size()];
 
 
 	/**
@@ -138,6 +137,7 @@ public class AddQuestionPanel extends JPanel {
 		//Add scrollPane for table
 		JScrollPane scrollPane = new JScrollPane();
 		sl_panel_1.putConstraint(SpringLayout.WEST, scrollPane, 10, SpringLayout.WEST, panel_mult);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, scrollPane, -10, SpringLayout.SOUTH, panel_mult);
 		sl_panel_1.putConstraint(SpringLayout.EAST, scrollPane, -96, SpringLayout.EAST, panel_mult);
 		panel_mult.add(scrollPane);
 		
@@ -173,6 +173,9 @@ public class AddQuestionPanel extends JPanel {
                 return getValueAt(0, column).getClass();
             }
         };
+        
+        possibleAnswers.isEditing();
+        possibleAnswers.setRowHeight(30);
 		scrollPane.setViewportView(possibleAnswers);
 		
 		possibleAnswers.addMouseListener(new MouseAdapter() {
@@ -188,6 +191,14 @@ public class AddQuestionPanel extends JPanel {
 						possibleAnswers.repaint();
 					}
 				}
+				else
+				{
+					String temp=possibleAnswers.getModel().getValueAt(possibleAnswers.rowAtPoint(e.getPoint()), 0).toString();
+					possibleAnswers.getModel().setValueAt(temp, possibleAnswers.rowAtPoint(e.getPoint()), 0);
+					possibleAnswers.repaint();
+				}
+				
+				
 			}
 		});
 		
@@ -195,7 +206,7 @@ public class AddQuestionPanel extends JPanel {
 		
 		
 		correctAnswerImage=new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check.png"));
-		wrongAnswerImage=new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check.png"));
+		wrongAnswerImage=new ImageIcon(TestSectionPanel.class.getResource("/lib/images/delete.png"));
 		
 		
 		
@@ -205,20 +216,13 @@ public class AddQuestionPanel extends JPanel {
 		//Add buttons
 		JButton btnAdd = new JButton("Add");
 		sl_panel_1.putConstraint(SpringLayout.WEST, btnAdd, 6, SpringLayout.EAST, scrollPane);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnAdd, -104, SpringLayout.SOUTH, panel_mult);
 		btnAdd.setPreferredSize(new Dimension(80, 27));
 		panel_mult.add(btnAdd);
 		
-		JButton btnEdit = new JButton("Edit");
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnAdd, -6, SpringLayout.NORTH, btnEdit);
-		sl_panel_1.putConstraint(SpringLayout.WEST, btnEdit, 6, SpringLayout.EAST, scrollPane);
-		sl_panel_1.putConstraint(SpringLayout.EAST, btnEdit, -10, SpringLayout.EAST, panel_mult);
-		btnEdit.setPreferredSize(new Dimension(80, 27));
-		panel_mult.add(btnEdit);
-		
 		JButton btnDelete = new JButton("Delete");
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnEdit, -6, SpringLayout.NORTH, btnDelete);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, scrollPane, 0, SpringLayout.SOUTH, btnDelete);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnDelete, -10, SpringLayout.SOUTH, panel_mult);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, btnDelete, 6, SpringLayout.SOUTH, btnAdd);
+		sl_panel_1.putConstraint(SpringLayout.WEST, btnDelete, 6, SpringLayout.EAST, scrollPane);
 		sl_panel_1.putConstraint(SpringLayout.EAST, btnDelete, -10, SpringLayout.EAST, panel_mult);
 		btnDelete.setPreferredSize(new Dimension(80, 27));
 		panel_mult.add(btnDelete);
@@ -228,60 +232,10 @@ public class AddQuestionPanel extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblPossibleAnswers, 10, SpringLayout.NORTH, panel_mult);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblPossibleAnswers, 10, SpringLayout.WEST, panel_mult);
 		panel_mult.add(lblPossibleAnswers);
-		
-		
-		//buttonsPanel for new possible answer
-		final JPanel panel_new = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel_new, 419, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -6, SpringLayout.NORTH, panel_new);
-		springLayout.putConstraint(SpringLayout.WEST, panel_new, 0, SpringLayout.WEST, lblSubsection);
-		springLayout.putConstraint(SpringLayout.EAST, panel_new, 0, SpringLayout.EAST, txtSubsection);
-		panel_new.setVisible(false);
-		add(panel_new);
-		SpringLayout sl_panel_new = new SpringLayout();
-		panel_new.setLayout(sl_panel_new);
-		
-		JLabel lblEnterNewPossible = new JLabel("Enter new possible answer:");
-		sl_panel_new.putConstraint(SpringLayout.NORTH, lblEnterNewPossible, 10, SpringLayout.NORTH, panel_new);
-		sl_panel_new.putConstraint(SpringLayout.WEST, lblEnterNewPossible, 10, SpringLayout.WEST, panel_new);
-		panel_new.add(lblEnterNewPossible);
-	
-		sl_panel_new.putConstraint(SpringLayout.NORTH, txtNew, 46, SpringLayout.SOUTH, lblEnterNewPossible);
-		sl_panel_new.putConstraint(SpringLayout.WEST, txtNew, 57, SpringLayout.WEST, panel_new);
-		sl_panel_new.putConstraint(SpringLayout.NORTH, txtNew, -3, SpringLayout.NORTH, lblEnterNewPossible);
-		sl_panel_new.putConstraint(SpringLayout.WEST, txtNew, 6, SpringLayout.EAST, lblEnterNewPossible);
-		panel_new.add(txtNew);
-		txtNew.setColumns(10);
-		
-		JLabel lblCorrect = new JLabel("Correct:");
-		sl_panel_new.putConstraint(SpringLayout.NORTH, lblCorrect, 16, SpringLayout.SOUTH, lblEnterNewPossible);
-		sl_panel_new.putConstraint(SpringLayout.WEST, lblCorrect, 10, SpringLayout.WEST, panel_new);
-		panel_new.add(lblCorrect);
-		
-		JRadioButton rdbtnYes = new JRadioButton("Yes");
-		sl_panel_new.putConstraint(SpringLayout.NORTH, rdbtnYes, -4, SpringLayout.NORTH, lblCorrect);
-		sl_panel_new.putConstraint(SpringLayout.WEST, rdbtnYes, 94, SpringLayout.EAST, lblCorrect);
-		panel_new.add(rdbtnYes);
-		
-		JRadioButton rdbtnNo = new JRadioButton("No");
-		rdbtnNo.setSelected(true);
-		sl_panel_new.putConstraint(SpringLayout.NORTH, rdbtnNo, 6, SpringLayout.SOUTH, rdbtnYes);
-		sl_panel_new.putConstraint(SpringLayout.WEST, rdbtnNo, 0, SpringLayout.WEST, rdbtnYes);
-		panel_new.add(rdbtnNo);
-		
-		//Make a button group
-		ButtonGroup group_correct = new ButtonGroup();
-		group_correct.add(rdbtnNo);
-		group_correct.add(rdbtnYes);
-		
-		JButton btnOk = new JButton("Ok");
-		sl_panel_new.putConstraint(SpringLayout.EAST, btnOk, -10, SpringLayout.EAST, panel_new);
-		sl_panel_new.putConstraint(SpringLayout.EAST, txtNew, 0, SpringLayout.EAST, btnOk);
-		sl_panel_new.putConstraint(SpringLayout.SOUTH, btnOk, -10, SpringLayout.SOUTH, panel_new);
-		panel_new.add(btnOk);
+
 		
 		JPanel buttonsPanel = new JPanel();
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_new, -6, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -66, SpringLayout.NORTH, buttonsPanel);
 		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, txtSubsection);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -43, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 0, SpringLayout.WEST, lblSubsection);
@@ -297,11 +251,8 @@ public class AddQuestionPanel extends JPanel {
 		    public void actionPerformed(ActionEvent e) {
 
 		    	panel_mult.setVisible(true);
-		    	panel_new.setVisible(false);
-		    	lblFill.setVisible(false);
-		    	
-		    	bMCQ=true;
-		    	
+		    	lblFill.setVisible(false);		    	
+		    	bMCQ=true;		    	
 			    }
 		});
 		
@@ -310,29 +261,9 @@ public class AddQuestionPanel extends JPanel {
 		    public void actionPerformed(ActionEvent e) {
 
 		    	panel_mult.setVisible(false);
-		    	panel_new.setVisible(false);
-		    	lblFill.setVisible(true);
-		    	
-		    	bMCQ=false;
-		    	
+		    	lblFill.setVisible(true);	    	
+		    	bMCQ=false;		    	
 			    }
-		});
-		
-		//radio button listener to make things visible and unvisible
-		rdbtnYes.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				    	
-				bCorrect=true;
-				    	
-			}
-		});
-		//radio button listener to make things visible and unvisible
-		rdbtnNo.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-						    	
-				 bCorrect=false;
-						    	
-			}
 		});
 
 		
@@ -340,25 +271,81 @@ public class AddQuestionPanel extends JPanel {
 	    btnSave.addActionListener(new ActionListener(){  //button to save the question
 	      public void actionPerformed(ActionEvent e) {
 	    	  
-	        if(bMCQ==true) //multiple choice question
-	        {	        	
+	    	  Boolean flag=false;
+	    	  
+	    	  
+	    	  if(bMCQ==true)
+	    	  {
+	    		  if(txtQuestion.getText().equals("")|| txtMarks.getText().equals("")|| possibleAnswers.getRowCount()==0)
+	    		  {
+	    			//insert all the information, error icon
+	    			  JOptionPane.showMessageDialog(gui,
+	    			      "You have to insert all the information for the Question.",
+	    			      "Save Question Error",
+	    			      JOptionPane.ERROR_MESSAGE);
+	    			  flag=true;
+	    		  }	    		  
+	    	  }
+	    	  else
+	    	  {
+	    		  if(txtQuestion.getText().equals("")|| txtMarks.getText().equals(""))
+	    		  {
+	    			//insert all the information, error icon
+	    			  JOptionPane.showMessageDialog(gui,
+	    			      "You have to insert all the information for the Question.",
+	    			      "Save Question Error",
+	    			      JOptionPane.ERROR_MESSAGE);
+	    			  flag=true;
+	    		  }
+	    	  }
+	    	  
+	    	  if(flag==false)
+    		  {
+    			  try {
+    				  Integer.parseInt(txtMarks.getText());
+    					
+    				} catch (Exception ex) {
+    					//insert number for a mark, error icon
+    					JOptionPane.showMessageDialog(gui,
+    		    			      "You have to insert a number for a Mark.",
+    		    			      "Save Mark for Question Error",
+    		    			      JOptionPane.ERROR_MESSAGE);
+    					flag=true;
+    				}			
+    		  }
+	    	  
+	    	  if(flag==false){
+	    	  if(bMCQ==true) //multiple choice question
+	    	  {	        	
 	        	obj.addMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	        	gui.panelCenter.removeAll();
 	        	gui.panelCenter.add(multiPanel);
-	        }
-	        else
-	        {	        	
-	        	obj.addFTBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
-	        	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
-	        	gui.panelCenter.removeAll();
-	        	gui.panelCenter.add(fillPanel);
-	        }
+	    	  }
+	    	  else
+	    	  {	 
+	    		  int parsing=obj.addFTBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    		  if(parsing==0)
+	    		  {
+	    			  JOptionPane.showMessageDialog(gui,
+		    			      "You have to insert the answer of the Fill the Blank Question like eg.[answer]",
+		    			      "Question parsing Error",
+		    			      JOptionPane.ERROR_MESSAGE);
+	    		  }	 
+	    		  else
+	    		  {
+	    			  	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
+	    			  	gui.panelCenter.removeAll();
+	  	        		gui.panelCenter.add(fillPanel);
+	    		  }
+	        	}
 	        
-	        gui.validate();
-	        gui.repaint();
+	    	  gui.validate();
+	    	  gui.repaint();
+	        
+	        
 	       }
-	       
+	      }
 	    });
 
 	    
@@ -367,108 +354,27 @@ public class AddQuestionPanel extends JPanel {
 		btnAdd.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
-		    	panel_mult.setVisible(true);
+		    	/*panel_mult.setVisible(true);
 		    	panel_new.setVisible(true);
 		    	lblFill.setVisible(false);
+		    	*/
 		    	
-		    	
-		    	Object[][] temp = new Object[data.length+1][2];
+		    	Object[][] temp = new Object[possibleAnswers.getRowCount()+1][2];
 			     
 		    	int i=0;
-			     for(i=0; i<data.length; i++)
+			     for(i=0; i<possibleAnswers.getRowCount(); i++)
 			     {
-			    	 temp[i][0]=data[i][0];
-			    	 temp[i][1]=data[i][1];
+			    	 temp[i][0]=possibleAnswers.getModel().getValueAt(i, 0);
+			    	 temp[i][1]=possibleAnswers.getModel().getValueAt(i, 1);
 			     }
 			     temp[i][0]="";
 			     temp[i][1]=wrongAnswerImage;
-			     
-			     data=new Object[temp.length][2];
-			     data=temp;
-			     
-			     
 
-			     DefaultTableModel model = new DefaultTableModel(data, header); 	
-			     
-			     
-			    // model.fireTableDataChanged();
+			     DefaultTableModel model = new DefaultTableModel(temp, header); 	
 			     possibleAnswers.setModel(model);
 		    	
 			    }
 		});
-		
-		
-		/// clicking the Ok button we save the new possible answer
-				btnOk.addActionListener(new ActionListener(){
-				    public void actionPerformed(ActionEvent e) {
-
-				    	panel_mult.setVisible(true);
-				    	panel_new.setVisible(false);
-				    	lblFill.setVisible(false);
-				    	
-				    	/*Answer a=new Answer(txtNew.getText(),bCorrect);
-				    	possible.add(a);
-				    	
-				    	Object[][] temp=new Object[1][possible.size()];
-				    	
-				    	int i=0;
-				    	for(i=0; i<d.length; i++)
-				    	{
-				    		temp[i][0]=d[i][0];
-				    		temp[0][i]=d[0][i];
-				    	}
-				    	temp[i][0] = txtNew.getText();
-				    	temp[0][i] = new Boolean(bCorrect);
-				    	
-				    	d=temp;
-				    	
-				    	table.repaint();
-			        	*/
-				    	//table = new JTable(new MyTableModel());
-				    	
-				    	Object[] temp={txtNew.getText(),(Boolean)(bCorrect)};
-				    	
-				    	table.getModel().setValueAt(temp, table.getModel().getRowCount()-1, 1);
-						table.repaint();
-				    	
-					    }
-				});
-
 				
-	}
-	
-	//class for the table with the possible answers
- 	 public class MyTableModel extends AbstractTableModel {
-
-	        String[] columns = {"Answer","Corect"};  //columns of the table
-	        
-	        //all the possible answers of the multiple choice question
-			Object[][] data = {{"", new Boolean(false) },{"", new Boolean(false)},{"", new Boolean(false)},{"", new Boolean(false)}};
-	 
-	        public int getRowCount() {
-	            return data.length;
-	        }
-	 
-	        public int getColumnCount() {
-	            return columns.length;
-	        }
-	        
-	        public void setValueAt(Object object, int rowIndex, int columnIndex){
-	        	data[rowIndex][columnIndex] = object;
-	        }
-	 
-	        public Object getValueAt(int rowIndex, int columnIndex) {
-	            return data[rowIndex][columnIndex];
-	        }
-	 
-	        @Override
-	        public String getColumnName(int column) {
-	            return columns[column];
-	        }
-
-	        @Override
-	        public Class<?> getColumnClass(int columnIndex) {
-	            return getValueAt(0, columnIndex).getClass();
-	        }	    	 
-	}
+	}	
 }

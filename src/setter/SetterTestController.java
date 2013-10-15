@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import javax.swing.JTable;
 
-import setter.AddQuestionPanel.MyTableModel;
 import backend.Answer;
 import backend.FTBQ;
 import backend.InvalidFTBQFormatException;
@@ -126,7 +125,7 @@ public class SetterTestController
   }
   
   
-  public void addFTBQ(String subsection, String question, int marks)
+  public int addFTBQ(String subsection, String question, int marks)
   {
 	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
@@ -137,13 +136,12 @@ public class SetterTestController
 		
 	} catch (InvalidFTBQFormatException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		//e.printStackTrace();
 		
-		//re-enter the text
+		return 0;
 	}
     
-    k=10;
-    
+    return 1;
   }
   
   
