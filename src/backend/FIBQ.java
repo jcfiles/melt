@@ -26,6 +26,11 @@ public class FIBQ extends Question
         this.addAnswer(new Answer(s[0], true));
     }
     
+    public void checkQuestion(String Question) throws InvalidFTBQFormatException
+    {
+    	String s[] = parseQandA(Question);
+    }
+    
     public String getQFirstPart()
     {
         return qFirstPart;

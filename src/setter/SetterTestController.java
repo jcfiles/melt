@@ -59,6 +59,7 @@ public class SetterTestController
 	    Section s=test.getSection(currentSection);
 	    s.editSection(sectionTitle, sectionIntroText, sectionTime);
   }
+
   
   public void deleteSection()
   {
@@ -130,7 +131,7 @@ public class SetterTestController
   }
   
   
-  public int addFTBQ(String subsection, String question, int marks)
+  public int addFIBQ(String subsection, String question, int marks)
   {
 	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
@@ -149,6 +150,27 @@ public class SetterTestController
     return 1;
   }
   
+  public int editFIBQ(String subsection, String question, int marks)
+  {
+	  Section s=test.getSection(currentSection);
+	  FIBQ q=(FIBQ) s.getQuestion(currentQuestion);
+	  
+	  try {
+			q.checkQuestion(question);
+			
+		} catch (InvalidFTBQFormatException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			
+			return 0;
+		}
+	  
+	  q.setsubSection(subsection);
+	  q.setQuestionText(question);
+	  q.setPossibleMarks(marks);
+	  
+	  return 1;
+  }
   
   public void addMCQ(String section, String question, int marks, JTable possibleAnswers)
   {
@@ -176,8 +198,30 @@ public class SetterTestController
 	  }
 	  
 	  test.getSection(currentSection).addQuestion(q);
+
+  }
+  
+  public void editMCQ(String section, String question, int marks, JTable possibleAnswers)
+  {	  
+	  MCQ q=(MCQ) test.getSection(currentSection).getQuestion(currentQuestion);
 	  
-	  k=9;
+	  q.setSubsectionTitle(section);
+	  q.setPossibleMarks(marks);
+	  
+	  for(int i=0; i<possibleAnswers.getRowCount(); i++)
+	  {
+		  String s=possibleAnswers.getValueAt(i, 0).toString();
+		  String img=possibleAnswers.getValueAt(i, 1).toString();
+		  
+		  if(img.contains("check"))
+		  {
+			  q.setAnswer(s,true,i);
+		  }
+		  else
+		  {
+			  q.setAnswer(s,false,i);
+		  }
+	  }
   }
   
   public int getQuestionType()

@@ -306,7 +306,7 @@ public class AddQuestionPanel extends JPanel {
 	    	  }
 	    	  else
 	    	  {	 
-	    		  int parsing=obj.addFTBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    		  int parsing=obj.addFIBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    		  if(parsing==0)
 	    		  {
 	    			  JOptionPane.showMessageDialog(gui,
