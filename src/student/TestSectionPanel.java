@@ -48,7 +48,7 @@ public class TestSectionPanel extends JPanel {
      * Create the panel.
      */
     public TestSectionPanel(final StudentTestController controller, final Section section) {
-    	tickImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check.png"));
+    	tickImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check_b.png"));
     	tickImage = tickImageIcon.getImage();
     	exImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/delete.png"));
     	exImage = exImageIcon.getImage();
