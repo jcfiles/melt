@@ -110,4 +110,26 @@ public class MCQ extends Question {
         }
         return s;
     }
+     
+     /**
+      * Swaps the order of two answers
+      * @param ans1
+      * @param ans2
+      */    
+     public void swapAnswers(Answer ans1, Answer ans2){
+     	int ans1Position = 0;
+     	int ans2Position = 0;
+     	for(int i=0; i<answers.size(); i++){
+     		if(answers.get(i).equals(ans1)){
+     			ans1Position = i;
+     		}
+     		if(answers.get(i).equals(ans2)){
+     			ans2Position = i;
+     		}
+     	}
+     	answers.remove(ans1Position);
+     	answers.add(ans1Position, ans2);
+     	answers.remove(ans2Position);
+     	answers.add(ans2Position, ans1);
+     }
 }
