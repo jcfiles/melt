@@ -91,7 +91,7 @@ public class FIBQTest
     String expResult = "";
     assertEquals(expResult, testfibq.getsubSectionTitle());
     
-    testfibq.setsubSection("testSubsection");
+    testfibq.setSubsectionTitle("testSubsection");
     testfibq.setSubsectionTitle("testSubsection");
     expResult = "testSubsection";
     assertEquals(expResult, testfibq.getsubSectionTitle());

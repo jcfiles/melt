@@ -165,7 +165,7 @@ public class SetterTestController
 			return 0;
 		}
 	  
-	  q.setsubSection(subsection);
+	  q.setSubsectionTitle(subsection);
 	  q.setQuestionText(question);
 	  q.setPossibleMarks(marks);
 	  
