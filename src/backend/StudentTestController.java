@@ -11,7 +11,8 @@ import student.TestSectionPanel;
  * This class delegates all UI functionality to the application 'backend' for
  * the use case of a student taking a test.
  * 
- * @author Bruce Steedman
+ * @author Bruce Steedman, Dimitrios Chondrokoukis
+ *
  * @version 2013.10.08
  */
 public class StudentTestController {

@@ -14,7 +14,7 @@ public class FIBQ extends Question
     private String givenAnswer = "";
     
     /**
-     * Constructor for objects of class FTBQ
+     * Constructor for objects of class FIBQ
      * 
      * @param Question text string must contain the answer string wrapped in [...] to be valid
      */

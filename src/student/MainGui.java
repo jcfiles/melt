@@ -58,12 +58,12 @@ public class MainGui {
     private void initialize() {
         controller = new StudentTestController();
         frame = new JFrame();
-        frame.setBounds(100, 100, 450, 300);
+        frame.setBounds(100, 100, 819, 464);
         if(!isSetter){
         	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
         frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-        frame.add(new StudentStartJPanel(controller));
+        frame.getContentPane().add(new StudentStartJPanel(controller));
         frame.validate();
     }
 }

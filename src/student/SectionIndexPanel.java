@@ -28,41 +28,17 @@ public class SectionIndexPanel extends JPanel {
         
 	GridBagLayout gridBagLayout = new GridBagLayout();
 	gridBagLayout.columnWidths = new int[]{0, 0};
-	gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
+	gridBagLayout.rowHeights = new int[]{0, 0, 0};
 	gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-	gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+	gridBagLayout.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 	setLayout(gridBagLayout);
 	panelSections = new JPanel();
     sections = controller.getTest().getAllSections();
-	
-    JPanel panelEdit = new JPanel();
-	GridBagConstraints gbc_panelEdit = new GridBagConstraints();
-	gbc_panelEdit.fill = GridBagConstraints.BOTH;
-	gbc_panelEdit.insets = new Insets(0, 0, 5, 0);
-	gbc_panelEdit.gridx = 0;
-	gbc_panelEdit.gridy = getComponentCount();
-	add(panelEdit, gbc_panelEdit);
-	GridBagLayout gbl_panelEdit = new GridBagLayout();
-	gbl_panelEdit.columnWidths = new int[]{0, 0};
-	gbl_panelEdit.rowHeights = new int[]{0, 0};
-	gbl_panelEdit.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-	gbl_panelEdit.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-	panelEdit.setLayout(gbl_panelEdit);
-	
-	JButton buttonEdit = new JButton("Edit");
-	GridBagConstraints gbc_buttonEdit = new GridBagConstraints();
-	gbc_buttonEdit.anchor = GridBagConstraints.EAST;
-	gbc_buttonEdit.gridx = 0;
-	gbc_buttonEdit.gridy = 0;
-	panelEdit.add(buttonEdit, gbc_buttonEdit);
-	
-	if(!MainGui.isSetter){
-		panelEdit.setVisible(false);
-	}
     
 	GridBagConstraints gbc_panelSections = new GridBagConstraints();
+	gbc_panelSections.anchor = GridBagConstraints.NORTH;
 	gbc_panelSections.insets = new Insets(0, 0, 5, 0);
-	gbc_panelSections.fill = GridBagConstraints.BOTH;
+	gbc_panelSections.fill = GridBagConstraints.HORIZONTAL;
 	gbc_panelSections.gridx = 0;
 	gbc_panelSections.gridy = getComponentCount();
 	add(panelSections, gbc_panelSections);

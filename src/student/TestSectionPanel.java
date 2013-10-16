@@ -62,9 +62,9 @@ public class TestSectionPanel extends JPanel {
 	add(panel, BorderLayout.NORTH);
 	GridBagLayout gbl_panel = new GridBagLayout();
 	gbl_panel.columnWidths = new int[]{0, 0};
-	gbl_panel.rowHeights = new int[]{0, 0, 0};
+	gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
 	gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-	gbl_panel.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+	gbl_panel.rowWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
 	panel.setLayout(gbl_panel);
 		
 	JPanel panel_8 = new JPanel();
@@ -95,12 +95,23 @@ public class TestSectionPanel extends JPanel {
 	gbc_labelSectionTitle.gridx = 1;
 	gbc_labelSectionTitle.gridy = 0;
 	panel_8.add(labelSectionTitle, gbc_labelSectionTitle);
+	
+	JButton buttonEdit = new JButton("Edit");
+	GridBagConstraints gbc_buttonEdit = new GridBagConstraints();
+	gbc_buttonEdit.anchor = GridBagConstraints.EAST;
+	gbc_buttonEdit.insets = new Insets(0, 0, 5, 0);
+	gbc_buttonEdit.gridx = 0;
+	gbc_buttonEdit.gridy = 1;
+	panel.add(buttonEdit, gbc_buttonEdit);
+	if(!MainGui.isSetter){
+		buttonEdit.setVisible(false);
+	}
 		
 	JPanel panel_9 = new JPanel();
 	GridBagConstraints gbc_panel_9 = new GridBagConstraints();
 	gbc_panel_9.fill = GridBagConstraints.BOTH;
 	gbc_panel_9.gridx = 0;
-	gbc_panel_9.gridy = 1;
+	gbc_panel_9.gridy = 2;
 	panel.add(panel_9, gbc_panel_9);
 	GridBagLayout gbl_panel_9 = new GridBagLayout();
 	gbl_panel_9.columnWidths = new int[]{0, 0, 0};
