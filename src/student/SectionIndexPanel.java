@@ -51,6 +51,9 @@ public class SectionIndexPanel extends JPanel {
     
     private void buildSectionChooserPanel(int index) {
         SectionChooserPanel panel = new SectionChooserPanel(controller, sections.get(index), this);
+        if(index!=0){
+        	//panel.setbuttonSelectEnabled(false);
+        }
         GridBagConstraints gbc_panel = new GridBagConstraints();
         gbc_panel.fill = GridBagConstraints.BOTH;
         gbc_panel.gridx = 0;
