@@ -24,7 +24,7 @@ public abstract class Question implements java.io.Serializable {
         this.questionText = questionText;
         answers = new ArrayList<Answer>();
     }
-    
+
     public String getQuestionText()
     {
         return questionText;
@@ -40,6 +40,7 @@ public abstract class Question implements java.io.Serializable {
         subsectionTitle = text;
     }
     
+
     /**
      * Returns the mark awarded for the question. Is 0 if wrong or unanswered.
      */

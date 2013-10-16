@@ -20,6 +20,8 @@ public class Section implements java.io.Serializable
     private SectionTimer sectionProgram;
     private int sectionTime;
     
+    private String subSectionTitle;
+    private String subSectionParagraphText;
 
     /**
      * Constructor for objects of class Section
@@ -31,6 +33,33 @@ public class Section implements java.io.Serializable
         this.sectionIntroText = sectionIntroText;
         this.sectionTime = sectionTime;
         this.questions = new ArrayList<Question>();        
+    }
+    
+    /**
+     * Constructor for subSection
+     * @param String subSectionTitle, String subSectionParagraphText
+     */
+    public void setsubSection (String subSectionTitle, String subSectionParagraphText) 
+    {
+    	this.subSectionTitle = subSectionTitle;
+    	this.subSectionParagraphText = subSectionParagraphText;
+    }
+    
+    /**
+     * @return String subSectionTitle
+     */
+    public String getsubSectionTitle() 
+    {
+    	return subSectionTitle;
+    }
+    
+    /**
+     * @return String subSectionParagraphText
+     */
+    
+    public String getsubSectionParagraphText()
+    {
+    	return subSectionParagraphText;
     }
     
     public String getSectionTitle()
