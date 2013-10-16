@@ -222,7 +222,7 @@ public class SetterTestController
   
   public String getCurrertSectionTitle()
   {
-    return test.getSection(currentSection).toString();
+    return test.getSection(currentSection).getSectionTitle();
 
   }
   

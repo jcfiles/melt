@@ -32,10 +32,10 @@ public class AddSectionGUI extends JFrame {
 	private SectionNavigationPanel nav;
 	
 	private JLabel lblTitle=new JLabel("Title:");
-	JTextField txtTest=new JTextField();
-	JLabel lblTest=new JLabel("TestA");
-	final JPanel panelCenter=new JPanel();
-	SetterTestController obj=new SetterTestController();
+	public JTextField txtTest=new JTextField();
+	public JLabel lblTest=new JLabel("TestA");
+	public JPanel panelCenter=new JPanel();
+	private SetterTestController obj=new SetterTestController();
 	
 	/**
 	 * Launch the application.
@@ -92,8 +92,7 @@ public class AddSectionGUI extends JFrame {
 		panelA.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelTitle.add(panelA);
 		
-		//Set the name of the Test and Sector
-		
+		//Set the name of the Test and Sector		
 		lblTest.setVisible(false);
 		txtTest.setColumns(20);
 		panelA.add(lblTitle);
@@ -104,20 +103,15 @@ public class AddSectionGUI extends JFrame {
 		JButton btnSwitch=new JButton("Switch");
 		panelTitle.add(btnSwitch);
 
-		//The panel in the center
-		
+		//The panel in the center		
 		Border lineBorder = BorderFactory.createLineBorder(Color.GRAY, 2, true);
 		panelCenter.setBorder(lineBorder);
 		
 		addPanel=new AddSectionPanel(obj,this);
 		
-		//viewPanel=new ViewSectionPanel(obj, this);
-		
-		
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
 		panelCenter.add(addPanel);	
-		//panelCenter.add(viewPanel);
 		
 		//The navigation panel
 		nav=new SectionNavigationPanel(obj,this);

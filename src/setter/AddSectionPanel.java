@@ -22,10 +22,8 @@ public class AddSectionPanel extends JPanel {
 	private JTextField txtSection = new JTextField();
 	private JTextArea txtInstructions = new JTextArea();
 	private JLabel lblNumOfQuestions = new JLabel("0");
-	private JLabel lblTotalMarks = new JLabel("0");
-	
-	final private JButton btnSave = new JButton("Save");
-	
+	private JLabel lblTotalMarks = new JLabel("0");	
+	private JButton btnSave = new JButton("Save");
 	public Boolean bEdit=false;
 	
 
@@ -55,8 +53,7 @@ public class AddSectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, lblM, 20, SpringLayout.SOUTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblM, 0, SpringLayout.WEST, lblSubsection);
 		add(lblM);
-		
-		
+				
 		springLayout.putConstraint(SpringLayout.NORTH, lblNumOfQuestions, 0, SpringLayout.NORTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblNumOfQuestions, 21, SpringLayout.EAST, lblQ);
 		springLayout.putConstraint(SpringLayout.EAST, lblNumOfQuestions, -263, SpringLayout.EAST, this);
@@ -66,14 +63,12 @@ public class AddSectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, lblI, 18, SpringLayout.SOUTH, lblM);
 		springLayout.putConstraint(SpringLayout.WEST, lblI, 0, SpringLayout.WEST, lblSubsection);
 		add(lblI);
-		
-		
+				
 		springLayout.putConstraint(SpringLayout.NORTH, txtTotalTime, 74, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, txtTotalTime, 0, SpringLayout.WEST, lblNumOfQuestions);
 		add(txtTotalTime);
 		txtTotalTime.setColumns(10);
-		
-		
+				
 		springLayout.putConstraint(SpringLayout.SOUTH, txtSection, -13, SpringLayout.NORTH, txtTotalTime);
 		springLayout.putConstraint(SpringLayout.EAST, txtTotalTime, 0, SpringLayout.EAST, txtSection);
 		springLayout.putConstraint(SpringLayout.WEST, txtSection, 0, SpringLayout.WEST, lblNumOfQuestions);
@@ -85,8 +80,7 @@ public class AddSectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalMarks, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, 118, SpringLayout.EAST, lblM);
 		add(lblTotalMarks);
-		
-		
+				
 		springLayout.putConstraint(SpringLayout.NORTH, txtInstructions, 10, SpringLayout.SOUTH, lblTotalMarks);
 		springLayout.putConstraint(SpringLayout.WEST, txtInstructions, 65, SpringLayout.EAST, lblI);
 		springLayout.putConstraint(SpringLayout.EAST, txtInstructions, 0, SpringLayout.EAST, txtTotalTime);
@@ -108,6 +102,7 @@ public class AddSectionPanel extends JPanel {
 			ArrayList<String> list = new ArrayList<String>();
 			list=obj.getSection();
 			
+			gui.txtTest.setText(obj.getTitle());
 			txtSection.setText(list.get(0));
 			txtTotalTime.setText(list.get(1));
 			txtInstructions.setText(list.get(2));
@@ -157,8 +152,10 @@ public class AddSectionPanel extends JPanel {
 				 }
 				 
 				if(flag==false){	
-				obj.createTest(gui.lblTest.getText());
-				obj.setTitle(gui.lblTest.getText());
+				obj.createTest(gui.txtTest.getText());
+				obj.setTitle(gui.txtTest.getText());
+				gui.lblTest.setText(gui.txtTest.getText());
+				
 				if(bEdit==true)
 				{
 					ArrayList<String> list = new ArrayList<String>();
