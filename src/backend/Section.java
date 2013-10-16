@@ -34,7 +34,12 @@ public class Section implements java.io.Serializable
         this.questions = new ArrayList<Question>();        
     }
     
-
+    public void editSection(String sectionTitle, String sectionIntroText, int sectionTime)
+    {
+    	this.sectionTitle = sectionTitle;
+        this.sectionIntroText = sectionIntroText;
+        this.sectionTime = sectionTime;
+    }
     
     public String getSectionTitle()
     {

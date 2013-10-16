@@ -30,10 +30,11 @@ public class AddSectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AddSectionPanel(final SetterTestController obj, final AddSectionGUI gui) {		
+	public AddSectionPanel(final SetterTestController obj, final AddSectionGUI gui, Boolean b) {		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
-				
+		
+		bEdit=b;		
 		JLabel lblSubsection = new JLabel("Section:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblSubsection, 47, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblSubsection, 10, SpringLayout.WEST, this);
@@ -102,10 +103,12 @@ public class AddSectionPanel extends JPanel {
 			ArrayList<String> list = new ArrayList<String>();
 			list=obj.getSection();
 			
-			gui.txtTest.setText(obj.getTitle());
-			txtSection.setText(list.get(0));
-			txtTotalTime.setText(list.get(1));
-			txtInstructions.setText(list.get(2));
+			gui.txtTest.setText(list.get(0));
+			txtSection.setText(list.get(1));
+			txtTotalTime.setText(list.get(2));
+			lblNumOfQuestions.setText(list.get(3));
+			lblTotalMarks.setText(list.get(4));
+			txtInstructions.setText(list.get(5));
 		}
 		
 		
@@ -158,12 +161,7 @@ public class AddSectionPanel extends JPanel {
 				
 				if(bEdit==true)
 				{
-					ArrayList<String> list = new ArrayList<String>();
-					list=obj.getSection();
-					
-					txtSection.setText(list.get(0));
-					txtTotalTime.setText(list.get(1));
-					txtInstructions.setText(list.get(2));
+					obj.editSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));
 				}
 				else
 				{	

@@ -56,12 +56,8 @@ public class SetterTestController
   
   public void editSection(String sectionTitle, String sectionIntroText, int sectionTime)
   {
-	   /* Section s=new Section(sectionTitle,sectionIntroText,sectionTime);
-	    s=test.getSection(currentSection);
-	    
-	    
-	    test.addSection(s);
-	    */
+	    Section s=test.getSection(currentSection);
+	    s.editSection(sectionTitle, sectionIntroText, sectionTime);
   }
   
   public void deleteSection()
@@ -123,6 +119,7 @@ public class SetterTestController
 		  marks=marks+q.get(i).getPossibleMarks();
 	  }
 	  
+	  s.add(test.getTestTitle());
 	  s.add(test.getSection(currentSection).getSectionTitle());
 	  s.add(test.getSection(currentSection).getSectionTime()+"");
 	  s.add(q.size()+"");

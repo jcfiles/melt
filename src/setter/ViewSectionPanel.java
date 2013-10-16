@@ -57,8 +57,7 @@ public class ViewSectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblM, 0, SpringLayout.WEST, lblS);
 		add(lblM);
 		
-		JLabel lblNumOfQuestions = new JLabel(list.get(2));
-		//JLabel lblNumOfQuestions = new JLabel();
+		JLabel lblNumOfQuestions = new JLabel(list.get(3));
 		springLayout.putConstraint(SpringLayout.NORTH, lblNumOfQuestions, 0, SpringLayout.NORTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblNumOfQuestions, 21, SpringLayout.EAST, lblQ);
 		springLayout.putConstraint(SpringLayout.EAST, lblNumOfQuestions, -263, SpringLayout.EAST, this);
@@ -69,21 +68,20 @@ public class ViewSectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblI, 0, SpringLayout.WEST, lblS);
 		add(lblI);
 		
-		JLabel lblTotalMarks = new JLabel(list.get(3));
-		//JLabel lblTotalMarks = new JLabel();
+		JLabel lblTotalMarks = new JLabel(list.get(4));
 		springLayout.putConstraint(SpringLayout.NORTH, lblTotalMarks, 0, SpringLayout.NORTH, lblM);
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalMarks, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, 118, SpringLayout.EAST, lblM);
 		add(lblTotalMarks);
 		
 		
-		JLabel lblSection = new JLabel(list.get(0));
+		JLabel lblSection = new JLabel(list.get(1));
 		//JLabel lblSection = new JLabel();
 		springLayout.putConstraint(SpringLayout.WEST, lblSection, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblSection, 0, SpringLayout.SOUTH, lblS);
 		add(lblSection);
 		
-		JLabel lblTotalTime = new JLabel(list.get(1)+" mins");
+		JLabel lblTotalTime = new JLabel(list.get(2)+" mins");
 		//JLabel lblTotalTime = new JLabel(" mins");
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalTime, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblTotalTime, 0, SpringLayout.SOUTH, lblT);
@@ -104,20 +102,22 @@ public class ViewSectionPanel extends JPanel {
 		
 
 		StringBuilder sb = new StringBuilder(64);
-		sb.append("<html>"+list.get(4)+"</html>");
+		sb.append("<html>"+list.get(5)+"</html>");
 		
-		JLabel lblNewLabel = new JLabel(sb.toString());
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 32, SpringLayout.SOUTH, lblTotalMarks);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 65, SpringLayout.EAST, lblI);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, 46, SpringLayout.SOUTH, lblTotalMarks);
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, buttonsPanel);
-		add(lblNewLabel);
+		JLabel lblInstructions = new JLabel(sb.toString());
+		springLayout.putConstraint(SpringLayout.NORTH, lblInstructions, 32, SpringLayout.SOUTH, lblTotalMarks);
+		springLayout.putConstraint(SpringLayout.WEST, lblInstructions, 65, SpringLayout.EAST, lblI);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblInstructions, 46, SpringLayout.SOUTH, lblTotalMarks);
+		springLayout.putConstraint(SpringLayout.EAST, lblInstructions, 0, SpringLayout.EAST, buttonsPanel);
+		add(lblInstructions);
+		
+		gui.txtTest.setText(list.get(0));
 		
 		btnAdd.addActionListener(new ActionListener(){	//button to add new section
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				addPanel=new AddSectionPanel(obj,gui);
+				addPanel=new AddSectionPanel(obj,gui,false);
 				
 				gui.panelCenter.removeAll();
 				gui.panelCenter.add(addPanel);
@@ -165,7 +165,7 @@ public class ViewSectionPanel extends JPanel {
 			btnEdit.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 				
-				addPanel=new AddSectionPanel(obj,gui);
+				addPanel=new AddSectionPanel(obj,gui,true);
 				
 				gui.panelCenter.removeAll();
 				gui.panelCenter.add(addPanel);
