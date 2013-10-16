@@ -22,8 +22,10 @@ import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 /*
  * @author Erotokritou Zoe
@@ -36,7 +38,8 @@ public class MenuGUI extends JFrame {
 	private JButton btnSetter=new JButton("Setter");
 	private static JPanel panelCenter = new JPanel();
 	
-	SetterTestController obj;
+	private SetterTestController obj;
+	private static MenuGUI frame;
 
 	/**
 	 * Launch the application.
@@ -55,7 +58,7 @@ public class MenuGUI extends JFrame {
 					} catch (Exception e) {
 					    // If Nimbus is not available, you can set the GUI to another look and feel.
 					}
-					MenuGUI frame = new MenuGUI();
+					frame = new MenuGUI();
 					frame.setVisible(true);
 										
 				} catch (Exception e) {
@@ -135,10 +138,10 @@ public class MenuGUI extends JFrame {
 		     obj=new SetterTestController();
 		     obj.createTest("");
 		     obj.setCurrentSection(0);
-		     AddSectionGUI gui=new AddSectionGUI(obj);
+		     AddSectionGUI gui=new AddSectionGUI(obj,frame);
 		     gui.setVisible(true);
 		     
-		     MenuGUI.this.dispose();
+		     frame.setVisible(false);
 				   
 					 }
 					});

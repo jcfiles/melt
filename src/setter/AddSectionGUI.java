@@ -56,7 +56,8 @@ public class AddSectionGUI extends JFrame {
 					} catch (Exception e) {
 					    // If Nimbus is not available, you can set the GUI to another look and feel.
 					}
-					AddSectionGUI frame = new AddSectionGUI(obj);
+					MenuGUI menu=new MenuGUI();
+					AddSectionGUI frame = new AddSectionGUI(obj, menu);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,7 +69,7 @@ public class AddSectionGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddSectionGUI(final SetterTestController obj) {
+	public AddSectionGUI(final SetterTestController obj, MenuGUI menu) {
 		super("Create new Test");
 		this.obj=obj;			
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,7 +116,7 @@ public class AddSectionGUI extends JFrame {
 		panelCenter.add(addPanel);	
 		
 		//The navigation panel
-		nav=new SectionNavigationPanel(obj,this);
+		nav=new SectionNavigationPanel(obj,this,menu);
 		contentPane.add(nav, BorderLayout.SOUTH);
 			
 		

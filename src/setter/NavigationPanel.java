@@ -25,7 +25,7 @@ public class NavigationPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NavigationPanel(final SetterTestController obj, final AddQuestionGUI gui) {
+	public NavigationPanel(final SetterTestController obj, final AddQuestionGUI gui, final AddSectionGUI sec) {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel navigationPanel = new JPanel();
@@ -105,6 +105,16 @@ public class NavigationPanel extends JPanel {
 					gui.repaint();
 					}	
 			 	}
-			});		
+			});	
+		btnBack.addActionListener(new ActionListener(){  //Edit the question
+			public void actionPerformed(ActionEvent e) {
+				
+				gui.dispose();
+				
+				sec.setVisible(true);
+				
+				
+			}
+		});
 	}
 }

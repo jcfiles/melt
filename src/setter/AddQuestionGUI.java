@@ -52,7 +52,9 @@ public class AddQuestionGUI extends JFrame {
       public void run() {
         try {
           SetterTestController obj=new SetterTestController();
-          AddQuestionGUI frame = new AddQuestionGUI(obj);
+          MenuGUI menu=new MenuGUI();
+          AddSectionGUI sec=new AddSectionGUI(obj,menu);
+          AddQuestionGUI frame = new AddQuestionGUI(obj,sec);
           frame.setVisible(true);
         } catch (Exception e) {
           e.printStackTrace();
@@ -64,7 +66,7 @@ public class AddQuestionGUI extends JFrame {
   /**
    * Create the frame.
    */
-  public AddQuestionGUI(SetterTestController obj) {   
+  public AddQuestionGUI(SetterTestController obj, AddSectionGUI sec) {   
     super("Add Question to Section");
     this.obj=obj;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,7 +104,7 @@ public class AddQuestionGUI extends JFrame {
     panelCenter.add(addPanel);  
     
     //The navigation panel
-    nav=new NavigationPanel(obj,this);
+    nav=new NavigationPanel(obj,this,sec);
     contentPane.add(nav, BorderLayout.SOUTH);
       
 
