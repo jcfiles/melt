@@ -140,25 +140,7 @@ public class AddQuestionPanel extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, scrollPane, -10, SpringLayout.SOUTH, panel_mult);
 		sl_panel_1.putConstraint(SpringLayout.EAST, scrollPane, -96, SpringLayout.EAST, panel_mult);
 		panel_mult.add(scrollPane);
-		
-		/*
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(table.columnAtPoint(e.getPoint())==1){
-					if((boolean)table.getModel().getValueAt(table.rowAtPoint(e.getPoint()), 1)==true){
-						table.getModel().setValueAt(new Boolean(false), table.rowAtPoint(e.getPoint()), 1);
-						table.repaint();
-					}
-					else{
-						table.getModel().setValueAt(new Boolean(true), table.rowAtPoint(e.getPoint()), 1);
-						table.repaint();
-					}
-				}
-			}
-		});
-		scrollPane.setViewportView(table);
-		*/
+
 		data = new Object[0][0];
 		model = new DefaultTableModel(data,header);  		  
 		model.setColumnIdentifiers(header);  

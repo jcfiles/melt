@@ -56,11 +56,12 @@ public class SetterTestController
   
   public void editSection(String sectionTitle, String sectionIntroText, int sectionTime)
   {
-	    Section s=new Section(sectionTitle,sectionIntroText,sectionTime);
+	   /* Section s=new Section(sectionTitle,sectionIntroText,sectionTime);
 	    s=test.getSection(currentSection);
 	    
 	    
 	    test.addSection(s);
+	    */
   }
   
   public void deleteSection()

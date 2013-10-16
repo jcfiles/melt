@@ -17,7 +17,6 @@ public abstract class Question implements java.io.Serializable {
     protected ArrayList<Answer> answers;
     
     protected String subSectionTitle;
-    protected String subSectionParagraphText;
     
     /**
      * Constructor for questions.
@@ -32,10 +31,9 @@ public abstract class Question implements java.io.Serializable {
      * Constructor for subSection
      * @param String subSectionTitle, String subSectionParagraphText
      */
-    public void setsubSection (String subSectionTitle, String subSectionParagraphText) 
+    public void setsubSection (String subSectionTitle) 
     {
     	this.subSectionTitle = subSectionTitle;
-    	this.subSectionParagraphText = subSectionParagraphText;
     }
     
     /**
@@ -45,15 +43,7 @@ public abstract class Question implements java.io.Serializable {
     {
     	return subSectionTitle;
     }
-    
-    /**
-     * @return String subSectionParagraphText
-     */
-    public String getsubSectionParagraphText()
-    {
-    	return subSectionParagraphText;
-    }
-    
+ 
     
     public String getQuestionText()
     {
