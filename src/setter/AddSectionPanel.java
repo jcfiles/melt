@@ -7,11 +7,15 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class AddSectionPanel extends JPanel {
 	
 	private JTextField txtTotalTime = new JTextField();
@@ -114,7 +118,45 @@ public class AddSectionPanel extends JPanel {
 		
 		btnSave.addActionListener(new ActionListener(){  //button to save the question
 			public void actionPerformed(ActionEvent e) {
-								
+				
+				 Boolean flag=false;
+		    	  
+				 if(txtSection.getText().equals("")|| txtTotalTime.getText().equals("")|| txtInstructions.getText().equals(""))
+				 {
+		    			//insert all the information, error icon
+		    			JOptionPane.showMessageDialog(gui,
+		    			      "You have to insert all the information for the Section.",
+		    			      "Save Section Error",
+		    			      JOptionPane.ERROR_MESSAGE);
+		    			flag=true;
+				 }
+				 
+				 if(flag==false)
+	    		  {
+	    			  try {
+	    				  Integer.parseInt(txtTotalTime.getText());
+	    					
+	    				} catch (Exception ex) {
+	    					//insert number for a mark, error icon
+	    					JOptionPane.showMessageDialog(gui,
+	    		    			      "You have to insert a number for the Total time.",
+	    		    			      "Save Mark for Question Error",
+	    		    			      JOptionPane.ERROR_MESSAGE);
+	    					flag=true;
+	    				}			
+	    		  }
+				 
+				 if(gui.txtTest.getText().equals("") && flag==false)
+				 {
+					//insert all the information, error icon
+		    			JOptionPane.showMessageDialog(gui,
+		    			      "You have to insert the title of the Test",
+		    			      "Create Test Error",
+		    			      JOptionPane.ERROR_MESSAGE);
+		    			flag=true;
+				 }
+				 
+				if(flag==false){	
 				obj.createTest(gui.lblTest.getText());
 				obj.setTitle(gui.lblTest.getText());
 				if(bEdit==true)
@@ -142,6 +184,7 @@ public class AddSectionPanel extends JPanel {
 				repaint();
 				
 				} 
+			}
 			});
 	}
 	

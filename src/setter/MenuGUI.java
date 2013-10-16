@@ -23,7 +23,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/*
+ * @author Erotokritou Zoe
+ */
 public class MenuGUI extends JFrame {
 	private StudentTestController studentTestController;
 	private JPanel contentPane;

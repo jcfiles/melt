@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class FillBlankPanel extends JPanel {
 	
 	private JTextField txtQuestion;

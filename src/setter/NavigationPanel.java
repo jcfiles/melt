@@ -11,8 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
+import java.awt.Dimension;
+
+/*
+ * @author Erotokritou Zoe
+ */
 
 public class NavigationPanel extends JPanel {
 	
@@ -26,15 +32,12 @@ public class NavigationPanel extends JPanel {
 		add(navigationPanel);
 		navigationPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		ImageIcon imgP = new ImageIcon("/images/previous.png");
-		ImageIcon imgN = new ImageIcon("/images/next.png");
-		
 		JButton btnPrevious = new JButton();
 		btnPrevious.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/lib/images/previous.png")));
 		navigationPanel.add(btnPrevious);		
 		JButton btnNext = new JButton();
 		btnNext.setIcon(new ImageIcon(SectionNavigationPanel.class.getResource("/lib/images/next.png")));
-		navigationPanel.add(btnNext);				
+		navigationPanel.add(btnNext);	
 		
 		JPanel backPanel = new JPanel();
 		add(backPanel);
@@ -50,54 +53,58 @@ public class NavigationPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 								
 				int num=obj.getCurrentQuestion()+1;
-				obj.setCurrentQuestion(num);
 				
-				int type=obj.getQuestionType();
+				if(num!=obj.countQuestion()){
 				
-				if(type==0)
-				{
-					MultichoicePanel panel=new MultichoicePanel(obj,gui);
-					gui.panelCenter.removeAll();
-					gui.panelCenter.add(panel);
+					obj.setCurrentQuestion(num);
+					int type=obj.getQuestionType();
+				
+					if(type==0)
+					{
+						MultichoicePanel panel=new MultichoicePanel(obj,gui);
+						gui.panelCenter.removeAll();
+						gui.panelCenter.add(panel);
+					}
+					else
+					{
+						FillBlankPanel panel=new FillBlankPanel(obj,gui);
+						gui.panelCenter.removeAll();
+						gui.panelCenter.add(panel);
+					}
+				
+					gui.validate();
+					gui.repaint();
 				}
-				else
-				{
-					FillBlankPanel panel=new FillBlankPanel(obj,gui);
-					gui.panelCenter.removeAll();
-					gui.panelCenter.add(panel);
-				}
-				
-				gui.validate();
-				gui.repaint();
-			 }
-			});
+			}
+		});
 		
 		btnPrevious.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 							
 				int num=obj.getCurrentQuestion()-1;
-				obj.setCurrentQuestion(num);
 				
-				int type=obj.getQuestionType();
+				if(num!=-1){
+					
+					obj.setCurrentQuestion(num);				
+					int type=obj.getQuestionType();
 				
-				if(type==0)
-				{
-					MultichoicePanel panel=new MultichoicePanel(obj,gui);
-					gui.panelCenter.removeAll();
-					gui.panelCenter.add(panel);
-				}
-				else
-				{
-					FillBlankPanel panel=new FillBlankPanel(obj,gui);
-					gui.panelCenter.removeAll();
-					gui.panelCenter.add(panel);
-				}
+					if(type==0)
+					{
+						MultichoicePanel panel=new MultichoicePanel(obj,gui);
+						gui.panelCenter.removeAll();
+						gui.panelCenter.add(panel);
+					}
+					else
+					{
+						FillBlankPanel panel=new FillBlankPanel(obj,gui);
+						gui.panelCenter.removeAll();
+						gui.panelCenter.add(panel);
+					}
 				
-				gui.validate();
-				gui.repaint();
-								
-			 }
-			});
-		
+					gui.validate();
+					gui.repaint();
+					}	
+			 	}
+			});		
 	}
 }

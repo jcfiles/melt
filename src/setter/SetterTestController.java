@@ -13,13 +13,11 @@ import backend.Question;
 import backend.Section;
 import backend.Test_;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class SetterTestController
 {
-  //HashMap
-  private static HashMap<String,ArrayList<MCQ>> all = new HashMap<String,ArrayList<MCQ>>();
-  ArrayList<Section> section=new ArrayList<Section>();
-  
-  
   private int currentSection=0,currentQuestion=0;
   private Test_ test;
     

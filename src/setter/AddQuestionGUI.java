@@ -28,6 +28,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class AddQuestionGUI extends JFrame {
 
   private JPanel contentPane;

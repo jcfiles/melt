@@ -341,8 +341,7 @@ public class AddQuestionPanel extends JPanel {
 	        	}
 	        
 	    	  gui.validate();
-	    	  gui.repaint();
-	        
+	    	  gui.repaint();	    	        
 	        
 	       }
 	      }

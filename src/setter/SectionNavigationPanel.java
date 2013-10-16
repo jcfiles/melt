@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class SectionNavigationPanel extends JPanel {
 
 	JButton btnPrevious = new JButton();
