@@ -16,7 +16,7 @@ public class Section implements java.io.Serializable
     private ArrayList<Question> questions;
     private int possibleSectionMarks = 0; // Built as questions added/removed
     private int sectionMarksAwarded;
-    public boolean isLocked = true;
+    private boolean isLocked = true;
     private SectionTimer sectionProgram;
     private int sectionTime;
     
@@ -126,5 +126,19 @@ public class Section implements java.io.Serializable
             qNum++;
         }
         return s;
+    }
+    
+    /*
+     * Locks the section
+     */
+    public void lockSection(){
+    	isLocked = true;
+    }
+    
+    /*
+     * Returns true or false if the section is locked
+     */
+    public boolean isLocked(){
+    	return isLocked;
     }
 }
