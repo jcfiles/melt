@@ -68,9 +68,26 @@ public class Section implements java.io.Serializable
         possibleSectionMarks -= q.getPossibleMarks();
     }
     
-    public void insertSection(Question q, int index)
+    public void insertQuestion(Question q, int index)
     {
         questions.set(index, q);
+    }
+    
+    public void swapQuestions(Question q1, Question q2){
+    	int positionQ1 = 0;
+    	int positionQ2 = 0;
+    	for(int i=0; i<questions.size(); i++){
+    		if(q1.equals(questions.get(i))){
+    			positionQ1 = i;
+    		}
+    		if(q2.equals(questions.get(i))){
+    			positionQ2 = i;
+    		}
+    	}
+    	questions.remove(positionQ1);
+    	questions.add(positionQ1, q2);
+    	questions.remove(positionQ2);
+    	questions.add(positionQ2, q1);
     }
     
     /**

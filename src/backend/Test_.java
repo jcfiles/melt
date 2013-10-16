@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Parameter;
+
 /**
  * Representation of a test
  * 
@@ -96,6 +98,10 @@ public class Test_ implements java.io.Serializable
         possibleTestMarks += s.getSectionTime();
     }
     
+    /**
+     * 
+     * Removes a section from the test
+     */
     public void removeSection(Section s)
     {
         sections.remove(s);
@@ -198,7 +204,7 @@ public class Test_ implements java.io.Serializable
 	}	
 	
     /**
-     * Ends the test
+     *  Ends the test
      */
     public int endTest()
     {
@@ -235,6 +241,27 @@ public class Test_ implements java.io.Serializable
             sNum++;
         }
         return s;
+    }
+    
+    /**
+     * Swaps the order of the two given sessions
+     * 
+     */
+    public void swapSection(Section s1, Section s2){
+    	int positionS1 = 0;
+    	int posistionS2 = 0;
+    	for(int i=0; i<sections.size(); i++){
+    		if(sections.get(i).equals(s1)){
+    			positionS1 = i;
+    		}
+    		if(sections.get(i).equals(s2)){
+    			posistionS2 = i;
+    		}
+    	}
+    	sections.remove(positionS1);
+    	sections.add(positionS1,s2);
+    	sections.remove(posistionS2);
+    	sections.add(posistionS2, s1);
     }
     
      /**
@@ -289,7 +316,7 @@ public class Test_ implements java.io.Serializable
 		q6.addAnswer(new Answer("15-minute", true));
 		q6.addAnswer(new Answer("15-minutes", false));
 		s2.addQuestion(q6);
-		
+				
         return t1;
     }
     
