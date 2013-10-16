@@ -4,6 +4,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -73,10 +74,14 @@ public class FinishTestPanel extends JPanel {
 		
 		JLabel lblYourMarkIs = new JLabel("Your mark is");
 		panel.add(lblYourMarkIs);
+		
 		JLabel label = new JLabel(marks);
 		panel.add(label);
 		
-		JButton saveButton = new JButton("Save");
+		// Starting the saveResultsPanel
+		JPanel saveResultsPanel = new JPanel();
+		JPanel statusbarPanel = new JPanel();
+		JButton saveButton = new JButton("Save Results");
 		final JLabel statusbar = new JLabel("");
 		
 	    // Create a file chooser that opens up as a Save dialog
@@ -101,10 +106,13 @@ public class FinishTestPanel extends JPanel {
 					// record the date and time in the file.
 					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 					Date date = new Date();
-					out.write(dateFormat.format(date));
-
+					out.write(dateFormat.format(date) );
+					
+					// new line in writing the marks. 
+					out.newLine();
+					
 					// write the marks in the file.
-		            out.write("\n" + finalmarks);
+		            out.write(finalmarks);
 
 		            // close the stream
 		            out.close();
@@ -121,10 +129,10 @@ public class FinishTestPanel extends JPanel {
 	      }
 	    });
 		
-
-		
-		panel.add(saveButton);
-		panel.add(statusbar);
+	    statusbarPanel.add(statusbar);
+		saveResultsPanel.add(saveButton);
+		saveResultsPanel.add(statusbarPanel);
+		panel.add(saveResultsPanel);
 		
 		// Back Button 
 		GridBagConstraints gbc_backButton = new GridBagConstraints();
