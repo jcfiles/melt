@@ -155,8 +155,10 @@ public class ViewSectionPanel extends JPanel {
 			btnAddQuestion.addActionListener(new ActionListener(){  //Add new question
 				public void actionPerformed(ActionEvent e) {
 					
-					AddQuestionGUI frame = new AddQuestionGUI(obj);
+					AddQuestionGUI frame = new AddQuestionGUI(obj,gui);
 					frame.setVisible(true);
+					
+					gui.setVisible(false);
 				 }
 				});
 				

@@ -20,7 +20,7 @@ public class SectionNavigationPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SectionNavigationPanel(final SetterTestController obj, final AddSectionGUI gui) {
+	public SectionNavigationPanel(final SetterTestController obj, final AddSectionGUI gui, final MenuGUI menu) {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel navigationPanel = new JPanel();
@@ -112,7 +112,6 @@ public class SectionNavigationPanel extends JPanel {
 				
 				gui.dispose();
 				
-				MenuGUI menu=new MenuGUI();
 				menu.setVisible(true);
 				
 				
