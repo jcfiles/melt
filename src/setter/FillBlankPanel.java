@@ -67,7 +67,7 @@ public class FillBlankPanel extends JPanel {
 		add(txtQuestion);
 		txtQuestion.setColumns(10);
 		
-		JLabel lblPartB = new JLabel(list.get(3));
+		JLabel lblPartB = new JLabel(list.get(4));
 		springLayout.putConstraint(SpringLayout.WEST, lblPartB, 6, SpringLayout.EAST, txtQuestion);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPartB, 0, SpringLayout.SOUTH, lblQ);
 		add(lblPartB);

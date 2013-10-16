@@ -254,8 +254,9 @@ public class SetterTestController
 	  {		  
 		  FIBQ f=(FIBQ) q;
 		  s.add(((FIBQ) q).getQFirstPart());
-		  s.add(f.getGivenAnswer());
-		  s.add(((FIBQ) q).getQSecondPart());		  
+		  Answer an=f.getIndexedAnswer(0);
+		  s.add(an.getAnswerText());
+		  s.add(((FIBQ) q).getQSecondPart());	
 	  }
 	  else 
 	  {

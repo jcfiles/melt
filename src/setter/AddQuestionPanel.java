@@ -231,10 +231,15 @@ public class AddQuestionPanel extends JPanel {
 			
 			if(obj.getQuestionType()==1)
 			{
-				txtQuestion.setText(list.get(2)+ "["+list.get(3)+ "]"+list.get(4));				
+				txtQuestion.setText(list.get(2)+ "["+list.get(3)+ "]"+list.get(4));	
+				rdbtnMultipleChoice.setSelected(false);
+				rdbtnFillBlanks.setSelected(true);
 			}
 			else
 			{
+				rdbtnMultipleChoice.setSelected(true);
+				rdbtnFillBlanks.setSelected(false);
+				
 				txtQuestion.setText(list.get(2));
 				
 				Object[][] temp = new Object[list.size()-3][2];
