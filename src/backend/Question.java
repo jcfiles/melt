@@ -14,8 +14,7 @@ public abstract class Question implements java.io.Serializable {
     protected int possibleMarks = 1;
     protected int marksAwarded = 0;
     protected String subsectionTitle = "";
-    protected ArrayList<Answer> answers;
-    
+    protected ArrayList<Answer> answers;    
     protected String subSectionTitle;
     
     /**
