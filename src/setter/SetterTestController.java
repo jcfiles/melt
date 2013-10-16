@@ -66,7 +66,16 @@ public class SetterTestController
   
   public void deleteSection()
   {
+	  Section s=test.getSection(currentSection);
+	  test.removeSection(s);
+  }
+  
+  public void deleteQuestion()
+  {
+	  Section s=test.getSection(currentSection);
+	  Question q=s.getQuestion(currentQuestion);
 	  
+	  s.removeQuestion(q);
   }
   
   public int countSection()
@@ -198,7 +207,7 @@ public class SetterTestController
 	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
 	  
 	  s.add(q.getPossibleMarks()+"");
-	  s.add("Subsection");
+	  s.add(q.getsubSectionTitle());
 	  
 	  if (getQuestionType()==1)
 	  {		  

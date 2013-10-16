@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -133,8 +134,33 @@ public class ViewSectionPanel extends JPanel {
 			btnDelete.addActionListener(new ActionListener(){  //Delete the question
 			public void actionPerformed(ActionEvent e) {
 				
-				 }
-					});
+				//default icon, custom title
+				int n = JOptionPane.showConfirmDialog(
+				    gui,
+				    "Are you sure that you whant to delete the Section?",
+				    "Delete Section",
+				    JOptionPane.YES_NO_OPTION);
+				
+				if(n==JOptionPane.YES_OPTION)
+				{
+					obj.deleteSection();
+					
+					if(obj.getCurrentSection()==obj.countSection())
+					{
+						obj.setCurrentSection(obj.getCurrentSection()-1);
+					}
+				
+					ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
+					
+					gui.panelCenter.removeAll();
+					gui.panelCenter.add(viewPanel);
+					
+					gui.validate();
+					gui.repaint();
+				}
+				
+				}	
+			});
 			
 			btnEdit.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {

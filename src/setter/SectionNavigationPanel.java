@@ -51,29 +51,21 @@ public class SectionNavigationPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 								
 				int num=obj.getCurrentSection()+1;
-				obj.setCurrentSection(num);
 				
-				ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
+				if(num!=obj.countSection()){
+					obj.setCurrentSection(num);
 				
-				gui.panelCenter.removeAll();
-				gui.panelCenter.add(viewPanel);
+					ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
 				
-				gui.txtTest.setVisible(false);
-				gui.lblTest.setVisible(true);
+					gui.panelCenter.removeAll();
+					gui.panelCenter.add(viewPanel);
 				
-				gui.validate();
-				gui.repaint();
+					gui.txtTest.setVisible(false);
+					gui.lblTest.setVisible(true);
 				
-				/*
-				if(num==obj.section.size()+1)
-				{
-					btnNext.setVisible(false);
+					gui.validate();
+					gui.repaint();	
 				}
-				else
-				{
-					btnNext.setVisible(true);
-				}
-				*/
 			 }
 			});
 		
@@ -81,6 +73,8 @@ public class SectionNavigationPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 							
 				int num=obj.getCurrentSection()-1;
+				
+				if(num!=-1){
 				obj.setCurrentSection(num);
 				
 				ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
@@ -93,18 +87,8 @@ public class SectionNavigationPanel extends JPanel {
 				
 				gui.validate();
 				gui.repaint();
-				
-				/*
-				if(num==1)
-				{
-					btnPrevious.setVisible(false);
-				}
-				else
-				{
-					btnPrevious.setVisible(true);
-				}
-				*/
 			 }
+			}
 			});
 		
 		btnBack.addActionListener(new ActionListener(){  //Edit the question

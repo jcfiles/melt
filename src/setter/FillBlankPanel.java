@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
@@ -99,6 +100,39 @@ public class FillBlankPanel extends JPanel {
 		btnDelete.addActionListener(new ActionListener(){  //Delete the question
 		       public void actionPerformed(ActionEvent e) {
 		         
+		    	   //default icon, custom title
+					int n = JOptionPane.showConfirmDialog(
+					    gui,
+					    "Are you sure that you whant to delete the Question?",
+					    "Delete Question",
+					    JOptionPane.YES_NO_OPTION);
+					
+					if(n==JOptionPane.YES_OPTION)
+					{
+						obj.deleteQuestion();
+						
+						if(obj.getCurrentQuestion()==obj.countQuestion())
+						{
+							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
+						}
+						
+						if(obj.getQuestionType()==0)
+						{
+							MultichoicePanel panel=new MultichoicePanel(obj,gui);
+							gui.panelCenter.removeAll();
+							gui.panelCenter.add(panel);
+						}
+						else
+						{
+							FillBlankPanel panel=new FillBlankPanel(obj,gui);
+							gui.panelCenter.removeAll();
+							gui.panelCenter.add(panel);
+						}
+					
+						
+						gui.validate();
+						gui.repaint();
+					}										
 		       }
 		    });
 		
