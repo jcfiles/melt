@@ -6,7 +6,7 @@ import java.util.HashMap;
 import javax.swing.JTable;
 
 import backend.Answer;
-import backend.FTBQ;
+import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
 import backend.MCQ;
 import backend.Question;
@@ -127,7 +127,7 @@ public class SetterTestController
   {
 	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
-		FTBQ q=new FTBQ(question);
+		FIBQ q=new FIBQ(question);
 		q.setPossibleMarks(marks);
 		q.setSubsectionTitle(subsection);
 		test.getSection(currentSection).addQuestion(q);
@@ -179,7 +179,7 @@ public class SetterTestController
 	  ArrayList<Answer> a=new ArrayList<Answer>();
 	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
   
-	  if (q instanceof FTBQ)
+	  if (q instanceof FIBQ)
 	  {		  		
 		  return 1;
 	  }
@@ -201,8 +201,8 @@ public class SetterTestController
 	  
 	  if (getQuestionType()==1)
 	  {		  
-		  s.add(((FTBQ) q).getQFirstPart());
-		  s.add(((FTBQ) q).getQSecondPart());		  
+		  s.add(((FIBQ) q).getQFirstPart());
+		  s.add(((FIBQ) q).getQSecondPart());		  
 	  }
 	  else 
 	  {

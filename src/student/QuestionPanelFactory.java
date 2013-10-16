@@ -3,7 +3,7 @@ package student;
 import java.util.HashMap;
 
 import backend.Question;
-import backend.FTBQ;
+import backend.FIBQ;
 import backend.MCQ;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -20,7 +20,7 @@ public enum QuestionPanelFactory {
     
     private static HashMap<Class, Class> questionPanelMap = new HashMap<>();
     static {
-       questionPanelMap.put(FTBQ.class, FTBQuestionPanel.class);
+       questionPanelMap.put(FIBQ.class, FTBQuestionPanel.class);
        questionPanelMap.put(MCQ.class, MCQuestionPanel.class);  
     }
     

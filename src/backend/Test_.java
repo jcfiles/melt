@@ -255,24 +255,24 @@ public class Test_ implements java.io.Serializable
         q1.addAnswer(new Answer("won't pass", true));
         q1.addAnswer(new Answer("wouldn't pass", false));
         q1.addAnswer(new Answer("wouldn't have passed", false));
-        FTBQ q2 = null;
+        FIBQ q2 = null;
         try {
-            q2 = new FTBQ("The students are trying to [catch] up with what the professor has taught. (catch)");
+            q2 = new FIBQ("The students are trying to [catch] up with what the professor has taught. (catch)");
         }
         catch(InvalidFTBQFormatException e) {
         }
         s1.addQuestion(q2);
-        FTBQ q3 = null;
+        FIBQ q3 = null;
         try {
-            q3 = new FTBQ("I haven't done my homework [yet], said Johnny. (yet)");
+            q3 = new FIBQ("I haven't done my homework [yet], said Johnny. (yet)");
         }
         catch(InvalidFTBQFormatException e) {
         }
         s1.addQuestion(q3);
         
-        FTBQ q4 = null;
+        FIBQ q4 = null;
 		try {
-			q4 = new FTBQ("It's rainning cats and [dogs]. (dogs)");
+			q4 = new FIBQ("It's rainning cats and [dogs]. (dogs)");
 		} catch (InvalidFTBQFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

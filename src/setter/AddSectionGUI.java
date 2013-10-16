@@ -45,6 +45,7 @@ public class AddSectionGUI extends JFrame {
 			public void run() {
 				try {
 					SetterTestController obj=new SetterTestController();
+					MenuGUI gui=new MenuGUI();
 					try {
 					    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 					        if ("Nimbus".equals(info.getName())) {

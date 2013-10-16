@@ -8,6 +8,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
@@ -29,7 +31,7 @@ import java.awt.event.ActionListener;
 public class MenuGUI extends JFrame {
 	private StudentTestController studentTestController;
 	private JPanel contentPane;
-	private SetterPanel setterPanel=new SetterPanel();
+	private SetterPanel setterPanel;
 	private JButton btnStudent=new JButton("Student");
 	private JButton btnSetter=new JButton("Setter");
 	private static JPanel panelCenter = new JPanel();
@@ -43,8 +45,19 @@ public class MenuGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					try {
+					    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+					        if ("Nimbus".equals(info.getName())) {
+					            UIManager.setLookAndFeel(info.getClassName());
+					            break;
+					        }
+					    }
+					} catch (Exception e) {
+					    // If Nimbus is not available, you can set the GUI to another look and feel.
+					}
 					MenuGUI frame = new MenuGUI();
 					frame.setVisible(true);
+										
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -91,6 +104,7 @@ public class MenuGUI extends JFrame {
 		
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		
+		setterPanel=new SetterPanel();
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));
 		panelCenter.add(setterPanel);
 		
@@ -119,11 +133,12 @@ public class MenuGUI extends JFrame {
 		   public void actionPerformed(ActionEvent e) {
 			   
 		     obj=new SetterTestController();
-         obj.createTest("");
-         obj.setCurrentSection(0);
-         AddSectionGUI gui=new AddSectionGUI(obj);
-         gui.setVisible(true);
-				   
+		     obj.createTest("");
+		     obj.setCurrentSection(0);
+		     AddSectionGUI gui=new AddSectionGUI(obj);
+		     gui.setVisible(true);
+		     
+		     MenuGUI.this.dispose();
 				   
 					 }
 					});

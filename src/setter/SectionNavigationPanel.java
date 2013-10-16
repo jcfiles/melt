@@ -107,6 +107,16 @@ public class SectionNavigationPanel extends JPanel {
 			 }
 			});
 		
-
+		btnBack.addActionListener(new ActionListener(){  //Edit the question
+			public void actionPerformed(ActionEvent e) {
+				
+				gui.dispose();
+				
+				MenuGUI menu=new MenuGUI();
+				menu.setVisible(true);
+				
+				
+			}
+		});
 	}
 }

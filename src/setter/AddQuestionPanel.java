@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import student.TestSectionPanel;
 import backend.Answer;
-import backend.FTBQ;
+import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
 
 import java.awt.Checkbox;

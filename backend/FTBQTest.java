@@ -42,7 +42,7 @@ public class FTBQTest {
     @Test
     public void testGetQFirstPart() {
         System.out.println("getQFirstPart");
-        FTBQ instance = null;
+        FIBQ instance = null;
         String expResult = "";
         String result = instance.getQFirstPart();
         assertEquals(expResult, result);
@@ -56,7 +56,7 @@ public class FTBQTest {
     @Test
     public void testGetQSecondPart() {
         System.out.println("getQSecondPart");
-        FTBQ instance = null;
+        FIBQ instance = null;
         String expResult = "";
         String result = instance.getQSecondPart();
         assertEquals(expResult, result);
@@ -71,7 +71,7 @@ public class FTBQTest {
     public void testSetGivenAnswer() {
         System.out.println("setGivenAnswer");
         String answer = "";
-        FTBQ instance = null;
+        FIBQ instance = null;
         instance.setGivenAnswer(answer);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -83,7 +83,7 @@ public class FTBQTest {
     @Test
     public void testGetGivenAnswer() {
         System.out.println("getGivenAnswer");
-        FTBQ instance = null;
+        FIBQ instance = null;
         String expResult = "";
         String result = instance.getGivenAnswer();
         assertEquals(expResult, result);
@@ -97,7 +97,7 @@ public class FTBQTest {
     @Test
     public void testGetMarksAwarded() {
         System.out.println("getMarksAwarded");
-        FTBQ instance = null;
+        FIBQ instance = null;
         int expResult = 0;
         int result = instance.getMarksAwarded();
         assertEquals(expResult, result);
@@ -111,7 +111,7 @@ public class FTBQTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        FTBQ instance = null;
+        FIBQ instance = null;
         String expResult = "";
         String result = instance.toString();
         assertEquals(expResult, result);

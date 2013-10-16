@@ -8,19 +8,19 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
-import backend.FTBQ;
+import backend.FIBQ;
 import backend.Answer;
 
 public class FTBQuestionPanel extends QuestionPanel {
 	
     private static final long serialVersionUID = -2289297585604116875L;
     private JTextField textField;
-    private FTBQ ftbq;
+    private FIBQ ftbq;
 
    /**
     * Create the panel.
     */
-    public FTBQuestionPanel(FTBQ ftbq) {
+    public FTBQuestionPanel(FIBQ ftbq) {
         this.ftbq = ftbq;
         setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 	GridBagLayout gridBagLayout = new GridBagLayout();

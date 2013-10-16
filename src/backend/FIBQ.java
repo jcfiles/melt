@@ -8,7 +8,7 @@ import java.util.Iterator;
  * @author Bruce Steedman 
  * @version 2013.09.27
  */
-public class FTBQ extends Question
+public class FIBQ extends Question
 {
     private String qFirstPart, qSecondPart;
     private String givenAnswer = "";
@@ -18,7 +18,7 @@ public class FTBQ extends Question
      * 
      * @param Question text string must contain the answer string wrapped in [...] to be valid
      */
-    public FTBQ(String ftbqText) throws InvalidFTBQFormatException {
+    public FIBQ(String ftbqText) throws InvalidFTBQFormatException {
         super(ftbqText);
         String s[] = parseQandA(ftbqText);
         this.qFirstPart = s[1];
