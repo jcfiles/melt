@@ -63,6 +63,7 @@ public class SectionInfoPanel extends JPanel {
 	gbc_lblInstructions.gridy = 0;
 	panel_2.add(lblInstructions, gbc_lblInstructions);
 	JTextArea textAreaInstructions = new JTextArea();
+	textAreaInstructions.setEditable(false);
 	textAreaInstructions.setText(section.getSectionIntroText());
 	GridBagConstraints gbc_textAreaInstructions = new GridBagConstraints();
 	gbc_textAreaInstructions.anchor = GridBagConstraints.WEST;
