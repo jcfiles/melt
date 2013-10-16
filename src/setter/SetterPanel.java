@@ -9,6 +9,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.SpringLayout;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class SetterPanel extends JPanel {
 
 	JButton btnNewTest=new JButton("New Test");
