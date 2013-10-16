@@ -53,15 +53,17 @@ public class AddQuestionPanel extends JPanel {
 	private DefaultTableModel model;
 	private ImageIcon correctAnswerImage,wrongAnswerImage;
 	private Object[][] data;
+	private Boolean bEdit=false;
 
 
 	/**
 	 * Create the buttonsPanel.
 	 */
-	public AddQuestionPanel(final SetterTestController obj, final AddQuestionGUI gui) {
+	public AddQuestionPanel(final SetterTestController obj, final AddQuestionGUI gui, Boolean b) {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
+		bEdit=b;
 		final JLabel lblFill = new JLabel("*insert the answer like e.x[answer]");
 		lblFill.setVisible(false);
 		springLayout.putConstraint(SpringLayout.NORTH, lblFill, 10, SpringLayout.NORTH, this);
@@ -184,16 +186,8 @@ public class AddQuestionPanel extends JPanel {
 			}
 		});
 		
-		
-		
-		
 		correctAnswerImage=new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check.png"));
 		wrongAnswerImage=new ImageIcon(TestSectionPanel.class.getResource("/lib/images/delete.png"));
-		
-		
-		
-		
-			
 		
 		//Add buttons
 		JButton btnAdd = new JButton("Add");
@@ -226,6 +220,43 @@ public class AddQuestionPanel extends JPanel {
 		add(buttonsPanel);
 		
 		buttonsPanel.add(btnSave);
+		
+		
+		if(bEdit==true)
+		{
+			
+			ArrayList<String> list=obj.getQuestion();
+			txtMarks.setText(list.get(0));
+			txtSubsection.setText(list.get(1));
+			
+			if(obj.getQuestionType()==1)
+			{
+				txtQuestion.setText(list.get(2)+ "["+list.get(3)+ "]"+list.get(4));				
+			}
+			else
+			{
+				txtQuestion.setText(list.get(2));
+				
+				Object[][] temp = new Object[list.size()-3][2];
+				
+				for(int i=3; i<list.size(); i++)
+				{
+					temp[i][0]=list.get(3);
+					if(list.get(4).equals(true+""))
+					{
+						temp[i][1]=correctAnswerImage;
+					}
+					else
+					{
+						temp[i][1]=wrongAnswerImage;
+					}
+				}
+
+			     DefaultTableModel model = new DefaultTableModel(temp, header); 	
+			     possibleAnswers.setModel(model);
+			}			
+			
+		}
 		
 		
 		//radio button listener to make things visible and unvisible

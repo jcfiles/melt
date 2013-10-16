@@ -252,7 +252,9 @@ public class SetterTestController
 	  
 	  if (getQuestionType()==1)
 	  {		  
+		  FIBQ f=(FIBQ) q;
 		  s.add(((FIBQ) q).getQFirstPart());
+		  s.add(f.getGivenAnswer());
 		  s.add(((FIBQ) q).getQSecondPart());		  
 	  }
 	  else 
@@ -263,6 +265,7 @@ public class SetterTestController
 		  for(int i=0; i<a.size(); i++)
 		  {
 			  s.add(a.get(i).getAnswerText());
+			  s.add(a.get(i).getIsRight()+"");
 		  }
 		  
 	  }

@@ -97,7 +97,7 @@ public class MultichoicePanel extends JPanel {
 		btnAdd.addActionListener(new ActionListener(){  //button to add new question
 		      public void actionPerformed(ActionEvent e) {
 		        
-		    	  AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui);
+		    	  AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui,false);
 		    	  
 		    	  gui.panelCenter.removeAll();
 		    	  gui.panelCenter.add(addPanel);
@@ -149,7 +149,7 @@ public class MultichoicePanel extends JPanel {
 		btnEdit.addActionListener(new ActionListener(){  //Edit the question
 	        public void actionPerformed(ActionEvent e) {
 
-	        	AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui);
+	        	AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui,true);
 	        	gui.panelCenter.removeAll();
 	        	gui.panelCenter.add(addPanel);
 	         

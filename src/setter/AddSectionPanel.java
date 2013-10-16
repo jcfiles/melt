@@ -98,7 +98,7 @@ public class AddSectionPanel extends JPanel {
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		add(buttonsPanel);
 		
-		if(bEdit==true)
+test		if(bEdit==true)
 		{
 			ArrayList<String> list = new ArrayList<String>();
 			list=obj.getSection();
