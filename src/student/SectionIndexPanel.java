@@ -17,7 +17,9 @@ public class SectionIndexPanel extends JPanel {
 	
     private StudentTestController controller;
     private ArrayList<Section> sections;
+    private ArrayList<SectionChooserPanel> sectionChooserPanels = new ArrayList<>();
     private JPanel panelSections;
+    private int index;
 
     /**
      * Create the panel.
@@ -80,6 +82,7 @@ public class SectionIndexPanel extends JPanel {
     
     private void buildSectionChooserPanel(int index) {
         SectionChooserPanel panel = new SectionChooserPanel(controller, sections.get(index), this);
+        sectionChooserPanels.add(panel);
         if(index!=0){
         	//panel.setbuttonSelectEnabled(false);
         }
@@ -89,5 +92,13 @@ public class SectionIndexPanel extends JPanel {
         gbc_panel.gridx = 0;
         gbc_panel.gridy = index;
         panelSections.add(panel, gbc_panel);
+    }
+    
+    public void EnableNextButton(){
+    	if(index>0){
+    		sectionChooserPanels.get(index-1).setbuttonSelectEnabled(false);
+    	}
+    	sectionChooserPanels.get(index).setbuttonSelectEnabled(true);
+    	index++;
     }
 }

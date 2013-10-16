@@ -14,7 +14,10 @@ import java.awt.event.MouseEvent;
 
 import backend.Section;
 import backend.StudentTestController;
-
+/**
+ * @author Dimitrios Chondrokoukis
+ * 
+ */
 public class SectionChooserPanel extends JPanel {
 
     StudentTestController controller;
@@ -74,6 +77,7 @@ public class SectionChooserPanel extends JPanel {
 	gbc_labelSubsectionTitle.gridy = 0;
 	panel_1.add(labelSubsectionTitle, gbc_labelSubsectionTitle);
 	buttonSelect = new JButton(">");
+	buttonSelect.setEnabled(false);
 	buttonSelect.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

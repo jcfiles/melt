@@ -55,7 +55,9 @@ public class StudentStartJPanel extends JPanel { //implements ActionListener{
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	MainGui.setComposite(new SectionIndexPanel(controller));
+            	SectionIndexPanel sectionIndexPanel = new SectionIndexPanel(controller);
+            	sectionIndexPanel.EnableNextButton();
+            	MainGui.setComposite(sectionIndexPanel);
             }
          });
         GridBagConstraints gbc_startButton = new GridBagConstraints();

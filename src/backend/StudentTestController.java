@@ -65,6 +65,7 @@ public class StudentTestController {
             MainGui.setComposite(finishpanel);
         }
         else{
+        	sectionIndexPanel.EnableNextButton();
             MainGui.setComposite(sectionIndexPanel);
         }
     }

@@ -27,7 +27,7 @@ import backend.Question;
 import backend.Section;
 
 import java.util.Iterator;
-/*
+/**
  * @author Chondrokoukis Dimitrios
  * @contributor Steedman Bruce
  */
