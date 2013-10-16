@@ -27,10 +27,35 @@ public class SectionInfoPanel extends JPanel {
     public SectionInfoPanel(final StudentTestController controller, final Section section, final SectionIndexPanel sectionIndexPanel) {
         this.controller = controller;
         setLayout(new BorderLayout(0, 0));
+        JPanel jpanel = new JPanel();
+        add(jpanel, BorderLayout.NORTH);
+        GridBagLayout gbl_jpanel = new GridBagLayout();
+        gbl_jpanel.columnWidths = new int[]{61, 0};
+        gbl_jpanel.rowHeights = new int[]{16, 0, 0};
+        gbl_jpanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+        gbl_jpanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+        jpanel.setLayout(gbl_jpanel);
+        
+        JButton btnEdit = new JButton("Edit");
+        GridBagConstraints gbc_btnEdit = new GridBagConstraints();
+        gbc_btnEdit.anchor = GridBagConstraints.NORTHEAST;
+        gbc_btnEdit.insets = new Insets(0, 0, 5, 0);
+        gbc_btnEdit.gridx = 0;
+        gbc_btnEdit.gridy = 0;
+        jpanel.add(btnEdit, gbc_btnEdit);
+        
+        if(!MainGui.isSetter){
+        	btnEdit.setVisible(false);
+        }
+        
         JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
-	labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-	labelSectionTitle.setHorizontalAlignment(SwingConstants.CENTER);
-	add(labelSectionTitle, BorderLayout.NORTH);
+        labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.anchor = GridBagConstraints.NORTH;
+        gbc_lblNewLabel.gridx = 0;
+        gbc_lblNewLabel.gridy = 1;
+        jpanel.add(labelSectionTitle, gbc_lblNewLabel);
+        
 	JScrollPane scrollPane = new JScrollPane();
 	add(scrollPane, BorderLayout.CENTER);
 	JPanel panel = new JPanel();

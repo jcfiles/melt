@@ -14,7 +14,7 @@ public class FIBQ extends Question
     private String givenAnswer = "";
     
     /**
-     * Constructor for objects of class FTBQ
+     * Constructor for objects of class FIBQ
      * 
      * @param Question text string must contain the answer string wrapped in [...] to be valid
      */
@@ -24,6 +24,11 @@ public class FIBQ extends Question
         this.qFirstPart = s[1];
         this.qSecondPart = s[2];
         this.addAnswer(new Answer(s[0], true));
+    }
+    
+    public void checkQuestion(String Question) throws InvalidFTBQFormatException
+    {
+    	String s[] = parseQandA(Question);
     }
     
     public String getQFirstPart()

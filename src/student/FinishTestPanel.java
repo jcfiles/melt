@@ -29,6 +29,7 @@ import java.util.Date;
 public class FinishTestPanel extends JPanel {
 
 	/**
+	 * @author Dimitrios Chondrokoukis
 	 * 
 	 */
 	private static final long serialVersionUID = 389409352371905605L;
