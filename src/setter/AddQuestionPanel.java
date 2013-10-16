@@ -242,19 +242,21 @@ public class AddQuestionPanel extends JPanel {
 				
 				txtQuestion.setText(list.get(2));
 				
-				Object[][] temp = new Object[list.size()-3][2];
+				Object[][] temp = new Object[list.size()-3/2][2];
 				
-				for(int i=3; i<list.size(); i++)
-				{
-					temp[i][0]=list.get(3);
+				int num=0;
+				for(int i=3; i<list.size(); i=i+2)
+				{				
+					temp[num][0]=list.get(3);
 					if(list.get(4).equals(true+""))
 					{
-						temp[i][1]=correctAnswerImage;
+						temp[num][1]=correctAnswerImage;
 					}
 					else
 					{
-						temp[i][1]=wrongAnswerImage;
+						temp[num][1]=wrongAnswerImage;
 					}
+					num++;
 				}
 
 			     DefaultTableModel model = new DefaultTableModel(temp, header); 	

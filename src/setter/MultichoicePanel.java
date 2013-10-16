@@ -183,7 +183,7 @@ public class MultichoicePanel extends JPanel {
 	            add(new JScrollPane(answers));
 
 	                	
-	                	for (int i=0; i<count; i++)
+	                	for (int i=0; i<count; i=i+2)
 	                	{
 	                		//JRadioButton
 		                    JPanel panel = new JPanel();
@@ -194,7 +194,7 @@ public class MultichoicePanel extends JPanel {
 		                    gbc1.weightx = 1;
 		                    gbc1.weighty = 1;
 		                    gbc1.anchor=GridBagConstraints.NORTHWEST;
-		                    answers.add(panel, gbc1, i);
+		                    answers.add(panel, gbc1, i/2);
 		                    
 		                    gui.validate();
 		                    gui.repaint();
