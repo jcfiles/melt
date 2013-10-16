@@ -48,9 +48,9 @@ public class TestSectionPanel extends JPanel {
      * Create the panel.
      */
     public TestSectionPanel(final StudentTestController controller, final Section section) {
-    	tickImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/tick.png"));
+    	tickImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check_b.png"));
     	tickImage = tickImageIcon.getImage();
-    	exImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/ex.png"));
+    	exImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/delete.png"));
     	exImage = exImageIcon.getImage();
 	this.controller = controller;
         this.section = section;
@@ -247,7 +247,6 @@ public class TestSectionPanel extends JPanel {
             	if(questionPanelsIndex>0){
         			//Puts tick in the table
                     if(questionPanels.get(questionPanelsIndex).isAnswered()){
-                    	System.out.println(true);
                     	tableQuestions.setValueAt(scaledTickImageIcon, questionPanelsIndex, 1);
                     }
                     else{
