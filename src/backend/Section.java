@@ -16,7 +16,7 @@ public class Section implements java.io.Serializable
     private ArrayList<Question> questions;
     private int possibleSectionMarks = 0; // Built as questions added/removed
     private int sectionMarksAwarded;
-    private boolean isLocked = true;
+    private boolean isLocked;
     private SectionTimer sectionProgram;
     private int sectionTime;
     

@@ -18,6 +18,7 @@ import backend.StudentTestController;
 public class SectionChooserPanel extends JPanel {
 
     StudentTestController controller;
+    private JButton buttonSelect;
     
     /**
      * Create the panel.
@@ -72,7 +73,7 @@ public class SectionChooserPanel extends JPanel {
 	gbc_labelSubsectionTitle.gridx = 0;
 	gbc_labelSubsectionTitle.gridy = 0;
 	panel_1.add(labelSubsectionTitle, gbc_labelSubsectionTitle);
-	JButton buttonSelect = new JButton(">");
+	buttonSelect = new JButton(">");
 	buttonSelect.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -83,5 +84,12 @@ public class SectionChooserPanel extends JPanel {
 	gbc_buttonSelect.gridx = 1;
 	gbc_buttonSelect.gridy = 0;
 	add(buttonSelect, gbc_buttonSelect);
+    }
+    
+    /*
+     * Sets the selection button enabled or disabled
+     */
+    public void setbuttonSelectEnabled(boolean enabled){
+    	buttonSelect.setEnabled(enabled);
     }
 }

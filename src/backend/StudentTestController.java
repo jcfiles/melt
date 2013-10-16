@@ -35,6 +35,7 @@ public class StudentTestController {
      * User starts a section, timer is started and test section panel displayed.
      */
     public void startSection(Section section) {
+    	section.lockSection();
         TestSectionPanel testSectionPanel = new TestSectionPanel(this, section);
         MainGui.setComposite(testSectionPanel);
         SectionTimer timer = new SectionTimer(this, testSectionPanel, section.getSectionTime());
@@ -51,11 +52,20 @@ public class StudentTestController {
             QuestionPanel questionPanel = it.next();
             questionPanel.submitAnswer(); // Calls method according the subclass of QuestionPanel :)
         }
-        MainGui.setComposite(sectionIndexPanel);
-        
-        //String sectionMarks = String.valueOf(sectionPanel.getSection().gradeSection());
-        //FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks);
-        //MainGui.setComposite(finishpanel);
+        boolean areAllSectionsCompleted = true;
+        for(int i=0; i<test.getAllSections().size(); i++){
+        	if(!test.getSection(i).isLocked()){
+        		areAllSectionsCompleted = false;
+        	}
+        }
+        if(areAllSectionsCompleted){
+        	String sectionMarks = String.valueOf(sectionPanel.getSection().gradeSection());
+            FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks);
+            MainGui.setComposite(finishpanel);
+        }
+        else{
+            MainGui.setComposite(sectionIndexPanel);
+        }
     }
     
     /**
