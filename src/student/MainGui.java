@@ -11,8 +11,8 @@ import backend.StudentTestController;
 public class MainGui {
 
     private StudentTestController controller;
-    //private StudentStartJPanel studentpanel;
     private static JFrame frame;
+    public static boolean isSetter = false;
     
     
     public static JFrame getFrame() {
@@ -59,7 +59,9 @@ public class MainGui {
         controller = new StudentTestController();
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if(!isSetter){
+        	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
         frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
         frame.add(new StudentStartJPanel(controller));
         frame.validate();

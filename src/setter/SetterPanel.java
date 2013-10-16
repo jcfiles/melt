@@ -7,7 +7,13 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+
 import javax.swing.SpringLayout;
+
+import student.MainGui;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /*
  * @author Erotokritou Zoe
@@ -37,6 +43,14 @@ public class SetterPanel extends JPanel {
 		gbc_btnPreview.fill = GridBagConstraints.BOTH;
 		gbc_btnPreview.gridx = 1;
 		gbc_btnPreview.gridy = 2;
+		btnPreview.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainGui.isSetter = true;
+				MainGui maingui = new MainGui();
+				maingui.main(null);
+			}
+		});
 		add(btnPreview, gbc_btnPreview);
 		
 
