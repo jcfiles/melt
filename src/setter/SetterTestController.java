@@ -31,6 +31,9 @@ public class SetterTestController
 
   }
   
+  /**
+   * Create Test with the name
+   */
   public void createTest(String title)
   {
 	  if(test==null)
@@ -49,6 +52,9 @@ public class SetterTestController
    return test.getTestTitle();
   }
   
+  /**
+   * Add a Section in the test
+   */
   public void addSection(String sectionTitle, String sectionIntroText, int sectionTime)
   {
     Section s=new Section(sectionTitle,sectionIntroText,sectionTime);
@@ -57,19 +63,28 @@ public class SetterTestController
     test.addSection(s);
   }
   
+  /**
+   * Edit a section in the test
+   */
   public void editSection(String sectionTitle, String sectionIntroText, int sectionTime)
   {
 	    Section s=test.getSection(currentSection);
 	    s.editSection(sectionTitle, sectionIntroText, sectionTime);
   }
 
-  
+
+  /**
+   * Delete a section in the test
+   */
   public void deleteSection()
   {
 	  Section s=test.getSection(currentSection);
 	  test.removeSection(s);
   }
   
+  /**
+   * Delete a question in the test
+   */
   public void deleteQuestion()
   {
 	  Section s=test.getSection(currentSection);
@@ -78,6 +93,9 @@ public class SetterTestController
 	  s.removeQuestion(q);
   }
   
+  /**
+   * Counts how many Sections are in the test
+   */
   public int countSection()
   {
 	  ArrayList<Section> s=new ArrayList<Section>();
@@ -94,6 +112,9 @@ public class SetterTestController
 	  }	  
   }
   
+  /**
+   * Counts how many Questions are in the test
+   */
   public int countQuestion()
   {
 	  ArrayList<Section> s=new ArrayList<Section>();
@@ -111,6 +132,9 @@ public class SetterTestController
 	  }	  
   }
   
+  /**
+   * Return the current Section with the user is in with all the information
+   */
   public ArrayList<String> getSection()
   {
 	  int marks=0;
@@ -134,6 +158,9 @@ public class SetterTestController
   }
   
   
+  /**
+   * Add a Fill Blank Question in the Section of the test
+   */
   public int addFIBQ(String subsection, String question, int marks)
   {
 	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
@@ -153,6 +180,9 @@ public class SetterTestController
     return 1;
   }
   
+  /**
+   * Edit the current Fill Blank Question
+   */
   public int editFIBQ(String subsection, String question, int marks)
   {
 	  Section s=test.getSection(currentSection);
@@ -175,6 +205,9 @@ public class SetterTestController
 	  return 1;
   }
   
+  /**
+   * Add a Fill Blank Question in the Section of the test
+   */
   public void addMCQ(String section, String question, int marks, JTable possibleAnswers)
   {
 	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
@@ -197,13 +230,15 @@ public class SetterTestController
 			  q.setAnswer(s,false,i);
 		  }
 		  
-		 // q.setAnswer(possibleAnswers.getValueAt(i, 0).toString(), new Boolean(possibleAnswers.getValueAt(i, 1).toString()), i);
 	  }
 	  
 	  test.getSection(currentSection).addQuestion(q);
 
   }
   
+  /**
+   * Edit the current Multiplechoice Question
+   */
   public void editMCQ(String section, String question, int marks, JTable possibleAnswers)
   {	  
 	  MCQ q=(MCQ) test.getSection(currentSection).getQuestion(currentQuestion);
@@ -227,6 +262,9 @@ public class SetterTestController
 	  }
   }
   
+  /**
+   * Return the current Question with the user is in with all the information
+   */
   public int getQuestionType()
   {
 	  ArrayList<String> s=new ArrayList<String>();
@@ -244,6 +282,9 @@ public class SetterTestController
 	  return 0;
   }
   
+  /**
+   * Edit the current Fill Blank Question
+   */
   public ArrayList<String> getQuestion()
   {
 	  ArrayList<String> s=new ArrayList<String>();
@@ -278,27 +319,42 @@ public class SetterTestController
   }
 
   
+  /**
+   * Returns the current section title
+   */
   public String getCurrertSectionTitle()
   {
     return test.getSection(currentSection).getSectionTitle();
 
   }
   
+  /**
+   * Sets the current section number
+   */
   public void setCurrentSection(int section)
   {
     currentSection=section;
   }
   
+  /**
+   * Sets the current question number
+   */
   public void setCurrentQuestion(int question)
   {
     currentQuestion=question;
   }
   
+  /**
+   * Returns the current Section
+   */
   public int getCurrentSection()
   {
     return currentSection;
   }
   
+  /**
+   * Returns the current queston
+   */
   public int getCurrentQuestion()
   {
     return currentQuestion;
