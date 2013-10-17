@@ -16,7 +16,7 @@ import java.awt.Insets;
 /**
  * 
  * @author Dimitrios Chondrokoukis
- *
+ * @contributor Bruce Steedman
  */
 public class SectionIndexPanel extends JPanel {
 	
