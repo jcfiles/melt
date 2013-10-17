@@ -23,6 +23,8 @@ import javax.swing.border.EmptyBorder;
 
 import backend.Question;
 import backend.Section;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 /*
  * @author Erotokritou Zoe
@@ -39,6 +41,7 @@ public class AddSectionGUI extends JFrame {
 	public JLabel lblTest=new JLabel("TestA");
 	public JPanel panelCenter=new JPanel();
 	private SetterTestController obj=new SetterTestController();
+	private final JButton btnHelp = new JButton("Help");
 	
 	/**
 	 * Launch the application.
@@ -85,9 +88,9 @@ public class AddSectionGUI extends JFrame {
 		JPanel panelTitle = new JPanel();
 		contentPane.add(panelTitle, BorderLayout.NORTH);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0};
+		gbl_panel_1.columnWidths = new int[]{0, 0};
 		gbl_panel_1.rowHeights = new int[]{0};
-		gbl_panel_1.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{Double.MIN_VALUE, 0.0};
 		gbl_panel_1.rowWeights = new double[]{Double.MIN_VALUE};
 		panelTitle.setLayout(gbl_panel_1);
 		
@@ -95,7 +98,11 @@ public class AddSectionGUI extends JFrame {
 		//create 2 JPanels for the panelTitle
 		JPanel panelA = new JPanel();
 		panelA.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panelTitle.add(panelA);
+		GridBagConstraints gbc_panelA = new GridBagConstraints();
+		gbc_panelA.insets = new Insets(0, 0, 0, 5);
+		gbc_panelA.gridx = 0;
+		gbc_panelA.gridy = 0;
+		panelTitle.add(panelA, gbc_panelA);
 		
 		//Set the name of the Test and Sector		
 		lblTest.setVisible(false);
@@ -104,9 +111,18 @@ public class AddSectionGUI extends JFrame {
 		panelA.add(lblTest);
 		panelA.add(txtTest);				
 		
+		GridBagConstraints gbc_btnHelp = new GridBagConstraints();
+		gbc_btnHelp.insets = new Insets(0, 0, 0, 5);
+		gbc_btnHelp.gridx = 1;
+		gbc_btnHelp.gridy = 0;
+		panelTitle.add(btnHelp, gbc_btnHelp);
+		
 		//Switch button 
 		JButton btnSwitch=new JButton("Switch");
-		panelTitle.add(btnSwitch);
+		GridBagConstraints gbc_btnSwitch = new GridBagConstraints();
+		gbc_btnSwitch.gridx = 2;
+		gbc_btnSwitch.gridy = 0;
+		panelTitle.add(btnSwitch, gbc_btnSwitch);
 
 		//The panel in the center		
 		Border lineBorder = BorderFactory.createLineBorder(Color.GRAY, 2, true);
@@ -129,7 +145,13 @@ public class AddSectionGUI extends JFrame {
 	       }
 	    });
 			
-		
+		btnHelp.addActionListener(new ActionListener(){  //Edit the question
+	        public void actionPerformed(ActionEvent e) {
+	        	
+	        	Help help=new Help(1);
+	        	help.setVisible(true);
+	       }
+	    });
 	}
 
 
