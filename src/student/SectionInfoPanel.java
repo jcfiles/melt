@@ -3,7 +3,6 @@ package student;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JScrollPane;
@@ -17,6 +16,11 @@ import java.awt.event.MouseEvent;
 import backend.Section;
 import backend.StudentTestController;
 
+/**
+ * 
+ * @author Dimitrios Chondrokoukis
+ *
+ */
 public class SectionInfoPanel extends JPanel {
 
     StudentTestController controller;

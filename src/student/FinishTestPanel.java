@@ -30,7 +30,7 @@ public class FinishTestPanel extends JPanel {
 
 	/**
 	 * @author Dimitrios Chondrokoukis
-	 * 
+	 * @contributor Justin Chan
 	 */
 	private static final long serialVersionUID = 389409352371905605L;
 	private final JButton backButton = new JButton("Finish");

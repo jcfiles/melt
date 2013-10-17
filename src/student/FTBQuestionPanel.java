@@ -10,7 +10,11 @@ import javax.swing.border.BevelBorder;
 
 import backend.FIBQ;
 import backend.Answer;
-
+/**
+ * 
+ * @author Dimitrios Chondrokoukis
+ * @contributor Bruce Steedman
+ */
 public class FTBQuestionPanel extends QuestionPanel {
 	
     private static final long serialVersionUID = -2289297585604116875L;

@@ -13,6 +13,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import java.awt.Insets;
 
+/**
+ * 
+ * @author Dimitrios Chondrokoukis
+ *
+ */
 public class SectionIndexPanel extends JPanel {
 	
     private StudentTestController controller;
@@ -83,9 +88,6 @@ public class SectionIndexPanel extends JPanel {
     private void buildSectionChooserPanel(int index) {
         SectionChooserPanel panel = new SectionChooserPanel(controller, sections.get(index), this);
         sectionChooserPanels.add(panel);
-        if(index!=0){
-        	//panel.setbuttonSelectEnabled(false);
-        }
         GridBagConstraints gbc_panel = new GridBagConstraints();
         gbc_panel.anchor = GridBagConstraints.NORTH;
         gbc_panel.fill = GridBagConstraints.HORIZONTAL;

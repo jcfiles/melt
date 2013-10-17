@@ -21,6 +21,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JCheckBox;
 
+/**
+ * 
+ * @author Dimitrios Chondrokoukis
+ * @contributor Bruce Steedman
+ */
 public class MCQuestionPanel extends QuestionPanel {
 	
 	private static final long serialVersionUID = 6648494571735411196L;
