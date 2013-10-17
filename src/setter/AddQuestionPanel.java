@@ -54,6 +54,7 @@ public class AddQuestionPanel extends JPanel {
 	private ImageIcon correctAnswerImage,wrongAnswerImage;
 	private Object[][] data;
 	private Boolean bEdit=false;
+	private int row=0;
 
 
 	/**
@@ -156,6 +157,8 @@ public class AddQuestionPanel extends JPanel {
             public Class getColumnClass(int column) {
                 return getValueAt(0, column).getClass();
             }
+            
+            
         };
         
         possibleAnswers.isEditing();
@@ -393,6 +396,54 @@ public class AddQuestionPanel extends JPanel {
 			     possibleAnswers.setModel(model);
 		    	
 			    }
+		});
+		
+		
+		
+		btnDelete.addActionListener(new ActionListener(){
+		    public void actionPerformed(ActionEvent e) {
+
+		    	/*panel_mult.setVisible(true);
+		    	panel_new.setVisible(true);
+		    	lblFill.setVisible(false);
+		    	*/
+		    	
+		    	int n = JOptionPane.showConfirmDialog(
+					    gui,
+					    "Are you sure that you whant to delete ?",
+					    "Delete Answer",
+					    JOptionPane.YES_NO_OPTION);
+					
+		    	if(n==JOptionPane.YES_OPTION)
+				{
+		    	
+		    	Object[][] temp = new Object[possibleAnswers.getRowCount()-1][2];
+			     
+		    	int i=0;
+			     for(i=0; i<possibleAnswers.getRowCount(); i++)
+			     {
+			    	 if(i!=possibleAnswers.getSelectedRow())
+			    	 {
+			    		 temp[i][0]=possibleAnswers.getModel().getValueAt(i, 0);
+			    		 temp[i][1]=possibleAnswers.getModel().getValueAt(i, 1);
+			    	 }
+			    	 else
+			    	 {
+			    		 break;
+			    	 }
+			     }
+			     
+			     for(i=possibleAnswers.getSelectedRow()+1; i<possibleAnswers.getRowCount(); i++)
+			     {
+			    	 temp[i][0]=possibleAnswers.getModel().getValueAt(i, 0);
+		    		 temp[i][1]=possibleAnswers.getModel().getValueAt(i, 1);
+			     }
+
+			     DefaultTableModel model = new DefaultTableModel(temp, header); 	
+			     possibleAnswers.setModel(model);
+		    	
+			    }
+		    }
 		});
 				
 	}	
