@@ -49,14 +49,10 @@ public class MenuGUI extends JFrame {
 			public void run() {
 				try {
 					try {
-					    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-					        if ("Nimbus".equals(info.getName())) {
-					            UIManager.setLookAndFeel(info.getClassName());
-					            break;
-					        }
-					    }
+						UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+					    
 					} catch (Exception e) {
-					    // If Nimbus is not available, you can set the GUI to another look and feel.
+					    
 					}
 					frame = new MenuGUI();
 					frame.setVisible(true);
