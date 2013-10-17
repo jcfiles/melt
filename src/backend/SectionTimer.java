@@ -7,8 +7,8 @@ import student.TestSectionPanel;
 /**
  * Write a description of class SectionTimer here.
  *
- * @author (your name)
- * @version (a version number or a date)  */ 
+ * @author Bruce Steedman assisted by Justin Chan
+ **/ 
 public class SectionTimer {
     
     private StudentTestController controller;

@@ -18,6 +18,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 
+/**
+ * 
+ * @author Justin Chan
+ *
+ */
 public class FileChooserPanel extends JFrame {
 
 	Test_ t;

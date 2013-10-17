@@ -1,8 +1,5 @@
 package student;
 
-/**
- * @author Dimitrios Chondrokoukis
- */
 import backend.StudentTestController;
 
 import javax.swing.JFrame;
@@ -25,6 +22,11 @@ import backend.Test_;
 
 import java.awt.Insets;
 
+/**
+ * 
+ * @author Dimitrios Chondrokoukis
+ *
+ */
 public class StudentStartJPanel extends JPanel {
 	
     private StudentTestController controller;

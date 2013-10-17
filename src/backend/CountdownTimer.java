@@ -2,7 +2,7 @@ package backend;
 
 import javax.swing.JLabel;
 
-/*
+/**
  * @author Chondrokoukis Dimitrios
  */
 public class CountdownTimer extends Thread{
