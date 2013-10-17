@@ -304,7 +304,11 @@ public class SetterTestController
     return currentQuestion;
   }
   
-  public void previewQuestion(Question question, Section section){
+  public void previewQuestion(){
+	  
+	  Section section=test.getSection(currentSection);
+	  Question question=section.getQuestion(currentQuestion);
+	  
 	  StudentTestController studentTestController = new StudentTestController();
 	  studentTestController.setTest(test);
 	  MainGui.isSetter = true;

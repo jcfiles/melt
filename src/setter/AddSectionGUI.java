@@ -21,6 +21,9 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import backend.Question;
+import backend.Section;
+
 /*
  * @author Erotokritou Zoe
  */
@@ -118,6 +121,13 @@ public class AddSectionGUI extends JFrame {
 		//The navigation panel
 		nav=new SectionNavigationPanel(obj,this,menu);
 		contentPane.add(nav, BorderLayout.SOUTH);
+		
+		btnSwitch.addActionListener(new ActionListener(){  //Edit the question
+	        public void actionPerformed(ActionEvent e) {
+	        	
+	        	obj.previewQuestion();
+	       }
+	    });
 			
 		
 	}
