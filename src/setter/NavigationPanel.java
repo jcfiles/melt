@@ -111,6 +111,13 @@ public class NavigationPanel extends JPanel {
 				
 				gui.dispose();
 				
+				ViewSectionPanel view=new ViewSectionPanel(obj,sec);
+				
+				sec.panelCenter.removeAll();
+				sec.panelCenter.add(view);
+				
+				sec.validate();
+				sec.repaint();
 				sec.setVisible(true);
 				
 				
