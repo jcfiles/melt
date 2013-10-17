@@ -187,6 +187,7 @@ public class SetterTestController
   {
 	  Section s=test.getSection(currentSection);
 	  FIBQ q=(FIBQ) s.getQuestion(currentQuestion);
+	  String[] parts=new String[3];
 	  
 	  try {
 			q.checkQuestion(question);

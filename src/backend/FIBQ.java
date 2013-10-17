@@ -28,7 +28,11 @@ public class FIBQ extends Question
     
     public void checkQuestion(String Question) throws InvalidFTBQFormatException
     {
-    	String s[] = parseQandA(Question);
+    	String parts[]=parseQandA(Question);
+    	this.qFirstPart =parts[1];
+        this.qSecondPart = parts[2];
+        this.addAnswer(new Answer(parts[0], true));
+    	
     }
     
     public String getQFirstPart()
@@ -40,7 +44,7 @@ public class FIBQ extends Question
     {
         return qSecondPart;
     }
-    
+
     public void setGivenAnswer(String answer) {
         givenAnswer = answer;
     }

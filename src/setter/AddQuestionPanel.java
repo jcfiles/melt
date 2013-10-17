@@ -237,11 +237,16 @@ public class AddQuestionPanel extends JPanel {
 				txtQuestion.setText(list.get(2)+ "["+list.get(3)+ "]"+list.get(4));	
 				rdbtnMultipleChoice.setSelected(false);
 				rdbtnFillBlanks.setSelected(true);
+				bMCQ=false;
+				
+				panel_mult.setVisible(false);
 			}
 			else
 			{
+				bMCQ=true;
 				rdbtnMultipleChoice.setSelected(true);
 				rdbtnFillBlanks.setSelected(false);
+				panel_mult.setVisible(true);
 				
 				txtQuestion.setText(list.get(2));
 				
@@ -338,6 +343,41 @@ public class AddQuestionPanel extends JPanel {
     		  }
 	    	  
 	    	  if(flag==false){
+	    		  
+	    		if(bEdit==true)
+	    		{
+	    			 if(bMCQ==true) //multiple choice question
+	   	    	  	{	
+	    				 obj.editMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	    				 MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
+	    		        gui.panelCenter.removeAll();
+	    		        gui.panelCenter.add(multiPanel);
+	   	    	  	}
+	    			 else
+	    			 {	    				 
+	    				 int parsingCorrect=obj.editFIBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    				 
+	    				 if(parsingCorrect==0)
+	    				 {
+	    					 JOptionPane.showMessageDialog(gui,
+	   		    			      "You have to insert the answer of the Fill the Blank Question like eg.[answer]",
+	   		    			      "Question parsing Error",
+	   		    			      JOptionPane.ERROR_MESSAGE);
+	    				 }
+	    				 else{
+	    				 FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
+		    			 gui.panelCenter.removeAll();
+		    			 gui.panelCenter.add(fillPanel);
+	    				 }
+		    		 }		       
+	    			 
+		    	  gui.validate();
+		    	  gui.repaint();
+		    	  
+	    		}
+	    		else
+	    		{
+	    			
 	    	  if(bMCQ==true) //multiple choice question
 	    	  {	        	
 	        	obj.addMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
@@ -366,7 +406,8 @@ public class AddQuestionPanel extends JPanel {
 	    	  gui.validate();
 	    	  gui.repaint();	    	        
 	        
-	       }
+	    		}
+	    	  }
 	      }
 	    });
 
