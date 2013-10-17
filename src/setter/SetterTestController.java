@@ -5,12 +5,15 @@ import java.util.HashMap;
 
 import javax.swing.JTable;
 
+import student.MainGui;
+import student.TestSectionPanel;
 import backend.Answer;
 import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
 import backend.MCQ;
 import backend.Question;
 import backend.Section;
+import backend.StudentTestController;
 import backend.Test_;
 
 /*
@@ -299,5 +302,13 @@ public class SetterTestController
   public int getCurrentQuestion()
   {
     return currentQuestion;
+  }
+  
+  public void previewQuestion(Question question, Section section){
+	  StudentTestController studentTestController = new StudentTestController();
+	  studentTestController.setTest(test);
+	  MainGui.isSetter = true;
+	  TestSectionPanel testSectionPanel = new TestSectionPanel(studentTestController, section, question);
+	  MainGui.setComposite(testSectionPanel);
   }
 }

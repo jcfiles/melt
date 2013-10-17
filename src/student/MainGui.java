@@ -8,6 +8,11 @@ import javax.swing.BoxLayout;
 
 import backend.StudentTestController;
 
+/**
+ * 
+ * @author Dimitrios Chondrokoukis
+ *
+ */
 public class MainGui {
 
     private StudentTestController controller;

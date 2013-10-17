@@ -28,6 +28,10 @@ public class StudentTestController {
         this.sectionIndexPanel = sectionIndexPanel;
     }
     
+    public void setTest(Test_ test){
+    	this.test = test;
+    }
+    
     public Test_ getTest() {
         return test;
     }
@@ -37,7 +41,7 @@ public class StudentTestController {
      */
     public void startSection(Section section) {
     	section.lockSection();
-        TestSectionPanel testSectionPanel = new TestSectionPanel(this, section);
+        TestSectionPanel testSectionPanel = new TestSectionPanel(this, section, null);
         MainGui.setComposite(testSectionPanel);
         SectionTimer timer = new SectionTimer(this, testSectionPanel, section.getSectionTime());
         CountdownTimer countdownTimer = new CountdownTimer(section.getSectionTime(),testSectionPanel.getLabelForTimer());

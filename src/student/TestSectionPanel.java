@@ -47,7 +47,7 @@ public class TestSectionPanel extends JPanel {
     /**
      * Create the panel.
      */
-    public TestSectionPanel(final StudentTestController controller, final Section section) {
+    public TestSectionPanel(final StudentTestController controller, final Section section, Question question) {
     	tickImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check_b.png"));
     	tickImage = tickImageIcon.getImage();
     	exImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/delete.png"));
@@ -320,6 +320,18 @@ public class TestSectionPanel extends JPanel {
 	gbc_buttonSubmitSection.gridx = 0;
 	gbc_buttonSubmitSection.gridy = 0;
 	panel_1.add(buttonSubmitSection, gbc_buttonSubmitSection);
+	
+	if(question != null){
+		for(int i=0; i<questionPanels.size(); i++){
+			if(question.equals(questions.get(i))){
+				questionPanelsIndex = i;
+				for(int j=0; j<questionPanelsIndex; j++){
+					((CardLayout)questionHolderPanel.getLayout()).next(questionHolderPanel);
+				}
+			}
+			break;
+		}
+	}
     }
     
     public ArrayList<QuestionPanel> getQuestionPanels() {
