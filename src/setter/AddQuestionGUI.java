@@ -43,6 +43,7 @@ public class AddQuestionGUI extends JFrame {
   final public JPanel panelCenter=new JPanel();
   
   SetterTestController obj=new SetterTestController();
+  private JButton btnHelp;
 
   /**
    * Launch the application.
@@ -81,9 +82,9 @@ public class AddQuestionGUI extends JFrame {
     JPanel panelTitle = new JPanel();
     contentPane.add(panelTitle, BorderLayout.NORTH);
     GridBagLayout gbl_panel_1 = new GridBagLayout();
-    gbl_panel_1.columnWidths = new int[]{0};
+    gbl_panel_1.columnWidths = new int[]{0, 0};
     gbl_panel_1.rowHeights = new int[]{0};
-    gbl_panel_1.columnWeights = new double[]{Double.MIN_VALUE};
+    gbl_panel_1.columnWeights = new double[]{Double.MIN_VALUE, 0.0};
     gbl_panel_1.rowWeights = new double[]{Double.MIN_VALUE};
     panelTitle.setLayout(gbl_panel_1);
     
@@ -92,8 +93,22 @@ public class AddQuestionGUI extends JFrame {
     JLabel lblTitle=new JLabel(s);
     JButton btnSwitch=new JButton("Switch");  //Button to switch preview
     
-    panelTitle.add(lblTitle);
-    panelTitle.add(btnSwitch);
+    GridBagConstraints gbc_lblTitle = new GridBagConstraints();
+    gbc_lblTitle.insets = new Insets(0, 0, 0, 5);
+    gbc_lblTitle.gridx = 0;
+    gbc_lblTitle.gridy = 0;
+    panelTitle.add(lblTitle, gbc_lblTitle);
+    
+    btnHelp = new JButton("Help");
+    GridBagConstraints gbc_btnHelp = new GridBagConstraints();
+    gbc_btnHelp.insets = new Insets(0, 0, 0, 5);
+    gbc_btnHelp.gridx = 1;
+    gbc_btnHelp.gridy = 0;
+    panelTitle.add(btnHelp, gbc_btnHelp);
+    GridBagConstraints gbc_btnSwitch = new GridBagConstraints();
+    gbc_btnSwitch.gridx = 2;
+    gbc_btnSwitch.gridy = 0;
+    panelTitle.add(btnSwitch, gbc_btnSwitch);
     
     //The panel in the center   
     Border lineBorder=BorderFactory.createLineBorder(Color.GRAY, 2, true);
@@ -107,7 +122,13 @@ public class AddQuestionGUI extends JFrame {
     nav=new NavigationPanel(obj,this,sec);
     contentPane.add(nav, BorderLayout.SOUTH);
       
-
+    btnHelp.addActionListener(new ActionListener(){  //Edit the question
+        public void actionPerformed(ActionEvent e) {
+        	
+        	Help help=new Help(2);
+        	help.setVisible(true);
+       }
+    });
 
   }
 }
