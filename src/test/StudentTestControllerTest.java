@@ -3,12 +3,15 @@ package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import backend.*;
 
 public class StudentTestControllerTest {
 
 	@Test
 	public void testGetTest() {
-		fail("Not yet implemented");
+		StudentTestController stc = new StudentTestController();
+		Test_ expResult = Test_.getDemoTest();
+		assertEquals(expResult, stc.getTest());
 	}
 
 	@Test

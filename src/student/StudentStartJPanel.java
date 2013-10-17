@@ -1,5 +1,8 @@
 package student;
 
+/**
+ * @author Dimitrios Chondrokoukis
+ */
 import backend.StudentTestController;
 
 import javax.swing.JFrame;
@@ -22,7 +25,7 @@ import backend.Test_;
 
 import java.awt.Insets;
 
-public class StudentStartJPanel extends JPanel { //implements ActionListener{
+public class StudentStartJPanel extends JPanel {
 	
     private StudentTestController controller;
     private static final long serialVersionUID = 5624695781144447672L;

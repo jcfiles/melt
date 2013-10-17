@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author me
+ * @author Bruce Steedman
  */
 public abstract class QuestionPanel extends JPanel {
     
