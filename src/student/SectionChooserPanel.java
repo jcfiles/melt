@@ -81,7 +81,9 @@ public class SectionChooserPanel extends JPanel {
 	buttonSelect.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-		MainGui.setComposite(new SectionInfoPanel(controller, section, sectionIndexPanel));
+            	if(buttonSelect.isEnabled()){
+            		MainGui.setComposite(new SectionInfoPanel(controller, section, sectionIndexPanel));
+            	}
             }
 	});
 	GridBagConstraints gbc_buttonSelect = new GridBagConstraints();
