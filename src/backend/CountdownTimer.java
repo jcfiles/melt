@@ -36,5 +36,17 @@ public class CountdownTimer extends Thread{
 	public void stops(){
 		this.isFinished = true;
 	}
+	
+	public int getMinutes ()
+	{
+		return minutes;
+	}
+	
+	public boolean getisFinished()
+	{
+		return isFinished;
+	}
+	
+	
 }
 
