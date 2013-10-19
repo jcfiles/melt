@@ -49,10 +49,26 @@ public class FIBQTest
   }
 
   @Test
+  public final void testGetQFirstPartNone() throws InvalidFTBQFormatException
+  {
+    FIBQ testfibq = new FIBQ("[test] question.");
+    String expResult = "";
+    assertEquals(expResult, testfibq.getQFirstPart());
+  }
+  
+  @Test
   public final void testGetQSecondPart() throws InvalidFTBQFormatException
   {
     FIBQ testfibq = new FIBQ("This is a [test] question.");
     String expResult = " question.";
+    assertEquals(expResult, testfibq.getQSecondPart());
+  }
+  
+  @Test
+  public final void testGetQSecondPartNone() throws InvalidFTBQFormatException
+  {
+    FIBQ testfibq = new FIBQ("This is a [test]");
+    String expResult = "";
     assertEquals(expResult, testfibq.getQSecondPart());
   }
 
