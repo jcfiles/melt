@@ -149,6 +149,8 @@ public class Help extends JFrame implements TreeSelectionListener
       title.setText("Help");
       description.setText("Select one of the help topics on the left.");
     }
+    
+    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
   }
   
   @Override
