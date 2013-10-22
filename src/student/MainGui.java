@@ -1,8 +1,11 @@
 package student;
 
 import backend.StudentTestController;
+import backend.Test_;
+
 import java.awt.Component;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 
@@ -18,6 +21,7 @@ public class MainGui {
     private StudentTestController controller;
     private static JFrame frame;
     public static boolean isSetter = false;
+    private Test_ test;
     
     
     public static JFrame getFrame() {
@@ -44,7 +48,15 @@ public class MainGui {
      * Create the application.
      */
     public MainGui() {
+    	controller = new StudentTestController();
         initialize();
+    }
+    
+    public MainGui(Test_ test){
+    	this.test = test;
+    	controller = new StudentTestController();
+        controller.setTest(test);
+    	initialize();
     }
 	
     public static void setComposite(Component component){
@@ -61,7 +73,6 @@ public class MainGui {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        controller = new StudentTestController();
         frame = new JFrame();
         frame.setBounds(100, 100, 819, 464);
         if(!isSetter){
