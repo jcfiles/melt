@@ -37,6 +37,7 @@ public class MenuGUI extends JFrame {
 	private JButton btnStudent=new JButton("Student");
 	private JButton btnSetter=new JButton("Setter");
 	private static JPanel panelCenter = new JPanel();
+	private JPanel tempPanel=new JPanel();
 	
 	private SetterTestController obj;
 	private static MenuGUI frame;
@@ -81,7 +82,7 @@ public class MenuGUI extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(lineBorder);
 		
-		contentPane.add(panel, BorderLayout.WEST);
+		contentPane.add(panel, BorderLayout.LINE_START);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		panel.setLayout(gbl_panel);
 		
@@ -105,7 +106,13 @@ public class MenuGUI extends JFrame {
 		
 		setterPanel=new SetterPanel();
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));
-		panelCenter.add(setterPanel);
+		panelCenter.add(tempPanel);
+		tempPanel.setLayout(new BorderLayout(0, 0));
+		
+		tempPanel.add(setterPanel, BorderLayout.LINE_START);
+		
+		
+		
 		
 		//cliking the Student button
 		btnStudent.addActionListener(new ActionListener(){

@@ -43,9 +43,14 @@ public class SectionNavigationPanel extends JPanel {
 		backPanel.setLayout(sl_backPanel);
 		
 		JButton btnBack = new JButton("Back");
-		sl_backPanel.putConstraint(SpringLayout.SOUTH, btnBack, -7, SpringLayout.SOUTH, backPanel);
-		sl_backPanel.putConstraint(SpringLayout.EAST, btnBack, -10, SpringLayout.EAST, backPanel);
+		sl_backPanel.putConstraint(SpringLayout.WEST, btnBack, 10, SpringLayout.WEST, backPanel);
+		sl_backPanel.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, backPanel);
 		backPanel.add(btnBack);
+		
+		JButton btnSaveTest = new JButton("Save Test");
+		sl_backPanel.putConstraint(SpringLayout.SOUTH, btnSaveTest, 0, SpringLayout.SOUTH, btnBack);
+		sl_backPanel.putConstraint(SpringLayout.EAST, btnSaveTest, -10, SpringLayout.EAST, backPanel);
+		backPanel.add(btnSaveTest);
 		
 		btnNext.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
