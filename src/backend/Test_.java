@@ -321,6 +321,14 @@ public class Test_ implements java.io.Serializable
 		q6.addAnswer(new Answer("15-minute", true));
 		q6.addAnswer(new Answer("15-minutes", false));
 		s2.addQuestion(q6);
+		
+		try {
+			SlotQ q7 = new SlotQ("This [is] a slot [question].");
+			s1.addQuestion(q7);
+		} catch (InvalidSlotQFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 				
         return t1;
     }
