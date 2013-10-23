@@ -1,10 +1,17 @@
 package setter;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 
 /*
  * @author Erotokritou Zoe
@@ -20,98 +28,121 @@ import javax.swing.SpringLayout;
 public class ViewSectionPanel extends JPanel {
 	
 	
-	final JButton btnDelete = new JButton("Delete");
-	final JButton btnEdit = new JButton("Edit");
-	final JButton btnAddQuestion= new JButton("Add Question");
-	final JButton btnAdd = new JButton("Add New Section");
+	private JButton btnDelete = new JButton("Delete");
+	private JButton btnEdit = new JButton("Edit");
+	private JButton btnContent= new JButton("Content");
+	private  JButton btnAdd = new JButton("Add");
 	AddSectionPanel addPanel;
+	private JPanel centerPanel =new JPanel();
+	private JPanel titlePanel=new JPanel();
+	private JPanel buttonsPanel = new JPanel();
+	private JLabel lblTitle=new JLabel("Test");
+	private JLabel lblNumOfQuestions;
+	private JLabel lblTotalMarks;
+	private JLabel lblSection;
+	private JLabel lblTotalTime;
+	private JLabel lblInstructions;
 	
 	/**
 	 * Create the panel.
 	 */
 	public ViewSectionPanel(final SetterTestController obj, final AddSectionGUI gui) {
-		SpringLayout springLayout = new SpringLayout();
-		setLayout(springLayout);
+		setLayout(new BorderLayout(0, 0));
 		
-		if(obj.countSection()!=0){
-		ArrayList<String> list = new ArrayList<String>();
-		list=obj.getSection();
+		//Title panel
+		add(titlePanel, BorderLayout.NORTH);
+		titlePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		GridBagConstraints gbc_panelA = new GridBagConstraints();
+		gbc_panelA.insets = new Insets(0, 0, 0, 5);
+		gbc_panelA.gridx = 0;
+		gbc_panelA.gridy = 0;
+		titlePanel.add(lblTitle,gbc_panelA);
+		
+		
+		//Title panel
+		add(centerPanel, BorderLayout.CENTER);		
+		SpringLayout springLayout = new SpringLayout();
+		centerPanel.setLayout(springLayout);
 		
 		JLabel lblS = new JLabel("Section:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblS, 47, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblS, 10, SpringLayout.WEST, this);
-		add(lblS);
+		springLayout.putConstraint(SpringLayout.NORTH, lblS, 47, SpringLayout.NORTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.WEST, lblS, 10, SpringLayout.WEST, centerPanel);
+		centerPanel.add(lblS);
 		
 		JLabel lblT = new JLabel("Total time:");
 		springLayout.putConstraint(SpringLayout.WEST, lblT, 0, SpringLayout.WEST, lblS);
-		add(lblT);
+		centerPanel.add(lblT);
 		
 		JLabel lblQ = new JLabel("Number of Questions:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblQ, 111, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblT, -17, SpringLayout.NORTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblQ, 10, SpringLayout.WEST, this);
-		add(lblQ);
+		centerPanel.add(lblQ);
 		
 		JLabel lblM = new JLabel("Total marks:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblM, 20, SpringLayout.SOUTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblM, 0, SpringLayout.WEST, lblS);
-		add(lblM);
+		centerPanel.add(lblM);
 		
-		JLabel lblNumOfQuestions = new JLabel(list.get(3));
+		lblNumOfQuestions = new JLabel("0");
 		springLayout.putConstraint(SpringLayout.NORTH, lblNumOfQuestions, 0, SpringLayout.NORTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblNumOfQuestions, 21, SpringLayout.EAST, lblQ);
-		springLayout.putConstraint(SpringLayout.EAST, lblNumOfQuestions, -263, SpringLayout.EAST, this);
-		add(lblNumOfQuestions);
+		springLayout.putConstraint(SpringLayout.EAST, lblNumOfQuestions, -262, SpringLayout.EAST, centerPanel);
+		centerPanel.add(lblNumOfQuestions);
 		
 		JLabel lblI = new JLabel("Instructions:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblI, 18, SpringLayout.SOUTH, lblM);
 		springLayout.putConstraint(SpringLayout.WEST, lblI, 0, SpringLayout.WEST, lblS);
-		add(lblI);
+		centerPanel.add(lblI);
 		
-		JLabel lblTotalMarks = new JLabel(list.get(4));
+		lblTotalMarks = new JLabel("0");
 		springLayout.putConstraint(SpringLayout.NORTH, lblTotalMarks, 0, SpringLayout.NORTH, lblM);
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalMarks, 0, SpringLayout.WEST, lblNumOfQuestions);
-		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, 118, SpringLayout.EAST, lblM);
-		add(lblTotalMarks);
+		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, -263, SpringLayout.EAST, centerPanel);
+		centerPanel.add(lblTotalMarks);
 		
 		
-		JLabel lblSection = new JLabel(list.get(1));
-		//JLabel lblSection = new JLabel();
+		lblSection = new JLabel("Section");
+		springLayout.putConstraint(SpringLayout.NORTH, lblSection, 0, SpringLayout.NORTH, lblS);
 		springLayout.putConstraint(SpringLayout.WEST, lblSection, 0, SpringLayout.WEST, lblNumOfQuestions);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblSection, 0, SpringLayout.SOUTH, lblS);
-		add(lblSection);
+		centerPanel.add(lblSection);
 		
-		JLabel lblTotalTime = new JLabel(list.get(2)+" mins");
-		//JLabel lblTotalTime = new JLabel(" mins");
+		lblTotalTime = new JLabel("0 mins");
+		springLayout.putConstraint(SpringLayout.NORTH, lblTotalTime, 0, SpringLayout.NORTH, lblT);
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalTime, 0, SpringLayout.WEST, lblNumOfQuestions);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblTotalTime, 0, SpringLayout.SOUTH, lblT);
-		add(lblTotalTime);
+		centerPanel.add(lblTotalTime);
 		
-		JPanel buttonsPanel = new JPanel();
+		//Title panel
+		add(buttonsPanel, BorderLayout.SOUTH);
 		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, -10, SpringLayout.EAST, this);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -33, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, 0, SpringLayout.SOUTH, this);
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		add(buttonsPanel);
 		
-		buttonsPanel.add(btnAdd);
 		buttonsPanel.add(btnDelete);
 		buttonsPanel.add(btnEdit);
-		buttonsPanel.add(btnAddQuestion);
+		buttonsPanel.add(btnContent);
+				
+		lblInstructions = new JLabel("Instructions");
+		springLayout.putConstraint(SpringLayout.NORTH, lblInstructions, 0, SpringLayout.NORTH, lblI);
+		springLayout.putConstraint(SpringLayout.WEST, lblInstructions, 0, SpringLayout.WEST, lblNumOfQuestions);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblInstructions, -10, SpringLayout.SOUTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, lblInstructions, -10, SpringLayout.EAST, centerPanel);
+		lblInstructions.setVerticalAlignment(SwingConstants.TOP);
+		centerPanel.add(lblInstructions);
 		
-
-		StringBuilder sb = new StringBuilder(64);
-		sb.append("<html>"+list.get(5)+"</html>");
+		btnAdd = new JButton();
+		btnAdd.setIcon(new ImageIcon(ViewSectionPanel.class.getResource("/lib/images/plus.png")));
+		btnAdd.setBackground(new Color(0, 153, 0));
+		btnAdd.setPreferredSize(new Dimension(40,40));
+		springLayout.putConstraint(SpringLayout.NORTH, btnAdd, 10, SpringLayout.NORTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, btnAdd, 0, SpringLayout.EAST, lblInstructions);
+		centerPanel.add(btnAdd);
 		
-		JLabel lblInstructions = new JLabel(sb.toString());
-		springLayout.putConstraint(SpringLayout.NORTH, lblInstructions, 32, SpringLayout.SOUTH, lblTotalMarks);
-		springLayout.putConstraint(SpringLayout.WEST, lblInstructions, 65, SpringLayout.EAST, lblI);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblInstructions, 46, SpringLayout.SOUTH, lblTotalMarks);
-		springLayout.putConstraint(SpringLayout.EAST, lblInstructions, 0, SpringLayout.EAST, buttonsPanel);
-		add(lblInstructions);
-		
-		gui.txtTest.setText(list.get(0));
+		//Set the test into the labels
+		setTexts(obj);
+				
 		
 		btnAdd.addActionListener(new ActionListener(){	//button to add new section
 			public void actionPerformed(ActionEvent e) {
@@ -178,7 +209,7 @@ public class ViewSectionPanel extends JPanel {
 			 }
 			});
 			
-			btnAddQuestion.addActionListener(new ActionListener(){  //Add new question
+			/*btnAddQuestion.addActionListener(new ActionListener(){  //Add new question
 				public void actionPerformed(ActionEvent e) {
 					
 					AddQuestionGUI frame = new AddQuestionGUI(obj,gui);
@@ -187,8 +218,28 @@ public class ViewSectionPanel extends JPanel {
 					gui.setVisible(false);
 				 }
 				});
+				*/
 				
 		}
-	}
 	
+	
+	public void setTexts(SetterTestController obj)
+	{
+		if(obj.countSection()!=0){
+			ArrayList<String> list = new ArrayList<String>();
+			list=obj.getSection();
+			
+			lblTitle.setText(list.get(0));
+			lblSection = new JLabel(list.get(1));
+			lblTotalTime = new JLabel(list.get(2)+" mins");
+			lblNumOfQuestions = new JLabel(list.get(3));
+			lblTotalMarks = new JLabel(list.get(4));
+			
+			StringBuilder sb = new StringBuilder(64);
+			sb.append("<html>"+list.get(5)+"</html>");
+			
+			lblInstructions = new JLabel(sb.toString());
+			
+		}
+	}
 }
