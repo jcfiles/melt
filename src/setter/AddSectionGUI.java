@@ -128,7 +128,7 @@ public class AddSectionGUI extends JFrame {
 		Border lineBorder = BorderFactory.createLineBorder(Color.GRAY, 2, true);
 		panelCenter.setBorder(lineBorder);
 		
-		addPanel=new AddSectionPanel(obj,this,false);
+		//addPanel=new AddSectionPanel(obj,this,false);
 		
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				

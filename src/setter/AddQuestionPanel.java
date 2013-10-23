@@ -43,7 +43,6 @@ import java.awt.BorderLayout;
  */
 
 public class AddQuestionPanel extends JPanel {
-	private JTextField txtSubsection;
 	private JTextField txtMarks;
 	private JTextArea txtQuestion = new JTextArea();
 	private int typeQuestion=0;
@@ -63,62 +62,45 @@ public class AddQuestionPanel extends JPanel {
 	 */
 	public AddQuestionPanel(final SetterTestController obj, final AddQuestionGUI gui, Boolean b) {
 		SpringLayout springLayout = new SpringLayout();
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnFillBlanks, 179, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnMultipleChoice, 150, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnSlot, 0, SpringLayout.NORTH, rdbtnFillBlanks);
+		springLayout.putConstraint(SpringLayout.WEST, rdbtnSlot, 0, SpringLayout.WEST, rdbtnEssay);
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnEssay, 0, SpringLayout.NORTH, rdbtnMultipleChoice);
+		springLayout.putConstraint(SpringLayout.WEST, rdbtnEssay, 45, SpringLayout.EAST, rdbtnMultipleChoice);
+		springLayout.putConstraint(SpringLayout.WEST, rdbtnFillBlanks, 0, SpringLayout.WEST, txtQuestion);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtQuestion, -21, SpringLayout.NORTH, rdbtnMultipleChoice);
+		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -30, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.WEST, rdbtnMultipleChoice, 0, SpringLayout.WEST, txtQuestion);
 		setLayout(springLayout);
 		
 		bEdit=b;
 		final JLabel lblFill = new JLabel("*insert the answer like e.x[answer]");
+		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 23, SpringLayout.SOUTH, lblFill);
 		lblFill.setVisible(false);
 		springLayout.putConstraint(SpringLayout.NORTH, lblFill, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, lblFill, -10, SpringLayout.EAST, this);
 		add(lblFill);
 		
-		JLabel lblSubsection = new JLabel("Subsection:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblSubsection, 47, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblSubsection, 10, SpringLayout.WEST, this);
-		add(lblSubsection);
-		
-		txtSubsection = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtSubsection, -3, SpringLayout.NORTH, lblSubsection);
-		springLayout.putConstraint(SpringLayout.WEST, txtSubsection, 32, SpringLayout.EAST, lblSubsection);
-		springLayout.putConstraint(SpringLayout.EAST, txtSubsection, -22, SpringLayout.EAST, this);
-		add(txtSubsection);
-		txtSubsection.setColumns(10);
-		
 		JLabel lblQuestion = new JLabel("Question:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblQuestion, 18, SpringLayout.SOUTH, lblSubsection);
+		springLayout.putConstraint(SpringLayout.WEST, txtQuestion, 33, SpringLayout.EAST, lblQuestion);
 		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.NORTH, lblQuestion, 47, SpringLayout.NORTH, this);
 		add(lblQuestion);
-		
-		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 15, SpringLayout.SOUTH, txtSubsection);
-		springLayout.putConstraint(SpringLayout.WEST, txtQuestion, 0, SpringLayout.WEST, txtSubsection);
-		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -22, SpringLayout.EAST, this);
 		txtQuestion.setLineWrap(true);
 		txtQuestion.setWrapStyleWord(true);
 		add(txtQuestion);
 		
 		JLabel lblType = new JLabel("Type:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblType, 84, SpringLayout.SOUTH, lblQuestion);
-		springLayout.putConstraint(SpringLayout.WEST, lblType, 0, SpringLayout.WEST, lblSubsection);
+		springLayout.putConstraint(SpringLayout.WEST, lblType, 0, SpringLayout.WEST, lblQuestion);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblType, -406, SpringLayout.SOUTH, this);
 		add(lblType);
 		
 		
 		rdbtnMultipleChoice.setSelected(true);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtQuestion, -12, SpringLayout.NORTH, rdbtnMultipleChoice);
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnMultipleChoice, -4, SpringLayout.NORTH, lblType);
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnMultipleChoice, 52, SpringLayout.EAST, lblType);
 		add(rdbtnMultipleChoice);
-		
-		
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnFillBlanks, 11, SpringLayout.SOUTH, rdbtnMultipleChoice);
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnFillBlanks, 91, SpringLayout.WEST, this);
 		add(rdbtnFillBlanks);
-				
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnEssay, 42, SpringLayout.EAST, rdbtnMultipleChoice);
-		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnEssay, 0, SpringLayout.SOUTH, rdbtnMultipleChoice);
 		add(rdbtnEssay);
-				
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnSlot, 0, SpringLayout.WEST, rdbtnEssay);
-		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnSlot, 0, SpringLayout.SOUTH, rdbtnFillBlanks);
 		add(rdbtnSlot);
 		
 		//Add to button group		
@@ -128,22 +110,22 @@ public class AddQuestionPanel extends JPanel {
 		group_type.add(rdbtnSlot);
 		
 		JLabel lblMarks = new JLabel("Marks:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 58, SpringLayout.SOUTH, lblType);
-		springLayout.putConstraint(SpringLayout.WEST, lblMarks, 0, SpringLayout.WEST, lblSubsection);
+		springLayout.putConstraint(SpringLayout.WEST, lblMarks, 0, SpringLayout.WEST, lblQuestion);
 		add(lblMarks);
 		
 		txtMarks = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtMarks, 13, SpringLayout.SOUTH, rdbtnFillBlanks);
-		springLayout.putConstraint(SpringLayout.WEST, txtMarks, 56, SpringLayout.EAST, lblMarks);
-		springLayout.putConstraint(SpringLayout.EAST, txtMarks, 0, SpringLayout.EAST, txtSubsection);
+		springLayout.putConstraint(SpringLayout.NORTH, txtMarks, 218, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 3, SpringLayout.NORTH, txtMarks);
+		springLayout.putConstraint(SpringLayout.WEST, txtMarks, 0, SpringLayout.WEST, txtQuestion);
+		springLayout.putConstraint(SpringLayout.EAST, txtMarks, -30, SpringLayout.EAST, this);
 		add(txtMarks);
 		txtMarks.setColumns(10);
 		
 		//If the user selects multiple choice
 		final JPanel panel_mult = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel_mult, 16, SpringLayout.SOUTH, lblMarks);
-		springLayout.putConstraint(SpringLayout.WEST, panel_mult, -10, SpringLayout.WEST, lblSubsection);
-		springLayout.putConstraint(SpringLayout.EAST, panel_mult, 10, SpringLayout.EAST, lblFill);
+		springLayout.putConstraint(SpringLayout.NORTH, panel_mult, 20, SpringLayout.SOUTH, txtMarks);
+		springLayout.putConstraint(SpringLayout.WEST, panel_mult, 0, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.EAST, panel_mult, 0, SpringLayout.EAST, this);
 		add(panel_mult);
 		panel_mult.setLayout(new BorderLayout(0, 0));
 		
@@ -152,9 +134,9 @@ public class AddQuestionPanel extends JPanel {
 		
 		JPanel buttonsPanel = new JPanel();
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -6, SpringLayout.NORTH, buttonsPanel);
-		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, txtSubsection);
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, -22, SpringLayout.EAST, this);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -43, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 0, SpringLayout.WEST, lblSubsection);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, this);
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		add(buttonsPanel);
@@ -169,7 +151,7 @@ public class AddQuestionPanel extends JPanel {
 			
 			list=obj.getQuestion();
 			txtMarks.setText(list.get(0));
-			txtSubsection.setText(list.get(1));
+			//txtSubsection.setText(list.get(1));
 			
 			if(obj.getQuestionType()==1)
 			{
@@ -317,14 +299,14 @@ public class AddQuestionPanel extends JPanel {
 	    		{
 	    			 if(typeQuestion==0) //multiple choice question
 	   	    	  	{	
-	    				 obj.editMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	    				// obj.editMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	    				 MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	    		        gui.panelCenter.removeAll();
 	    		        gui.panelCenter.add(multiPanel);
 	   	    	  	}
 	    			 else
-	    			 {	    				 
-	    				 int parsingCorrect=obj.editFIBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    			 {	    			
+		    			/*int parsingCorrect=obj.editFIBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    				 
 	    				 if(parsingCorrect==0)
 	    				 {
@@ -338,6 +320,7 @@ public class AddQuestionPanel extends JPanel {
 		    			 gui.panelCenter.removeAll();
 		    			 gui.panelCenter.add(fillPanel);
 	    				 }
+	    				 */
 		    		 }		       
 	    			 
 		    	  gui.validate();
@@ -349,13 +332,13 @@ public class AddQuestionPanel extends JPanel {
 	    			
 	    	  if(typeQuestion==0) //multiple choice question
 	    	  {	        	
-	        	obj.addMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	        	//obj.addMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	        	gui.panelCenter.removeAll();
 	        	gui.panelCenter.add(multiPanel);
 	    	  }
 	    	  else
-	    	  {	 
+	    	  {	 /*
 	    		  int parsing=obj.addFIBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    		  if(parsing==0)
 	    		  {
@@ -370,6 +353,7 @@ public class AddQuestionPanel extends JPanel {
 	    			  	gui.panelCenter.removeAll();
 	  	        		gui.panelCenter.add(fillPanel);
 	    		  }
+	    		  */
 	        	}
 	        
 	    	  gui.validate();

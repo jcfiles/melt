@@ -28,28 +28,52 @@ public class SetterTestController
   
   //Empty constructor
   public SetterTestController() {
-
+	  test=new Test_("","");
   }
   
   /**
    * Create Test with the name
    */
+  public void createTest(String title, String introduction)
+  {
+	  if(test==null)
+	  {test=new Test_(title,introduction);}
+	  else
+	  {
+		  setTitle(title);
+		  setIntroduction(introduction);
+	  }
+  }
+  
   public void createTest(String title)
   {
 	  if(test==null)
 	  {test=new Test_(title,"");}
   }
   
+  public void deleteTest()
+  {
+	  test=new Test_("","");
+  }
+  
   public void setTitle(String title)
   {
     test.setTestTitle(title);
-    
-    k=0;
+  }
+  
+  public void setIntroduction(String intro)
+  {
+	  test.setTestIntroText(intro);
   }
   
   public String getTitle()
   {
    return test.getTestTitle();
+  }
+  
+  public String getIntroduction()
+  {
+	  return test.getTestIntroText();
   }
   
   /**
@@ -147,7 +171,6 @@ public class SetterTestController
 		  marks=marks+q.get(i).getPossibleMarks();
 	  }
 	  
-	  s.add(test.getTestTitle());
 	  s.add(test.getSection(currentSection).getSectionTitle());
 	  s.add(test.getSection(currentSection).getSectionTime()+"");
 	  s.add(q.size()+"");

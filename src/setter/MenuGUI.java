@@ -39,7 +39,6 @@ public class MenuGUI extends JFrame {
 	private static JPanel panelCenter = new JPanel();
 	private JPanel tempPanel=new JPanel();
 	
-	private SetterTestController obj;
 	private static MenuGUI frame;
 
 	/**
@@ -110,10 +109,7 @@ public class MenuGUI extends JFrame {
 		tempPanel.setLayout(new BorderLayout(0, 0));
 		
 		tempPanel.add(setterPanel, BorderLayout.LINE_START);
-		
-		
-		
-		
+	
 		//cliking the Student button
 		btnStudent.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
@@ -123,7 +119,7 @@ public class MenuGUI extends JFrame {
 				panelCenter.validate();
 				panelCenter.repaint();		   	
 			 }
-			});
+		});
 		
 		//cliking the Setter button
 		btnSetter.addActionListener(new ActionListener(){
@@ -132,32 +128,18 @@ public class MenuGUI extends JFrame {
 				   panelCenter.add(setterPanel);
 				   panelCenter.validate();
 				   panelCenter.repaint();		   	
-					 }
-					});
+		   }
+		});
 		
 		setterPanel.btnNewTest.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent e) {
 			   
-		     obj=new SetterTestController();
-		     obj.createTest("");
-		     obj.setCurrentSection(0);
-		     AddSectionGUI gui=new AddSectionGUI(obj,frame);
-		     gui.setVisible(true);
-		     
+		     SetterGUI gui=new SetterGUI();
+		     gui.setVisible(true);		     
 		     frame.setVisible(false);
 				   
-					 }
-					});
-		
-		
+		   }
+		});
+			
 	}
-	/*public static void setComposites(JPanel jPanel){
-		if(panelCenter.getComponentCount()>0){
-			panelCenter.removeAll();
-		}
-		panelCenter.add(jPanel);
-		panelCenter.validate();
-		panelCenter.repaint();
-	}*/
-
 }

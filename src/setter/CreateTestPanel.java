@@ -2,18 +2,21 @@ package setter;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Font;
 
 public class CreateTestPanel extends JPanel {
 
@@ -24,14 +27,23 @@ public class CreateTestPanel extends JPanel {
 	private JPanel buttonsPanel=new JPanel();
 	private JButton btnSave=new JButton("Save");
 	private JTextArea txtIntroduction = new JTextArea();
+	private SetterTestController obj;
+
 	
 	
 	/**
 	 * Create the panel.
 	 */
-	public CreateTestPanel(final SetterTestController obj, final SetterGUI gui) {
+	public CreateTestPanel(final SetterTestController obj, final SetterGUI gui, Boolean b) {
 		setLayout(new BorderLayout(0, 0));
 
+		this.obj=obj;
+		
+		if(b==true)
+		{
+			setTexts();
+		}
+		
 		//Title panel
 		add(titlePanel, BorderLayout.NORTH);
 		
@@ -46,6 +58,7 @@ public class CreateTestPanel extends JPanel {
 		gbc_lbl.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl.gridx = 0;
 		gbc_lbl.gridy = 1;	
+		lblCreateTest.setFont(new Font("MV Boli", Font.BOLD, 20));
 		titlePanel.add(lblCreateTest,gbc_lbl);		
 		
 		//Center Panel
@@ -57,22 +70,26 @@ public class CreateTestPanel extends JPanel {
 		centerPanel.setLayout(springLayout);
 		
 		JLabel lblTitle = new JLabel("Title:");
+		lblTitle.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.NORTH, lblTitle, 47, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblTitle, 10, SpringLayout.WEST, this);
 		centerPanel.add(lblTitle);
 		
 		JLabel lblIntro = new JLabel("Introduction Text:");
+		lblIntro.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.NORTH, lblIntro, 19, SpringLayout.SOUTH, lblTitle);
 		springLayout.putConstraint(SpringLayout.WEST, lblIntro, 0, SpringLayout.WEST, lblTitle);
 		centerPanel.add(lblIntro);
 		
 		springLayout.putConstraint(SpringLayout.NORTH, txtTitle, -3, SpringLayout.NORTH, lblTitle);
+		txtTitle.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(txtTitle);
 				
 		springLayout.putConstraint(SpringLayout.NORTH, txtIntroduction, 0, SpringLayout.NORTH, lblIntro);
 		springLayout.putConstraint(SpringLayout.WEST, txtIntroduction, 38, SpringLayout.EAST, lblIntro);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtIntroduction, -10, SpringLayout.SOUTH, centerPanel);
 		springLayout.putConstraint(SpringLayout.EAST, txtIntroduction, -10, SpringLayout.EAST, centerPanel);
+		txtIntroduction.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(txtIntroduction);
 		
 		//Buttons Panel
@@ -85,22 +102,42 @@ public class CreateTestPanel extends JPanel {
 		buttonsPanel.setLayout(gbl_buttonsPanel);
 		
 		GridBagConstraints gbc_btn = new GridBagConstraints();
-		gbc_lbl.insets = new Insets(0, 0, 5, 5);
-		gbc_lbl.gridx = 0;
-		gbc_lbl.gridy = 1;	
+		gbc_btn.insets = new Insets(0, 0, 5, 5);
+		gbc_btn.gridx = 0;
+		gbc_btn.gridy = 1;	
+		btnSave.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnSave,gbc_btn);
+		btnSave.setPreferredSize(new Dimension(100, 30));
 		
 		btnSave.addActionListener(new ActionListener(){
-			   public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) {
+			
+			//check if the Title is not empty
+			if(txtTitle.getText().equals(""))
+			{
+				JOptionPane.showMessageDialog(gui,
+		    			      "You have to insert the title of the Test",
+		    			      "Save test Error",
+		    			      JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{
+				obj.createTest(txtTitle.getText(),txtIntroduction.getText());
+				obj.setCurrentSection(0);
 				   
-				   ViewCreatePanel panel=new ViewCreatePanel(obj,gui);
-				   gui.centerPanel.removeAll();
-				   gui.centerPanel.add(panel);
-				   gui.centerPanel.validate();
-				   gui.centerPanel.repaint();
-						   
-							 }
-							});
-
+				ViewCreatePanel panel=new ViewCreatePanel(obj,gui);
+				gui.centerPanel.removeAll();
+				gui.centerPanel.add(panel);
+				gui.centerPanel.validate();
+				gui.centerPanel.repaint();
+			}		   
+		}
+		});
+	}
+	
+	public void setTexts()
+	{
+		txtTitle.setText(obj.getTitle());
+		txtIntroduction.setText(obj.getIntroduction());
 	}
 }
