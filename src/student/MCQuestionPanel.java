@@ -20,6 +20,7 @@ import backend.Answer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JCheckBox;
+import java.awt.Font;
 
 /**
  * 
@@ -54,11 +55,33 @@ public class MCQuestionPanel extends QuestionPanel {
 		gbc_lblQuestion.gridy = 0;
 		add(lblQuestion, gbc_lblQuestion);
 		
+		JPanel panel_3 = new JPanel();
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.gridx = 0;
+		gbc_panel_3.gridy = 1;
+		add(panel_3, gbc_panel_3);
+		GridBagLayout gbl_panel_3 = new GridBagLayout();
+		gbl_panel_3.columnWidths = new int[]{61, 0};
+		gbl_panel_3.rowHeights = new int[]{16, 0};
+		gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_3.setLayout(gbl_panel_3);
+		
+		JLabel labelMark = new JLabel("Mark: "+question.getPossibleMarks());
+		labelMark.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		GridBagConstraints gbc_labelMark = new GridBagConstraints();
+		gbc_labelMark.insets = new Insets(0, 0, 0, 10);
+		gbc_labelMark.anchor = GridBagConstraints.NORTHEAST;
+		gbc_labelMark.gridx = 0;
+		gbc_labelMark.gridy = 0;
+		panel_3.add(labelMark, gbc_labelMark);
+		
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 1;
+		gbc_panel_2.gridy = 2;
 		add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{0, 0};

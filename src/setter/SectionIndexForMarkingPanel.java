@@ -21,13 +21,15 @@ import backend.Section;
  */
 
 public class SectionIndexForMarkingPanel extends JPanel {
+	private SetterTestController controller;
 	private ArrayList<Section> sections;
 	private ArrayList<SectionChooserForMarkingPanel> sectionChooserPanels = new ArrayList<>();
 	
 	/**
 	 * Create the panel.
 	 */
-	public SectionIndexForMarkingPanel() {
+	public SectionIndexForMarkingPanel(SetterTestController controller) {
+		this.controller = controller;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
