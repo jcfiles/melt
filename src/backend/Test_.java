@@ -80,6 +80,11 @@ public class Test_ implements java.io.Serializable
         return testIntroText;
     }
     
+    public void setTestIntroText(String introduction)
+    {
+        testIntroText=introduction;
+    }
+    
     /**
      * Writes a test to file
      * 
