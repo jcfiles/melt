@@ -5,6 +5,8 @@ import java.util.HashMap;
 import backend.Question;
 import backend.FIBQ;
 import backend.MCQ;
+import backend.SlotQ;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -21,7 +23,8 @@ public enum QuestionPanelFactory {
     private static HashMap<Class, Class> questionPanelMap = new HashMap<>();
     static {
        questionPanelMap.put(FIBQ.class, FTBQuestionPanel.class);
-       questionPanelMap.put(MCQ.class, MCQuestionPanel.class);  
+       questionPanelMap.put(MCQ.class, MCQuestionPanel.class);
+       questionPanelMap.put(SlotQ.class, SlotQuestionPanel.class);
     }
     
     public static QuestionPanelFactory getInstance() { return INSTANCE; }
