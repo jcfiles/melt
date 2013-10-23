@@ -146,7 +146,7 @@ public class AddSectionPanel extends JPanel {
 		
 		add(buttonsPanel, BorderLayout.SOUTH);
 		btnSave.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		btnSave.setPreferredSize(new Dimension(100, 30));
+		btnSave.setPreferredSize(new Dimension(100, 35));
 		buttonsPanel.add(btnSave);		
 		
 		btnSave.addActionListener(new ActionListener(){  //button to save the question
@@ -190,12 +190,10 @@ public class AddSectionPanel extends JPanel {
 				{	
 					obj.addSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));			
 				}
-				//ViewSectionPanel panel=new ViewSectionPanel(obj,gui);
+				ViewSectionPanel panel=new ViewSectionPanel(obj,gui);
 				
 				gui.centerPanel.removeAll();
-				//gui.centerPanel.add(panel);
-				
-				gui.centerPanel.setVisible(false);
+				gui.centerPanel.add(panel);
 												
 				gui.centerPanel.validate();
 				gui.centerPanel.repaint();

@@ -103,17 +103,17 @@ public class ViewCreatePanel extends JPanel {
 		
 		//Buttons Panel
 		add(buttonsPanel, BorderLayout.SOUTH);
-		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		btnEdit.setIcon(new ImageIcon(ViewCreatePanel.class.getResource("/lib/images/edit.png")));
-		btnEdit.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		btnEdit.setPreferredSize(new Dimension(100, 35));
-		btnEdit.setBackground(Color.ORANGE);
-		buttonsPanel.add(btnEdit);
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));		
 		btnDelete.setIcon(new ImageIcon(ViewCreatePanel.class.getResource("/lib/images/cross.png")));
 		btnDelete.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnDelete);
 		btnDelete.setPreferredSize(new Dimension(100, 35));
 		btnDelete.setBackground(new Color(204, 0, 0));
+		btnEdit.setIcon(new ImageIcon(ViewCreatePanel.class.getResource("/lib/images/edit.png")));
+		btnEdit.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		btnEdit.setPreferredSize(new Dimension(100, 35));
+		btnEdit.setBackground(Color.ORANGE);
+		buttonsPanel.add(btnEdit);
 		btnAddSection.setIcon(new ImageIcon(ViewCreatePanel.class.getResource("/lib/images/plus.png")));
 		btnAddSection.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnAddSection);

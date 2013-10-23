@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 /*
  * @author Erotokritou Zoe
@@ -46,7 +47,7 @@ public class ViewSectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ViewSectionPanel(final SetterTestController obj, final AddSectionGUI gui) {
+	public ViewSectionPanel(final SetterTestController obj, final SetterGUI gui) {
 		setLayout(new BorderLayout(0, 0));
 		
 		//Title panel
@@ -56,6 +57,7 @@ public class ViewSectionPanel extends JPanel {
 		gbc_panelA.insets = new Insets(0, 0, 0, 5);
 		gbc_panelA.gridx = 0;
 		gbc_panelA.gridy = 0;
+		lblTitle.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		titlePanel.add(lblTitle,gbc_panelA);
 		
 		
@@ -65,51 +67,60 @@ public class ViewSectionPanel extends JPanel {
 		centerPanel.setLayout(springLayout);
 		
 		JLabel lblS = new JLabel("Section:");
+		lblS.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.NORTH, lblS, 47, SpringLayout.NORTH, centerPanel);
 		springLayout.putConstraint(SpringLayout.WEST, lblS, 10, SpringLayout.WEST, centerPanel);
 		centerPanel.add(lblS);
 		
 		JLabel lblT = new JLabel("Total time:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblT, 10, SpringLayout.SOUTH, lblS);
 		springLayout.putConstraint(SpringLayout.WEST, lblT, 0, SpringLayout.WEST, lblS);
+		lblT.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		centerPanel.add(lblT);
 		
 		JLabel lblQ = new JLabel("Number of Questions:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblQ, 111, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblT, -17, SpringLayout.NORTH, lblQ);
-		springLayout.putConstraint(SpringLayout.WEST, lblQ, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.NORTH, lblQ, 10, SpringLayout.SOUTH, lblT);
+		springLayout.putConstraint(SpringLayout.WEST, lblQ, 0, SpringLayout.WEST, lblS);
+		lblQ.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		centerPanel.add(lblQ);
 		
 		JLabel lblM = new JLabel("Total marks:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblM, 20, SpringLayout.SOUTH, lblQ);
+		springLayout.putConstraint(SpringLayout.NORTH, lblM, 10, SpringLayout.SOUTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblM, 0, SpringLayout.WEST, lblS);
+		lblM.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		centerPanel.add(lblM);
 		
 		lblNumOfQuestions = new JLabel("0");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNumOfQuestions, 0, SpringLayout.NORTH, lblQ);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNumOfQuestions, 4, SpringLayout.NORTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblNumOfQuestions, 21, SpringLayout.EAST, lblQ);
-		springLayout.putConstraint(SpringLayout.EAST, lblNumOfQuestions, -262, SpringLayout.EAST, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, lblNumOfQuestions, -232, SpringLayout.EAST, centerPanel);
+		lblNumOfQuestions.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(lblNumOfQuestions);
 		
 		JLabel lblI = new JLabel("Instructions:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblI, 18, SpringLayout.SOUTH, lblM);
+		springLayout.putConstraint(SpringLayout.NORTH, lblI, 10, SpringLayout.SOUTH, lblM);
 		springLayout.putConstraint(SpringLayout.WEST, lblI, 0, SpringLayout.WEST, lblS);
+		lblI.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		centerPanel.add(lblI);
 		
 		lblTotalMarks = new JLabel("0");
-		springLayout.putConstraint(SpringLayout.NORTH, lblTotalMarks, 0, SpringLayout.NORTH, lblM);
+		springLayout.putConstraint(SpringLayout.NORTH, lblTotalMarks, 4, SpringLayout.NORTH, lblM);
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalMarks, 0, SpringLayout.WEST, lblNumOfQuestions);
-		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, -263, SpringLayout.EAST, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, -232, SpringLayout.EAST, centerPanel);
+		lblTotalMarks.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(lblTotalMarks);
 		
 		
 		lblSection = new JLabel("Section");
-		springLayout.putConstraint(SpringLayout.NORTH, lblSection, 0, SpringLayout.NORTH, lblS);
+		springLayout.putConstraint(SpringLayout.NORTH, lblSection, 4, SpringLayout.NORTH, lblS);
 		springLayout.putConstraint(SpringLayout.WEST, lblSection, 0, SpringLayout.WEST, lblNumOfQuestions);
+		lblSection.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(lblSection);
 		
 		lblTotalTime = new JLabel("0 mins");
-		springLayout.putConstraint(SpringLayout.NORTH, lblTotalTime, 0, SpringLayout.NORTH, lblT);
+		springLayout.putConstraint(SpringLayout.NORTH, lblTotalTime, 4, SpringLayout.NORTH, lblT);
 		springLayout.putConstraint(SpringLayout.WEST, lblTotalTime, 0, SpringLayout.WEST, lblNumOfQuestions);
+		lblTotalTime.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(lblTotalTime);
 		
 		//Title panel
@@ -119,25 +130,39 @@ public class ViewSectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -33, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, 0, SpringLayout.SOUTH, this);
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		btnDelete.setIcon(new ImageIcon(ViewSectionPanel.class.getResource("/lib/images/cross.png")));
+		btnDelete.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		
 		buttonsPanel.add(btnDelete);
+		btnDelete.setPreferredSize(new Dimension(100,35));
+		btnDelete.setBackground(new Color(204, 0, 0));
+		btnEdit.setIcon(new ImageIcon(ViewSectionPanel.class.getResource("/lib/images/edit.png")));
+		btnEdit.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnEdit);
+		btnEdit.setPreferredSize(new Dimension(100, 35));
+		btnEdit.setBackground(Color.ORANGE);
+		btnContent.setIcon(new ImageIcon(ViewSectionPanel.class.getResource("/lib/images/file.png")));
+		btnContent.setBackground(new Color(224, 255, 255));
+		btnContent.setFont(new Font("MV Boli", Font.PLAIN, 15));		
 		buttonsPanel.add(btnContent);
+		btnContent.setPreferredSize(new Dimension(120, 35));
 				
 		lblInstructions = new JLabel("Instructions");
 		springLayout.putConstraint(SpringLayout.NORTH, lblInstructions, 0, SpringLayout.NORTH, lblI);
 		springLayout.putConstraint(SpringLayout.WEST, lblInstructions, 0, SpringLayout.WEST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblInstructions, -10, SpringLayout.SOUTH, centerPanel);
 		springLayout.putConstraint(SpringLayout.EAST, lblInstructions, -10, SpringLayout.EAST, centerPanel);
+		lblInstructions.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblInstructions.setVerticalAlignment(SwingConstants.TOP);
 		centerPanel.add(lblInstructions);
 		
 		btnAdd = new JButton();
+		springLayout.putConstraint(SpringLayout.EAST, btnAdd, -10, SpringLayout.EAST, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, lblSection, -6, SpringLayout.WEST, btnAdd);
 		btnAdd.setIcon(new ImageIcon(ViewSectionPanel.class.getResource("/lib/images/plus.png")));
 		btnAdd.setBackground(new Color(0, 153, 0));
 		btnAdd.setPreferredSize(new Dimension(40,40));
 		springLayout.putConstraint(SpringLayout.NORTH, btnAdd, 10, SpringLayout.NORTH, centerPanel);
-		springLayout.putConstraint(SpringLayout.EAST, btnAdd, 0, SpringLayout.EAST, lblInstructions);
 		centerPanel.add(btnAdd);
 		
 		//Set the test into the labels
@@ -150,14 +175,11 @@ public class ViewSectionPanel extends JPanel {
 				
 				//addPanel=new AddSectionPanel(obj,gui,false);
 				
-				gui.panelCenter.removeAll();
-				gui.panelCenter.add(addPanel);
+				gui.centerPanel.removeAll();
+				gui.centerPanel.add(addPanel);
 				
-				gui.panelCenter.validate();
-				gui.panelCenter.repaint();
-				
-				gui.txtTest.setVisible(true);
-				gui.lblTest.setVisible(false);
+				gui.centerPanel.validate();
+				gui.centerPanel.repaint();
 			}
 		});
 			
@@ -183,8 +205,8 @@ public class ViewSectionPanel extends JPanel {
 				
 					ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
 					
-					gui.panelCenter.removeAll();
-					gui.panelCenter.add(viewPanel);
+					gui.centerPanel.removeAll();
+					gui.centerPanel.add(viewPanel);
 					
 					gui.validate();
 					gui.repaint();
@@ -196,18 +218,39 @@ public class ViewSectionPanel extends JPanel {
 			btnEdit.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 				
-				//addPanel=new AddSectionPanel(obj,gui,true);
+				addPanel=new AddSectionPanel(obj,gui,true);
 				
-				gui.panelCenter.removeAll();
-				gui.panelCenter.add(addPanel);
+				gui.centerPanel.removeAll();
+				gui.centerPanel.add(addPanel);
 				
-				gui.panelCenter.validate();
-				gui.panelCenter.repaint();
-				
-				gui.txtTest.setVisible(true);
-				gui.lblTest.setVisible(false);
+				gui.centerPanel.validate();
+				gui.centerPanel.repaint();
 			 }
 			});
+			
+			btnAdd.addActionListener(new ActionListener(){  //Add new question
+				public void actionPerformed(ActionEvent e) {
+					
+					AddSectionPanel panel= new AddSectionPanel(obj,gui,false);
+					gui.centerPanel.removeAll();
+					gui.centerPanel.add(panel);
+						
+					gui.centerPanel.validate();
+					gui.centerPanel.repaint();
+				 }
+				});
+			
+			btnContent.addActionListener(new ActionListener(){  //Add new question
+				public void actionPerformed(ActionEvent e) {
+					
+					SubsectionContentPanel panel= new SubsectionContentPanel(obj,gui);
+					gui.centerPanel.removeAll();
+					gui.centerPanel.add(panel);
+						
+					gui.centerPanel.validate();
+					gui.centerPanel.repaint();
+				 }
+				});
 			
 			/*btnAddQuestion.addActionListener(new ActionListener(){  //Add new question
 				public void actionPerformed(ActionEvent e) {
@@ -229,14 +272,13 @@ public class ViewSectionPanel extends JPanel {
 			ArrayList<String> list = new ArrayList<String>();
 			list=obj.getSection();
 			
-			lblTitle.setText(list.get(0));
-			lblSection = new JLabel(list.get(1));
-			lblTotalTime = new JLabel(list.get(2)+" mins");
-			lblNumOfQuestions = new JLabel(list.get(3));
-			lblTotalMarks = new JLabel(list.get(4));
+			lblSection = new JLabel(list.get(0));
+			lblTotalTime = new JLabel(list.get(1)+" mins");
+			lblNumOfQuestions = new JLabel(list.get(2));
+			lblTotalMarks = new JLabel(list.get(3));
 			
 			StringBuilder sb = new StringBuilder(64);
-			sb.append("<html>"+list.get(5)+"</html>");
+			sb.append("<html>"+list.get(4)+"</html>");
 			
 			lblInstructions = new JLabel(sb.toString());
 			

@@ -8,11 +8,13 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Font;
 
 public class SubsectionContentPanel extends JPanel {
 
@@ -48,6 +50,7 @@ public class SubsectionContentPanel extends JPanel {
 		gbc_lbl.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl.gridx = 0;
 		gbc_lbl.gridy = 1;	
+		lblTitle.setFont(new Font("Maiandra GD", Font.PLAIN, 20));
 		titlePanel.add(lblTitle,gbc_lbl);		
 		
 		//Center Panel
@@ -57,7 +60,7 @@ public class SubsectionContentPanel extends JPanel {
 		centerPanel.add(contentPanel, BorderLayout.CENTER);
 		
 		
-		
+		/*
 		//Buttons Panel
 		add(buttonsPanel, BorderLayout.SOUTH);
 		GridBagLayout gbl_buttonsPanel = new GridBagLayout();
@@ -72,7 +75,9 @@ public class SubsectionContentPanel extends JPanel {
 		gbc_btn.gridx = 0;
 		gbc_btn.gridy = 1;	
 		buttonsPanel.add(btnSave,gbc_btn);
-
+		btnSave.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		btnSave.setPreferredSize(new Dimension(100, 35));
+		 */
 
 	}
 

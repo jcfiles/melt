@@ -55,7 +55,7 @@ public class SectionNavigationPanel extends JPanel {
 		btnNext.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 								
-				int num=obj.getCurrentSection()+1;
+				/*int num=obj.getCurrentSection()+1;
 				
 				if(num!=obj.countSection()){
 					obj.setCurrentSection(num);
@@ -69,15 +69,15 @@ public class SectionNavigationPanel extends JPanel {
 					gui.lblTest.setVisible(true);
 				
 					gui.validate();
-					gui.repaint();	
-				}
+					gui.repaint();	*/
+				
 			 }
 			});
 		
 		btnPrevious.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
-							
-				int num=obj.getCurrentSection()-1;
+						
+			/*	int num=obj.getCurrentSection()-1;
 				
 				if(num!=-1){
 				obj.setCurrentSection(num);
@@ -93,6 +93,7 @@ public class SectionNavigationPanel extends JPanel {
 				gui.validate();
 				gui.repaint();
 			 }
+				*/
 			}
 			});
 		

@@ -113,7 +113,7 @@ public class NavigationPanel extends JPanel {
 			});	
 		btnBack.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
-				
+				/*
 				gui.dispose();
 				
 				ViewSectionPanel view=new ViewSectionPanel(obj,sec);
@@ -125,7 +125,7 @@ public class NavigationPanel extends JPanel {
 				sec.repaint();
 				sec.setVisible(true);
 				
-				
+				*/
 			}
 		});
 	}
