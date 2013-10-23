@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.*;
 
+/**
+ * 
+ * @author Stefan Lesnjakovic
+ *
+ */
+
 /*
  * This is a manually marked question
  */
@@ -79,11 +85,18 @@ public class SlotQ extends Question {
 		return expectedAnswers;
 		
 	}
-	
+	/**
+	 * Return a String[] which contains the parts of the question
+	 * @return String[]
+	 */
 	public String[] getqParts() {
 		return qParts;
 	}
 	
+	/**
+	 * Returns an arraylist of strings with what the setter has put into the blanks
+	 * @return ArrayList<String>
+	 */
 	public ArrayList<String> getExpectedAnswers() {
 		return expectedAnswers;
 	}
@@ -147,7 +160,7 @@ public class SlotQ extends Question {
 		{
 			sb.append(qParts[i]);
 			
-			if(i < (qParts.length-1)) //because we do not want <BLANK> after the last blank
+			if(i < (expectedAnswers.size())) //because we do not want <BLANK> after the last blank
 				sb.append("<BLANK>");
 		}	
 		return sb.toString();
