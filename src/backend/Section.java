@@ -19,8 +19,7 @@ public class Section implements java.io.Serializable
     private boolean isLocked;
     private SectionTimer sectionProgram;
     private int sectionTime;
-    
-
+    private Subsection subsectionContainer;
 
     /**
      * Constructor for objects of class Section
@@ -39,6 +38,31 @@ public class Section implements java.io.Serializable
     	this.sectionTitle = sectionTitle;
         this.sectionIntroText = sectionIntroText;
         this.sectionTime = sectionTime;
+    }
+    
+    public Subsection getSubsectonContainer()
+    {
+      return subsectionContainer;
+    }
+    
+    public Subsection createSubsection(String subsectionTitle)
+    {
+      subsectionContainer = new Subsection(subsectionTitle);
+      
+      return subsectionContainer;
+    }
+    
+    public Subsection createSubsectionWithQuestions(String subsectionTitle, ArrayList<Question> qs)
+    {
+      subsectionContainer = new Subsection(subsectionTitle, qs);
+      
+      return subsectionContainer;
+    }
+    
+    public Subsection createQuestionSubsection()
+    {
+      subsectionContainer = new Subsection(questions);
+      return subsectionContainer;
     }
     
     public String getSectionTitle()

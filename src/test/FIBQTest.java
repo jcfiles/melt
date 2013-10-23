@@ -151,7 +151,7 @@ public class FIBQTest
     assertEquals(expResult, testfibq.getQuestionText());
   }
 
-  /*
+  
   @Test
   public final void testSetSubsectionTitle() throws InvalidFTBQFormatException
   {
@@ -162,7 +162,7 @@ public class FIBQTest
     testfibq.setSubsectionTitle("Subsection A");
     expResult = "Subsection A";
     assertEquals(expResult, testfibq.getsubSectionTitle());
-  }*/
+  }
 
   @Test
   public final void testGetPossibleMarks() throws InvalidFTBQFormatException

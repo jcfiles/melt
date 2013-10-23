@@ -8,7 +8,7 @@ package backend;
 public class StudentAnswer {
 	
 	protected Question question; //to get the question to this answer
-
+	protected String rightAnswer;
 	protected String answer;
 	protected int marksAwarded;
 	protected String feedback;
@@ -21,6 +21,7 @@ public class StudentAnswer {
 		this.marksAwarded = 0;
 		this.feedback = null;
 		this.isMarked = false;
+		this.rightAnswer = null;
 	}
 	
 	//constructor with student answer
@@ -30,6 +31,16 @@ public class StudentAnswer {
 		this.marksAwarded = 0;
 		this.feedback = null;
 		this.isMarked = false;
+		this.rightAnswer = null;
+	}
+	
+	public StudentAnswer(String answer, String rightAnswer)
+	{
+	  this.answer = answer;
+    this.marksAwarded = 0;
+    this.feedback = null;
+    this.isMarked = false;
+    this.rightAnswer = rightAnswer;
 	}
 	
 	
