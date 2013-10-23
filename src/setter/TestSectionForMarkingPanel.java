@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 import java.awt.Insets;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import java.awt.GridLayout;
+import java.awt.Font;
 
 /**
  * 
@@ -93,9 +95,24 @@ public class TestSectionForMarkingPanel extends JPanel {
 		add(centerPanel, BorderLayout.CENTER);
 		centerPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblMark = new JLabel("Mark:");
-		lblMark.setHorizontalAlignment(SwingConstants.RIGHT);
-		centerPanel.add(lblMark, BorderLayout.NORTH);
+		JPanel panelMark = new JPanel();
+		centerPanel.add(panelMark, BorderLayout.NORTH);
+		GridBagLayout gbl_panelMark = new GridBagLayout();
+		gbl_panelMark.columnWidths = new int[]{290, 0};
+		gbl_panelMark.rowHeights = new int[]{16, 0};
+		gbl_panelMark.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panelMark.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panelMark.setLayout(gbl_panelMark);
+		
+		JLabel lblMarks = new JLabel("Marks:");
+		lblMarks.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		GridBagConstraints gbc_lblMarks = new GridBagConstraints();
+		gbc_lblMarks.insets = new Insets(0, 0, 0, 10);
+		gbc_lblMarks.anchor = GridBagConstraints.EAST;
+		gbc_lblMarks.fill = GridBagConstraints.VERTICAL;
+		gbc_lblMarks.gridx = 0;
+		gbc_lblMarks.gridy = 0;
+		panelMark.add(lblMarks, gbc_lblMarks);
 		
 		JSplitPane splitPane = new JSplitPane();
 		centerPanel.add(splitPane, BorderLayout.CENTER);
