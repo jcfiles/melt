@@ -68,7 +68,7 @@ public class SlotQ extends Question {
 		/*
 		 * this will find any occurence of [ a-zA-Z0-9 ] in the text and just return the text inside the [] brackets
 		 */
-		Pattern pattern = Pattern.compile("(?<=\\[)[a-zA-Z0-9]*(?=\\])");
+		Pattern pattern = Pattern.compile("(?<=\\[)[a-zA-Z0-9 ]*(?=\\])");
 		Matcher matcher = pattern.matcher(questionText);
 		
 		boolean found = false;
@@ -169,8 +169,11 @@ public class SlotQ extends Question {
 	//functionality testing
 	public static void main(String[] args) throws InvalidSlotQFormatException
 	{
-		SlotQ testq = new SlotQ("This [is] a [test] question.");
+		SlotQ testq = new SlotQ("[afa]This [is] a [test] question.[rando mblank]");
 		System.out.println(testq.toString());
+		for(int i=0; i<testq.getqParts().length; i++)
+		  System.out.println(testq.getqParts()[i]);
+		System.out.println("the end");
 		//SlotQ testq = new SlotQ("This (is) a (test) question.");
 	}
 	
