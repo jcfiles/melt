@@ -155,10 +155,9 @@ public class TestSectionPanel extends JPanel {
 	Object[][] object = new Object[questions.size()][2];
 	for(int i=0; i<questions.size();i++){
             object[i][0]=q+Integer.toString(i+1);
-            //object[i][1]= exImage;
 	}
 	
-	String[] columnNames = new String[] {"Questions", ""};
+	String[] columnNames = new String[] {"Quest", ""};
 	
 	DefaultTableModel model = new DefaultTableModel(object, columnNames);
 	tableQuestions = new JTable( model )
