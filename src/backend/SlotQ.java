@@ -151,9 +151,10 @@ public class SlotQ extends Question {
 		this.studentAnswers.get(index).isMarked();
 	}
 
-	
-	//a toString that will replace the blanks in the questionText that are to fill in with '<BLANK>'
-	@Override
+	/**
+	 * Returns the slot question as a string replacing the missing words with "<BLANK>"
+	 * @return String
+	 */
 	public String toString() {
 		StringBuilder sb = new StringBuilder(); //use the StringBuilder for efficiency
 		for(int i = 0; i < qParts.length; i++)
