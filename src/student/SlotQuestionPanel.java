@@ -6,6 +6,8 @@ import backend.SlotQ;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
 
 /**
  * 
@@ -25,6 +27,8 @@ public class SlotQuestionPanel extends QuestionPanel {
 	 * Create the panel.
 	 */
 	public SlotQuestionPanel(SlotQ slotq) {
+		FlowLayout flowLayout = (FlowLayout) getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
 		this.slotq = slotq;
 		textFields = new ArrayList<>();
 		String delimiter = "<BLANK>";
@@ -41,7 +45,7 @@ public class SlotQuestionPanel extends QuestionPanel {
 				question = question + Character.toString(slotq.toString().charAt(i));
 			}
 			else{
-				JLabel questionText = new JLabel(question);
+				JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
 				add(questionText);
 				question = "";
 				JTextField emptyField = new JTextField(10);
@@ -50,7 +54,8 @@ public class SlotQuestionPanel extends QuestionPanel {
 				i=i+delimiter.length();
 			}
 		}
-		JLabel questionText = new JLabel(question);
+		JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
+		questionText.setHorizontalAlignment(SwingConstants.LEFT);
 		add(questionText);
 		
 	}
