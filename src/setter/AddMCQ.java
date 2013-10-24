@@ -33,7 +33,7 @@ public class AddMCQ extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AddMCQ(ArrayList<String> list,final AddQuestionGUI gui, Boolean b) {
+	public AddMCQ(ArrayList<String> list,final SetterGUI gui, Boolean b) {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		

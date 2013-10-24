@@ -56,7 +56,7 @@ public class NavigationPanel extends JPanel {
 		
 		btnNext.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
-								
+			/*					
 				int num=obj.getCurrentQuestion()+1;
 				
 				if(num!=obj.countQuestion()){
@@ -79,14 +79,14 @@ public class NavigationPanel extends JPanel {
 				
 					gui.validate();
 					gui.repaint();
-				}
+				}*/
 			}
 		});
 		
 		btnPrevious.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
 							
-				int num=obj.getCurrentQuestion()-1;
+			/*	int num=obj.getCurrentQuestion()-1;
 				
 				if(num!=-1){
 					
@@ -108,7 +108,7 @@ public class NavigationPanel extends JPanel {
 				
 					gui.validate();
 					gui.repaint();
-					}	
+					}	*/
 			 	}
 			});	
 		btnBack.addActionListener(new ActionListener(){  //Edit the question

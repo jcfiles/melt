@@ -60,7 +60,7 @@ public class AddQuestionPanel extends JPanel {
 	/**
 	 * Create the buttonsPanel.
 	 */
-	public AddQuestionPanel(final SetterTestController obj, final AddQuestionGUI gui, Boolean b) {
+	public AddQuestionPanel(final SetterTestController obj, final SetterGUI gui, Boolean b) {
 		SpringLayout springLayout = new SpringLayout();
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnFillBlanks, 179, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnMultipleChoice, 150, SpringLayout.NORTH, this);
@@ -92,8 +92,8 @@ public class AddQuestionPanel extends JPanel {
 		add(txtQuestion);
 		
 		JLabel lblType = new JLabel("Type:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblType, 4, SpringLayout.NORTH, rdbtnMultipleChoice);
 		springLayout.putConstraint(SpringLayout.WEST, lblType, 0, SpringLayout.WEST, lblQuestion);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblType, -406, SpringLayout.SOUTH, this);
 		add(lblType);
 		
 		
@@ -301,8 +301,8 @@ public class AddQuestionPanel extends JPanel {
 	   	    	  	{	
 	    				// obj.editMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	    				 MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
-	    		        gui.panelCenter.removeAll();
-	    		        gui.panelCenter.add(multiPanel);
+	    		        gui.centerPanel.removeAll();
+	    		        gui.centerPanel.add(multiPanel);
 	   	    	  	}
 	    			 else
 	    			 {	    			
@@ -334,8 +334,8 @@ public class AddQuestionPanel extends JPanel {
 	    	  {	        	
 	        	//obj.addMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
-	        	gui.panelCenter.removeAll();
-	        	gui.panelCenter.add(multiPanel);
+	        	gui.centerPanel.removeAll();
+	        	gui.centerPanel.add(multiPanel);
 	    	  }
 	    	  else
 	    	  {	 /*

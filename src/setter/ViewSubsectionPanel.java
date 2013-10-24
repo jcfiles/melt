@@ -4,13 +4,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
 
 public class ViewSubsectionPanel extends JPanel {
+	private JTextField textField;
+
 	/**
 	 * Create the panel.
 	 */
@@ -20,21 +23,33 @@ public class ViewSubsectionPanel extends JPanel {
 		
 		JLabel lblSubsection = new JLabel("Subsection:");
 		springLayout.putConstraint(SpringLayout.WEST, lblSubsection, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblSubsection, -64, SpringLayout.SOUTH, this);
+		lblSubsection.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		add(lblSubsection);
 		
-		JButton btnSave = new JButton("Save");
-		springLayout.putConstraint(SpringLayout.NORTH, btnSave, -39, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, btnSave, -66, SpringLayout.EAST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnSave, -10, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnSave, -10, SpringLayout.EAST, this);
-		btnSave.setPreferredSize(new Dimension(40,40));
-		add(btnSave);
+		textField = new JTextField();
+		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
+		springLayout.putConstraint(SpringLayout.SOUTH, lblSubsection, -18, SpringLayout.NORTH, textField);
+		springLayout.putConstraint(SpringLayout.WEST, textField, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, textField, -26, SpringLayout.SOUTH, this);
+		add(textField);
+		textField.setColumns(10);
 		
-		JLabel lblSubsection_1 = new JLabel("Subsection1");
-		springLayout.putConstraint(SpringLayout.WEST, lblSubsection_1, 0, SpringLayout.WEST, lblSubsection);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblSubsection_1, -21, SpringLayout.SOUTH, this);
-		add(lblSubsection_1);
-	}
+		JButton btnEdit = new JButton("");
+		btnEdit.setBackground(Color.ORANGE);
+		btnEdit.setIcon(new ImageIcon(ViewSubsectionPanel.class.getResource("/lib/images/edit.png")));		
+		btnEdit.setPreferredSize(new Dimension(40,40));
+		springLayout.putConstraint(SpringLayout.NORTH, btnEdit, 10, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, btnEdit, -10, SpringLayout.EAST, this);
+		add(btnEdit);
+		
+		JButton btnDelete = new JButton("");
+		springLayout.putConstraint(SpringLayout.EAST, textField, -6, SpringLayout.WEST, btnDelete);
+		btnDelete.setIcon(new ImageIcon(ViewSubsectionPanel.class.getResource("/lib/images/cross.png")));
+		btnDelete.setBackground(new Color(204, 0, 0));
+		btnDelete.setPreferredSize(new Dimension(40,40));
+		springLayout.putConstraint(SpringLayout.SOUTH, btnDelete, -10, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, btnDelete, 0, SpringLayout.EAST, btnEdit);
+		add(btnDelete);
 
+	}
 }

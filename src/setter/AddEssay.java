@@ -24,7 +24,7 @@ public class AddEssay extends JPanel {
 		txtSize = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, txtSize, -3, SpringLayout.NORTH, lblSize);
 		springLayout.putConstraint(SpringLayout.WEST, txtSize, 34, SpringLayout.EAST, lblSize);
-		springLayout.putConstraint(SpringLayout.EAST, txtSize, -24, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.EAST, txtSize, -33, SpringLayout.EAST, this);
 		add(txtSize);
 		txtSize.setColumns(10);
 		
@@ -35,8 +35,8 @@ public class AddEssay extends JPanel {
 		
 		txtWordLimit = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, txtWordLimit, -3, SpringLayout.NORTH, lblWordLimit);
-		springLayout.putConstraint(SpringLayout.WEST, txtWordLimit, 0, SpringLayout.WEST, txtSize);
-		springLayout.putConstraint(SpringLayout.EAST, txtWordLimit, 0, SpringLayout.EAST, txtSize);
+		springLayout.putConstraint(SpringLayout.WEST, txtWordLimit, 82, SpringLayout.EAST, lblWordLimit);
+		springLayout.putConstraint(SpringLayout.EAST, txtWordLimit, -33, SpringLayout.EAST, this);
 		add(txtWordLimit);
 		txtWordLimit.setColumns(10);
 	}

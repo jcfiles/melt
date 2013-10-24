@@ -58,7 +58,7 @@ public class CreateTestPanel extends JPanel {
 		gbc_lbl.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl.gridx = 0;
 		gbc_lbl.gridy = 1;	
-		lblCreateTest.setFont(new Font("MV Boli", Font.BOLD, 20));
+		lblCreateTest.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		titlePanel.add(lblCreateTest,gbc_lbl);		
 		
 		//Center Panel

@@ -16,6 +16,9 @@ import javax.swing.SpringLayout;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class SetterGUI extends JFrame {
 
 	private JPanel contentPane;

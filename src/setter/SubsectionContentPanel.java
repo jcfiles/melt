@@ -1,5 +1,6 @@
 package setter;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +17,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EtchedBorder;
+
+import java.awt.LayoutManager;
+
 public class SubsectionContentPanel extends JPanel {
 
 	/**
@@ -24,18 +32,18 @@ public class SubsectionContentPanel extends JPanel {
 	private JPanel titlePanel = new JPanel();
 	private JPanel centerPanel = new JPanel();
 	private JLabel lblTitle =new JLabel("TestA: SectionA");
-	private JTextField txtTitle = new JTextField();
-	private JPanel buttonsPanel=new JPanel();
-	private JButton btnSave=new JButton("Save");
 	private JTextArea txtIntroduction = new JTextArea();
 	private final JPanel contentPanel = new JPanel();
+	private final JScrollPane scrollPane = new JScrollPane();
+	private GridBagConstraints gbc_1;
+	private EmptyPanel panel_1;
 	
 	
 	/**
 	 * Create the panel.
 	 */
 	public SubsectionContentPanel(final SetterTestController obj, final SetterGUI gui) {
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(20, 20));
 
 		//Title panel
 		add(titlePanel, BorderLayout.NORTH);
@@ -52,12 +60,71 @@ public class SubsectionContentPanel extends JPanel {
 		gbc_lbl.gridy = 1;	
 		lblTitle.setFont(new Font("Maiandra GD", Font.PLAIN, 20));
 		titlePanel.add(lblTitle,gbc_lbl);		
+		centerPanel.setBorder(null);
 		
 		//Center Panel
 		add(centerPanel, BorderLayout.CENTER);
-		centerPanel.setLayout(new BorderLayout(0, 0));
+		centerPanel.setLayout(new BorderLayout(20, 20));
 		
-		centerPanel.add(contentPanel, BorderLayout.CENTER);
+		
+		GridBagLayout gbl_mainList = new GridBagLayout();
+		gbl_mainList.columnWeights = new double[]{0.0};
+		gbl_mainList.rowHeights=new int[] {0, 0};
+		JPanel mainList = new JPanel(gbl_mainList); 
+		mainList.setPreferredSize(new Dimension(500,500));
+		
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		EmptyPanel  panel=new EmptyPanel(obj,gui);
+	
+		/*
+		for (int i=0; i<5; i++){
+		gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = i+1;
+		panel=new EmptyPanel();
+		panel.setPreferredSize(new Dimension(300,125));
+		mainList.add(panel,gbc);
+		
+		}*/
+		
+		gbc_1 = new GridBagConstraints();
+		gbc_1.anchor = GridBagConstraints.NORTH;
+		gbc_1.gridx = 0;
+		gbc_1.gridy = 1;
+		panel_1=new EmptyPanel(obj,gui);
+		panel_1.setBorder(null);
+		panel_1.setPreferredSize(new Dimension(300,130));
+		mainList.add(panel_1,gbc_1);
+		
+		JScrollPane scrollPane = new JScrollPane(mainList);
+		centerPanel.add(scrollPane, BorderLayout.CENTER);
+				
+		
+		int content=0;
+
+		
+		if(content==1)
+		{
+			//find the type
+			
+		}
+		
+		if(content==2)
+		{		
+			SubsectionPanel panelS= new SubsectionPanel(obj, gui);
+			
+			gui.centerPanel.removeAll();
+			gui.centerPanel.add(panelS);
+									
+			gui.centerPanel.validate();
+			gui.centerPanel.repaint();
+		}
+		
+		
+		
+		
 		
 		
 		/*

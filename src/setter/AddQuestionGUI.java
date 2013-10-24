@@ -115,8 +115,8 @@ public class AddQuestionGUI extends JFrame {
     panelCenter.setBorder(lineBorder);
     contentPane.add(panelCenter, BorderLayout.CENTER);
     panelCenter.setLayout(new GridLayout(1, 0, 0, 0));     
-    addPanel=new AddQuestionPanel(obj,this, false);
-    panelCenter.add(addPanel);  
+    //addPanel=new AddQuestionPanel(obj,this, false);
+    //panelCenter.add(addPanel);  
     
     //The navigation panel
     nav=new NavigationPanel(obj,this,sec);
