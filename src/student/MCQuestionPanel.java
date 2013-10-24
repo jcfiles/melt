@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JCheckBox;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 /**
  * 
@@ -33,7 +34,8 @@ public class MCQuestionPanel extends QuestionPanel {
         private MCQ question;
         private ArrayList<Answer> answers;
         private JPanel panel_1;
-        
+        private int questionNumber = 0;
+        private JLabel labelQuestionNumber;
 	/**
 	 * Create the panel.
 	 */
@@ -48,12 +50,14 @@ public class MCQuestionPanel extends QuestionPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel lblQuestion = new JLabel("Question 1");
-		GridBagConstraints gbc_lblQuestion = new GridBagConstraints();
-		gbc_lblQuestion.insets = new Insets(0, 0, 5, 0);
-		gbc_lblQuestion.gridx = 0;
-		gbc_lblQuestion.gridy = 0;
-		add(lblQuestion, gbc_lblQuestion);
+		labelQuestionNumber = new JLabel("Question "+Integer.toString(questionNumber));
+		labelQuestionNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		labelQuestionNumber.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		GridBagConstraints gbc_labelQuestionNumber = new GridBagConstraints();
+		gbc_labelQuestionNumber.insets = new Insets(0, 0, 5, 0);
+		gbc_labelQuestionNumber.gridx = 0;
+		gbc_labelQuestionNumber.gridy = 0;
+		add(labelQuestionNumber, gbc_labelQuestionNumber);
 		
 		JPanel panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -68,10 +72,10 @@ public class MCQuestionPanel extends QuestionPanel {
 		gbl_panel_3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		JLabel labelMark = new JLabel("Mark: "+question.getPossibleMarks());
+		JLabel labelMark = new JLabel("Marks: "+question.getPossibleMarks());
 		labelMark.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		GridBagConstraints gbc_labelMark = new GridBagConstraints();
-		gbc_labelMark.insets = new Insets(0, 0, 0, 10);
+		gbc_labelMark.insets = new Insets(0, 0, 5, 10);
 		gbc_labelMark.anchor = GridBagConstraints.NORTHEAST;
 		gbc_labelMark.gridx = 0;
 		gbc_labelMark.gridy = 0;
@@ -166,4 +170,11 @@ public class MCQuestionPanel extends QuestionPanel {
         }
     	return isanswered;
     }
+
+	@Override
+	public void setQuestionNumber(int questionNumber) {
+		this.questionNumber = questionNumber;
+		labelQuestionNumber.setText("Question " + Integer.toString(questionNumber));
+		labelQuestionNumber.validate();
+	}
 }

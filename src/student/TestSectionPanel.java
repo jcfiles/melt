@@ -27,6 +27,7 @@ import backend.Question;
 import backend.Section;
 
 import java.util.Iterator;
+import java.awt.Font;
 /**
  * @author Chondrokoukis Dimitrios
  * @contributor Steedman Bruce
@@ -90,6 +91,7 @@ public class TestSectionPanel extends JPanel {
 	panel_8.add(lblTestA, gbc_lblTestA);
 		
 	JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
+	labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 	GridBagConstraints gbc_labelSectionTitle = new GridBagConstraints();
 	gbc_labelSectionTitle.anchor = GridBagConstraints.WEST;
 	gbc_labelSectionTitle.gridx = 1;
@@ -130,6 +132,7 @@ public class TestSectionPanel extends JPanel {
 		
 	JLabel lblNewLabel_2 = new JLabel("minutes remaining");
 	GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+	gbc_lblNewLabel_2.insets = new Insets(0, 0, 0, 10);
 	gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
 	gbc_lblNewLabel_2.gridx = 1;
 	gbc_lblNewLabel_2.gridy = 0;
@@ -229,11 +232,13 @@ public class TestSectionPanel extends JPanel {
 	while(it.hasNext()){
             try {
                 qp = QuestionPanelFactory.getInstance().createQuestionPanel(it.next());
+                qNum++;
+                qp.setQuestionNumber(qNum);
             }
             catch(Exception e) {
                 //Handle exceptions if for any reason a panel cannot be instantiated
             }
-            questionHolderPanel.add(qp, "name_"+ Integer.toString(qNum++));
+            questionHolderPanel.add(qp, "name_"+ Integer.toString(qNum));
             questionPanels.add(qp);
 	}
 	scrollPane.setMinimumSize(scrollPane.getComponent(0).getSize());	
