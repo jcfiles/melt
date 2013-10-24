@@ -1,5 +1,7 @@
 package student;
 
+import java.util.ArrayList;
+
 import backend.SlotQ;
 
 import javax.swing.JLabel;
@@ -17,12 +19,14 @@ public class SlotQuestionPanel extends QuestionPanel {
 	 */
 	private static final long serialVersionUID = 3541874320997314399L;
 	private SlotQ slotq;
+	private ArrayList<JTextField> textFields;
 
 	/**
 	 * Create the panel.
 	 */
 	public SlotQuestionPanel(SlotQ slotq) {
 		this.slotq = slotq;
+		textFields = new ArrayList<>();
 		String delimiter = "<BLANK>";
 		String question = "";
 		for(int i=0; i<slotq.toString().length()-delimiter.length(); i++){
@@ -42,6 +46,7 @@ public class SlotQuestionPanel extends QuestionPanel {
 				question = "";
 				JTextField emptyField = new JTextField(10);
 				add(emptyField);
+				textFields.add(emptyField);
 				i=i+delimiter.length();
 			}
 		}
@@ -52,11 +57,14 @@ public class SlotQuestionPanel extends QuestionPanel {
 
 	@Override
 	public void submitAnswer() {
+		for(int i=0; i<textFields.size(); i++){
+			slotq.setStudentAnswer(textFields.get(i).getText(), i);
+		}
 		// TODO Auto-generated method stub
 		
 	}
 	
-	/*
+	/**
      * (non-Javadoc)
      * @see student.QuestionPanel#isAnswered()
      * 
@@ -65,8 +73,14 @@ public class SlotQuestionPanel extends QuestionPanel {
 
 	@Override
 	public boolean isAnswered() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean fieldIsFilled = true;
+		for(int i=0; i<textFields.size(); i++){
+			if(textFields.get(i).getText().equals("")){
+				fieldIsFilled = false;
+				break;
+			}
+		}
+		return fieldIsFilled;
 	}
 
 }
