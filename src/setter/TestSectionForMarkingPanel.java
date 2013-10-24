@@ -100,21 +100,22 @@ public class TestSectionForMarkingPanel extends JPanel {
 		GridBagLayout gbl_panelMark = new GridBagLayout();
 		gbl_panelMark.columnWidths = new int[]{290, 0};
 		gbl_panelMark.rowHeights = new int[]{16, 0};
-		gbl_panelMark.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panelMark.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panelMark.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panelMark.setLayout(gbl_panelMark);
 		
 		JLabel lblMarks = new JLabel("Marks:");
 		lblMarks.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		GridBagConstraints gbc_lblMarks = new GridBagConstraints();
-		gbc_lblMarks.insets = new Insets(0, 0, 0, 10);
 		gbc_lblMarks.anchor = GridBagConstraints.EAST;
+		gbc_lblMarks.insets = new Insets(0, 0, 0, 10);
 		gbc_lblMarks.fill = GridBagConstraints.VERTICAL;
 		gbc_lblMarks.gridx = 0;
 		gbc_lblMarks.gridy = 0;
 		panelMark.add(lblMarks, gbc_lblMarks);
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(1.1);
 		centerPanel.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel rightAnswerPanel = new JPanel();
@@ -156,7 +157,6 @@ public class TestSectionForMarkingPanel extends JPanel {
 		
 		JPanel totalMarkPanel = new JPanel();
 		GridBagConstraints gbc_totalMarkPanel = new GridBagConstraints();
-		gbc_totalMarkPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_totalMarkPanel.anchor = GridBagConstraints.NORTHWEST;
 		gbc_totalMarkPanel.gridx = 0;
 		gbc_totalMarkPanel.gridy = 0;
@@ -171,7 +171,6 @@ public class TestSectionForMarkingPanel extends JPanel {
 		
 		JPanel feedbackPanel = new JPanel();
 		GridBagConstraints gbc_feedbackPanel = new GridBagConstraints();
-		gbc_feedbackPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_feedbackPanel.anchor = GridBagConstraints.NORTH;
 		gbc_feedbackPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_feedbackPanel.gridx = 0;
@@ -187,7 +186,6 @@ public class TestSectionForMarkingPanel extends JPanel {
 		JLabel lblFeedback = new JLabel("Feedback:");
 		GridBagConstraints gbc_lblFeedback = new GridBagConstraints();
 		gbc_lblFeedback.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblFeedback.insets = new Insets(0, 0, 5, 0);
 		gbc_lblFeedback.anchor = GridBagConstraints.NORTH;
 		gbc_lblFeedback.gridx = 0;
 		gbc_lblFeedback.gridy = 0;
