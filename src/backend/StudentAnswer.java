@@ -1,5 +1,7 @@
 package backend;
 
+import java.util.ArrayList;
+
 /*
  * A class to record a student's answer which is used for manual marking.
  * others than Answer.java which is used to store a possible predefined answer.
@@ -10,6 +12,11 @@ public class StudentAnswer {
 	protected Question question; //to get the question to this answer
 	protected String rightAnswer;
 	protected String answer;
+	
+	//for slot questions have a list of answers
+	protected ArrayList<String> rightSlotAnswers;
+	protected ArrayList<String> slotAnswers;
+
 	protected int marksAwarded;
 	protected String feedback;
 	protected boolean isMarked;
@@ -17,11 +24,13 @@ public class StudentAnswer {
 	//empty constructor
 	public StudentAnswer()
 	{
-		this.answer = null;
+		this.answer = "";
 		this.marksAwarded = 0;
 		this.feedback = null;
 		this.isMarked = false;
 		this.rightAnswer = null;
+		this.rightSlotAnswers = null;
+		this.slotAnswers = null;
 	}
 	
 	//constructor with student answer
@@ -37,14 +46,49 @@ public class StudentAnswer {
 	public StudentAnswer(String answer, String rightAnswer)
 	{
 	  this.answer = answer;
-    this.marksAwarded = 0;
-    this.feedback = null;
-    this.isMarked = false;
-    this.rightAnswer = rightAnswer;
+	  this.marksAwarded = 0;
+	  this.feedback = "";
+	  this.isMarked = false;
+	  this.rightAnswer = rightAnswer;
+	}
+	
+	public StudentAnswer(ArrayList<String> rightAnswers)
+	{
+		this.answer = null;
+		this.marksAwarded = 0;
+		this.feedback = "";
+		this.isMarked = true;
+		this.rightSlotAnswers = rightAnswers;
+		this.slotAnswers = new ArrayList<String>();
+		for(int i=0; i<rightSlotAnswers.size(); i++)
+			slotAnswers.add("");
 	}
 	
 	
+	
 	//Setters and Getters
+	public ArrayList<String> getRightSlotAnswers() {
+		return rightSlotAnswers;
+	}
+	
+	public ArrayList<String> getSlotAnswers() {
+		return slotAnswers;
+	}
+
+	public void setSlotAnswers(ArrayList<String> slotAnswers) {
+		this.slotAnswers = slotAnswers;
+	}
+	
+	public void setSlotAnswer(String answer, int index)
+	{
+		this.slotAnswers.set(index, answer);
+	}
+	
+	public String getSlotAnswer(int index)
+	{
+		return this.slotAnswers.get(index);
+	}
+
 	public String getAnswer() {
 		return answer;
 	}
