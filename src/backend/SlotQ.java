@@ -15,7 +15,7 @@ import java.util.regex.*;
  */
 public class SlotQ extends Question {
 
-	ArrayList<StudentAnswer> studentAnswers;
+	StudentAnswer studentAnswer;
 	//TODO ^ not sure if this is a good idea. it is definitely memory inefficient and less flexible (as every blank has a mark)
 	//a different way to do this is to let StudentAnswer store a list of answers or to make a subclass of StudentAnswer for each type of manually marked question.
 	
@@ -26,11 +26,9 @@ public class SlotQ extends Question {
 
 	public SlotQ(String questionText) throws InvalidSlotQFormatException {
 		super(questionText);
-		this.studentAnswers = new ArrayList<StudentAnswer>();
 		this.qParts = parseQtext(questionText);
 		this.expectedAnswers = parseAtext(questionText);
-		for(int i = 0; i < expectedAnswers.size(); i++)
-			studentAnswers.add(new StudentAnswer());
+		this.studentAnswer = new StudentAnswer();
 	}
 
 	/*
@@ -104,51 +102,48 @@ public class SlotQ extends Question {
 	//a total of all the individual blanks
 	@Override
 	protected int getMarksAwarded() {
-		int totalMarks = 0;
-		for(int i = 0; i < studentAnswers.size(); i++)
-			totalMarks += studentAnswers.get(i).getMarksAwarded();
-		return totalMarks;
+		return studentAnswer.getMarksAwarded();
 	}
 
-	public ArrayList<StudentAnswer> getStudentAnswers() {
-		return studentAnswers;
+	public ArrayList<String> getStudentAnswers() {
+		return studentAnswer.getSlotAnswers();
 	}
 	
-	public void setStudentAnswers(ArrayList<StudentAnswer> studentAnswers) {
-		this.studentAnswers = studentAnswers;
+	public void setStudentAnswers(ArrayList<String> studentAnswers) {
+		this.studentAnswer.setSlotAnswers(studentAnswers);
 	}
 
 	//setters for individual blanks. could also use above ^ although this might make things slightly simpler
 	public void setStudentAnswer(String answer, int index) {
-		this.studentAnswers.get(index).setAnswer(answer);
+		this.studentAnswer.setSlotAnswer(answer, index);
 	}
 	
 	public void getStudentAnswer(int index) {
-		this.studentAnswers.get(index).getAnswer();
+		this.studentAnswer.getSlotAnswer(index);
 	}
 	
-	public void setStudentFeedback(String feedback, int index) {
-		this.studentAnswers.get(index).setFeedback(feedback);
+	public void setStudentFeedback(String feedback) {
+		this.studentAnswer.setFeedback(feedback);
 	}
 	
-	public void getStudentFeedback(int index) {
-		this.studentAnswers.get(index).getFeedback();
+	public String getStudentFeedback(int index) {
+		return this.studentAnswer.getFeedback();
 	}
 	
-	public void setStudentMark(int mark, int index) {
-		this.studentAnswers.get(index).setMarksAwarded(mark);
+	public void setStudentMark(int mark) {
+		this.studentAnswer.setMarksAwarded(mark);
 	}
 	
-	public void getStudentMark(int index) {
-		this.studentAnswers.get(index).getMarksAwarded();
+	public int getStudentMark() {
+		return this.studentAnswer.getMarksAwarded();
 	}
 	
-	public void setMarked(boolean marked, int index) {
-		this.studentAnswers.get(index).setMarked(marked);
+	public void setMarked(boolean marked) {
+		this.studentAnswer.setMarked(marked);
 	}
 	
-	public void getMarked(int index) {
-		this.studentAnswers.get(index).isMarked();
+	public boolean isMarked() {
+		return this.studentAnswer.isMarked();
 	}
 
 	/**

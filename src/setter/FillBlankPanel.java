@@ -24,7 +24,7 @@ public class FillBlankPanel extends JPanel {
 	/**
 	 * Create the buttonsPanel.
 	 */
-	public FillBlankPanel(final SetterTestController obj, final AddQuestionGUI gui) {
+	public FillBlankPanel(final SetterTestController obj, final SetterGUI gui) {
 
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -89,11 +89,11 @@ public class FillBlankPanel extends JPanel {
 		        
 		    	  AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui,false);
 		    	  
-		    	  gui.panelCenter.removeAll();
-		    	  gui.panelCenter.add(addPanel);
+		    	  gui.centerPanel.removeAll();
+		    	  gui.centerPanel.add(addPanel);
 		                           
-		    	  gui.panelCenter.validate();
-		    	  gui.panelCenter.repaint();
+		    	  gui.centerPanel.validate();
+		    	  gui.centerPanel.repaint();
 		      }
 		    });
 		
@@ -119,14 +119,14 @@ public class FillBlankPanel extends JPanel {
 						if(obj.getQuestionType()==0)
 						{
 							MultichoicePanel panel=new MultichoicePanel(obj,gui);
-							gui.panelCenter.removeAll();
-							gui.panelCenter.add(panel);
+							gui.centerPanel.removeAll();
+							gui.centerPanel.add(panel);
 						}
 						else
 						{
 							FillBlankPanel panel=new FillBlankPanel(obj,gui);
-							gui.panelCenter.removeAll();
-							gui.panelCenter.add(panel);
+							gui.centerPanel.removeAll();
+							gui.centerPanel.add(panel);
 						}
 					
 						
@@ -140,11 +140,11 @@ public class FillBlankPanel extends JPanel {
 	        public void actionPerformed(ActionEvent e) {
 
 	        	AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui,true);
-	        	gui.panelCenter.removeAll();
-	        	gui.panelCenter.add(addPanel);
+	        	gui.centerPanel.removeAll();
+	        	gui.centerPanel.add(addPanel);
 	         
-	        	gui.panelCenter.validate();
-	        	gui.panelCenter.repaint();
+	        	gui.centerPanel.validate();
+	        	gui.centerPanel.repaint();
 	        
 	       }
 	    });
