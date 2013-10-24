@@ -23,18 +23,30 @@ public class SlotQuestionPanel extends QuestionPanel {
 	 */
 	public SlotQuestionPanel(SlotQ slotq) {
 		this.slotq = slotq;
-		for(int i=0; i<slotq.getqParts().length;i++){
-			JLabel questionText = new JLabel(slotq.getqParts()[i]);
-			add(questionText);
+		String delimiter = "<BLANK>";
+		String question = "";
+		for(int i=0; i<slotq.toString().length()-delimiter.length(); i++){
+			boolean found = true;
+			for(int j=0; j<delimiter.length(); j++){
+				if(delimiter.charAt(j)!=slotq.toString().charAt(j+i)){
+					found = false;
+					break;
+				}
+			}
+			if(found == false){
+				question = question + Character.toString(slotq.toString().charAt(i));
+			}
+			else{
+				JLabel questionText = new JLabel(question);
+				add(questionText);
+				question = "";
+				JTextField emptyField = new JTextField(10);
+				add(emptyField);
+				i=i+delimiter.length();
+			}
 		}
-		StringBuilder sb = new StringBuilder();
-		sb.append("hbsidjhoihs ");
-		JLabel lblAsdfadfbfkfdjv = new JLabel(sb.toString());
-		add(lblAsdfadfbfkfdjv);
-		JTextField field = new JTextField();
-		add(field);
-		JLabel lblAsdfadfbfkfdj1v = new JLabel(sb.toString());
-		add(lblAsdfadfbfkfdj1v);
+		JLabel questionText = new JLabel(question);
+		add(questionText);
 		
 	}
 
