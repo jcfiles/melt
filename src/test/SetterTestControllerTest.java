@@ -68,6 +68,8 @@ public class SetterTestControllerTest {
 		assertEquals(expResult, stc.countSection());
 	}
 
+	/****** From here **********/
+	/*
 	@Test
 	public final void testCountQuestion() {
 		SetterTestController stc = new SetterTestController();
@@ -112,7 +114,7 @@ public class SetterTestControllerTest {
 	public final void testEditMCQ() {
 		fail("Not yet implemented");
 	}
-	*/
+	/
 	@Test
 	public final void testGetQuestionType() {
 		SetterTestController stc = new SetterTestController();
@@ -122,6 +124,12 @@ public class SetterTestControllerTest {
 		int expResult = 1;
 		assertEquals(expResult, stc.getQuestionType());
 	}
+	
+	*/
+	/****** to here **********/
+	
+	
+	
 	/*
 	@Test
 	public final void testGetQuestion() {

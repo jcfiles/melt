@@ -184,13 +184,12 @@ public class SetterTestController
   /**
    * Add a Fill Blank Question in the Section of the test
    */
-  public int addFIBQ(String subsection, String question, int marks)
+  public int addFIBQ(String question, int marks)
   {
 	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
 		FIBQ q=new FIBQ(question);
 		q.setPossibleMarks(marks);
-		q.setSubsectionTitle(subsection);
 		test.getSection(currentSection).addQuestion(q);
 		
 	} catch (InvalidFTBQFormatException e) {
@@ -206,7 +205,7 @@ public class SetterTestController
   /**
    * Edit the current Fill Blank Question
    */
-  public int editFIBQ(String subsection, String question, int marks)
+  public int editFIBQ(String question, int marks)
   {
 	  Section s=test.getSection(currentSection);
 	  FIBQ q=(FIBQ) s.getQuestion(currentQuestion);
@@ -222,7 +221,6 @@ public class SetterTestController
 			return 0;
 		}
 	  
-	  q.setSubsectionTitle(subsection);
 	  q.setQuestionText(question);
 	  q.setPossibleMarks(marks);
 	  
@@ -232,12 +230,11 @@ public class SetterTestController
   /**
    * Add a Fill Blank Question in the Section of the test
    */
-  public void addMCQ(String section, String question, int marks, JTable possibleAnswers)
+  public void addMCQ(String question, int marks, JTable possibleAnswers)
   {
 	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
 	  
 	  MCQ q=new MCQ(question);
-	  q.setSubsectionTitle(section);
 	  q.setPossibleMarks(marks);
 	  
 	  for(int i=0; i<possibleAnswers.getRowCount(); i++)
@@ -263,11 +260,10 @@ public class SetterTestController
   /**
    * Edit the current Multiplechoice Question
    */
-  public void editMCQ(String section, String question, int marks, JTable possibleAnswers)
+  public void editMCQ(String question, int marks, JTable possibleAnswers)
   {	  
 	  MCQ q=(MCQ) test.getSection(currentSection).getQuestion(currentQuestion);
 	  
-	  q.setSubsectionTitle(section);
 	  q.setPossibleMarks(marks);
 	  
 	  for(int i=0; i<possibleAnswers.getRowCount(); i++)

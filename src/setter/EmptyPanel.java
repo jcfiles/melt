@@ -37,7 +37,7 @@ public class EmptyPanel extends JPanel {
 		add(centerPanel, BorderLayout.CENTER);
 		
 		Border raised= BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-		centerPanel.setBorder(raised);
+		centerPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, Color.BLACK));
 		SpringLayout sl_centerPanel = new SpringLayout();
 		centerPanel.setLayout(sl_centerPanel);
 		JLabel lblAdd=new JLabel("Add Content");

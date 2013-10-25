@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class SubsectionPanel extends JPanel {
 
 	private GridBagConstraints gbc_1;
@@ -44,7 +47,6 @@ public class SubsectionPanel extends JPanel {
 		JPanel centerPanel = new JPanel();
 		add(centerPanel, BorderLayout.CENTER);
 		
-		add(centerPanel, BorderLayout.CENTER);
 		centerPanel.setLayout(new BorderLayout(0, 0));
 		
 		
@@ -56,7 +58,8 @@ public class SubsectionPanel extends JPanel {
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		//gbc.fill = GridBagConstraints.HORIZONTAL;
-		EmptyPanel  panel=new EmptyPanel(obj,gui);
+		
+		/*EmptyPanel  panel=new EmptyPanel(obj,gui);
 		
 		/*gbc_1 = new GridBagConstraints();
 		gbc_1.fill = GridBagConstraints.HORIZONTAL;
@@ -68,17 +71,27 @@ public class SubsectionPanel extends JPanel {
 		mainList.add(panel_1,gbc_1);
 	*/
 		
-		for (int i=0; i<7; i++){
+		for (int i=0; i<3; i++){
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.gridx = 0;
-		gbc.gridy = i+1;
-		panel=new EmptyPanel(obj,gui);
-		panel.setPreferredSize(new Dimension(300,130));
+		gbc.gridy = i;
+		//panel=new EmptyPanel(obj,gui);
+		ViewSubsectionPanel panel=new ViewSubsectionPanel();
+		panel.setPreferredSize(new Dimension(400,140));
 		mainList.add(panel,gbc);
 		
 		}
+		gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.NORTH;
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		//panel=new EmptyPanel(obj,gui);
+		AddSubsectionPanel panel=new AddSubsectionPanel();
+		panel.setPreferredSize(new Dimension(400,140));
+		mainList.add(panel,gbc);
 		
 		
 		

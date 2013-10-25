@@ -24,6 +24,9 @@ import javax.swing.border.EtchedBorder;
 
 import java.awt.LayoutManager;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class SubsectionContentPanel extends JPanel {
 
 	/**

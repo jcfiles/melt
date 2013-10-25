@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 
 public class ViewCreatePanel extends JPanel {
@@ -161,8 +162,11 @@ public class ViewCreatePanel extends JPanel {
 	
 	public void setTexts(SetterTestController obj)
 	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("<html>"+ obj.getIntroduction() +"</html>");
+		
 		lblTitle.setText(obj.getTitle());
-		lblIntroduction.setText(obj.getIntroduction());
+		lblIntroduction.setText(sb.toString());
 	}
 
 }

@@ -27,8 +27,12 @@ import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -56,52 +60,85 @@ public class AddQuestionPanel extends JPanel {
 	private Boolean bEdit=false;
 	private AddMCQ mcqPanel;
 	private ArrayList<String> list;
+	private JLabel lblTitle =new JLabel("TestA: SectionA");
 
 	/**
 	 * Create the buttonsPanel.
 	 */
 	public AddQuestionPanel(final SetterTestController obj, final SetterGUI gui, Boolean b) {
+		setLayout(new BorderLayout(20, 20));
+		
+		//Title panel
+		JPanel titlePanel = new JPanel();		
+		add(titlePanel, BorderLayout.NORTH);
+		GridBagLayout gbl_titlePanel = new GridBagLayout();
+		gbl_titlePanel.columnWidths = new int[]{0};
+		gbl_titlePanel.rowHeights = new int[]{10,10};
+		gbl_titlePanel.columnWeights = new double[]{0.0};
+		gbl_titlePanel.rowWeights = new double[]{Double.MIN_VALUE};
+		titlePanel.setLayout(gbl_titlePanel);
+						
+		GridBagConstraints gbc_lbl = new GridBagConstraints();
+		gbc_lbl.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl.gridx = 0;
+		gbc_lbl.gridy = 1;	
+		lblTitle.setFont(new Font("Maiandra GD", Font.PLAIN, 20));
+		titlePanel.add(lblTitle,gbc_lbl);				
+		
+		
+		JPanel centerPanel = new JPanel();	
+		add(centerPanel, BorderLayout.CENTER);
+
 		SpringLayout springLayout = new SpringLayout();
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnFillBlanks, 179, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnMultipleChoice, 150, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnFillBlanks, 179, SpringLayout.NORTH, centerPanel );
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnMultipleChoice, 150, SpringLayout.NORTH, centerPanel );
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnSlot, 0, SpringLayout.NORTH, rdbtnFillBlanks);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnSlot, 0, SpringLayout.WEST, rdbtnEssay);
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnEssay, 0, SpringLayout.NORTH, rdbtnMultipleChoice);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnEssay, 45, SpringLayout.EAST, rdbtnMultipleChoice);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnFillBlanks, 0, SpringLayout.WEST, txtQuestion);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtQuestion, -21, SpringLayout.NORTH, rdbtnMultipleChoice);
-		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -30, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -30, SpringLayout.EAST, centerPanel );
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnMultipleChoice, 0, SpringLayout.WEST, txtQuestion);
-		setLayout(springLayout);
+		centerPanel.setLayout(springLayout);
 		
 		bEdit=b;
+		
 		final JLabel lblFill = new JLabel("*insert the answer like e.x[answer]");
+		lblFill.setFont(new Font("Verdana", Font.PLAIN, 13));
 		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 23, SpringLayout.SOUTH, lblFill);
 		lblFill.setVisible(false);
-		springLayout.putConstraint(SpringLayout.NORTH, lblFill, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblFill, -10, SpringLayout.EAST, this);
-		add(lblFill);
+		springLayout.putConstraint(SpringLayout.NORTH, lblFill, 10, SpringLayout.NORTH, centerPanel );
+		springLayout.putConstraint(SpringLayout.EAST, lblFill, -10, SpringLayout.EAST, centerPanel );
+		centerPanel.add(lblFill);
 		
 		JLabel lblQuestion = new JLabel("Question:");
+		lblQuestion.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.WEST, txtQuestion, 33, SpringLayout.EAST, lblQuestion);
-		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.NORTH, lblQuestion, 47, SpringLayout.NORTH, this);
-		add(lblQuestion);
+		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 10, SpringLayout.WEST, centerPanel );
+		springLayout.putConstraint(SpringLayout.NORTH, lblQuestion, 47, SpringLayout.NORTH, centerPanel );
+		centerPanel.add(lblQuestion);
+		txtQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtQuestion.setLineWrap(true);
 		txtQuestion.setWrapStyleWord(true);
-		add(txtQuestion);
+		centerPanel.add(txtQuestion);
 		
 		JLabel lblType = new JLabel("Type:");
+		lblType.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.NORTH, lblType, 4, SpringLayout.NORTH, rdbtnMultipleChoice);
 		springLayout.putConstraint(SpringLayout.WEST, lblType, 0, SpringLayout.WEST, lblQuestion);
-		add(lblType);
+		centerPanel.add(lblType);
+		rdbtnMultipleChoice.setFont(new Font("Verdana", Font.PLAIN, 13));
 		
 		
 		rdbtnMultipleChoice.setSelected(true);
-		add(rdbtnMultipleChoice);
-		add(rdbtnFillBlanks);
-		add(rdbtnEssay);
-		add(rdbtnSlot);
+		centerPanel.add(rdbtnMultipleChoice);
+		rdbtnFillBlanks.setFont(new Font("Verdana", Font.PLAIN, 13));
+		centerPanel.add(rdbtnFillBlanks);
+		rdbtnEssay.setFont(new Font("Verdana", Font.PLAIN, 13));
+		centerPanel.add(rdbtnEssay);
+		rdbtnSlot.setFont(new Font("Verdana", Font.PLAIN, 13));
+		centerPanel.add(rdbtnSlot);
 		
 		//Add to button group		
 		group_type.add(rdbtnFillBlanks);
@@ -110,38 +147,65 @@ public class AddQuestionPanel extends JPanel {
 		group_type.add(rdbtnSlot);
 		
 		JLabel lblMarks = new JLabel("Marks:");
+		lblMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.WEST, lblMarks, 0, SpringLayout.WEST, lblQuestion);
-		add(lblMarks);
+		centerPanel.add(lblMarks);
 		
 		txtMarks = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtMarks, 218, SpringLayout.NORTH, this);
+		txtMarks.setFont(new Font("Verdana", Font.PLAIN, 13));
+		springLayout.putConstraint(SpringLayout.NORTH, txtMarks, 218, SpringLayout.NORTH, centerPanel );
 		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 3, SpringLayout.NORTH, txtMarks);
 		springLayout.putConstraint(SpringLayout.WEST, txtMarks, 0, SpringLayout.WEST, txtQuestion);
-		springLayout.putConstraint(SpringLayout.EAST, txtMarks, -30, SpringLayout.EAST, this);
-		add(txtMarks);
+		springLayout.putConstraint(SpringLayout.EAST, txtMarks, -30, SpringLayout.EAST, centerPanel );
+		centerPanel.add(txtMarks);
 		txtMarks.setColumns(10);
 		
 		//If the user selects multiple choice
 		final JPanel panel_mult = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel_mult, 20, SpringLayout.SOUTH, txtMarks);
-		springLayout.putConstraint(SpringLayout.WEST, panel_mult, 0, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, panel_mult, 0, SpringLayout.EAST, this);
-		add(panel_mult);
+		springLayout.putConstraint(SpringLayout.NORTH, panel_mult, 14, SpringLayout.SOUTH, lblMarks);
+		springLayout.putConstraint(SpringLayout.WEST, panel_mult, 0, SpringLayout.WEST, centerPanel );
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -49, SpringLayout.SOUTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, panel_mult, 0, SpringLayout.EAST, centerPanel );
+		centerPanel.add(panel_mult);
 		panel_mult.setLayout(new BorderLayout(0, 0));
 		
 		mcqPanel=new AddMCQ(list,gui,bEdit);
 		panel_mult.add(mcqPanel);
 		
 		JPanel buttonsPanel = new JPanel();
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -6, SpringLayout.NORTH, buttonsPanel);
-		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, -22, SpringLayout.EAST, this);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -43, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, 6, SpringLayout.SOUTH, panel_mult);
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 0, SpringLayout.WEST, lblQuestion);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, 0, SpringLayout.SOUTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, lblFill);
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		add(buttonsPanel);
+		centerPanel.add(buttonsPanel);
+		btnSave.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		btnSave.setPreferredSize(new Dimension(100, 35));
 		
 		buttonsPanel.add(btnSave);
+		
+		
+		/*
+		 * final JPanel panel_mult = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, panel_mult, 14, SpringLayout.SOUTH, lblMarks);
+		springLayout.putConstraint(SpringLayout.WEST, panel_mult, 0, SpringLayout.WEST, centerPanel );
+		springLayout.putConstraint(SpringLayout.EAST, panel_mult, 0, SpringLayout.EAST, centerPanel );
+		centerPanel.add(panel_mult);
+		panel_mult.setLayout(new BorderLayout(0, 0));
+		
+		JPanel buttonsPanel = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, 455, SpringLayout.NORTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_mult, -6, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 0, SpringLayout.WEST, lblQuestion );
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, lblFill);
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		centerPanel.add(buttonsPanel);
+		btnSave.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		btnSave.setPreferredSize(new Dimension(100, 35));
+		
+		buttonsPanel.add(btnSave);
+		 */
 		
 		
 		
@@ -299,14 +363,14 @@ public class AddQuestionPanel extends JPanel {
 	    		{
 	    			 if(typeQuestion==0) //multiple choice question
 	   	    	  	{	
-	    				// obj.editMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	    				obj.editMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	    				 MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	    		        gui.centerPanel.removeAll();
 	    		        gui.centerPanel.add(multiPanel);
 	   	    	  	}
 	    			 else
 	    			 {	    			
-		    			/*int parsingCorrect=obj.editFIBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+		    			int parsingCorrect=obj.editFIBQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    				 
 	    				 if(parsingCorrect==0)
 	    				 {
@@ -317,14 +381,14 @@ public class AddQuestionPanel extends JPanel {
 	    				 }
 	    				 else{
 	    				 FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
-		    			 gui.panelCenter.removeAll();
-		    			 gui.panelCenter.add(fillPanel);
+		    			 gui.centerPanel.removeAll();
+		    			 gui.centerPanel.add(fillPanel);
 	    				 }
-	    				 */
+	    				 
 		    		 }		       
 	    			 
-		    	  gui.validate();
-		    	  gui.repaint();
+		    	  gui.centerPanel.validate();
+		    	  gui.centerPanel.repaint();
 		    	  
 	    		}
 	    		else
@@ -332,14 +396,14 @@ public class AddQuestionPanel extends JPanel {
 	    			
 	    	  if(typeQuestion==0) //multiple choice question
 	    	  {	        	
-	        	//obj.addMCQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	        	obj.addMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	        	gui.centerPanel.removeAll();
 	        	gui.centerPanel.add(multiPanel);
 	    	  }
 	    	  else
-	    	  {	 /*
-	    		  int parsing=obj.addFIBQ(txtSubsection.getText(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    	  {	 
+	    		  int parsing=obj.addFIBQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    		  if(parsing==0)
 	    		  {
 	    			  JOptionPane.showMessageDialog(gui,
@@ -350,14 +414,14 @@ public class AddQuestionPanel extends JPanel {
 	    		  else
 	    		  {
 	    			  	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
-	    			  	gui.panelCenter.removeAll();
-	  	        		gui.panelCenter.add(fillPanel);
+	    			  	gui.centerPanel.removeAll();
+	  	        		gui.centerPanel.add(fillPanel);
 	    		  }
-	    		  */
+	    		  
 	        	}
 	        
-	    	  gui.validate();
-	    	  gui.repaint();	    	        
+	    	  gui.centerPanel.validate();
+	    	  gui.centerPanel.repaint();	    	        
 	        
 	    		}
 	    	  }

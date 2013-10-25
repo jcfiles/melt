@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class CreateTestPanel extends JPanel {
 
 	private JPanel titlePanel = new JPanel();
@@ -34,15 +37,10 @@ public class CreateTestPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CreateTestPanel(final SetterTestController obj, final SetterGUI gui, Boolean b) {
+	public CreateTestPanel(final SetterTestController obj, final SetterGUI gui, Boolean bEdit) {
 		setLayout(new BorderLayout(0, 0));
 
 		this.obj=obj;
-		
-		if(b==true)
-		{
-			setTexts();
-		}
 		
 		//Title panel
 		add(titlePanel, BorderLayout.NORTH);
@@ -90,6 +88,8 @@ public class CreateTestPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, txtIntroduction, -10, SpringLayout.SOUTH, centerPanel);
 		springLayout.putConstraint(SpringLayout.EAST, txtIntroduction, -10, SpringLayout.EAST, centerPanel);
 		txtIntroduction.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtIntroduction.setLineWrap(true);
+		txtIntroduction.setWrapStyleWord(true);
 		centerPanel.add(txtIntroduction);
 		
 		//Buttons Panel
@@ -109,6 +109,12 @@ public class CreateTestPanel extends JPanel {
 		buttonsPanel.add(btnSave,gbc_btn);
 		btnSave.setPreferredSize(new Dimension(100, 30));
 		
+		
+		if(bEdit==true)
+		{
+			setTexts();
+		}
+		
 		btnSave.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 			
@@ -124,6 +130,7 @@ public class CreateTestPanel extends JPanel {
 			{
 				obj.createTest(txtTitle.getText(),txtIntroduction.getText());
 				obj.setCurrentSection(0);
+				obj.setCurrentQuestion(0);
 				   
 				ViewCreatePanel panel=new ViewCreatePanel(obj,gui);
 				gui.centerPanel.removeAll();

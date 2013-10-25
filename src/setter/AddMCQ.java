@@ -19,7 +19,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import student.TestSectionPanel;
+import java.awt.Font;
 
+/*
+ * @author Erotokritou Zoe
+ */
 public class AddMCQ extends JPanel {
 	
 	private JTable possibleAnswers;
@@ -42,6 +46,7 @@ public class AddMCQ extends JPanel {
 		wrongAnswerImage=new ImageIcon(TestSectionPanel.class.getResource("/lib/images/delete.png"));
 		
 		JLabel lblPossibleAnswers = new JLabel("Possible Answers:");
+		lblPossibleAnswers.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.NORTH, lblPossibleAnswers, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblPossibleAnswers, 10, SpringLayout.WEST, this);
 		add(lblPossibleAnswers);
