@@ -238,6 +238,11 @@ public class Test_ implements java.io.Serializable
      */
     public String toString()
     {
+      return this.getTestTitle();
+    }
+    
+    public String getInfo()
+    {
         String s = testTitle + "\n\n" + testIntroText + "\n";
         Iterator<Section> it = sections.iterator();
         int sNum = 1;
