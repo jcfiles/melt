@@ -56,7 +56,7 @@ public class TestSectionPanel extends JPanel {
 	this.controller = controller;
         this.section = section;
         questionPanelsIndex=0;
-	questions = section.getQuestionsList();
+	//questions = section.getQuestionsList();
         
 	setLayout(new BorderLayout(0, 0));
 	JPanel panel = new JPanel();
