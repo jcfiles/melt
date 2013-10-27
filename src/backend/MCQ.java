@@ -12,18 +12,18 @@ import java.util.Iterator;
  */
 public class MCQ extends Question {
     
-    public MCQ(String questionText)
+    public MCQ(String questionText, Object parent)
     {
-        super(questionText);
+        super(questionText, parent);
         answers = new ArrayList<Answer>();
     }
     
     /**
      * Constructor for questions with number of marks provided.
      */
-    public MCQ(String questionText, int mark)
+    public MCQ(String questionText, int mark, Object parent)
     {
-        super(questionText);
+        super(questionText, parent);
         answers = new ArrayList<Answer>();
         possibleMarks = mark;
     }
@@ -31,9 +31,9 @@ public class MCQ extends Question {
     /**
      * Constructor questions, with a single answer provided.
      */
-    public MCQ(String questionText, Answer a)
+    public MCQ(String questionText, Answer a, Object parent)
     {
-        super(questionText);
+        super(questionText, parent);
         answers = new ArrayList<Answer>();
         answers.add(a);
     }
@@ -41,9 +41,9 @@ public class MCQ extends Question {
     /**
      * Constructor questions, with a single answer and number of marks provided.
      */
-    public MCQ(String questionText, Answer a, int mark)
+    public MCQ(String questionText, Answer a, int mark, Object parent)
     {
-        super(questionText);
+        super(questionText, parent);
         answers = new ArrayList<Answer>();
         answers.add(a);
         possibleMarks = mark;
@@ -52,18 +52,18 @@ public class MCQ extends Question {
     /**
      * Constructor questions, with a multiple answers provided.
      */
-    public MCQ(String questionText, ArrayList<Answer> answers)
+    public MCQ(String questionText, ArrayList<Answer> answers, Object parent)
     {
-        super(questionText);
+        super(questionText, parent);
         this.answers = answers;
     }
     
     /**
      * Constructor questions, with multiple answers and number of marks provided.
      */
-    public MCQ(String questionText, ArrayList<Answer> answers, int mark)
+    public MCQ(String questionText, ArrayList<Answer> answers, int mark, Object parent)
     {
-        super(questionText);
+        super(questionText, parent);
         this.answers = answers;
         possibleMarks = mark;
     }

@@ -11,7 +11,7 @@ public class MCQTest {
 
 	@Test
 	public void testGetMarksAwarded() {
-		MCQ mcq = new MCQ("This is a test question");
+		MCQ mcq = new MCQ("This is a test question", null);
 		int expResult = 0;
 		assertEquals(expResult, mcq.getMarksAwarded());
 	}
@@ -26,21 +26,21 @@ public class MCQTest {
 
 	@Test
 	public void testToString() {
-		MCQ mcq = new MCQ("This is a test question");
+		MCQ mcq = new MCQ("This is a test question", null);
 		String expResult = "This is a test question\n\n";
 		assertEquals(expResult, mcq.toString());
 	}
 
 	@Test
 	public void testGetQuestionText() {
-		MCQ mcq = new MCQ("This is a test question");
+		MCQ mcq = new MCQ("This is a test question", null);
 		String expResult = "This is a test question";
 		assertEquals(expResult, mcq.getQuestionText());
 	}
 
 	@Test
 	public void testSetQuestionText() {
-		MCQ mcq = new MCQ("This is a test question");
+		MCQ mcq = new MCQ("This is a test question", null);
 		mcq.setQuestionText("This is a different test question");
 		String expResult = "This is a different test question";
 		assertEquals(expResult, mcq.getQuestionText());
@@ -55,7 +55,7 @@ public class MCQTest {
 
 	@Test
 	public void testSetPossibleMarks() {
-		MCQ mcq = new MCQ("This is a test question");
+		MCQ mcq = new MCQ("This is a test question", null);
 		mcq.setPossibleMarks(2);
 		int expResult = 2;
 		assertEquals(expResult, mcq.getPossibleMarks());
@@ -63,7 +63,7 @@ public class MCQTest {
 
 	@Test
 	public void testAddAnswer() {
-		MCQ mcq = new MCQ("This is a test question");
+		MCQ mcq = new MCQ("This is a test question", null);
 		Answer testAnswer = new Answer("testAnswer", true);
 		mcq.addAnswer(testAnswer);
 		ArrayList<Answer> expResult = new ArrayList<Answer>();

@@ -13,14 +13,14 @@ public class Section implements java.io.Serializable
 {
     private String sectionTitle;
     private String sectionIntroText;
-    private ArrayList<Question> questions;
-    private int possibleSectionMarks = 0; // Built as questions added/removed
-    private int sectionMarksAwarded;
+    //private ArrayList<Question> questions;
+    private ArrayList<SubsectionContainer> subsectionContainer;
+  //  private int possibleSectionMarks = 0; // Built as questions added/removed
+ //   private int sectionMarksAwarded;
     private boolean isLocked;
     private SectionTimer sectionProgram;
     private int sectionTime;
-    
-
+    //private SubsectionContainer subsectionContainer;
 
     /**
      * Constructor for objects of class Section
@@ -31,7 +31,8 @@ public class Section implements java.io.Serializable
         this.sectionTitle = sectionTitle;
         this.sectionIntroText = sectionIntroText;
         this.sectionTime = sectionTime;
-        this.questions = new ArrayList<Question>();        
+       // this.questions = new ArrayList<Question>();        
+        this.subsectionContainer=new ArrayList<SubsectionContainer>();
     }
     
     public void editSection(String sectionTitle, String sectionIntroText, int sectionTime)
@@ -39,6 +40,111 @@ public class Section implements java.io.Serializable
     	this.sectionTitle = sectionTitle;
         this.sectionIntroText = sectionIntroText;
         this.sectionTime = sectionTime;
+    }
+    
+    public ArrayList<SubsectionContainer> getContainer()
+    {
+    	return subsectionContainer;
+    }
+    
+    public void addQuestion(Question q)
+    {
+    	subsectionContainer.add(q);
+       // possibleSectionMarks += q.getPossibleMarks();
+    }
+    
+    public void removeQuestion(Question q)
+    {
+    	subsectionContainer.remove(q);
+        //possibleSectionMarks -= q.getPossibleMarks();
+    }
+ 
+    public void addSubsection(Subsection s)
+    {
+    	subsectionContainer.add(s);
+    }
+    
+    public void removeSubsection(Subsection s)
+    {
+    	subsectionContainer.remove(s);
+    }
+    
+    public String getSectionTitle()
+    {
+        return sectionTitle;
+    }
+    
+    public String getSectionIntroText()
+    {
+        return sectionIntroText;
+    }
+    
+    public int getSectionTime()
+    {
+        return sectionTime;
+    }
+    
+    /*
+     * Locks the section
+     */
+    public void lockSection(){
+    	isLocked = true;
+    }
+    
+    /*
+     * Returns true or false if the section is locked
+     */
+    public boolean isLocked(){
+    	return isLocked;
+    }
+    
+    public void endSection() {
+        gradeSection();
+    }
+    
+    /**
+     * Grades the section 
+     */
+    public int gradeSection()
+    {
+       /* sectionMarksAwarded = 0;
+        Iterator<Question> it = questions.iterator();
+        while (it.hasNext()) {
+            Question q = it.next();
+            sectionMarksAwarded += q.getMarksAwarded();
+        }
+        return sectionMarksAwarded;
+        */
+    	
+    	return 0;
+    }
+    
+    
+    
+    /*
+    public Subsection getSubsectonContainer()
+    {
+      return subsectionContainer;
+    }
+    
+    public Subsection createSubsection(String subsectionTitle)
+    {
+      subsectionContainer = new Subsection(subsectionTitle);
+      
+      return subsectionContainer;
+    }
+    
+    public Subsection createSubsectionWithQuestions(String subsectionTitle, ArrayList<Question> qs)
+    {
+      subsectionContainer = new Subsection(subsectionTitle, qs);
+      
+      return subsectionContainer;
+    }
+    
+    public Subsection createQuestionSubsection()
+    {
+      subsectionContainer = new Subsection(questions);
+      return subsectionContainer;
     }
     
     public String getSectionTitle()
@@ -97,7 +203,7 @@ public class Section implements java.io.Serializable
     
     /**
      * Returns an question by index, starting at 0
-     */
+     *
     public Question getQuestion(int questionNum)
     {
         return questions.get(questionNum);
@@ -105,7 +211,7 @@ public class Section implements java.io.Serializable
     
     /**
      * Returns a list of all question in the section
-     */
+     *
     public ArrayList<Question> getQuestionsList()
     {
         return questions;
@@ -113,7 +219,7 @@ public class Section implements java.io.Serializable
     
     /**
      * Starts the test
-     */
+     *
     //public void startSection() 
     //{
       //   new SectionTimer(this, sectionTime);
@@ -125,7 +231,7 @@ public class Section implements java.io.Serializable
     
     /**
      * Grades the section 
-     */
+     *
     public int gradeSection()
     {
         sectionMarksAwarded = 0;
@@ -140,7 +246,7 @@ public class Section implements java.io.Serializable
     /**
      * String representation of the test
      * 
-     */
+     *
     public String toString()
     {
         String s = sectionTitle + "\n" + sectionIntroText + "\n\n";
@@ -151,19 +257,23 @@ public class Section implements java.io.Serializable
             qNum++;
         }
         return s;
+    }*/
+    public String toString(){
+    	return this.getSectionTitle();
     }
     
     /*
      * Locks the section
-     */
+     *
     public void lockSection(){
     	isLocked = true;
     }
     
     /*
      * Returns true or false if the section is locked
-     */
+     *
     public boolean isLocked(){
     	return isLocked;
     }
+    */
 }

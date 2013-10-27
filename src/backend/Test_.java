@@ -80,6 +80,11 @@ public class Test_ implements java.io.Serializable
         return testIntroText;
     }
     
+    public void setTestIntroText(String introduction)
+    {
+        testIntroText=introduction;
+    }
+    
     /**
      * Writes a test to file
      * 
@@ -233,6 +238,11 @@ public class Test_ implements java.io.Serializable
      */
     public String toString()
     {
+      return this.getTestTitle();
+    }
+    
+    public String getInfo()
+    {
         String s = testTitle + "\n\n" + testIntroText + "\n";
         Iterator<Section> it = sections.iterator();
         int sNum = 1;
@@ -266,9 +276,38 @@ public class Test_ implements java.io.Serializable
     
      /**
      * Demo for testing
+     * @throws InvalidSlotQFormatException 
      * 
      */
-    public static Test_ getDemoTest()
+    public static Test_ getDemoTest2() throws InvalidSlotQFormatException
+    {
+      Test_ t = new Test_("DemoTest", "Welcome to the Mancunia English Test");
+      
+      Section s1 = new Section("Section 1", "The first main section", 10);
+      
+      Subsection su11 = new Subsection("Subsection 1", s1);
+      Subsection su12 = new Subsection("Subsection 2", s1);
+      
+      Subsection su121 = new Subsection("Subsection 2.1", su12);
+      
+      Question q1 = new EssayQ("Write and essay about Penguins!", 5, su11);
+      Question q2 = new SlotQ("The [quick] (quick) brown fox [jumps] (jump) over the [lazy] (lazy) dog.", su121);
+      
+      //connect things up
+      t.addSection(s1);
+      
+      s1.addSubsection(su11);
+      s1.addSubsection(su12);
+      
+      su11.addQuestion(q1);
+      su12.addSubsection(su121);
+      
+      su121.addQuestion(q2);
+      
+      return t;
+    }
+    
+    /*public static Test_ getDemoTest()
     {
         Test_ t1 = new Test_("Welcome to the Mancunia English test",
             "This test is designed to test your English langauge skills. " +
@@ -316,17 +355,28 @@ public class Test_ implements java.io.Serializable
 		q6.addAnswer(new Answer("15-minute", true));
 		q6.addAnswer(new Answer("15-minutes", false));
 		s2.addQuestion(q6);
-				
+		
+		try {
+			SlotQ q7 = new SlotQ("This [is] a slot [question].");
+			s1.addQuestion(q7);
+		} catch (InvalidSlotQFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		EssayQ q8 = new EssayQ("How was your weekend?", 10, 10);
+		s1.addQuestion(q8);
         return t1;
     }
-    
+    */
     /**
      * Demo for testing
+     * @throws InvalidSlotQFormatException 
      * 
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InvalidSlotQFormatException
     {
-        Test_ t = Test_.getDemoTest();
+        Test_ t = Test_.getDemoTest2();
         //System.out.println(t);
         //FTBQ q1 = (FTBQ)t.getSection(0).getQuestion(0);
         //String a = q1.getTheAnswer().getAnswerText();

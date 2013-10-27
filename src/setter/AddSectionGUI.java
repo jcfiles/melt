@@ -117,18 +117,18 @@ public class AddSectionGUI extends JFrame {
 		gbc_btnHelp.gridy = 0;
 		panelTitle.add(btnHelp, gbc_btnHelp);
 		
-		//Switch button 
-		JButton btnSwitch=new JButton("Switch");
+		//Preview button 
+		JButton btnPreview=new JButton("Preview");
 		GridBagConstraints gbc_btnSwitch = new GridBagConstraints();
 		gbc_btnSwitch.gridx = 2;
 		gbc_btnSwitch.gridy = 0;
-		panelTitle.add(btnSwitch, gbc_btnSwitch);
+		panelTitle.add(btnPreview, gbc_btnSwitch);
 
 		//The panel in the center		
 		Border lineBorder = BorderFactory.createLineBorder(Color.GRAY, 2, true);
 		panelCenter.setBorder(lineBorder);
 		
-		addPanel=new AddSectionPanel(obj,this,false);
+		//addPanel=new AddSectionPanel(obj,this,false);
 		
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new GridLayout(1, 0, 0, 0));				
@@ -138,7 +138,7 @@ public class AddSectionGUI extends JFrame {
 		nav=new SectionNavigationPanel(obj,this,menu);
 		contentPane.add(nav, BorderLayout.SOUTH);
 		
-		btnSwitch.addActionListener(new ActionListener(){  //Edit the question
+		btnPreview.addActionListener(new ActionListener(){  //Edit the question
 	        public void actionPerformed(ActionEvent e) {
 	        	
 	        	obj.previewQuestion();

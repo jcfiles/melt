@@ -10,6 +10,8 @@ import javax.swing.border.BevelBorder;
 
 import backend.FIBQ;
 import backend.Answer;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 /**
  * 
  * @author Dimitrios Chondrokoukis
@@ -20,6 +22,8 @@ public class FTBQuestionPanel extends QuestionPanel {
     private static final long serialVersionUID = -2289297585604116875L;
     private JTextField textField;
     private FIBQ ftbq;
+    private int questionNumber = 0;
+    private JLabel labelQuestionNumber;
 
    /**
     * Create the panel.
@@ -31,22 +35,32 @@ public class FTBQuestionPanel extends QuestionPanel {
 	gridBagLayout.columnWidths = new int[]{10, 0};
 	gridBagLayout.rowHeights = new int[]{0, 10, 0, 0};
 	gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-	gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+	gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 	setLayout(gridBagLayout);
-		
-	JLabel lblQuestion = new JLabel(""); // GETS THE QUESTION TEXT
-	GridBagConstraints gbc_lblQuestion = new GridBagConstraints();
-	gbc_lblQuestion.insets = new Insets(0, 0, 5, 0);
-	gbc_lblQuestion.gridx = 0;
-	gbc_lblQuestion.gridy = 0;
-	add(lblQuestion, gbc_lblQuestion);
-		
+	
+	labelQuestionNumber = new JLabel("Question "+Integer.toString(questionNumber));
+	labelQuestionNumber.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	labelQuestionNumber.setHorizontalAlignment(SwingConstants.CENTER);
+	GridBagConstraints gbc_labelQuestionNumber = new GridBagConstraints();
+	gbc_labelQuestionNumber.insets = new Insets(0, 0, 5, 0);
+	gbc_labelQuestionNumber.gridx = 0;
+	gbc_labelQuestionNumber.gridy = 0;
+	add(labelQuestionNumber, gbc_labelQuestionNumber);
+	
+	JLabel lblNewLabel = new JLabel("Marks: "+ftbq.getPossibleMarks());
+	lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+	gbc_lblNewLabel.insets = new Insets(0, 0, 5, 10);
+	gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+	gbc_lblNewLabel.gridx = 0;
+	gbc_lblNewLabel.gridy = 1;
+	add(lblNewLabel, gbc_lblNewLabel);
+	
 	JPanel panel = new JPanel();
 	GridBagConstraints gbc_panel = new GridBagConstraints();
-	gbc_panel.insets = new Insets(0, 0, 5, 0);
 	gbc_panel.anchor = GridBagConstraints.NORTHWEST;
 	gbc_panel.gridx = 0;
-	gbc_panel.gridy = 1;
+	gbc_panel.gridy = 2;
 	add(panel, gbc_panel);
 		
 	JLabel qFirstPart = new JLabel(ftbq.getQFirstPart());
@@ -58,6 +72,7 @@ public class FTBQuestionPanel extends QuestionPanel {
 		
 	JLabel qSecondPart = new JLabel(ftbq.getQSecondPart());
 	panel.add(qSecondPart);
+	
     }
     
    /**
@@ -77,4 +92,11 @@ public class FTBQuestionPanel extends QuestionPanel {
     public boolean isAnswered(){
     	return textField.getText().equals("")?false:true;
     }
+
+	@Override
+	public void setQuestionNumber(int questionNumber) {
+		this.questionNumber = questionNumber;
+		labelQuestionNumber.setText("Question " + Integer.toString(questionNumber));
+		labelQuestionNumber.validate();
+	}
 }

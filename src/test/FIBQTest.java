@@ -12,7 +12,7 @@ public class FIBQTest
   @Test
   public final void testGetMarksAwarded() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test].");
+    FIBQ testfibq = new FIBQ("This is a [test].", null);
     String testAnswer = "test";
     testfibq.setGivenAnswer(testAnswer);
     int expResult = 1;
@@ -22,7 +22,7 @@ public class FIBQTest
   @Test
   public final void testGetMarksAwarded2() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test].");
+    FIBQ testfibq = new FIBQ("This is a [test].",null);
     String testAnswer = "test";
     testfibq.setGivenAnswer(testAnswer);
     testfibq.setPossibleMarks(2);
@@ -33,7 +33,7 @@ public class FIBQTest
   @Test
   public final void testGetMarksAwarded0() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test].");
+    FIBQ testfibq = new FIBQ("This is a [test].",null);
     String testAnswer = "wrongAnswer";
     testfibq.setGivenAnswer(testAnswer);
     int expResult = 0;
@@ -43,7 +43,7 @@ public class FIBQTest
   @Test
   public final void testGetQFirstPart() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.",null);
     String expResult = "This is a ";
     assertEquals(expResult, testfibq.getQFirstPart());
   }
@@ -51,7 +51,7 @@ public class FIBQTest
   @Test
   public final void testGetQFirstPartNone() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("[test] question.");
+    FIBQ testfibq = new FIBQ("[test] question.",null);
     String expResult = "";
     assertEquals(expResult, testfibq.getQFirstPart());
   }
@@ -59,7 +59,7 @@ public class FIBQTest
   @Test
   public final void testGetQSecondPart() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = " question.";
     assertEquals(expResult, testfibq.getQSecondPart());
   }
@@ -67,7 +67,7 @@ public class FIBQTest
   @Test
   public final void testGetQSecondPartNone() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test]");
+    FIBQ testfibq = new FIBQ("This is a [test]", null);
     String expResult = "";
     assertEquals(expResult, testfibq.getQSecondPart());
   }
@@ -75,7 +75,7 @@ public class FIBQTest
   @Test
   public final void testSetGivenAnswer() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "";
     assertEquals(expResult, testfibq.getGivenAnswer());
     
@@ -87,7 +87,7 @@ public class FIBQTest
   @Test
   public final void testGetGivenAnswer() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "";
     assertEquals(expResult, testfibq.getGivenAnswer());
   }
@@ -95,7 +95,7 @@ public class FIBQTest
   @Test
   public final void testToString() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "This is a <BLANK> question.\n";
     assertEquals(expResult, testfibq.toString());
   }
@@ -103,7 +103,7 @@ public class FIBQTest
   @Test (expected = InvalidFTBQFormatException.class)
   public final void testGetQuestionTextforThrowingInvalidFTBQFormatException() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("Fuck this question!");
+    FIBQ testfibq = new FIBQ("Fuck this question!", null);
     String expResult = "I'm fucked!";
     assertEquals(expResult, testfibq.getQuestionText());
   }
@@ -111,7 +111,7 @@ public class FIBQTest
   @Test
   public final void testSetsubSection() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "";
     assertEquals(expResult, testfibq.getsubSectionTitle());
     
@@ -124,7 +124,7 @@ public class FIBQTest
   @Test
   public final void testGetsubSectionTitle() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "";
     assertEquals(expResult, testfibq.getsubSectionTitle());
     
@@ -134,7 +134,7 @@ public class FIBQTest
   @Test
   public final void testGetQuestionText() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "This is a [test] question.";
     assertEquals(expResult, testfibq.getQuestionText());
   }
@@ -142,7 +142,7 @@ public class FIBQTest
   @Test
   public final void testSetQuestionText() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "This is a [test] question.";
     assertEquals(expResult, testfibq.getQuestionText());
     
@@ -151,23 +151,23 @@ public class FIBQTest
     assertEquals(expResult, testfibq.getQuestionText());
   }
 
-  /*
+  
   @Test
   public final void testSetSubsectionTitle() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     String expResult = "";
     assertEquals(expResult, testfibq.getsubSectionTitle());
     
     testfibq.setSubsectionTitle("Subsection A");
     expResult = "Subsection A";
     assertEquals(expResult, testfibq.getsubSectionTitle());
-  }*/
+  }
 
   @Test
   public final void testGetPossibleMarks() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     int expResult = 1;
     assertEquals(expResult, testfibq.getPossibleMarks());
   }
@@ -175,7 +175,7 @@ public class FIBQTest
   @Test
   public final void testSetPossibleMarks() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("This is a [test] question.");
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
     int expResult = 1;
     assertEquals(expResult, testfibq.getPossibleMarks());
     

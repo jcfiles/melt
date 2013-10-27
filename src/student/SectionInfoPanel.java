@@ -159,12 +159,12 @@ public class SectionInfoPanel extends JPanel {
 	gbc_lblTotalMarks.gridy = 0;
 	panel_4.add(lblTotalMarks, gbc_lblTotalMarks);
 		
-        JLabel labelPoints = new JLabel(String.valueOf(section.getPossibleSectionMarks()));
+     /*   JLabel labelPoints = new JLabel(String.valueOf(section.getPossibleSectionMarks()));
 	GridBagConstraints gbc_labelPoints = new GridBagConstraints();
 	gbc_labelPoints.anchor = GridBagConstraints.WEST;
 	gbc_labelPoints.gridx = 1;
 	gbc_labelPoints.gridy = 0;
-	panel_4.add(labelPoints, gbc_labelPoints);
+	panel_4.add(labelPoints, gbc_labelPoints);*/
 		
 	JPanel panel_1 = new JPanel();
 	add(panel_1, BorderLayout.SOUTH);

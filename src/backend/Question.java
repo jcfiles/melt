@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Bruce Steedman
  * @version 2013.10.10
  */
-public abstract class Question implements java.io.Serializable {
+public abstract class Question extends SubsectionContainer implements java.io.Serializable  {
     
     protected String questionText;
     protected int possibleMarks = 1;
@@ -19,8 +19,9 @@ public abstract class Question implements java.io.Serializable {
     /**
      * Constructor for questions.
      */
-    public Question(String questionText)
+    public Question(String questionText, Object parent)
     {
+    	super(parent);
         this.questionText = questionText;
         answers = new ArrayList<Answer>();
     }

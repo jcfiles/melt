@@ -87,8 +87,8 @@ public class SectionTest {
         System.out.println("getPossibleSectionMarks");
         Section instance = null;
         int expResult = 0;
-        int result = instance.getPossibleSectionMarks();
-        assertEquals(expResult, result);
+       // int result = instance.getPossibleSectionMarks();
+       // assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -128,8 +128,8 @@ public class SectionTest {
         int questionNum = 0;
         Section instance = null;
         Question expResult = null;
-        Question result = instance.getQuestion(questionNum);
-        assertEquals(expResult, result);
+       // Question result = instance.getQuestion(questionNum);
+      //  assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -142,8 +142,8 @@ public class SectionTest {
         System.out.println("getQuestionsList");
         Section instance = null;
         ArrayList expResult = null;
-        ArrayList result = instance.getQuestionsList();
-        assertEquals(expResult, result);
+     //   ArrayList result = instance.getQuestionsList();
+    //    assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
