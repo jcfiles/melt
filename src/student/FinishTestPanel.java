@@ -131,10 +131,10 @@ public class FinishTestPanel extends JPanel {
 					out.write("Date taken: " + dateFormat.format(date) );
 					out.newLine();
 					out.write("Time taken: " + timeFormat.format(date) );
-					
+					out.newLine();
 					
 					// write the marks in the file.
-		            out.write("Your mark" + finalmarks);
+		            out.write("Your mark: " + finalmarks);
 
 		            // close the stream
 		            out.close();
