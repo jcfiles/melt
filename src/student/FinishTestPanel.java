@@ -3,14 +3,18 @@ package student;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
 
 import javax.swing.JButton;
+
+import setter.MenuGUI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -104,16 +108,33 @@ public class FinishTestPanel extends JPanel {
 		            // create a new file with an ObjectOutputStream
 					BufferedWriter out = new BufferedWriter(new FileWriter(fileName));			
 					
-					// record the date and time in the file.
-					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+					// Record the date and time in the file.
+					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+					DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 					Date date = new Date();
-					out.write(dateFormat.format(date) );
 					
-					// new line in writing the marks. 
+					// Print "Your Test Result" in ASCII art
+					out.write(" __     __                           _______                _       _____                         _   _   ");
+					out.newLine();
+					out.write("\\	 \\   / /                          |__   __|              | |     |  __ \\                       | | | |  ");
+					out.newLine();
+					out.write("  \\ \\_/ /    ___    _   _   _ __       | |      ___   ___  | |_    | |__) |   ___   ___   _   _  | | | |_ ");
+					out.newLine();
+					out.write("   \\   /    / _ \\  | | | | | '__|      | |     / _ \\ / __| | __|   |  _  /   / _ \\ / __| | | | | | | | __|");
+					out.newLine();
+					out.write("    | |    | (_) | | |_| | | |         | |    |  __/ \\__ \\ | |_    | | \\ \\  |  __/ \\__ \\ | |_| | | | | |_ ");
+					out.newLine();
+					out.write("    |_|     \\___/   \\__,_| |_|         |_|     \\___| |___/  \\__|   |_|  \\_\\  \\___| |___/  \\__,_| |_|  \\__|");
 					out.newLine();
 					
+					// write the date and time taken the test
+					out.write("Date taken: " + dateFormat.format(date) );
+					out.newLine();
+					out.write("Time taken: " + timeFormat.format(date) );
+					
+					
 					// write the marks in the file.
-		            out.write(finalmarks);
+		            out.write("Your mark" + finalmarks);
 
 		            // close the stream
 		            out.close();
@@ -146,5 +167,6 @@ public class FinishTestPanel extends JPanel {
 		add(backButton, gbc_backButton);
 
 	}
+	
 
 }
