@@ -11,9 +11,9 @@ public class Subsection extends SubsectionContainer
   /*
    * creates an empty subsection
    */
-  public Subsection(String subsectionTitle)
+  public Subsection(String subsectionTitle, Object parent)
   {
-	  super();
+	  super(parent);
 	  this.subsectionTitle = subsectionTitle;
 	  this.subsectionContainer=new ArrayList<SubsectionContainer>();
   }

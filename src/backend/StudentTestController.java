@@ -22,9 +22,15 @@ public class StudentTestController {
     
     /**
      * Constructor instantiates a demo test.
+     *  
      */
-    public StudentTestController() {
-        this.test = Test_.getDemoTest();
+    public StudentTestController()  {
+        try {
+			this.test = Test_.getDemoTest2();
+		} catch (InvalidSlotQFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         this.sectionIndexPanel = sectionIndexPanel;
     }
     

@@ -189,7 +189,7 @@ public class SetterTestController
   {
 	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
-		FIBQ q=new FIBQ(question);
+		FIBQ q=new FIBQ(question, test.getSection(currentSection));
 		q.setPossibleMarks(marks);
 		test.getSection(currentSection).addQuestion(q);
 		

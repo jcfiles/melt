@@ -285,13 +285,13 @@ public class Test_ implements java.io.Serializable
       
       Section s1 = new Section("Section 1", "The first main section", 10);
       
-      Subsection su11 = new Subsection("Subsection 1");
-      Subsection su12 = new Subsection("Subsection 2");
+      Subsection su11 = new Subsection("Subsection 1", s1);
+      Subsection su12 = new Subsection("Subsection 2", s1);
       
-      Subsection su121 = new Subsection("Subsection 2.1");
+      Subsection su121 = new Subsection("Subsection 2.1", su12);
       
-      Question q1 = new EssayQ("Write and essay about Penguins!", 5);
-      Question q2 = new SlotQ("The [quick] (quick) brown fox [jumps] (jump) over the [lazy] (lazy) dog.");
+      Question q1 = new EssayQ("Write and essay about Penguins!", 5, su11);
+      Question q2 = new SlotQ("The [quick] (quick) brown fox [jumps] (jump) over the [lazy] (lazy) dog.", su121);
       
       //connect things up
       t.addSection(s1);
@@ -307,7 +307,7 @@ public class Test_ implements java.io.Serializable
       return t;
     }
     
-    public static Test_ getDemoTest()
+    /*public static Test_ getDemoTest()
     {
         Test_ t1 = new Test_("Welcome to the Mancunia English test",
             "This test is designed to test your English langauge skills. " +
@@ -368,14 +368,15 @@ public class Test_ implements java.io.Serializable
 		s1.addQuestion(q8);
         return t1;
     }
-    
+    */
     /**
      * Demo for testing
+     * @throws InvalidSlotQFormatException 
      * 
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InvalidSlotQFormatException
     {
-        Test_ t = Test_.getDemoTest();
+        Test_ t = Test_.getDemoTest2();
         //System.out.println(t);
         //FTBQ q1 = (FTBQ)t.getSection(0).getQuestion(0);
         //String a = q1.getTheAnswer().getAnswerText();

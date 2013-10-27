@@ -19,9 +19,9 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     /**
      * Constructor for questions.
      */
-    public Question(String questionText)
+    public Question(String questionText, Object parent)
     {
-    	super();
+    	super(parent);
         this.questionText = questionText;
         answers = new ArrayList<Answer>();
     }

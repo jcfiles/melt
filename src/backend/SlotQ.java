@@ -24,8 +24,8 @@ public class SlotQ extends Question {
 	
 
 
-	public SlotQ(String questionText) throws InvalidSlotQFormatException {
-		super(questionText);
+	public SlotQ(String questionText, Object parent) throws InvalidSlotQFormatException {
+		super(questionText, parent);
 		this.qParts = parseQtext(questionText);
 		this.expectedAnswers = parseAtext(questionText);
 		this.studentAnswer = new StudentAnswer();
@@ -162,7 +162,7 @@ public class SlotQ extends Question {
 		return sb.toString();
 	}
 
-	//functionality testing
+	/*//functionality testing
 	public static void main(String[] args) throws InvalidSlotQFormatException
 	{
 		SlotQ testq = new SlotQ("[afa]This [is] a test [question].");
@@ -171,7 +171,7 @@ public class SlotQ extends Question {
 		  System.out.println(testq.getqParts()[i]);
 		System.out.println("the end");
 		//SlotQ testq = new SlotQ("This (is) a (test) question.");
-	}
+	}*/
 	
 
 }

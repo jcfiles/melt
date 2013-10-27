@@ -18,8 +18,8 @@ public class FIBQ extends Question
      * 
      * @param Question text string must contain the answer string wrapped in [...] to be valid
      */
-    public FIBQ(String ftbqText) throws InvalidFTBQFormatException {
-        super(ftbqText);
+    public FIBQ(String ftbqText, Object parent) throws InvalidFTBQFormatException {
+        super(ftbqText, parent);
         String s[] = parseQandA(ftbqText);
         this.qFirstPart = s[1];
         this.qSecondPart = s[2];

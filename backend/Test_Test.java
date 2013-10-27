@@ -221,8 +221,14 @@ public class Test_Test {
     public void testGetDemoTest() {
         System.out.println("getDemoTest");
         Test_ expResult = null;
-        Test_ result = Test_.getDemoTest();
-        assertEquals(expResult, result);
+        Test_ result;
+		try {
+			result = Test_.getDemoTest2();
+			assertEquals(expResult, result);
+		} catch (InvalidSlotQFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -234,7 +240,12 @@ public class Test_Test {
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        Test_.main(args);
+        try {
+			Test_.main(args);
+		} catch (InvalidSlotQFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

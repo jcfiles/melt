@@ -50,7 +50,7 @@ public class SectionTest {
 	@Test
 	public void testAddQuestion() throws InvalidFTBQFormatException {
 		Section testSection = new Section("testTitle", "testIntro", 1);
-		FIBQ fibq = new FIBQ("This is a [test] question.");
+		FIBQ fibq = new FIBQ("This is a [test] question.", null);
 		testSection.addQuestion(fibq);
 		ArrayList<Question> expResult = new ArrayList<Question>();
 		expResult.add(fibq);
@@ -60,7 +60,7 @@ public class SectionTest {
 	@Test
 	public void testRemoveQuestion() throws InvalidFTBQFormatException {
 		Section testSection = new Section("testTitle", "testIntro", 1);
-		FIBQ fibq = new FIBQ("This is a [test] question.");
+		FIBQ fibq = new FIBQ("This is a [test] question.", null);
 		testSection.addQuestion(fibq);
 		ArrayList<Question> expResult = new ArrayList<Question>();
 		testSection.removeQuestion(fibq);

@@ -9,21 +9,21 @@ public class EssayQ extends Question {
 	StudentAnswer studentAnswer;
 	private int maxWords; //0 meaning infinity
 	
-  public EssayQ(String questionText) {
-		super(questionText);
+  public EssayQ(String questionText, Object parent) {
+		super(questionText, parent);
 		this.studentAnswer = new StudentAnswer();
 		this.maxWords = 0;
 	}
 
-	public EssayQ(String questionText, int possibleMarks) {
-		super(questionText);
+	public EssayQ(String questionText, int possibleMarks, Object parent) {
+		super(questionText, parent);
 		this.possibleMarks = possibleMarks;
 		this.studentAnswer = new StudentAnswer();
 		this.maxWords = 0;
 	}
 	
-	public EssayQ(String questionText, int possibleMarks, int maxWords) {
-    super(questionText);
+	public EssayQ(String questionText, int possibleMarks, int maxWords, Object parent) {
+    super(questionText, parent);
     this.possibleMarks = possibleMarks;
     this.studentAnswer = new StudentAnswer();
     this.maxWords = maxWords;
