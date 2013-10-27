@@ -173,7 +173,7 @@ public class ViewSectionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				//addPanel=new AddSectionPanel(obj,gui,false);
+				AddSectionPanel addPanel=new AddSectionPanel(obj,gui,false);
 				
 				gui.centerPanel.removeAll();
 				gui.centerPanel.add(addPanel);
@@ -228,18 +228,6 @@ public class ViewSectionPanel extends JPanel {
 			 }
 			});
 			
-			btnAdd.addActionListener(new ActionListener(){  //Add new question
-				public void actionPerformed(ActionEvent e) {
-					
-					AddSectionPanel panel= new AddSectionPanel(obj,gui,false);
-					gui.centerPanel.removeAll();
-					gui.centerPanel.add(panel);
-						
-					gui.centerPanel.validate();
-					gui.centerPanel.repaint();
-				 }
-				});
-			
 			btnContent.addActionListener(new ActionListener(){  //Add new question
 				public void actionPerformed(ActionEvent e) {
 					
@@ -250,19 +238,7 @@ public class ViewSectionPanel extends JPanel {
 					gui.centerPanel.validate();
 					gui.centerPanel.repaint();
 				 }
-				});
-			
-			/*btnAddQuestion.addActionListener(new ActionListener(){  //Add new question
-				public void actionPerformed(ActionEvent e) {
-					
-					AddQuestionGUI frame = new AddQuestionGUI(obj,gui);
-					frame.setVisible(true);
-					
-					gui.setVisible(false);
-				 }
-				});
-				*/
-				
+				});				
 		}
 	
 	
@@ -272,15 +248,15 @@ public class ViewSectionPanel extends JPanel {
 			ArrayList<String> list = new ArrayList<String>();
 			list=obj.getSection();
 			
-			lblSection = new JLabel(list.get(0));
-			lblTotalTime = new JLabel(list.get(1)+" mins");
-			lblNumOfQuestions = new JLabel(list.get(2));
-			lblTotalMarks = new JLabel(list.get(3));
+			lblSection.setText(list.get(0)); //= new JLabel(list.get(0));
+			lblTotalTime.setText(list.get(1) + "mins"); //= new JLabel(list.get(1)+" mins");
+			lblNumOfQuestions.setText(list.get(2)); //= new JLabel(list.get(2));
+			lblTotalMarks.setText(list.get(3)); //= new JLabel(list.get(3));
 			
 			StringBuilder sb = new StringBuilder(64);
 			sb.append("<html>"+list.get(4)+"</html>");
 			
-			lblInstructions = new JLabel(sb.toString());
+			lblInstructions.setText(sb.toString()); //= new JLabel(sb.toString());
 			
 		}
 	}

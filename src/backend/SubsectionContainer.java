@@ -6,50 +6,28 @@ public abstract class SubsectionContainer
 {
   //variables that a subsectionCOntainer can hold
   //note that any subsectionContainer can only hold one of each at a time
-  protected Subsection subsection;
-  protected ArrayList<Question> questions;
+	protected String title;
+	
+	public SubsectionContainer()
+	{
+		
+	}
   
-  public SubsectionContainer()
+	/*
+  public SubsectionContainer(String title)
   {
-    this.subsection = null;
-    this.questions = null;
+    this.title=title;
   }
   
-  /*
-   * this creates a subsection with a name.
-   * here you can add another subsection OR questions
-   */
-  public SubsectionContainer (String subsectionTitle)
+  public void setTitle(String title)
   {
-    this.subsection = new Subsection(subsectionTitle);
+	  this.title=title;
   }
   
-  /*
-   * This creates a subsection containing questions
-   * note: more subsections cannot be added to a subsection created like this.
-   */
-  public SubsectionContainer (ArrayList<Question> questions)
+  public String getTitle()
   {
-    this.questions = questions;
+	  return this.title;
   }
-  
-  
-  //getters and setters for questions
-  public ArrayList<Question> getQuestions()
-  {
-    return questions;
-  }
-
-  public void setQuestions(ArrayList<Question> questions)
-  {
-    this.questions = questions;
-  }
-  
-  public boolean addQuestion(Question question)
-  {
-    return questions.add(question);
-  }
-
-  
+*/
   
 }

@@ -11,9 +11,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 import javax.swing.JTree;
 import javax.swing.SpringLayout;
+
 import java.awt.Font;
+
 import javax.swing.ImageIcon;
 
 /*
@@ -78,5 +83,6 @@ public class SetterGUI extends JFrame {
 		centerPanel.add(panel);
 
 	}
+	
 
 }

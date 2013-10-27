@@ -14,6 +14,7 @@ import backend.MCQ;
 import backend.Question;
 import backend.Section;
 import backend.StudentTestController;
+import backend.SubsectionContainer;
 import backend.Test_;
 
 /*
@@ -112,9 +113,9 @@ public class SetterTestController
   public void deleteQuestion()
   {
 	  Section s=test.getSection(currentSection);
-	  Question q=s.getQuestion(currentQuestion);
+	  SubsectionContainer c=s.getContainer(currentQuestion);	  
 	  
-	  s.removeQuestion(q);
+	  c.removeQuestion(q);
   }
   
   /**
@@ -378,6 +379,15 @@ public class SetterTestController
   public int getCurrentQuestion()
   {
     return currentQuestion;
+  }
+  
+  public int getContent()
+  {
+	  Section section=test.getSection(currentSection);
+	  
+	 // section.getSubsectonContainer()
+	  
+	  return 0;
   }
   
   public void previewQuestion(){
