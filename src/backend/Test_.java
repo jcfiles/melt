@@ -271,8 +271,35 @@ public class Test_ implements java.io.Serializable
     
      /**
      * Demo for testing
+     * @throws InvalidSlotQFormatException 
      * 
      */
+    public static Test_ getDemoTest2() throws InvalidSlotQFormatException
+    {
+      Test_ t = new Test_("DemoTest", "Welcome to the Mancunia English Test");
+      
+      Section s1 = new Section("Section 1", "The first main section", 10);
+      
+      Subsection su11 = new Subsection("Subsection 1");
+      Subsection su12 = new Subsection("Subsection 2");
+      
+      Subsection su121 = new Subsection("Subsection 2.1");
+      
+      Question q1 = new EssayQ("Write and essay about Penguins!", 5);
+      Question q2 = new SlotQ("The [quick] (quick) brown fox [jumps] (jump) over the [lazy] (lazy) dog.");
+      
+      //connect things up
+      s1.addSubsection(su11);
+      s1.addSubsection(su12);
+      
+      su11.addQuestion(q1);
+      su12.addSubsection(su121);
+      
+      su121.addQuestion(q2);
+      
+      return t;
+    }
+    
     public static Test_ getDemoTest()
     {
         Test_ t1 = new Test_("Welcome to the Mancunia English test",
