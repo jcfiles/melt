@@ -29,7 +29,7 @@ public class SetterTestController
   
   //Empty constructor
   public SetterTestController() {
-	  test=new Test_("","");
+	  test=new Test_("NewTest","");
   }
   
   /**
@@ -391,6 +391,11 @@ public class SetterTestController
 	 // section.getSubsectonContainer()
 	  
 	  return 0;
+  }
+  
+  public Test_ getTest()
+  {
+    return test;
   }
   
   public void previewQuestion(){
