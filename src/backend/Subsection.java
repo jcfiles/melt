@@ -29,7 +29,27 @@ public class Subsection extends SubsectionContainer
 	  return this.subsectionTitle;
   }
   
+  public void addQuestion(Question q)
+  {
+  	subsectionContainer.add(q);
+     // possibleSectionMarks += q.getPossibleMarks();
+  }
   
+  public void removeQuestion(Question q)
+  {
+  	subsectionContainer.remove(q);
+      //possibleSectionMarks -= q.getPossibleMarks();
+  }
+
+  public void addSubsection(Subsection s)
+  {
+  	subsectionContainer.add(s);
+  }
+  
+  public void removeSubsection(Subsection s)
+  {
+  	subsectionContainer.remove(s);
+  }
   
   
   
