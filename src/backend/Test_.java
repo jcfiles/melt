@@ -294,6 +294,8 @@ public class Test_ implements java.io.Serializable
       Question q2 = new SlotQ("The [quick] (quick) brown fox [jumps] (jump) over the [lazy] (lazy) dog.");
       
       //connect things up
+      t.addSection(s1);
+      
       s1.addSubsection(su11);
       s1.addSubsection(su12);
       
