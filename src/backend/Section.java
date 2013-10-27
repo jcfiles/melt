@@ -42,9 +42,9 @@ public class Section implements java.io.Serializable
         this.sectionTime = sectionTime;
     }
     
-    public SubsectionContainer getContainer(int index)
+    public ArrayList<SubsectionContainer> getContainer()
     {
-    	return subsectionContainer.get(index);
+    	return subsectionContainer;
     }
     
     public void addQuestion(Question q)

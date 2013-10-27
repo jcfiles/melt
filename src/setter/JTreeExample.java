@@ -86,5 +86,6 @@ public class JTreeExample extends JFrame {
 		});
 		contentPane.add(tree, BorderLayout.WEST);
 	}
+	
 
 }
