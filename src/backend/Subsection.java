@@ -11,7 +11,7 @@ public class Subsection extends SubsectionContainer
   /*
    * creates an empty subsection
    */
-  public Subsection(String subsectionTitle,String mainTitle)
+  public Subsection(String subsectionTitle)
   {
 	  super();
 	  this.subsectionTitle = subsectionTitle;
