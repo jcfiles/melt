@@ -30,7 +30,7 @@ public class StudentAnswer {
 		this.isMarked = false;
 		this.rightAnswer = null;
 		this.rightSlotAnswers = null;
-		this.slotAnswers = null;
+		this.slotAnswers = new ArrayList<>();
 	}
 	
 	//constructor with student answer
@@ -81,7 +81,7 @@ public class StudentAnswer {
 	
 	public void setSlotAnswer(String answer, int index)
 	{
-		this.slotAnswers.set(index, answer);
+		this.slotAnswers.add(index, answer);
 	}
 	
 	public String getSlotAnswer(int index)

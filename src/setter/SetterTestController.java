@@ -14,6 +14,7 @@ import backend.MCQ;
 import backend.Question;
 import backend.Section;
 import backend.StudentTestController;
+import backend.SubsectionContainer;
 import backend.Test_;
 
 /*
@@ -112,9 +113,9 @@ public class SetterTestController
   public void deleteQuestion()
   {
 	  Section s=test.getSection(currentSection);
-	  Question q=s.getQuestion(currentQuestion);
+	  SubsectionContainer c=s.getContainer(currentQuestion);	  
 	  
-	  s.removeQuestion(q);
+	 // c.removeQuestion(q);
   }
   
   /**
@@ -146,7 +147,7 @@ public class SetterTestController
 	  
 	  if(test!=null)
 	  {
-		  q=test.getSection(currentSection).getQuestionsList();
+		//  q=test.getSection(currentSection).getQuestionsList();
 		  return q.size();
 	  
 	  }
@@ -164,7 +165,7 @@ public class SetterTestController
 	  int marks=0;
 	  ArrayList<String> s=new ArrayList<String>();
 	  ArrayList<Question> q=new ArrayList<Question>();
-	  q=test.getSection(currentSection).getQuestionsList();
+	//  q=test.getSection(currentSection).getQuestionsList();
 	  
 	  for(int i=0; i<q.size(); i++)
 	  {
@@ -186,7 +187,7 @@ public class SetterTestController
    */
   public int addFIBQ(String question, int marks)
   {
-	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
+	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
 		FIBQ q=new FIBQ(question);
 		q.setPossibleMarks(marks);
@@ -207,7 +208,7 @@ public class SetterTestController
    */
   public int editFIBQ(String question, int marks)
   {
-	  Section s=test.getSection(currentSection);
+	/*  Section s=test.getSection(currentSection);
 	  FIBQ q=(FIBQ) s.getQuestion(currentQuestion);
 	  String[] parts=new String[3];
 	  
@@ -223,7 +224,7 @@ public class SetterTestController
 	  
 	  q.setQuestionText(question);
 	  q.setPossibleMarks(marks);
-	  
+	  */
 	  return 1;
   }
   
@@ -232,7 +233,7 @@ public class SetterTestController
    */
   public void addMCQ(String question, int marks, JTable possibleAnswers)
   {
-	  setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
+	  /*setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
 	  
 	  MCQ q=new MCQ(question);
 	  q.setPossibleMarks(marks);
@@ -254,7 +255,7 @@ public class SetterTestController
 	  }
 	  
 	  test.getSection(currentSection).addQuestion(q);
-
+*/
   }
   
   /**
@@ -262,7 +263,7 @@ public class SetterTestController
    */
   public void editMCQ(String question, int marks, JTable possibleAnswers)
   {	  
-	  MCQ q=(MCQ) test.getSection(currentSection).getQuestion(currentQuestion);
+	  /*MCQ q=(MCQ) test.getSection(currentSection).getQuestion(currentQuestion);
 	  
 	  q.setPossibleMarks(marks);
 	  
@@ -280,6 +281,7 @@ public class SetterTestController
 			  q.setAnswer(s,false,i);
 		  }
 	  }
+	  */
   }
   
   /**
@@ -287,7 +289,7 @@ public class SetterTestController
    */
   public int getQuestionType()
   {
-	  ArrayList<String> s=new ArrayList<String>();
+	/*  ArrayList<String> s=new ArrayList<String>();
 	  ArrayList<Answer> a=new ArrayList<Answer>();
 	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
   
@@ -298,8 +300,9 @@ public class SetterTestController
 	  else if(q instanceof MCQ)
 	  {
 		  return 0;
-	  }
+	  }*/
 	  return 0;
+	  
   }
   
   /**
@@ -307,7 +310,7 @@ public class SetterTestController
    */
   public ArrayList<String> getQuestion()
   {
-	  ArrayList<String> s=new ArrayList<String>();
+	 /* ArrayList<String> s=new ArrayList<String>();
 	  ArrayList<Answer> a=new ArrayList<Answer>();
 	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
 	  
@@ -335,7 +338,8 @@ public class SetterTestController
 		  
 	  }
 	  
-	  return s;
+	  return s;*/
+	  return null;
   }
 
   
@@ -380,8 +384,17 @@ public class SetterTestController
     return currentQuestion;
   }
   
-  public void previewQuestion(){
+  public int getContent()
+  {
+	  Section section=test.getSection(currentSection);
 	  
+	 // section.getSubsectonContainer()
+	  
+	  return 0;
+  }
+  
+  public void previewQuestion(){
+	  /*
 	  Section section=test.getSection(currentSection);
 	  Question question=section.getQuestion(currentQuestion);
 	  
@@ -390,5 +403,6 @@ public class SetterTestController
 	  MainGui.isSetter = true;
 	  TestSectionPanel testSectionPanel = new TestSectionPanel(studentTestController, section, question);
 	  MainGui.setComposite(testSectionPanel);
+	  */
   }
 }

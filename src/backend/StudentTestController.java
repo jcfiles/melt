@@ -32,7 +32,7 @@ public class StudentTestController {
     	this.test = test;
     }
     
-    public Test_ getTest() {
+    public Test_ getTest() {   	
         return test;
     }
     

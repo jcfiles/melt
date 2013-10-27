@@ -38,11 +38,14 @@ public class EssayQuestionPanel extends QuestionPanel {
 	private static final long serialVersionUID = 3471776243315218349L;
 	private int questionNumber = 0;
 	private JLabel labelQuestionNumber;
+	private EssayQ essayQ;
+	private JTextArea textPane;
 
 	/**
 	 * Create the panel.
 	 */
 	public EssayQuestionPanel(final EssayQ essayQ) {
+		this.essayQ = essayQ;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
@@ -84,7 +87,7 @@ public class EssayQuestionPanel extends QuestionPanel {
 		gbc_panel_2.gridy = 2;
 		add(panel_2, gbc_panel_2);
 		
-		final JLabel labelNumberOfWords = new JLabel("Number of words: "+Integer.toString(essayQ.getStudentAnswer().getAnswer().length())+"/" + Integer.toString(essayQ.getMaxWords()));
+		final JLabel labelNumberOfWords = new JLabel("Number of words: "+Integer.toString(essayQ.getStudentAnswer().length())+"/" + Integer.toString(essayQ.getMaxWords()));
 		labelNumberOfWords.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		panel_2.add(labelNumberOfWords);
 		
@@ -108,20 +111,18 @@ public class EssayQuestionPanel extends QuestionPanel {
 		gbc_scrollPane.gridy = 4;
 		add(scrollPane, gbc_scrollPane);
 		
-		final JTextArea textPane = new JTextArea();
+		textPane = new JTextArea();
 		textPane.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				new Thread(){
 					public void run(){
 						if(textPane.isDisplayable()){
-							int numberOfWords = 0;
-							for(int i=0;i<textPane.getText().length();i++){
-								if(textPane.getText().charAt(i)==' '){
-									numberOfWords++;
-								}
-							}
 							if(labelNumberOfWords.isDisplayable()){
+								int numberOfWords = textPane.getText().split(" ").length;
+								if((textPane.getText().split(" ").length==1)&&((textPane.getText().split(" ")[0].equals("")))){
+									numberOfWords=0;
+								}
 								labelNumberOfWords.setText("Number of words: " + Integer.toString(numberOfWords) + "/" + Integer.toString(essayQ.getMaxWords()));
 							}
 						}
@@ -136,8 +137,8 @@ public class EssayQuestionPanel extends QuestionPanel {
 
 	@Override
 	public void submitAnswer() {
-		// TODO Auto-generated method stub
-		
+		essayQ.setStudentAnswer(textPane.getText());
+		System.out.println(essayQ.getStudentAnswer());
 	}
 
 	@Override

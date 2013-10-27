@@ -5,21 +5,38 @@ import java.util.ArrayList;
 public class Subsection extends SubsectionContainer
 {
   private String subsectionTitle;
-  SubsectionContainer subsectionContainer;
+  private ArrayList<SubsectionContainer> subsectionContainer;
   
   //constructors
   /*
    * creates an empty subsection
    */
-  public Subsection(String subsectionTitle)
+  public Subsection(String subsectionTitle,String mainTitle)
   {
-    this.subsectionTitle = subsectionTitle;
+	  super();
+	  this.subsectionTitle = subsectionTitle;
+	  this.subsectionContainer=new ArrayList<SubsectionContainer>();
   }
+  
+  
+  public void setSubsectionTitle(String subsectionTitle)
+  {
+	  this.subsectionTitle = subsectionTitle;
+  }
+  
+  public String getSubsectionTitle()
+  {
+	  return this.subsectionTitle;
+  }
+  
+  
+  
+  
   
   /*
    * creates a subsection with questions in it
    * note: you cannot add another subsection to this one
-   */
+   *
   public Subsection(ArrayList<Question> questions)
   {
     super(questions);
@@ -30,7 +47,7 @@ public class Subsection extends SubsectionContainer
   /*
    * creates a subsection with questions in it, that is named
    * note: you cannot add another subsection to this one
-   */
+   *
   public Subsection(String subsectionTitle, ArrayList<Question> questions)
   {
     super(questions);
@@ -40,7 +57,7 @@ public class Subsection extends SubsectionContainer
   
   /*
    * create new Subsection within subsection (this should only be possible if there are no questions already created)
-   */
+   *
   public Subsection addNewSubsection(Subsection newSubsection) throws InvalidSubsectionException
   {
     if(questions == null)
@@ -53,7 +70,7 @@ public class Subsection extends SubsectionContainer
   
   /*
    * Create a new empty subsection within the subsection (this should only be possible if a subsection does not already have questions)
-   */
+   *
   public Subsection addNewSubsection(String subsectionTitle) throws InvalidSubsectionException
   {
     if(questions == null)
@@ -66,7 +83,7 @@ public class Subsection extends SubsectionContainer
   
   /*
    * Add questions to a subsection (this should only be possible if there are no subsections within the subsection)
-   */
+   *
   public Subsection setNewQuestions(ArrayList<Question> questions) throws InvalidSubsectionException
   {
     if(subsectionContainer == null)
@@ -87,7 +104,7 @@ public class Subsection extends SubsectionContainer
   {
     this.subsectionTitle = subsectionTitle;
   }
-  
+  */
   
   
 }

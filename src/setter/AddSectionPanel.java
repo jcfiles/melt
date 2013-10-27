@@ -38,6 +38,7 @@ public class AddSectionPanel extends JPanel {
 	private final JTextArea txtInstructions = new JTextArea();
 	private  SetterTestController obj;
 	private  SetterGUI gui;
+	private final JLabel mins = new JLabel("mins");
 
 	/**
 	 * Create the panel.
@@ -70,16 +71,18 @@ public class AddSectionPanel extends JPanel {
 		add(centerPanel, BorderLayout.CENTER);
 				
 		SpringLayout springLayout = new SpringLayout();
+		springLayout.putConstraint(SpringLayout.WEST, mins, 6, SpringLayout.EAST, txtTotalTime);
+		springLayout.putConstraint(SpringLayout.EAST, mins, 37, SpringLayout.EAST, txtTotalTime);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtSection, -13, SpringLayout.NORTH, txtTotalTime);
+		springLayout.putConstraint(SpringLayout.EAST, txtTotalTime, -227, SpringLayout.EAST, centerPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblNumOfQuestions, -11, SpringLayout.NORTH, lblTotalMarks);
 		springLayout.putConstraint(SpringLayout.EAST, lblTotalMarks, 0, SpringLayout.EAST, lblNumOfQuestions);
 		springLayout.putConstraint(SpringLayout.EAST, lblNumOfQuestions, -133, SpringLayout.EAST, centerPanel);
 		springLayout.putConstraint(SpringLayout.EAST, txtInstructions, -10, SpringLayout.EAST, centerPanel);
 		springLayout.putConstraint(SpringLayout.EAST, txtSection, -10, SpringLayout.EAST, centerPanel);
-		springLayout.putConstraint(SpringLayout.EAST, txtTotalTime, -10, SpringLayout.EAST, centerPanel);
 		springLayout.putConstraint(SpringLayout.NORTH, txtInstructions, 177, SpringLayout.NORTH, centerPanel);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtInstructions, -10, SpringLayout.SOUTH, centerPanel);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblTotalMarks, -18, SpringLayout.NORTH, txtInstructions);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNumOfQuestions, 17, SpringLayout.SOUTH, txtTotalTime);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtSection, -13, SpringLayout.NORTH, txtTotalTime);
 		centerPanel.setLayout(springLayout);
 		
 				
@@ -91,9 +94,10 @@ public class AddSectionPanel extends JPanel {
 		centerPanel.add(lblSubsection);
 		
 		JLabel lblT = new JLabel("Total time:");
+		springLayout.putConstraint(SpringLayout.NORTH, mins, 0, SpringLayout.NORTH, lblT);
+		springLayout.putConstraint(SpringLayout.NORTH, lblT, 4, SpringLayout.SOUTH, lblSubsection);
 		springLayout.putConstraint(SpringLayout.WEST, txtTotalTime, 92, SpringLayout.EAST, lblT);
 		lblT.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		springLayout.putConstraint(SpringLayout.NORTH, lblT, 3, SpringLayout.NORTH, txtTotalTime);
 		springLayout.putConstraint(SpringLayout.WEST, lblT, 0, SpringLayout.WEST, lblSubsection);
 		centerPanel.add(lblT);
 		
@@ -136,6 +140,9 @@ public class AddSectionPanel extends JPanel {
 		txtInstructions.setFont(new Font("Verdana", Font.PLAIN, 13));
 		
 		centerPanel.add(txtInstructions);
+		mins.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		
+		centerPanel.add(mins);
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		if(bEdit==true)

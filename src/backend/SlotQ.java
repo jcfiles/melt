@@ -118,8 +118,8 @@ public class SlotQ extends Question {
 		this.studentAnswer.setSlotAnswer(answer, index);
 	}
 	
-	public void getStudentAnswer(int index) {
-		this.studentAnswer.getSlotAnswer(index);
+	public String getStudentAnswer(int index) {
+		return this.studentAnswer.getSlotAnswer(index);
 	}
 	
 	public void setStudentFeedback(String feedback) {
@@ -165,7 +165,7 @@ public class SlotQ extends Question {
 	//functionality testing
 	public static void main(String[] args) throws InvalidSlotQFormatException
 	{
-		SlotQ testq = new SlotQ("[afa]This [is] a [test] question.[rando mblank]");
+		SlotQ testq = new SlotQ("[afa]This [is] a test [question].");
 		System.out.println(testq.toString());
 		for(int i=0; i<testq.getqParts().length; i++)
 		  System.out.println(testq.getqParts()[i]);

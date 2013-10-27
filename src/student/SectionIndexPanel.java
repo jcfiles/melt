@@ -100,7 +100,9 @@ public class SectionIndexPanel extends JPanel {
     	if(index>0){
     		sectionChooserPanels.get(index-1).setbuttonSelectEnabled(false);
     	}
-    	sectionChooserPanels.get(index).setbuttonSelectEnabled(true);
+    	if(index!=sectionChooserPanels.size()){
+    		sectionChooserPanels.get(index).setbuttonSelectEnabled(true);
+    	}
     	index++;
     }
 }

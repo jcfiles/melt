@@ -329,7 +329,9 @@ public class Test_ implements java.io.Serializable
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+		
+		EssayQ q8 = new EssayQ("How was your weekend?", 10, 10);
+		s1.addQuestion(q8);
         return t1;
     }
     

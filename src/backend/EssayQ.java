@@ -45,12 +45,12 @@ public class EssayQ extends Question {
 	  this.maxWords = maxWords;
 	}
 
-	public StudentAnswer getStudentAnswer() {
-		return studentAnswer;
+	public String getStudentAnswer() {
+		return studentAnswer.getAnswer();
 	}
 
-	public void setStudentAnswer(StudentAnswer studentAnswer) {
-		this.studentAnswer = studentAnswer;
+	public void setStudentAnswer(String studentAnswer) {
+		this.studentAnswer.setAnswer(studentAnswer);
 	}
 
 }

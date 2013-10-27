@@ -46,7 +46,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public TestSectionForMarkingPanel(SetterTestController controller, Section section, Question question) {
-		this.controller = controller;
+		/*this.controller = controller;
 		this.section = section;
 		questions = section.getQuestionsList();
 		setLayout(new BorderLayout(0, 0));
@@ -230,6 +230,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		gbc_btnBack.gridx = 0;
 		gbc_btnBack.gridy = 0;
 		bottomPanel.add(btnBack, gbc_btnBack);
+		*/
 		
 	}
 
