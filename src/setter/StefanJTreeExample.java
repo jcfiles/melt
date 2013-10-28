@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import backend.*;
 public class StefanJTreeExample extends JFrame {
 
 	private JPanel contentPane;
+	DefaultTreeModel treeModel;
 
 	/**
 	 * Launch the application.
@@ -49,24 +51,28 @@ public class StefanJTreeExample extends JFrame {
 		Test_ test = Test_.getDemoTest2();
 		
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(test);
-    DefaultTreeModel treeModel = new DefaultTreeModel(rootNode);
+    treeModel = new DefaultTreeModel(rootNode);
     
     final JTree tree = new JTree(treeModel);
     tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		
     for(int i=0; i<test.getAllSections().size(); i++)
     {
+    	//add all sections
       DefaultMutableTreeNode section = new DefaultMutableTreeNode(test.getSection(i));
-      rootNode.add(section);
-    }
-    
-    DefaultMutableTreeNode currentParent = rootNode;
-    while(true)
-    {
-      if(currentParent.getChildCount() == 0)
-        break;
+      treeModel.insertNodeInto(section, rootNode, i);
+      //rootNode.add(section);
       
-    }
+      //to this section node add all its subsections recursively
+      ArrayList<SubsectionContainer> s = ((Section)section.getUserObject()).getContainer();
+      for(int j=0; j < s.size(); j++)
+      {
+      	DefaultMutableTreeNode currentNode = new DefaultMutableTreeNode(s.get(j));
+      	treeModel.insertNodeInto(currentNode, section, i);
+      	recursiveAdd(section, currentNode);
+      }
+      
+    }   
     
 		tree.addMouseListener(new MouseAdapter() {
 			@Override
@@ -87,6 +93,40 @@ public class StefanJTreeExample extends JFrame {
 		contentPane.add(tree, BorderLayout.WEST);
 	}
 	
-	
+	//this will traverse the test structure recursively for subsections and then for each subsection found it will 
+	//check whether it is empty or contains questions, if it has another subsection it will call itself in that.
+	public void recursiveAdd(DefaultMutableTreeNode parent, DefaultMutableTreeNode currentChild)
+	{
+		//check if exiting node
+		//ie check for no more subsections or questions
+		Subsection currentSub = (Subsection) currentChild.getUserObject();
+		if(currentSub.isEmpty()) //if it is empty just return
+			return;
+		else if(currentSub.hasQuestions())
+		{
+			//if it has questions add them as treeNodes to the tree
+			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
+			for(int i=0; i < sc.size(); i++)
+			{
+				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode(sc.get(i));
+				treeModel.insertNodeInto(newChild, currentChild, i); //add the question
+			}
+		}
+		else 
+		{
+			//it will have more subsections so add them recursively
+			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
+			for(int i=0; i < sc.size(); i++)
+			{
+				System.out.println(currentSub.toString());
+				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode(sc.get(i));
+				recursiveAdd(currentChild, newChild); //search this subsection for more subsections so currentChild will become the new parent and newChild the current one for this iteration
+				treeModel.insertNodeInto(newChild, currentChild, i); //add the subsection
+
+				
+			}
+			
+		}
+	}
 
 }

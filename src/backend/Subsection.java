@@ -56,7 +56,27 @@ public class Subsection extends SubsectionContainer
   	subsectionContainer.remove(s);
   }
   
+  public boolean isEmpty()
+  {
+  	if(subsectionContainer.size() < 1)
+  		return true;
+  	else
+  		return false;
+  }
   
+  public boolean hasQuestions()
+  {
+  	if(!this.isEmpty() && (subsectionContainer.get(0) instanceof Question))
+  		return true;
+  	else
+  		return false;
+  }
+  
+  @Override
+  public String toString()
+  {
+  	return subsectionTitle;
+  }
   
   /*
    * creates a subsection with questions in it
