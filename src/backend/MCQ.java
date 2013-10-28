@@ -21,6 +21,7 @@ public class MCQ extends Question {
     /**
      * Constructor for questions with number of marks provided.
      */
+    
     public MCQ(String questionText, int mark, Object parent)
     {
         super(questionText, parent);

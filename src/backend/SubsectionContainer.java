@@ -6,8 +6,8 @@ public abstract class SubsectionContainer
 {
   //variables that a subsectionCOntainer can hold
   //note that any subsectionContainer can only hold one of each at a time
-	protected String title;
-	protected Object parent;
+	private String title;
+	private Object parent;
 	public SubsectionContainer(Object parent)
 	{
 		this.parent = parent;
@@ -16,6 +16,7 @@ public abstract class SubsectionContainer
 	public Object getParent(){
 		return parent;
 	}
+	
   
 	/*
   public SubsectionContainer(String title)
@@ -31,7 +32,6 @@ public abstract class SubsectionContainer
   public String getTitle()
   {
 	  return this.title;
-  }
-*/
+  }*/
   
 }

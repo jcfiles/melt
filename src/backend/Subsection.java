@@ -24,6 +24,11 @@ public class Subsection extends SubsectionContainer
 	  this.subsectionTitle = subsectionTitle;
   }
   
+  public ArrayList<SubsectionContainer> getContainer()
+  {
+  	return subsectionContainer;
+  }
+  
   public String getSubsectionTitle()
   {
 	  return this.subsectionTitle;
