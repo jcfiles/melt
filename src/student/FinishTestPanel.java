@@ -14,6 +14,8 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 
+import backend.StudentTestController;
+
 import setter.MenuGUI;
 
 import java.awt.event.ActionListener;
@@ -43,7 +45,7 @@ public class FinishTestPanel extends JPanel {
 	 * Create the panel.
          * @param marks is total marks awarded for the test
 	 */
-	public FinishTestPanel(String marks) {
+	public FinishTestPanel(String marks, final StudentTestController controller) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{32, 0};
 		gridBagLayout.rowHeights = new int[]{16, 0, 0, 0, 0, 135, 0, 0};
@@ -169,8 +171,33 @@ public class FinishTestPanel extends JPanel {
 		  }
 		});
 		add(backButton, gbc_backButton);
+		
+		
+		//save whole test for marking
+		JButton saveTestButton = new JButton("Save Test");
 
+		saveTestButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent ae) 
+			{
+				JFileChooser chooser = new JFileChooser();
+				int option = chooser.showSaveDialog(FinishTestPanel.this);
+				if (option == JFileChooser.APPROVE_OPTION) 
+				{
+					String fileName = chooser.getSelectedFile().getAbsolutePath();
+					try 
+					{
+						//get reference to controller
+						controller.saveTest(fileName);
+					} catch (Exception e) {
+		    		 // TODO Auto-generated catch block
+		    		 e.printStackTrace();
+					}
+				}//if
+		      }	
+		});
+		
+		saveResultsPanel.add(saveTestButton);
 	}
-	
 
 }

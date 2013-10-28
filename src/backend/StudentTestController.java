@@ -77,7 +77,7 @@ public class StudentTestController {
         }
         if(areAllSectionsCompleted){
         	String sectionMarks = String.valueOf(sectionPanel.getSection().gradeSection());
-            FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks);
+            FinishTestPanel finishpanel = new FinishTestPanel(sectionMarks, this);
             MainGui.setComposite(finishpanel);
         }
         else{
@@ -91,7 +91,7 @@ public class StudentTestController {
      */
     public void endTest() {
         String testMarks = String.valueOf(test.endTest());
-        FinishTestPanel finishpanel = new FinishTestPanel(testMarks);
+        FinishTestPanel finishpanel = new FinishTestPanel(testMarks, this);
         MainGui.setComposite(finishpanel);
     }
 
