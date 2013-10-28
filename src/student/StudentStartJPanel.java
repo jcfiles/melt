@@ -57,6 +57,7 @@ public class StudentStartJPanel extends JPanel {
 	springLayout.putConstraint(SpringLayout.NORTH, panel_1, 10, SpringLayout.NORTH, this);
 	springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -10, SpringLayout.SOUTH, this);	
         JButton startButton = new JButton("Start");
+        startButton.setFont(new Font("MV Boli", Font.PLAIN, 15));
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

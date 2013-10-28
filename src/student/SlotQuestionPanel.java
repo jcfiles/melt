@@ -45,7 +45,7 @@ public class SlotQuestionPanel extends QuestionPanel {
 		setLayout(gridBagLayout);
 		
 		labelQuestionNumber = new JLabel("Question " + Integer.toString(questionNumber));
-		labelQuestionNumber.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		labelQuestionNumber.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		GridBagConstraints gbc_labelQuestionNumber = new GridBagConstraints();
 		gbc_labelQuestionNumber.insets = new Insets(0, 0, 5, 0);
 		gbc_labelQuestionNumber.gridx = 0;
@@ -53,7 +53,7 @@ public class SlotQuestionPanel extends QuestionPanel {
 		add(labelQuestionNumber, gbc_labelQuestionNumber);
 		
 		JLabel labelMarks = new JLabel("Marks: "+this.slotq.getPossibleMarks());
-		labelMarks.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		labelMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		GridBagConstraints gbc_labelMarks = new GridBagConstraints();
 		gbc_labelMarks.insets = new Insets(0, 0, 5, 10);
 		gbc_labelMarks.anchor = GridBagConstraints.EAST;

@@ -52,7 +52,7 @@ public class FinishTestPanel extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JLabel lblCongratulations = new JLabel("Congratulations!");
-		lblCongratulations.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblCongratulations.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		GridBagConstraints gbc_lblCongratulations = new GridBagConstraints();
 		gbc_lblCongratulations.anchor = GridBagConstraints.NORTH;
 		gbc_lblCongratulations.insets = new Insets(0, 0, 5, 0);
@@ -61,7 +61,7 @@ public class FinishTestPanel extends JPanel {
 		add(lblCongratulations, gbc_lblCongratulations);
 		
 		JLabel lblYouHaveFinished = new JLabel("You have finished your exam!");
-		lblYouHaveFinished.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblYouHaveFinished.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		GridBagConstraints gbc_lblYouHaveFinished = new GridBagConstraints();
 		gbc_lblYouHaveFinished.anchor = GridBagConstraints.NORTH;
 		gbc_lblYouHaveFinished.insets = new Insets(0, 0, 5, 0);
@@ -78,15 +78,18 @@ public class FinishTestPanel extends JPanel {
 		add(panel, gbc_panel);
 		
 		JLabel lblYourMarkIs = new JLabel("Your mark is");
+		lblYourMarkIs.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		panel.add(lblYourMarkIs);
 		
 		JLabel label = new JLabel(marks);
+		label.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		panel.add(label);
 		
 		// Starting the saveResultsPanel
 		JPanel saveResultsPanel = new JPanel();
 		JPanel statusbarPanel = new JPanel();
 		JButton saveButton = new JButton("Save Results");
+		saveButton.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		final JLabel statusbar = new JLabel("");
 		
 	    // Create a file chooser that opens up as a Save dialog
@@ -160,6 +163,7 @@ public class FinishTestPanel extends JPanel {
 		GridBagConstraints gbc_backButton = new GridBagConstraints();
 		gbc_backButton.gridx = 0;
 		gbc_backButton.gridy = 6;
+		backButton.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		backButton.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent arg0) { System.exit(0);
 		  }

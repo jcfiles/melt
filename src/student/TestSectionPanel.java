@@ -91,7 +91,7 @@ public class TestSectionPanel extends JPanel {
 	panel_8.add(lblTestA, gbc_lblTestA);
 		
 	JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
-	labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	labelSectionTitle.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 	GridBagConstraints gbc_labelSectionTitle = new GridBagConstraints();
 	gbc_labelSectionTitle.anchor = GridBagConstraints.WEST;
 	gbc_labelSectionTitle.gridx = 1;
@@ -99,6 +99,7 @@ public class TestSectionPanel extends JPanel {
 	panel_8.add(labelSectionTitle, gbc_labelSectionTitle);
 	
 	JButton buttonEdit = new JButton("Edit");
+	buttonEdit.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_buttonEdit = new GridBagConstraints();
 	gbc_buttonEdit.anchor = GridBagConstraints.EAST;
 	gbc_buttonEdit.insets = new Insets(0, 0, 5, 0);
@@ -131,6 +132,7 @@ public class TestSectionPanel extends JPanel {
 	panel_9.add(labelTimeRemaining, gbc_labelTimeRemaining);
 		
 	JLabel lblNewLabel_2 = new JLabel("minutes remaining");
+	lblNewLabel_2.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 	gbc_lblNewLabel_2.insets = new Insets(0, 0, 0, 10);
 	gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
@@ -146,6 +148,7 @@ public class TestSectionPanel extends JPanel {
 	panel_2.add(panel_3, BorderLayout.NORTH);
 		
 	JLabel labelSubsection = new JLabel("Example Subsection Heading");
+	labelSubsection.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	panel_3.add(labelSubsection);
 		
 	JLabel label = new JLabel(">");
@@ -256,6 +259,7 @@ public class TestSectionPanel extends JPanel {
 	panel_7.setLayout(gbl_panel_7);
 		
 	JButton buttonPrevious = new JButton("Previous");
+	buttonPrevious.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	buttonPrevious.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -281,6 +285,7 @@ public class TestSectionPanel extends JPanel {
 	panel_7.add(buttonPrevious, gbc_buttonPrevious);
 		
 	JButton buttonNext = new JButton("Next");
+	buttonNext.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	buttonNext.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -313,6 +318,7 @@ public class TestSectionPanel extends JPanel {
 	panel_1.setLayout(gbl_panel_1);
 		
 	JButton buttonSubmitSection = new JButton("Submit Section");
+	buttonSubmitSection.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	buttonSubmitSection.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

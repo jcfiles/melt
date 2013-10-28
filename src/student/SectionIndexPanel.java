@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import java.awt.Insets;
+import java.awt.Font;
 
 /**
  * 
@@ -70,6 +71,7 @@ public class SectionIndexPanel extends JPanel {
 	panelBack.setLayout(gbl_panelBack);
 	
 	JButton buttonBack = new JButton("Back");
+	buttonBack.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_buttonBack = new GridBagConstraints();
 	gbc_buttonBack.gridx = 0;
 	gbc_buttonBack.gridy = 0;

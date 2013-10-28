@@ -39,7 +39,7 @@ public class FTBQuestionPanel extends QuestionPanel {
 	setLayout(gridBagLayout);
 	
 	labelQuestionNumber = new JLabel("Question "+Integer.toString(questionNumber));
-	labelQuestionNumber.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	labelQuestionNumber.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 	labelQuestionNumber.setHorizontalAlignment(SwingConstants.CENTER);
 	GridBagConstraints gbc_labelQuestionNumber = new GridBagConstraints();
 	gbc_labelQuestionNumber.insets = new Insets(0, 0, 5, 0);
@@ -48,7 +48,7 @@ public class FTBQuestionPanel extends QuestionPanel {
 	add(labelQuestionNumber, gbc_labelQuestionNumber);
 	
 	JLabel lblNewLabel = new JLabel("Marks: "+ftbq.getPossibleMarks());
-	lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	lblNewLabel.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 	gbc_lblNewLabel.insets = new Insets(0, 0, 5, 10);
 	gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
@@ -64,13 +64,16 @@ public class FTBQuestionPanel extends QuestionPanel {
 	add(panel, gbc_panel);
 		
 	JLabel qFirstPart = new JLabel(ftbq.getQFirstPart());
+	qFirstPart.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 	panel.add(qFirstPart);
 		
 	textField = new JTextField();
+	textField.setFont(new Font("Verdana", Font.PLAIN, 13));
 	panel.add(textField);
 	textField.setColumns(10);
 		
 	JLabel qSecondPart = new JLabel(ftbq.getQSecondPart());
+	qSecondPart.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 	panel.add(qSecondPart);
 	
     }

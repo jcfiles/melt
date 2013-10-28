@@ -62,7 +62,7 @@ public class EssayQuestionPanel extends QuestionPanel {
 		add(panel, gbc_panel);
 		
 		labelQuestionNumber = new JLabel("Question " + Integer.toString(questionNumber));
-		labelQuestionNumber.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		labelQuestionNumber.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		panel.add(labelQuestionNumber);
 		
 		JPanel panel_1 = new JPanel();
@@ -75,7 +75,7 @@ public class EssayQuestionPanel extends QuestionPanel {
 		add(panel_1, gbc_panel_1);
 		
 		JLabel labelMarks = new JLabel("Marks: " + essayQ.getPossibleMarks());
-		labelMarks.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		labelMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		panel_1.add(labelMarks);
 		
 		JPanel panel_2 = new JPanel();
@@ -88,7 +88,7 @@ public class EssayQuestionPanel extends QuestionPanel {
 		add(panel_2, gbc_panel_2);
 		
 		final JLabel labelNumberOfWords = new JLabel("Number of words: "+Integer.toString(essayQ.getStudentAnswer().length())+"/" + Integer.toString(essayQ.getMaxWords()));
-		labelNumberOfWords.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		labelNumberOfWords.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		panel_2.add(labelNumberOfWords);
 		
 		JPanel panel_3 = new JPanel();
@@ -101,6 +101,7 @@ public class EssayQuestionPanel extends QuestionPanel {
 		add(panel_3, gbc_panel_3);
 		
 		JLabel labelQuestionTitle = new JLabel("New label");
+		labelQuestionTitle.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		panel_3.add(labelQuestionTitle);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -112,6 +113,7 @@ public class EssayQuestionPanel extends QuestionPanel {
 		add(scrollPane, gbc_scrollPane);
 		
 		textPane = new JTextArea();
+		textPane.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textPane.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {

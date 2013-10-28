@@ -52,7 +52,7 @@ public class SectionChooserPanel extends JPanel {
         
 	JLabel labelSectionTitle = new JLabel(section.getSectionTitle() + ": " + section.getSectionIntroText());
         
-	labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	labelSectionTitle.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_labelSectionTitle = new GridBagConstraints();
 	gbc_labelSectionTitle.anchor = GridBagConstraints.WEST;
 	gbc_labelSectionTitle.insets = new Insets(10, 10, 0, 0);

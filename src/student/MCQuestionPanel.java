@@ -52,7 +52,7 @@ public class MCQuestionPanel extends QuestionPanel {
 		
 		labelQuestionNumber = new JLabel("Question "+Integer.toString(questionNumber));
 		labelQuestionNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		labelQuestionNumber.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		labelQuestionNumber.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		GridBagConstraints gbc_labelQuestionNumber = new GridBagConstraints();
 		gbc_labelQuestionNumber.insets = new Insets(0, 0, 5, 0);
 		gbc_labelQuestionNumber.gridx = 0;
@@ -73,7 +73,7 @@ public class MCQuestionPanel extends QuestionPanel {
 		panel_3.setLayout(gbl_panel_3);
 		
 		JLabel labelMark = new JLabel("Marks: "+question.getPossibleMarks());
-		labelMark.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		labelMark.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		GridBagConstraints gbc_labelMark = new GridBagConstraints();
 		gbc_labelMark.insets = new Insets(0, 0, 5, 10);
 		gbc_labelMark.anchor = GridBagConstraints.NORTHEAST;
@@ -105,6 +105,7 @@ public class MCQuestionPanel extends QuestionPanel {
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		
 		JLabel lblHowMuchIs = new JLabel(question.getQuestionText());
+		lblHowMuchIs.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		panel.add(lblHowMuchIs);
 		
 		panel_1 = new JPanel();

@@ -41,6 +41,7 @@ public class SectionInfoPanel extends JPanel {
         jpanel.setLayout(gbl_jpanel);
         
         JButton btnEdit = new JButton("Edit");
+        btnEdit.setFont(new Font("MV Boli", Font.PLAIN, 15));
         GridBagConstraints gbc_btnEdit = new GridBagConstraints();
         gbc_btnEdit.anchor = GridBagConstraints.NORTHEAST;
         gbc_btnEdit.insets = new Insets(0, 0, 5, 0);
@@ -53,7 +54,7 @@ public class SectionInfoPanel extends JPanel {
         }
         
         JLabel labelSectionTitle = new JLabel(section.getSectionTitle());
-        labelSectionTitle.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+        labelSectionTitle.setFont(new Font("Maiandra GD", Font.BOLD, 20));
         GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
         gbc_lblNewLabel.anchor = GridBagConstraints.NORTH;
         gbc_lblNewLabel.gridx = 0;
@@ -84,7 +85,7 @@ public class SectionInfoPanel extends JPanel {
 	gbl_panel_2.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 	panel_2.setLayout(gbl_panel_2);
 	JLabel lblInstructions = new JLabel("Instructions");
-	lblInstructions.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	lblInstructions.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_lblInstructions = new GridBagConstraints();
 	gbc_lblInstructions.anchor = GridBagConstraints.WEST;
 	gbc_lblInstructions.insets = new Insets(0, 0, 5, 0);
@@ -92,6 +93,7 @@ public class SectionInfoPanel extends JPanel {
 	gbc_lblInstructions.gridy = 0;
 	panel_2.add(lblInstructions, gbc_lblInstructions);
 	JTextArea textAreaInstructions = new JTextArea();
+	textAreaInstructions.setFont(new Font("Verdana", Font.PLAIN, 13));
 	textAreaInstructions.setEditable(false);
 	textAreaInstructions.setText(section.getSectionIntroText());
 	GridBagConstraints gbc_textAreaInstructions = new GridBagConstraints();
@@ -114,7 +116,7 @@ public class SectionInfoPanel extends JPanel {
 	panel_3.setLayout(gbl_panel_3);
         
 	JLabel lblTotalTime = new JLabel("Total Time:");
-	lblTotalTime.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	lblTotalTime.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_lblTotalTime = new GridBagConstraints();
 	gbc_lblTotalTime.anchor = GridBagConstraints.WEST;
 	gbc_lblTotalTime.insets = new Insets(0, 0, 0, 5);
@@ -123,6 +125,7 @@ public class SectionInfoPanel extends JPanel {
 	panel_3.add(lblTotalTime, gbc_lblTotalTime);
         
 	JLabel labelTime = new JLabel(String.valueOf(section.getSectionTime()));
+	labelTime.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_labelTime = new GridBagConstraints();
 	gbc_labelTime.anchor = GridBagConstraints.WEST;
 	gbc_labelTime.insets = new Insets(0, 0, 0, 5);
@@ -131,6 +134,7 @@ public class SectionInfoPanel extends JPanel {
 	panel_3.add(labelTime, gbc_labelTime);
 		
 	JLabel lblMin = new JLabel("min.");
+	lblMin.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_lblMin = new GridBagConstraints();
 	gbc_lblMin.anchor = GridBagConstraints.WEST;
 	gbc_lblMin.gridx = 2;
@@ -151,7 +155,7 @@ public class SectionInfoPanel extends JPanel {
 	panel_4.setLayout(gbl_panel_4);
 		
 	JLabel lblTotalMarks = new JLabel("Total Marks:");
-	lblTotalMarks.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+	lblTotalMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_lblTotalMarks = new GridBagConstraints();
 	gbc_lblTotalMarks.anchor = GridBagConstraints.WEST;
 	gbc_lblTotalMarks.insets = new Insets(0, 10, 0, 5);
@@ -170,12 +174,14 @@ public class SectionInfoPanel extends JPanel {
 	add(panel_1, BorderLayout.SOUTH);
 		
 	JButton buttonBack = new JButton("Back");
+	buttonBack.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	buttonBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {MainGui.setComposite(sectionIndexPanel);}
 	});
 	panel_1.add(buttonBack);
 	JButton buttonStart = new JButton("Start");
+	buttonStart.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	buttonStart.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {controller.startSection(section);}
