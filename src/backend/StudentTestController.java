@@ -1,5 +1,6 @@
 package backend;
 
+import java.io.IOException;
 import java.util.Iterator;
 import student.FinishTestPanel;
 import student.MainGui;
@@ -40,6 +41,11 @@ public class StudentTestController {
     
     public Test_ getTest() {   	
         return test;
+    }
+    
+    public void saveTest(String path) throws IOException
+    {
+    	test.saveToFile(path);
     }
     
     /**
