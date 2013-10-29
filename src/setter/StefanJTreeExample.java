@@ -50,6 +50,7 @@ public class StefanJTreeExample extends JFrame {
 		
 		Test_ test = Test_.getDemoTest2();
 		
+		//Tree init
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(test);
     treeModel = new DefaultTreeModel(rootNode);
     
