@@ -15,9 +15,10 @@ import java.util.regex.*;
  */
 public class SlotQ extends Question {
 
-	StudentAnswer studentAnswer;
+	public StudentAnswer studentAnswer;
 	//TODO ^ not sure if this is a good idea. it is definitely memory inefficient and less flexible (as every blank has a mark)
 	//a different way to do this is to let StudentAnswer store a list of answers or to make a subclass of StudentAnswer for each type of manually marked question.
+	// Updated by Justin Chan: I changed "StudentAsnwer studentAnswer" to "public StudentAnsser studentAnswer" so that I can use jUnit testing on it.
 	
 	ArrayList<String> expectedAnswers;
 	String[] qParts; //stores the parts of the question that are not the answer
@@ -70,7 +71,8 @@ public class SlotQ extends Question {
 		Matcher matcher = pattern.matcher(questionText);
 		
 		boolean found = false;
-		while (matcher.find())
+		
+		while ( matcher.find() )
 		{
 			expectedAnswers.add(matcher.group());
 			found = true;
