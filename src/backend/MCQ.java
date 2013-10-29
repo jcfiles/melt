@@ -12,6 +12,9 @@ import java.util.Iterator;
  */
 public class MCQ extends Question {
     
+	String label = "";
+	
+	
     public MCQ(String questionText, Object parent)
     {
         super(questionText, parent);
@@ -69,6 +72,14 @@ public class MCQ extends Question {
         possibleMarks = mark;
     }
     
+    public MCQ(String questionText, ArrayList<Answer> answers, int mark, String label, Object parent)
+    {
+        super(questionText, parent);
+        this.answers = answers;
+        possibleMarks = mark;
+        this.label = label;
+    }
+    
     /**
      * Returns all of the possible answers.
      */
@@ -101,7 +112,7 @@ public class MCQ extends Question {
     /**
      * String representation of a question with multiple answers referenced A, B, C etc..
      */
-     public String toString()
+     public String getMCQ()
     {
         String s = questionText + "\n\n";
         for(int i = 0; i < answers.size(); i++) {
@@ -111,6 +122,11 @@ public class MCQ extends Question {
         }
         return s;
     }
+     
+     public String toString()
+     {
+    	 return "MCQ " + label;
+     }
      
      /**
       * Swaps the order of two answers
