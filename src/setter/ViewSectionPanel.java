@@ -51,7 +51,7 @@ public class ViewSectionPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ViewSectionPanel(final SetterTestController obj, final SetterGUI gui, final Section section) {
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(20, 20));
 		
 		//Title panel
 		add(titlePanel, BorderLayout.NORTH);

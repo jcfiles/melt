@@ -1,10 +1,13 @@
 package setter;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,6 +24,8 @@ import backend.MCQ;
 import backend.Question;
 import backend.Section;
 
+import javax.swing.ImageIcon;
+
 /*
  * @author Erotokritou Zoe
  */
@@ -28,45 +33,74 @@ public class MultichoicePanel extends JPanel {
 
 	final JButton btnDelete = new JButton("Delete");
 	final JButton btnEdit = new JButton("Edit");
-	final JButton btnAdd = new JButton("Add New Question");
 	private PossibleAnswers panel;
 	private JLabel lblMarks;
 	private JLabel lblQuestion;
 	private ArrayList<String> list = new ArrayList<String>();
 	private SetterTestController obj;
 	private SetterGUI gui;
+	private JLabel lblTitle=new JLabel("Test");
 	
 	
 	/**
 	 * Create the panel.
 	 */
 	public MultichoicePanel(final SetterTestController o,final SetterGUI g) {
+		
+		setLayout(new BorderLayout(20, 20));
+		
+		//Title panel
+		JPanel titlePanel = new JPanel();		
+		add(titlePanel, BorderLayout.NORTH);
+		GridBagLayout gbl_titlePanel = new GridBagLayout();
+		gbl_titlePanel.columnWidths = new int[]{0};
+		gbl_titlePanel.rowHeights = new int[]{10,10};
+		gbl_titlePanel.columnWeights = new double[]{0.0};
+		gbl_titlePanel.rowWeights = new double[]{Double.MIN_VALUE};
+		titlePanel.setLayout(gbl_titlePanel);
+						
+		GridBagConstraints gbc_lbl = new GridBagConstraints();
+		gbc_lbl.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl.gridx = 0;
+		gbc_lbl.gridy = 1;	
+		lblTitle.setFont(new Font("Maiandra GD", Font.PLAIN, 20));
+		titlePanel.add(lblTitle,gbc_lbl);				
+		
+		
+		JPanel centerPanel = new JPanel();	
+		add(centerPanel, BorderLayout.CENTER);
+		
 		SpringLayout springLayout = new SpringLayout();
-		setLayout(springLayout);
+		centerPanel.setLayout(springLayout);
+		
 		obj=o;
 		gui=g;
 		
 		//load the marks of the question
 		lblMarks = new JLabel("Marks: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblMarks, -10, SpringLayout.EAST, this);
-		add(lblMarks);
+		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 70, SpringLayout.NORTH, centerPanel);
+		lblMarks.setFont(new Font("Verdana", Font.PLAIN, 13));
+		springLayout.putConstraint(SpringLayout.EAST, lblMarks, -10, SpringLayout.EAST, centerPanel);
+		centerPanel.add(lblMarks);
 		
 		JLabel lblQ = new JLabel("Question:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblQ, 47, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblQ, 10, SpringLayout.WEST, this);
-		add(lblQ);
+		springLayout.putConstraint(SpringLayout.NORTH, lblQ, 107, SpringLayout.NORTH, centerPanel);
+		lblQ.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		springLayout.putConstraint(SpringLayout.WEST, lblQ, 10, SpringLayout.WEST, centerPanel);
+		centerPanel.add(lblQ);
 		
 		//load the question
 		lblQuestion = new JLabel("Q1");
+		lblQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
 		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 39, SpringLayout.EAST, lblQ);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblQuestion, 0, SpringLayout.SOUTH, lblQ);
-		add(lblQuestion);
+		centerPanel.add(lblQuestion);
 		
 		JLabel lblAnswer = new JLabel("Answer:");
+		lblAnswer.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.NORTH, lblAnswer, 19, SpringLayout.SOUTH, lblQuestion);
-		springLayout.putConstraint(SpringLayout.WEST, lblAnswer, 10, SpringLayout.WEST, this);
-		add(lblAnswer);
+		springLayout.putConstraint(SpringLayout.WEST, lblAnswer, 10, SpringLayout.WEST, centerPanel);
+		centerPanel.add(lblAnswer);
 		
 		
 		//Set text to all the labels
@@ -77,36 +111,36 @@ public class MultichoicePanel extends JPanel {
 		panel = new PossibleAnswers(list.size()-2);
 		
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, lblAnswer);
-		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, centerPanel);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblQuestion);
-		add(panel);
+		centerPanel.add(panel);
 		
 		JPanel buttonsPanel = new JPanel();
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonsPanel);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonsPanel, -44, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 440, SpringLayout.WEST, this);		
+		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, centerPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 440, SpringLayout.WEST, centerPanel);		
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		add(buttonsPanel);
-		
-		buttonsPanel.add(btnAdd);
+		centerPanel.add(buttonsPanel);
+		btnDelete.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnDelete);
+		btnEdit.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnEdit);
 		
+		JLabel lblPath = new JLabel("Path>sub1");
+		springLayout.putConstraint(SpringLayout.NORTH, lblPath, 50, SpringLayout.NORTH, centerPanel);
+		lblPath.setFont(new Font("Verdana", Font.PLAIN, 13));
+		springLayout.putConstraint(SpringLayout.WEST, lblPath, 0, SpringLayout.WEST, lblQ);
+		springLayout.putConstraint(SpringLayout.EAST, lblPath, 0, SpringLayout.EAST, lblMarks);
+		centerPanel.add(lblPath);
 		
-		btnAdd.addActionListener(new ActionListener(){  //button to add new question
-		      public void actionPerformed(ActionEvent e) {
-		        
-		    	  AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui,false);
-		    	  
-		    	  gui.centerPanel.removeAll();
-		    	  gui.centerPanel.add(addPanel);
-		                           
-		    	  gui.centerPanel.validate();
-		    	  gui.centerPanel.repaint();
-		      }
-		    });
+		JButton btnAdd = new JButton("");
+		btnAdd.setIcon(new ImageIcon(MultichoicePanel.class.getResource("/lib/images/plus.png")));
+		btnAdd.setBackground(new Color(0, 153, 0));
+		btnAdd.setPreferredSize(new Dimension(40,40));
+		springLayout.putConstraint(SpringLayout.NORTH, btnAdd, 10, SpringLayout.NORTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, btnAdd, 0, SpringLayout.EAST, lblMarks);
+		centerPanel.add(btnAdd);
 
 		btnDelete.addActionListener(new ActionListener(){  //Delete the question
 		       public void actionPerformed(ActionEvent e) {

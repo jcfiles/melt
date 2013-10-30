@@ -473,6 +473,8 @@ public class SetterTestController
 		  Answer an=f.getIndexedAnswer(0);
 		  s.add(an.getAnswerText());
 		  s.add(((FIBQ) q).getQSecondPart());
+		  
+		  return s;
 	  }
 	  
 	  

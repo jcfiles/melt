@@ -403,7 +403,7 @@ public class AddQuestionPanel extends JPanel {
 	    			gui.centerPanel.add(multiPanel);
 	    	   }
 	    	  
-	    		if(typeQuestion==0){
+	    		if(typeQuestion==1){
 	    			
 	    		  Question q=obj.addFIBQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    		  if(q==null)
