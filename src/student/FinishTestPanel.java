@@ -15,6 +15,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 import backend.StudentTestController;
+import backend.Test_;
 import setter.MenuGUI;
 
 import java.awt.event.ActionListener;
@@ -125,13 +126,19 @@ public class FinishTestPanel extends JPanel {
 					// Print a banner for "prettiness"
 					fileStream.println("******************************************************************************************************************");
 					
+					Test_ t = controller.getTest();
+					fileStream.println("** "+t.getTestTitle());
+					fileStream.println("******************************************************************************************************************");
+					fileStream.println("");
+					
 					// write the date and time taken the test
 					fileStream.println("Date taken: " + dateFormat.format(date) );
 					fileStream.println("Time taken: " + timeFormat.format(date) );
 					
 					// write the marks in the file.
 					fileStream.println("Your mark: " + "10000000000000000");
-			        
+					fileStream.println("");
+					
 					// Print a banner for "prettiness"
 					fileStream.println("******************************************************************************************************************");
 					
