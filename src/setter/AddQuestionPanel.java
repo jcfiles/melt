@@ -391,7 +391,7 @@ public class AddQuestionPanel extends JPanel {
 		    	  gui.centerPanel.repaint();
 		    	  
 	    		}
-	    		else
+	    		else  //bEdit==false
 	    		{
 	    			
 	    	  if(typeQuestion==0) //multiple choice question

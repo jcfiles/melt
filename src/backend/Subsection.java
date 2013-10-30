@@ -2,6 +2,9 @@ package backend;
 
 import java.util.ArrayList;
 
+/*
+ * @author Erotokritou Zoe, Dimitrios Chondrokoukis, Stefan Lesnjakovic
+ */
 public class Subsection extends SubsectionContainer implements java.io.Serializable
 {
   private String subsectionTitle;

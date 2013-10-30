@@ -237,15 +237,27 @@ public class SetterGUI extends JFrame {
 							centerPanel.repaint();
 							}
 						else
-						{
-							ViewCreatePanel panel=new ViewCreatePanel(obj,frame);
+							if(current.getUserObject() instanceof Question)
+							{
 							
-							centerPanel.removeAll();
-							centerPanel.add(panel);
+								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+								
+								centerPanel.removeAll();
+								centerPanel.add(panel);
 						
-							centerPanel.validate();
-							centerPanel.repaint();
-						}
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
+							else
+							{
+								ViewCreatePanel panel=new ViewCreatePanel(obj,frame);
+							
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+						
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
 				}
 				
 			}
