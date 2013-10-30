@@ -168,12 +168,26 @@ public class SlotQTest {
 	 * @throws InvalidSlotQFormatException
 	 */
 	@Test
-	public void testToString() throws InvalidSlotQFormatException {
+	public void testgetSlotQ() throws InvalidSlotQFormatException {
 		
 		SlotQ testSlotQ = new SlotQ("This [is] a [test] question.", null);
-		String exptoString = "This  a  question.";
+		String exptoString = "This <BLANK> a <BLANK> question.";
 		
-		assertEquals(exptoString, testSlotQ.toString());	
+		assertEquals(exptoString, testSlotQ.getSlotQ());
+		
+	}
+	
+	/** Can someone help me with this?
+	 * 
+	 * @throws InvalidSlotQFormatException
+	 */
+	@Test
+	public void testToString() throws InvalidSlotQFormatException {
+		
+		SlotQ testSlotQ = new SlotQ("This [is] a [test] question.", "1", null);
+		String exptoString = "SlotQ 1";
+		
+		assertEquals(exptoString, testSlotQ.toString());
 		
 	}
 

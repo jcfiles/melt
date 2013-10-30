@@ -108,28 +108,7 @@ public class FIBQTest
     assertEquals(expResult, testfibq.getQuestionText());
   }
   
-  @Test
-  public final void testSetsubSection() throws InvalidFTBQFormatException
-  {
-    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
-    String expResult = "";
-    assertEquals(expResult, testfibq.getsubSectionTitle());
-    
-    testfibq.setSubsectionTitle("testSubsection");
-    testfibq.setSubsectionTitle("testSubsection");
-    expResult = "testSubsection";
-    assertEquals(expResult, testfibq.getsubSectionTitle());
-  }
-
-  @Test
-  public final void testGetsubSectionTitle() throws InvalidFTBQFormatException
-  {
-    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
-    String expResult = "";
-    assertEquals(expResult, testfibq.getsubSectionTitle());
-    
-    
-  }
+  
 
   @Test
   public final void testGetQuestionText() throws InvalidFTBQFormatException
@@ -151,18 +130,7 @@ public class FIBQTest
     assertEquals(expResult, testfibq.getQuestionText());
   }
 
-  
-  @Test
-  public final void testSetSubsectionTitle() throws InvalidFTBQFormatException
-  {
-    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
-    String expResult = "";
-    assertEquals(expResult, testfibq.getsubSectionTitle());
-    
-    testfibq.setSubsectionTitle("Subsection A");
-    expResult = "Subsection A";
-    assertEquals(expResult, testfibq.getsubSectionTitle());
-  }
+
 
   @Test
   public final void testGetPossibleMarks() throws InvalidFTBQFormatException
