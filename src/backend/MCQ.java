@@ -21,6 +21,13 @@ public class MCQ extends Question {
         answers = new ArrayList<Answer>();
     }
     
+    public MCQ(String questionText, String label, Object parent)
+    {
+        super(questionText, parent);
+        answers = new ArrayList<Answer>();
+        this.label = label;
+    }
+    
     /**
      * Constructor for questions with number of marks provided.
      */
