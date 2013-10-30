@@ -1,5 +1,6 @@
 package setter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +32,11 @@ public class SetterTestController
   //Empty constructor
   public SetterTestController() {
 	  test=new Test_("NewTest","");
+  }
+  
+  public SetterTestController(Test_ test)
+  {
+  	this.test = test;
   }
   
   /**
@@ -410,6 +416,11 @@ public class SetterTestController
   public Test_ getTest()
   {
     return test;
+  }
+  
+  public void saveTest(String destinationFile) throws IOException
+  {
+  	test.saveToFile(destinationFile);
   }
   
   public void previewQuestion(){

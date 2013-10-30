@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -17,14 +18,18 @@ import javax.swing.JTree;
 import javax.swing.SpringLayout;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
 import backend.Question;
 import backend.Section;
 import backend.Subsection;
+import backend.SubsectionContainer;
 import backend.Test_;
 
 import javax.swing.JScrollPane;
@@ -119,6 +124,28 @@ public class SetterGUI extends JFrame {
 		CreateTestPanel panel = new CreateTestPanel(obj,this,false);
 		centerPanel.add(panel);
 		
+		//save test to file
+		saveTest.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent ae) 
+			{
+				JFileChooser chooser = new JFileChooser();
+				int option = chooser.showSaveDialog(SetterGUI.this);
+				if (option == JFileChooser.APPROVE_OPTION) 
+				{
+					String fileName = chooser.getSelectedFile().getAbsolutePath();
+					try 
+					{
+						//get reference to controller
+						obj.saveTest(fileName);
+						// TODO add savetest to the controller
+					} catch (Exception e) {
+		    		 // TODO Auto-generated catch block
+		    		 e.printStackTrace();
+					}
+				}//if
+		  }//actionPerformed
+		});
 
 		tree.addMouseListener(new MouseAdapter() {
 			@Override
@@ -346,4 +373,122 @@ public class SetterGUI extends JFrame {
 		   
 	}
 
+	
+	public SetterGUI(Test_ test) {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(200, 0, 733, 720);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+
+		obj=new SetterTestController(test);
+		
+		//tree initialisation
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(test);
+    treeModel = new DefaultTreeModel(rootNode);
+    
+    final JTree tree = new JTree(treeModel);
+    tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+		
+    //recursive insert
+    for(int i=0; i<test.getAllSections().size(); i++)
+    {
+    	//add all sections
+      DefaultMutableTreeNode section = new DefaultMutableTreeNode(test.getSection(i));
+      treeModel.insertNodeInto(section, rootNode, i);
+      //rootNode.add(section);
+      
+      //to this section node add all its subsections recursively
+      ArrayList<SubsectionContainer> s = ((Section)section.getUserObject()).getContainer();
+      for(int j=0; j < s.size(); j++)
+      {
+      	DefaultMutableTreeNode currentNode = new DefaultMutableTreeNode(s.get(j));
+      	treeModel.insertNodeInto(currentNode, section, i);
+      	recursiveAdd(section, currentNode);
+      }
+    }   
+		
+		// Tree Panel
+		contentPane.add(treePanel, BorderLayout.WEST);
+
+		Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 2, false);
+		treePanel.setBorder(lineBorder);
+		treePanel.setLayout(new BorderLayout(0, 0));
+		tree.setFont(new Font("Calibri", Font.PLAIN, 13));
+		treePanel.add(tree, BorderLayout.CENTER);
+		saveTest.setIcon(new ImageIcon(SetterGUI.class.getResource("/lib/images/save-icon.png")));
+		saveTest.setBackground(new Color(100, 149, 237));
+		saveTest.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		treePanel.add(saveTest, BorderLayout.SOUTH);
+		saveTest.setPreferredSize(new Dimension(200, 40));
+
+		// Center Panel
+		contentPane.add(centerPanel, BorderLayout.CENTER);
+		centerPanel.setLayout((new BorderLayout(0, 0)));
+
+		CreateTestPanel panel = new CreateTestPanel(obj,this,false);
+		centerPanel.add(panel);
+		
+		//save test to file
+		saveTest.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent ae) 
+			{
+				JFileChooser chooser = new JFileChooser();
+				int option = chooser.showSaveDialog(SetterGUI.this);
+				if (option == JFileChooser.APPROVE_OPTION) 
+				{
+					String fileName = chooser.getSelectedFile().getAbsolutePath();
+					try 
+					{
+						//get reference to controller
+						obj.saveTest(fileName);
+						// TODO add savetest to the controller
+					} catch (Exception e) {
+		    		 // TODO Auto-generated catch block
+		    		 e.printStackTrace();
+					}
+				}//if
+		  }//actionPerformed
+		});
+
+		//TODO add mouseListener for tree like in the constructor above
+		
+	}
+	
+  //this will traverse the test structure recursively for subsections and then for each subsection found it will 
+	//check whether it is empty or contains questions, if it has another subsection it will call itself in that.
+	public void recursiveAdd(DefaultMutableTreeNode parent, DefaultMutableTreeNode currentChild)
+	{
+		//check if exiting node
+		//ie check for no more subsections or questions
+		Subsection currentSub = (Subsection) currentChild.getUserObject();
+		if(currentSub.isEmpty()) //if it is empty just return
+			return;
+		else if(currentSub.hasQuestions())
+		{
+			//if it has questions add them as treeNodes to the tree
+			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
+			for(int i=0; i < sc.size(); i++)
+			{
+				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode(sc.get(i));
+				treeModel.insertNodeInto(newChild, currentChild, i); //add the question
+			}
+		}
+		else 
+		{
+			//it will have more subsections so add them recursively
+			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
+			for(int i=0; i < sc.size(); i++)
+			{
+				System.out.println(currentSub.toString());
+				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode(sc.get(i));
+				recursiveAdd(currentChild, newChild); //search this subsection for more subsections so currentChild will become the new parent and newChild the current one for this iteration
+				treeModel.insertNodeInto(newChild, currentChild, i); //add the subsection
+
+				
+			}//for
+		}//else
+	}//recursiveAdd
 }

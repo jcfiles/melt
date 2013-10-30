@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -15,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
 
 import backend.StudentTestController;
+import backend.Test_;
 import student.StudentStartJPanel;
 
 import java.awt.Color;
@@ -140,6 +142,41 @@ public class MenuGUI extends JFrame {
 				   
 		   }
 		});
+	
+		
+		setterPanel.btnLoadTest.addActionListener(new ActionListener(){
+		   public void actionPerformed(ActionEvent e) {
+		  	
+		  	Test_ test = null; 
+		  	
+		  	JFileChooser chooser = new JFileChooser();
+				int option = chooser.showOpenDialog(MenuGUI.this);
+				if (option == JFileChooser.APPROVE_OPTION) 
+				{
+					String sourceFile = chooser.getSelectedFile().getAbsolutePath();
+					try 
+					{
+						//load test
+						test = Test_.readFromFile(sourceFile);
+					} catch (Exception ex) {
+			   		 // TODO Auto-generated catch block
+			   		 ex.printStackTrace();
+					}
+					
+					SetterGUI gui=new SetterGUI(test);
+			    gui.setVisible(true);		     
+			    frame.setVisible(false);
+					
+				}//if	
+				else
+				{
+					//TODO open error window
+				}
+				
+				
+		   }
+		});
 			
 	}
+	
 }

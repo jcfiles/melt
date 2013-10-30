@@ -30,6 +30,7 @@ public class SetterPanel extends JPanel {
 	JButton btnNewTest=new JButton("New Test");
 	JButton btnPreview=new JButton("Preview Test");
 	JButton btnMark=new JButton("Mark Test");
+	JButton btnLoadTest = new JButton("Load Test");
 	
 	/**
 	 * Create the panel.
@@ -42,6 +43,15 @@ public class SetterPanel extends JPanel {
 		//gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0};
 		gridBagLayout.columnWeights=new double[]{0.0, 0};
 		setLayout(gridBagLayout);
+		GridBagConstraints gbc_btnNewTest = new GridBagConstraints();
+		gbc_btnNewTest.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnNewTest.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewTest.gridx = 1;
+		gbc_btnNewTest.gridy = 0;
+		btnNewTest.setHorizontalAlignment(SwingConstants.LEFT);
+		add(btnNewTest, gbc_btnNewTest);
+		btnNewTest.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewTest.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPreview.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -50,26 +60,24 @@ public class SetterPanel extends JPanel {
 				maingui.main(null);
 			}
 		});
-		GridBagConstraints gbc_btnNewTest = new GridBagConstraints();
-		gbc_btnNewTest.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnNewTest.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewTest.gridx = 1;
-		gbc_btnNewTest.gridy = 0;
-		btnNewTest.setHorizontalAlignment(SwingConstants.LEFT);
-		add(btnNewTest, gbc_btnNewTest);
+		
+		GridBagConstraints gbc_btnLoadTest = new GridBagConstraints();
+		gbc_btnLoadTest.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnLoadTest.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLoadTest.gridx = 1;
+		gbc_btnLoadTest.gridy = 1;
+		add(btnLoadTest, gbc_btnLoadTest);
 		GridBagConstraints gbc_btnPreview = new GridBagConstraints();
 		gbc_btnPreview.insets = new Insets(0, 0, 5, 5);
 		gbc_btnPreview.anchor = GridBagConstraints.WEST;
 		gbc_btnPreview.gridx = 1;
-		gbc_btnPreview.gridy = 1;
-		btnNewTest.setHorizontalAlignment(SwingConstants.LEFT);
+		gbc_btnPreview.gridy = 2;
 		add(btnPreview, gbc_btnPreview);
 		GridBagConstraints gbc_btnMark = new GridBagConstraints();
 		gbc_btnMark.insets = new Insets(0, 0, 0, 5);
 		gbc_btnMark.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnMark.gridx = 1;
-		gbc_btnMark.gridy = 2;
-		btnNewTest.setHorizontalAlignment(SwingConstants.LEFT);
+		gbc_btnMark.gridy = 3;
 		add(btnMark, gbc_btnMark);
 	}
 }
