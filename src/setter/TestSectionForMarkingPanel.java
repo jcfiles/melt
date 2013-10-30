@@ -55,6 +55,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		add(topPanel, BorderLayout.NORTH);
 		
 		JLabel lblSection = new JLabel("Section 1");
+		lblSection.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		topPanel.add(lblSection);
 		
 		JPanel leftPanel = new JPanel();
@@ -105,7 +106,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		panelMark.setLayout(gbl_panelMark);
 		
 		JLabel lblMarks = new JLabel("Marks:");
-		lblMarks.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblMarks = new GridBagConstraints();
 		gbc_lblMarks.anchor = GridBagConstraints.EAST;
 		gbc_lblMarks.insets = new Insets(0, 0, 0, 10);
@@ -126,6 +127,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		rightAnswerPanel.add(panel_2, BorderLayout.NORTH);
 		
 		JLabel lblThisIsThe = new JLabel("This is the right answer");
+		lblThisIsThe.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		lblThisIsThe.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(lblThisIsThe);
 		
@@ -140,6 +142,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		studentAnswerPanel.add(panel_3, BorderLayout.NORTH);
 		
 		JLabel lblThisIsStudents = new JLabel("This is student's answer");
+		lblThisIsStudents.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		lblThisIsStudents.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblThisIsStudents);
 		
@@ -163,6 +166,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		panel.add(totalMarkPanel, gbc_totalMarkPanel);
 		
 		JLabel lblTotalMarks = new JLabel("Total Marks:");
+		lblTotalMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		totalMarkPanel.add(lblTotalMarks);
 		
 		textField = new JTextField();
@@ -184,6 +188,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		feedbackPanel.setLayout(gbl_feedbackPanel);
 		
 		JLabel lblFeedback = new JLabel("Feedback:");
+		lblFeedback.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblFeedback = new GridBagConstraints();
 		gbc_lblFeedback.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblFeedback.anchor = GridBagConstraints.NORTH;
@@ -225,6 +230,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		bottomPanel.setLayout(gbl_bottomPanel);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnBack.gridx = 0;
