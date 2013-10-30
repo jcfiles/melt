@@ -13,7 +13,7 @@ public class Section implements java.io.Serializable
 {
     private String sectionTitle;
     private String sectionIntroText;
-    //private ArrayList<Question> questions;
+    private ArrayList<Object[][]> questionsAndPaths;
     private ArrayList<SubsectionContainer> subsectionContainer;
   //  private int possibleSectionMarks = 0; // Built as questions added/removed
  //   private int sectionMarksAwarded;
@@ -262,6 +262,8 @@ public class Section implements java.io.Serializable
     	return this.getSectionTitle();
     }
     
+    
+    
     /*
      * Locks the section
      *
@@ -276,4 +278,52 @@ public class Section implements java.io.Serializable
     	return isLocked;
     }
     */
+    private Question getQuestion(SubsectionContainer sc){
+		if((sc instanceof Subsection)==false){
+			Object[][] questionAndPath= new Object[1][2]; 
+			questionAndPath[0][0]=(Question)sc;
+			String path = "";
+			Object parent = sc.getParent();
+			while(!(parent instanceof Section)){
+				path = ((Subsection)parent).getSubsectionTitle()+" > "+path;
+				parent = ((SubsectionContainer) parent).getParent();
+			}
+			path=((Section)parent).getSectionTitle()+" > "+path;
+			questionAndPath[0][1]=path;
+			return (Question) sc;
+		}
+		for(int i=0; i<((Subsection)sc).getContainer().size(); i++){
+			getQuestion(((Subsection)sc).getContainer().get(i));
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * This function returns an array list of 2 dimensional Objects. In the 0,0 position of the object is the Question class and in the 0,1 position of the object is the path to the question
+	 * @param Section s
+	 * @return ArrayList<Object[][]>
+	 */
+	public ArrayList<Object[][]> getQuestionsAndPaths(){
+		for(int i=0; i<getContainer().size(); i++){
+			getQuestion(getContainer().get(i));
+		}
+		return questionsAndPaths;
+	}
+	
+	/**
+	 * Returns an array list of questions that are contained within a section
+	 * @param Section s
+	 * @return ArrayList<Question>
+	 */
+	public ArrayList<Question> getQuestions(){
+		ArrayList<Question> questions = new ArrayList<>();
+		for(int i=0; i<getContainer().size(); i++){
+			getQuestion(getContainer().get(i));
+		}
+		for(int i=0; i<questionsAndPaths.size(); i++){
+			questions.add((Question)questionsAndPaths.get(i)[0][0]);
+		}
+		return questions;
+	}
 }
