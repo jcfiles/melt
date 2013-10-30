@@ -2,12 +2,16 @@ package backend;
 
 import java.util.ArrayList;
 
-public class Subsection extends SubsectionContainer
+public class Subsection extends SubsectionContainer implements java.io.Serializable
 {
   private String subsectionTitle;
   private ArrayList<SubsectionContainer> subsectionContainer;
   
   //constructors
+  public Subsection()
+  {
+  	super();
+  }
   /*
    * creates an empty subsection
    */

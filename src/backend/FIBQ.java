@@ -12,6 +12,7 @@ public class FIBQ extends Question
 {
     private String qFirstPart, qSecondPart;
     private String givenAnswer = "";
+    String label = "";
     
     /**
      * Constructor for objects of class FIBQ
@@ -25,6 +26,15 @@ public class FIBQ extends Question
         this.qSecondPart = s[2];
         this.addAnswer(new Answer(s[0], true));
     }
+    
+    public FIBQ(String ftbqText, String label, Object parent) throws InvalidFTBQFormatException {
+      super(ftbqText, parent);
+      String s[] = parseQandA(ftbqText);
+      this.qFirstPart = s[1];
+      this.qSecondPart = s[2];
+      this.addAnswer(new Answer(s[0], true));
+      this.label = label;
+  }
     
     public void checkQuestion(String Question) throws InvalidFTBQFormatException
     {
@@ -91,8 +101,14 @@ public class FIBQ extends Question
      * String representation of a fill in the blanks question
      *  
      */
-    public String toString()
+    public String getFIBQ()
     {
         return qFirstPart + "<BLANK>"+ qSecondPart + "\n";
+    }
+    
+    @Override
+    public String toString()
+    {
+    	return "FIBQ " + label;
     }
 }

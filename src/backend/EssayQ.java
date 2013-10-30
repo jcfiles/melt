@@ -8,6 +8,7 @@ public class EssayQ extends Question {
 	
 	StudentAnswer studentAnswer;
 	private int maxWords; //0 meaning infinity
+	String label = "";
 	
   public EssayQ(String questionText, Object parent) {
 		super(questionText, parent);
@@ -28,6 +29,16 @@ public class EssayQ extends Question {
     this.studentAnswer = new StudentAnswer();
     this.maxWords = maxWords;
   }
+	
+	public EssayQ(String questionText, int possibleMarks, int maxWords, String label, Object parent)
+	{
+		super(questionText, parent);
+    this.possibleMarks = possibleMarks;
+    this.studentAnswer = new StudentAnswer();
+    this.maxWords = maxWords;
+    this.label = label;
+	}
+	
 	
 	@Override
 	protected int getMarksAwarded() 
@@ -51,6 +62,12 @@ public class EssayQ extends Question {
 
 	public void setStudentAnswer(String studentAnswer) {
 		this.studentAnswer.setAnswer(studentAnswer);
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "EssayQ " + label;
 	}
 
 }

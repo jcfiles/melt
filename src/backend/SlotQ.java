@@ -22,6 +22,7 @@ public class SlotQ extends Question {
 	
 	ArrayList<String> expectedAnswers;
 	String[] qParts; //stores the parts of the question that are not the answer
+	String label = "";
 	
 
 
@@ -30,6 +31,14 @@ public class SlotQ extends Question {
 		this.qParts = parseQtext(questionText);
 		this.expectedAnswers = parseAtext(questionText);
 		this.studentAnswer = new StudentAnswer();
+	}
+	
+	public SlotQ(String questionText, String label, Object parent) throws InvalidSlotQFormatException {
+		super(questionText, parent);
+		this.qParts = parseQtext(questionText);
+		this.expectedAnswers = parseAtext(questionText);
+		this.studentAnswer = new StudentAnswer();
+		this.label = label;
 	}
 
 	/*
@@ -152,7 +161,7 @@ public class SlotQ extends Question {
 	 * Returns the slot question as a string replacing the missing words with "<BLANK>"
 	 * @return String
 	 */
-	public String toString() {
+	public String getSlotQ() {
 		StringBuilder sb = new StringBuilder(); //use the StringBuilder for efficiency
 		for(int i = 0; i < qParts.length; i++)
 		{
@@ -163,7 +172,11 @@ public class SlotQ extends Question {
 		}	
 		return sb.toString();
 	}
-
+	
+	public String toString()
+	{
+		return "SlotQ " + label;
+	}
 	/*//functionality testing
 	public static void main(String[] args) throws InvalidSlotQFormatException
 	{

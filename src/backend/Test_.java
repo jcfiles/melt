@@ -42,6 +42,11 @@ public class Test_ implements java.io.Serializable
     private Map<Integer, Integer> mapWrite;
     private Map<Integer, Integer> mapRead;
 
+    
+    public Test_()
+    {
+    	super();
+    }
 
     /**
      * Constructor for objects of class Test

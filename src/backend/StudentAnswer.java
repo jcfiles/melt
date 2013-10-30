@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * others than Answer.java which is used to store a possible predefined answer.
  */
 
-public class StudentAnswer {
+public class StudentAnswer implements java.io.Serializable {
 	
 	protected Question question; //to get the question to this answer
 	protected String rightAnswer;
