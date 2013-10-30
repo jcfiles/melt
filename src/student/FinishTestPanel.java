@@ -140,7 +140,10 @@ public class FinishTestPanel extends JPanel {
 					
 					// write the marks in the file.
 		            out.write("Your mark: " + finalmarks);
-
+		            
+		            // flush the stream
+		            out.flush();
+		            
 		            // close the stream
 		            out.close();
 				} catch (Exception e) {
