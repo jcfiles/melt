@@ -305,7 +305,7 @@ public class SetterTestController
   /**
    * Add a Fill Blank Question in the Section of the test
    */
-  public void addMCQ(Object parent, String question, int marks, JTable possibleAnswers)
+  public Question addMCQ(Object parent, String question, int marks, JTable possibleAnswers)
   {
 	  
 	  MCQ q=new MCQ(question,parent);
@@ -326,6 +326,19 @@ public class SetterTestController
 		  }
 		  
 	  }
+	  
+	  if(parent instanceof Subsection)
+	  {
+		  Subsection sub=(Subsection)parent;
+		  sub.addQuestion(q);
+	  }
+	  else
+	  {
+		  Section sub=(Section)parent;
+		  sub.addQuestion(q);
+	  }
+	  
+	  return q;
 	  
 	  /*setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
 	  

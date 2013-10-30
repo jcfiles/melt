@@ -26,7 +26,7 @@ import java.awt.Font;
  */
 public class AddMCQ extends JPanel {
 	
-	private JTable possibleAnswers;
+	public JTable possibleAnswers;
 	private JButton btnSave = new JButton("Save");
 	private String header[] = new String[]{"Answer","Correct"};
 	private DefaultTableModel model;
