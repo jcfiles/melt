@@ -2,6 +2,7 @@ package backend;
 
 import java.io.IOException;
 import java.util.Iterator;
+
 import student.FinishTestPanel;
 import student.MainGui;
 import student.QuestionPanel;
@@ -26,12 +27,21 @@ public class StudentTestController {
      *  
      */
     public StudentTestController()  {
-        try {
+        /*try {
 			this.test = Test_.getDemoTest2();
 		} catch (InvalidSlotQFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+    	/*try {
+			this.test = Test_.readFromFile("test2");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
         this.sectionIndexPanel = sectionIndexPanel;
     }
     

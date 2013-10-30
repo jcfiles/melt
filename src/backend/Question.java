@@ -13,6 +13,7 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     protected String questionText;
     protected int possibleMarks = 1;
     protected int marksAwarded = 0;
+    Object parent;
    // protected String subsectionTitle = "";
     protected ArrayList<Answer> answers;  
     
@@ -22,6 +23,7 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     public Question(String questionText, Object parent)
     {
     	super(parent);
+    	this.parent = parent;
         this.questionText = questionText;
         answers = new ArrayList<Answer>();
     }
@@ -86,6 +88,38 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     public Answer getIndexedAnswer(int answerNum)
     {
         return answers.get(answerNum);
+    }
+    
+    /**
+     * Returns the parent section of the question
+     * @return Section section
+     */
+    public Section getParentSection(){
+    	Object outerObject = parent;
+    	while((outerObject instanceof Section)==false){
+    		outerObject = ((SubsectionContainer)outerObject).getParent();
+    	}
+    	return (Section)outerObject;
+    }
+    
+    
+    /**
+     * Returns the path of the question
+     * @return String path
+     */
+    public String getQuestionPath(){
+    	String path="";
+    	Object outerObject = parent;
+    	while((outerObject instanceof Section)==false){
+    		outerObject = ((SubsectionContainer)outerObject).getParent();
+    		if(!path.equals("")){
+    			path = ((Subsection)outerObject).getSubsectionTitle() + " > " + path;
+    		}
+    		else{
+    			path = ((Subsection)outerObject).getSubsectionTitle();
+    		}
+    	}
+    	return path;
     }
     
     protected abstract int getMarksAwarded();

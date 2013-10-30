@@ -1,10 +1,12 @@
 package student;
 
 import backend.StudentTestController;
+import backend.Subsection;
 import backend.Test_;
 
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
@@ -48,7 +50,18 @@ public class MainGui {
      * Create the application.
      */
     public MainGui() {
+    	try {
+			this.test = Test_.readFromFile("test2");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	controller = new StudentTestController();
+    	controller.setTest(test);
+    	System.out.println(((Subsection)test.getSection(0).getContainer().get(0)).getSubsectionTitle());
         initialize();
     }
     
