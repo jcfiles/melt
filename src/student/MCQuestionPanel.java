@@ -13,14 +13,19 @@ import javax.swing.JRadioButton;
 
 import java.awt.Insets;
 import java.awt.FlowLayout;
+
 import javax.swing.border.BevelBorder;
 
 import backend.MCQ;
 import backend.Answer;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import javax.swing.JCheckBox;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 
 /**
@@ -216,6 +221,11 @@ public class MCQuestionPanel extends QuestionPanel {
 	public void setQuestionNumber(int questionNumber) {
 		this.questionNumber = questionNumber;
 		labelQuestionNumber.setText("Question " + Integer.toString(questionNumber));
+		labelQuestionNumber.validate();
+	}
+	@Override
+	public void setPath(String path) {
+		labelQuestionNumber.setText(path + " > " + labelQuestionNumber.getText());
 		labelQuestionNumber.validate();
 	}
 }

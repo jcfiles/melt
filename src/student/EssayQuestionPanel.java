@@ -156,4 +156,10 @@ public class EssayQuestionPanel extends QuestionPanel {
 		labelQuestionNumber.validate();
 	}
 
+	@Override
+	public void setPath(String path) {
+		labelQuestionNumber.setText(path + " > " +labelQuestionNumber.getText());
+		labelQuestionNumber.validate();
+	}
+
 }

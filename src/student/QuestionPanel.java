@@ -14,6 +14,7 @@ public abstract class QuestionPanel extends JPanel {
     
     public abstract void submitAnswer();
     public abstract boolean isAnswered();
+    public abstract void setPath(String path);
     
     /**
      * Sets the question number of the question.

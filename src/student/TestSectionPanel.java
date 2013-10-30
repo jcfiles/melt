@@ -56,7 +56,7 @@ public class TestSectionPanel extends JPanel {
 	this.controller = controller;
         this.section = section;
         questionPanelsIndex=0;
-	//questions = section.getQuestionsList();
+	questions = section.getQuestions();
         
 	setLayout(new BorderLayout(0, 0));
 	JPanel panel = new JPanel();
@@ -237,6 +237,7 @@ public class TestSectionPanel extends JPanel {
                 qp = QuestionPanelFactory.getInstance().createQuestionPanel(it.next());
                 qNum++;
                 qp.setQuestionNumber(qNum);
+                qp.setPath((String)section.getQuestionsAndPaths().get(qNum-1)[0][1]);
             }
             catch(Exception e) {
                 //Handle exceptions if for any reason a panel cannot be instantiated

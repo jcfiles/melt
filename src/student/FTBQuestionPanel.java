@@ -1,16 +1,22 @@
 package student;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+
 import javax.swing.JLabel;
+
 import java.awt.Insets;
+
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 import backend.FIBQ;
 import backend.Answer;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 /**
  * 
@@ -27,6 +33,7 @@ public class FTBQuestionPanel extends QuestionPanel {
 
    /**
     * Create the panel.
+    * @wbp.parser.constructor
     */
     public FTBQuestionPanel(FIBQ ftbq) {
         this.ftbq = ftbq;
@@ -111,6 +118,12 @@ public class FTBQuestionPanel extends QuestionPanel {
 	public void setQuestionNumber(int questionNumber) {
 		this.questionNumber = questionNumber;
 		labelQuestionNumber.setText("Question " + Integer.toString(questionNumber));
+		labelQuestionNumber.validate();
+	}
+
+	@Override
+	public void setPath(String path) {
+		labelQuestionNumber.setText(path + " > " +labelQuestionNumber.getText());
 		labelQuestionNumber.validate();
 	}
 }

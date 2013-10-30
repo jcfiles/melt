@@ -7,11 +7,13 @@ import backend.SlotQ;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+
 import javax.swing.JPanel;
 
 /**
@@ -140,6 +142,12 @@ public class SlotQuestionPanel extends QuestionPanel {
 	public void setQuestionNumber(int questionNumber) {
 		this.questionNumber = questionNumber;
 		labelQuestionNumber.setText("Question " + Integer.toString(questionNumber));
+		labelQuestionNumber.validate();
+	}
+
+	@Override
+	public void setPath(String path) {
+		labelQuestionNumber.setText(path + " > " + labelQuestionNumber.getText());
 		labelQuestionNumber.validate();
 	}
 
