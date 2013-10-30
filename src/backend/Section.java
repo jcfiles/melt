@@ -13,7 +13,8 @@ public class Section implements java.io.Serializable
 {
     private String sectionTitle;
     private String sectionIntroText;
-    private ArrayList<Object[][]> questionsAndPaths;
+    private ArrayList<Object[][]> questionsAndPathsWithSection;
+    private ArrayList<Object[][]> questionsAndPathsWithoutSection;
     private ArrayList<SubsectionContainer> subsectionContainer;
   //  private int possibleSectionMarks = 0; // Built as questions added/removed
  //   private int sectionMarksAwarded;
@@ -278,51 +279,100 @@ public class Section implements java.io.Serializable
     	return isLocked;
     }
     */
-    private Question getQuestion(SubsectionContainer sc){
+    private Question getQuestionWithSection(SubsectionContainer sc){
 		if((sc instanceof Subsection)==false){
 			Object[][] questionAndPath= new Object[1][2]; 
 			questionAndPath[0][0]=(Question)sc;
 			String path = "";
 			Object parent = sc.getParent();
 			while(!(parent instanceof Section)){
-				path = ((Subsection)parent).getSubsectionTitle()+" > "+path;
+				if(!path.equals("")){
+					path = ((Subsection)parent).getSubsectionTitle()+" > "+path;
+				}
+				else{
+					path = ((Subsection)parent).getSubsectionTitle();
+				}
 				parent = ((SubsectionContainer) parent).getParent();
 			}
 			path=((Section)parent).getSectionTitle()+" > "+path;
 			questionAndPath[0][1]=path;
+			questionsAndPathsWithSection.add(questionAndPath);
 			return (Question) sc;
 		}
 		for(int i=0; i<((Subsection)sc).getContainer().size(); i++){
-			getQuestion(((Subsection)sc).getContainer().get(i));
+			getQuestionWithSection(((Subsection)sc).getContainer().get(i));
 		}
 		
 		return null;
 	}
 	
 	/**
-	 * This function returns an array list of 2 dimensional Objects. In the 0,0 position of the object is the Question class and in the 0,1 position of the object is the path to the question
+	 * This function returns an array list of 2 dimensional Objects. In the 0,0 position of the object is the Question class and in the 0,1 position of the object is the path to the question with the parent section
 	 * @param Section s
 	 * @return ArrayList<Object[][]>
 	 */
-	public ArrayList<Object[][]> getQuestionsAndPaths(){
+	public ArrayList<Object[][]> getQuestionsAndPathsWithSection(){
+		questionsAndPathsWithSection = new ArrayList<>();
 		for(int i=0; i<getContainer().size(); i++){
-			getQuestion(getContainer().get(i));
+			getQuestionWithSection(getContainer().get(i));
 		}
-		return questionsAndPaths;
+		return questionsAndPathsWithSection;
 	}
 	
+	/**
+	 * This function returns an array list of 2 dimensional Objects. In the 0,0 position of the object is the Question class and in the 0,1 position of the object is the path to the question without the parent section
+	 * @param Section s
+	 * @return ArrayList<Object[][]>
+	 */
+	public ArrayList<Object[][]> getQuestionsAndPathsWithoutSection(){
+		questionsAndPathsWithoutSection = new ArrayList<>();
+		for(int i=0; i<getContainer().size(); i++){
+			getQuestionWithoutSection(getContainer().get(i));
+		}
+		return questionsAndPathsWithoutSection;
+	}
+	
+	
+	private Question getQuestionWithoutSection(SubsectionContainer sc){
+		if((sc instanceof Subsection)==false){
+			Object[][] questionAndPath= new Object[1][2]; 
+			questionAndPath[0][0]=(Question)sc;
+			String path = "";
+			Object parent = sc.getParent();
+			while(!(parent instanceof Section)){
+				if(!path.equals("")){
+					path = ((Subsection)parent).getSubsectionTitle()+" > "+path;
+				}
+				else{
+					path = ((Subsection)parent).getSubsectionTitle();
+				}
+				parent = ((SubsectionContainer) parent).getParent();
+			}
+			//path=((Section)parent).getSectionTitle()+" > "+path;
+			questionAndPath[0][1]=path;
+			questionsAndPathsWithoutSection.add(questionAndPath);
+			return (Question) sc;
+		}
+		for(int i=0; i<((Subsection)sc).getContainer().size(); i++){
+			getQuestionWithoutSection(((Subsection)sc).getContainer().get(i));
+		}
+		
+		return null;
+	}
+
 	/**
 	 * Returns an array list of questions that are contained within a section
 	 * @param Section s
 	 * @return ArrayList<Question>
 	 */
 	public ArrayList<Question> getQuestions(){
+		questionsAndPathsWithSection = new ArrayList<>();
 		ArrayList<Question> questions = new ArrayList<>();
 		for(int i=0; i<getContainer().size(); i++){
-			getQuestion(getContainer().get(i));
+			getQuestionWithSection(getContainer().get(i));
 		}
-		for(int i=0; i<questionsAndPaths.size(); i++){
-			questions.add((Question)questionsAndPaths.get(i)[0][0]);
+		for(int i=0; i<questionsAndPathsWithSection.size(); i++){
+			questions.add((Question)questionsAndPathsWithSection.get(i)[0][0]);
 		}
 		return questions;
 	}
