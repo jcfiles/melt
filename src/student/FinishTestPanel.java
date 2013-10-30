@@ -15,12 +15,12 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 import backend.StudentTestController;
-
 import setter.MenuGUI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,6 +28,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -110,42 +111,33 @@ public class FinishTestPanel extends JPanel {
 	          
 				try {
 					
-		            // create a new file with an ObjectOutputStream
-					BufferedWriter out = new BufferedWriter(new FileWriter(fileName));			
-					
+					// create a new file with an ObjectOutputStream
+					File file = new File("hello3.txt");
+				      
+					// creates a FileWriter Object
+					PrintStream fileStream = new PrintStream(file);
+				      
 					// Record the date and time in the file.
 					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 					DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 					Date date = new Date();
 					
-					// Print "Your Test Result" in ASCII art
-					out.write(" __     __                           _______                _       _____                         _   _   ");
-					out.newLine();
-					out.write("\\	 \\   / /                          |__   __|              | |     |  __ \\                       | | | |  ");
-					out.newLine();
-					out.write("  \\ \\_/ /    ___    _   _   _ __       | |      ___   ___  | |_    | |__) |   ___   ___   _   _  | | | |_ ");
-					out.newLine();
-					out.write("   \\   /    / _ \\  | | | | | '__|      | |     / _ \\ / __| | __|   |  _  /   / _ \\ / __| | | | | | | | __|");
-					out.newLine();
-					out.write("    | |    | (_) | | |_| | | |         | |    |  __/ \\__ \\ | |_    | | \\ \\  |  __/ \\__ \\ | |_| | | | | |_ ");
-					out.newLine();
-					out.write("    |_|     \\___/   \\__,_| |_|         |_|     \\___| |___/  \\__|   |_|  \\_\\  \\___| |___/  \\__,_| |_|  \\__|");
-					out.newLine();
+					// Print a banner for "prettiness"
+					fileStream.println("******************************************************************************************************************");
 					
 					// write the date and time taken the test
-					out.write("Date taken: " + dateFormat.format(date) );
-					out.newLine();
-					out.write("Time taken: " + timeFormat.format(date) );
-					out.newLine();
+					fileStream.println("Date taken: " + dateFormat.format(date) );
+					fileStream.println("Time taken: " + timeFormat.format(date) );
 					
 					// write the marks in the file.
-		            out.write("Your mark: " + finalmarks);
-		            
-		            // flush the stream
-		            out.flush();
-		            
-		            // close the stream
-		            out.close();
+					fileStream.println("Your mark: " + "10000000000000000");
+			        
+					// Print a banner for "prettiness"
+					fileStream.println("******************************************************************************************************************");
+					
+					fileStream.flush();
+			        fileStream.close();
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
