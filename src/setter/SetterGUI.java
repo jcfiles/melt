@@ -26,6 +26,8 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import backend.FIBQ;
+import backend.MCQ;
 import backend.Question;
 import backend.Section;
 import backend.Subsection;
@@ -241,6 +243,26 @@ public class SetterGUI extends JFrame {
 							if(current.getUserObject() instanceof Question)
 							{
 							
+								if(current.getUserObject() instanceof MCQ)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof FIBQ)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof Question)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof Question)
+								{
+									
+								}
+								
 								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
 								
 								centerPanel.removeAll();
@@ -374,6 +396,11 @@ public class SetterGUI extends JFrame {
 	{
 		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
 		 treeModel.insertNodeInto(temp, (MutableTreeNode) current, current.getChildCount());
+		 if(!(current.getUserObject() instanceof Question))
+		 {
+			 parent=current;
+		 }		 
+		 current=temp;
 		 
 		/*
 		  DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);

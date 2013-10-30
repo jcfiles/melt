@@ -254,8 +254,40 @@ public class SetterTestController
   /**
    * Add a Fill Blank Question in the Section of the test
    */
-  public int addFIBQ(String question, int marks)
-  {/*
+  public Question addFIBQ(Object parent,String question, int marks)
+  {
+	  try {
+			FIBQ q=new FIBQ(question, parent);
+			q.setPossibleMarks(marks);
+			
+			if(parent instanceof Subsection)
+			  {
+				  Subsection sub=(Subsection)parent;
+				  sub.addQuestion(q);
+			  }
+			  else
+			  {
+				  Section sub=(Section)parent;
+				  sub.addQuestion(q);
+			  }
+			return q;
+			
+		} catch (InvalidFTBQFormatException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			
+			return null;
+		}
+	  
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  /*
 	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
 		FIBQ q=new FIBQ(question, test.getSection(currentSection));
@@ -273,8 +305,6 @@ public class SetterTestController
     */
 	  
 	  
-	  
-	  return 9999;
   }
   
   /**
@@ -415,9 +445,42 @@ public class SetterTestController
   /**
    * Edit the current Fill Blank Question
    */
-  public ArrayList<String> getQuestion()
+  public ArrayList<String> getQuestion(Object obj)
   {
-	 /* ArrayList<String> s=new ArrayList<String>();
+	  ArrayList<String> s=new ArrayList<String>();
+	  ArrayList<Answer> a=new ArrayList<Answer>();
+	  Question q=(Question)obj;
+	  
+	  s.add(q.getPossibleMarks()+"");
+	  
+	  if(q instanceof MCQ)
+	  {
+		  s.add(q.getQuestionText());
+		  a=((MCQ) q).getAllAnswers();
+		  
+		  for(int i=0; i<a.size(); i++)
+		  {
+			  s.add(a.get(i).getAnswerText());
+			  s.add(a.get(i).getIsRight()+"");
+		  }
+		  return s;
+	  }
+	  
+	  if(q instanceof FIBQ)
+	  {
+		  FIBQ f=(FIBQ) q;
+		  s.add(((FIBQ) q).getQFirstPart());
+		  Answer an=f.getIndexedAnswer(0);
+		  s.add(an.getAnswerText());
+		  s.add(((FIBQ) q).getQSecondPart());
+	  }
+	  
+	  
+	  
+	  
+	  
+	  /*
+	  ArrayList<String> s=new ArrayList<String>();
 	  ArrayList<Answer> a=new ArrayList<Answer>();
 	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
 	  
@@ -445,7 +508,8 @@ public class SetterTestController
 		  
 	  }
 	  
-	  return s;*/
+	  return s;
+	  */
 	  return null;
   }
 

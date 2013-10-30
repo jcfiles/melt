@@ -213,7 +213,7 @@ public class AddQuestionPanel extends JPanel {
 		if(bEdit==true)
 		{
 			
-			list=obj.getQuestion();
+			list=obj.getQuestion(gui.current.getUserObject());
 			txtMarks.setText(list.get(0));
 			//txtSubsection.setText(list.get(1));
 			
@@ -395,29 +395,31 @@ public class AddQuestionPanel extends JPanel {
 	    		{
 	    			
 	    		if(typeQuestion==0) //multiple choice question
-	    	   {	        	
-	        	Question q=obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
-	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
-	        	gui.setTree(q);
-	        	gui.centerPanel.removeAll();
-	        	gui.centerPanel.add(multiPanel);
+	    		{	        	
+	    			Question q=obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
+	    			gui.setTree(q);
+	    			MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);	        	
+	    			gui.centerPanel.removeAll();
+	    			gui.centerPanel.add(multiPanel);
 	    	   }
-	    	  else
-	    	  {	 
-	    		  int parsing=obj.addFIBQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
-	    		  if(parsing==0)
-	    		  {
+	    	  
+	    		if(typeQuestion==0){
+	    			
+	    		  Question q=obj.addFIBQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    		  if(q==null)
+	    		  	{
 	    			  JOptionPane.showMessageDialog(gui,
 		    			      "You have to insert the answer of the Fill the Blank Question like eg.[answer]",
 		    			      "Question parsing Error",
 		    			      JOptionPane.ERROR_MESSAGE);
-	    		  }	 
-	    		  else
-	    		  {
+	    		  	}	 
+	    		  	else
+	    		  	{
+	    		  		gui.setTree(q);
 	    			  	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
 	    			  	gui.centerPanel.removeAll();
 	  	        		gui.centerPanel.add(fillPanel);
-	    		  }
+	    		  	}
 	    		  
 	        	}
 	        

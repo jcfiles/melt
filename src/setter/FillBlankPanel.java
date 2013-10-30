@@ -31,7 +31,7 @@ public class FillBlankPanel extends JPanel {
 		
 		if(obj.countQuestion()!=0){
 			ArrayList<String> list = new ArrayList<String>();
-			list=obj.getQuestion();
+			list=obj.getQuestion(null);
 		
 		//load the marks of the question
 		JLabel lblMarks = new JLabel("Marks: "+ list.get(0));
