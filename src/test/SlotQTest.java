@@ -173,7 +173,7 @@ public class SlotQTest {
 		SlotQ testSlotQ = new SlotQ("This [is] a [test] question.", null);
 		String exptoString = "This  a  question.";
 		
-		assertEquals(exptoString, testSlotQ.toString());	
+		assertEquals(exptoString, testSlotQ.toString());
 		
 	}
 
