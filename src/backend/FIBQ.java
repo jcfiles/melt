@@ -10,6 +10,9 @@ import java.util.Iterator;
  */
 public class FIBQ extends Question
 {
+    
+    public StudentAnswer studentAnswer;
+
     private String qFirstPart, qSecondPart;
     private String givenAnswer = "";
     String label = "";
@@ -25,6 +28,7 @@ public class FIBQ extends Question
         this.qFirstPart = s[1];
         this.qSecondPart = s[2];
         this.addAnswer(new Answer(s[0], true));
+        this.studentAnswer = new StudentAnswer();
     }
     
     public FIBQ(String ftbqText, String label, Object parent) throws InvalidFTBQFormatException {
@@ -34,6 +38,7 @@ public class FIBQ extends Question
       this.qSecondPart = s[2];
       this.addAnswer(new Answer(s[0], true));
       this.label = label;
+      this.studentAnswer = new StudentAnswer();
   }
     
     public void checkQuestion(String Question) throws InvalidFTBQFormatException
@@ -42,6 +47,7 @@ public class FIBQ extends Question
     	this.qFirstPart =parts[1];
         this.qSecondPart = parts[2];
         this.addAnswer(new Answer(parts[0], true));
+        this.studentAnswer = new StudentAnswer();
     	
     }
     
@@ -56,6 +62,7 @@ public class FIBQ extends Question
     }
 
     public void setGivenAnswer(String answer) {
+        studentAnswer.setAnswer(answer);
         givenAnswer = answer;
     }
     
@@ -63,6 +70,37 @@ public class FIBQ extends Question
         return givenAnswer;
     }
     
+    
+    //for manual marking returns
+    public StudentAnswer getStudentAnswer()
+    {
+      return studentAnswer;
+    }
+
+    public void setStudentAnswer(StudentAnswer studentAnswer)
+    {
+      this.studentAnswer = studentAnswer;
+    }
+    
+    public void setStudentAnswerMarks(int marks)
+    {
+      studentAnswer.setMarksAwarded(marks);
+    }
+    
+    public int getStudentAnswerMarks()
+    {
+      return studentAnswer.getMarksAwarded();
+    }
+    
+    public void setStudentAnswerFeedback(String feedback)
+    {
+      studentAnswer.setFeedback(feedback);
+    }
+    
+    public String getStudentAnswerFeedback()
+    {
+      return studentAnswer.getFeedback();
+    }
     @Override
     public int getMarksAwarded()
     {

@@ -29,8 +29,8 @@ public class StudentAnswer implements java.io.Serializable {
 		this.feedback = null;
 		this.isMarked = false;
 		this.rightAnswer = null;
-		this.rightSlotAnswers = null;
-		this.slotAnswers = new ArrayList<>();
+		this.rightSlotAnswers = new ArrayList<String>();
+		this.slotAnswers = new ArrayList<String>();
 	}
 	
 	//constructor with student answer
@@ -60,8 +60,8 @@ public class StudentAnswer implements java.io.Serializable {
 		this.isMarked = true;
 		this.rightSlotAnswers = rightAnswers;
 		this.slotAnswers = new ArrayList<String>();
-		for(int i=0; i<rightSlotAnswers.size(); i++)
-			slotAnswers.add("");
+		/*for(int i=0; i<rightSlotAnswers.size(); i++)
+			slotAnswers.add("");*/
 	}
 	
 	
@@ -82,6 +82,11 @@ public class StudentAnswer implements java.io.Serializable {
 	public void setSlotAnswer(String answer, int index)
 	{
 		this.slotAnswers.add(index, answer);
+	}
+	
+	public void addSlotAnswer(String answer)
+	{
+	  this.slotAnswers.add(answer);
 	}
 	
 	public String getSlotAnswer(int index)
