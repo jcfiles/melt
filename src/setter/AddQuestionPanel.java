@@ -22,6 +22,7 @@ import student.TestSectionPanel;
 import backend.Answer;
 import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
+import backend.Question;
 
 import java.awt.Checkbox;
 import java.awt.Color;
@@ -50,7 +51,6 @@ public class AddQuestionPanel extends JPanel {
 	private JTextField txtMarks;
 	private JTextArea txtQuestion = new JTextArea();
 	private int typeQuestion=0;
-	private JTable possibleAnswers;
 	public ButtonGroup group_type = new ButtonGroup();
 	private JRadioButton rdbtnMultipleChoice = new JRadioButton("Multiple choice");
 	private JRadioButton rdbtnFillBlanks = new JRadioButton("Fill blanks");
@@ -318,8 +318,8 @@ public class AddQuestionPanel extends JPanel {
 	    	  
 	    	  
 	    	  if(typeQuestion==0)
-	    	  {
-	    		  if(txtQuestion.getText().equals("")|| txtMarks.getText().equals("")|| possibleAnswers.getRowCount()==0)
+	    	  {    		
+	    		  if(txtQuestion.getText().equals("")|| txtMarks.getText().equals("")|| mcqPanel.possibleAnswers.getRowCount()==0)
 	    		  {
 	    			//insert all the information, error icon
 	    			  JOptionPane.showMessageDialog(gui,
@@ -363,7 +363,7 @@ public class AddQuestionPanel extends JPanel {
 	    		{
 	    			 if(typeQuestion==0) //multiple choice question
 	   	    	  	{	
-	    				obj.editMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	    				obj.editMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
 	    				 MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	    		        gui.centerPanel.removeAll();
 	    		        gui.centerPanel.add(multiPanel);
@@ -396,8 +396,9 @@ public class AddQuestionPanel extends JPanel {
 	    			
 	    		if(typeQuestion==0) //multiple choice question
 	    	   {	        	
-	        	obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	        	Question q=obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
 	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
+	        	gui.setTree(q);
 	        	gui.centerPanel.removeAll();
 	        	gui.centerPanel.add(multiPanel);
 	    	   }
