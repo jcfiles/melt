@@ -35,27 +35,7 @@ public class SetterTestControllerTest {
 		String expResult = "testTitle";
 		assertEquals(expResult, stc.getTitle());
 	}
-	/*
-	@Test
-	public final void testAddSection() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public final void testEditSection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testDeleteSection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testDeleteQuestion() {
-		fail("Not yet implemented");
-	}
-	*/
 	@Test
 	public final void testCountSection() {
 		SetterTestController stc = new SetterTestController();

@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import backend.*;
@@ -9,26 +11,26 @@ import backend.*;
 public class StudentTestControllerTest {
 
 	@Test
-	public void testGetTest() {
+	public void testsetTest() {
+		
 		StudentTestController stc = new StudentTestController();
-		Test_ expResult;
-		try {
-			expResult = Test_.getDemoTest2();
-			assertEquals(expResult, stc.getTest());
-		} catch (InvalidSlotQFormatException e) {
+		
+		Test_ expTest = new Test_();
+		stc.setTest(expTest);
+		assertEquals(expTest, stc.getTest());		
+		
+	}
+
+	@Test
+	public void testgetTest() {
+		
+		StudentTestController stc = new StudentTestController();
+		Test_ expTest = new Test_();
+		stc.setTest(expTest);
+		assertEquals(expTest, stc.getTest());
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
-
-	@Test
-	public void testStartSection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEndTest() {
-		fail("Not yet implemented");
-	}
+	
 
 }
