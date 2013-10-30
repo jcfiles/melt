@@ -59,6 +59,21 @@ public class EssayQ extends Question {
 	public String getStudentAnswer() {
 		return studentAnswer.getAnswer();
 	}
+	
+	public StudentAnswer getWholeStudentAnswer()
+	{
+	  return studentAnswer;
+	}
+	
+	public String getFeedback()
+	{
+	  return studentAnswer.getFeedback();
+	}
+	
+	public void setFeedback(String feedback)
+	{
+	  studentAnswer.setFeedback(feedback);
+	}
 
 	public void setStudentAnswer(String studentAnswer) {
 		this.studentAnswer.setAnswer(studentAnswer);

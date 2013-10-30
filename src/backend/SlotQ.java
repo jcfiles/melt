@@ -137,7 +137,7 @@ public class SlotQ extends Question {
 		this.studentAnswer.setFeedback(feedback);
 	}
 	
-	public String getStudentFeedback(int index) {
+	public String getStudentFeedback() {
 		return this.studentAnswer.getFeedback();
 	}
 	
