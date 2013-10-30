@@ -334,8 +334,8 @@ public class SetterGUI extends JFrame {
 			*/
 			DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
 			 treeModel.insertNodeInto(temp, (MutableTreeNode) current, current.getChildCount());
-			 parent=current;
-			 current=temp;
+			 //parent=current;
+			// current=temp;
 		}
 		else
 		{
@@ -346,7 +346,7 @@ public class SetterGUI extends JFrame {
 			parent=temp;*/
 			
 			DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-			 treeModel.insertNodeInto(temp, (MutableTreeNode) parent, parent.getChildCount());
+			 treeModel.insertNodeInto(temp, (MutableTreeNode) current, current.getChildCount());
 			 
 			 //current=temp;
 		}
