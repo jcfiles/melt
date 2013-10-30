@@ -305,8 +305,28 @@ public class SetterTestController
   /**
    * Add a Fill Blank Question in the Section of the test
    */
-  public void addMCQ(String question, int marks, JTable possibleAnswers)
+  public void addMCQ(Object parent, String question, int marks, JTable possibleAnswers)
   {
+	  
+	  MCQ q=new MCQ(question,parent);
+	  q.setPossibleMarks(marks);
+	  
+	  for(int i=0; i<possibleAnswers.getRowCount(); i++)
+	  {
+		  String s=possibleAnswers.getValueAt(i, 0).toString();
+		  String img=possibleAnswers.getValueAt(i, 1).toString();
+		  
+		  if(img.contains("check"))
+		  {
+			  q.setAnswer(s,true,i);
+		  }
+		  else
+		  {
+			  q.setAnswer(s,false,i);
+		  }
+		  
+	  }
+	  
 	  /*setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
 	  
 	  MCQ q=new MCQ(question);

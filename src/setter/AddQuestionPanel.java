@@ -394,13 +394,13 @@ public class AddQuestionPanel extends JPanel {
 	    		else  //bEdit==false
 	    		{
 	    			
-	    	  if(typeQuestion==0) //multiple choice question
-	    	  {	        	
-	        	obj.addMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
+	    		if(typeQuestion==0) //multiple choice question
+	    	   {	        	
+	        	obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), possibleAnswers);
 	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	        	gui.centerPanel.removeAll();
 	        	gui.centerPanel.add(multiPanel);
-	    	  }
+	    	   }
 	    	  else
 	    	  {	 
 	    		  int parsing=obj.addFIBQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
