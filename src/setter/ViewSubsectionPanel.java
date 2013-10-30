@@ -23,10 +23,13 @@ import java.awt.event.ActionListener;
  */
 public class ViewSubsectionPanel extends JPanel {
 
+	JButton btnEdit = new JButton("");
+	JButton btnDelete = new JButton("");
+	
 	/**
 	 * Create the panel.
 	 */
-	public ViewSubsectionPanel() {
+	public ViewSubsectionPanel(String title) {
 	
 		Border raised= BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		JPanel centerPanel=new JPanel();
@@ -51,15 +54,13 @@ public class ViewSubsectionPanel extends JPanel {
 		lblS.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		centerPanel.add(lblS);
 		
-		JButton btnEdit = new JButton("");
 		btnEdit.setBackground(Color.ORANGE);
 		btnEdit.setIcon(new ImageIcon(ViewSubsectionPanel.class.getResource("/lib/images/edit.png")));		
 		btnEdit.setPreferredSize(new Dimension(35, 35));
 		springLayout.putConstraint(SpringLayout.NORTH, btnEdit, 10, SpringLayout.NORTH, centerPanel);
 		springLayout.putConstraint(SpringLayout.EAST, btnEdit, -10, SpringLayout.EAST, centerPanel);
 		centerPanel.add(btnEdit);
-		
-		JButton btnDelete = new JButton("");
+				
 		btnDelete.setIcon(new ImageIcon(ViewSubsectionPanel.class.getResource("/lib/images/cross.png")));
 		btnDelete.setBackground(new Color(204, 0, 0));
 		btnDelete.setPreferredSize(new Dimension(35, 35));
@@ -67,17 +68,21 @@ public class ViewSubsectionPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, btnDelete, 0, SpringLayout.EAST, btnEdit);
 		centerPanel.add(btnDelete);
 		
-		JLabel lblSubsection = new JLabel("New label");
+		JLabel lblSubsection = new JLabel(title);
 		springLayout.putConstraint(SpringLayout.NORTH, lblSubsection, 20, SpringLayout.SOUTH, lblS);
 		springLayout.putConstraint(SpringLayout.WEST, lblSubsection, 0, SpringLayout.WEST, lblS);
 		springLayout.putConstraint(SpringLayout.EAST, lblSubsection, -6, SpringLayout.WEST, btnDelete);
 		lblSubsection.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(lblSubsection);
 		
+		
+		
 		btnEdit.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
-		    
+		    	String index=e.getActionCommand();
+		    	int num=Integer.parseInt(index);
+		    	
 		    	/*lblFill.setVisible(false);	    	
 		    	typeQuestion=2;		
 		    	
@@ -88,6 +93,8 @@ public class ViewSubsectionPanel extends JPanel {
 												
 				panel_mult.validate();
 				panel_mult.repaint();*/
+		    	
+		    	
 		    	
 			    }
 		});
@@ -95,7 +102,9 @@ public class ViewSubsectionPanel extends JPanel {
 		btnDelete.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
-		    
+		    	String index=e.getActionCommand();
+		    	int num=Integer.parseInt(index);
+		    	
 		    	/*lblFill.setVisible(false);	    	
 		    	typeQuestion=2;		
 		    	
@@ -109,7 +118,5 @@ public class ViewSubsectionPanel extends JPanel {
 		    	
 			    }
 		});
-	
-
-	}
+	}	
 }

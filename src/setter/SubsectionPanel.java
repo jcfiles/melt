@@ -90,7 +90,9 @@ public class SubsectionPanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = i;
 		//panel=new EmptyPanel(obj,gui);
-		ViewSubsectionPanel panel=new ViewSubsectionPanel();
+		ViewSubsectionPanel panel=new ViewSubsectionPanel(obj.getSubsectionTitle(gui.current.getUserObject(), i));
+		panel.btnEdit.setActionCommand(i+"");
+		panel.btnDelete.setActionCommand(i+"");
 		panel.setPreferredSize(new Dimension(400,140));
 		ok.add(panel,gbc);
 		}

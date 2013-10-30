@@ -140,6 +140,19 @@ public class SetterTestController
 	  
   }
   
+  public String getSubsectionTitle(Object obj,int index)
+  {
+	  if(obj instanceof Subsection)
+	  {
+		  Subsection sub=(Subsection)obj;
+		  return ((Subsection)sub.getContainer().get(index)).getSubsectionTitle();
+	  }
+	  else
+	  {
+		  Section sub=(Section)obj;
+		  return ((Subsection)sub.getContainer().get(index)).getSubsectionTitle();
+	  }
+  }
   
   public int getContainerSize(Object obj)
   {	  
