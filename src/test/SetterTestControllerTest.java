@@ -135,7 +135,7 @@ public class SetterTestControllerTest {
 	public final void testGetQuestion() {
 		fail("Not yet implemented");
 	}
-	*/
+	
 	@Test
 	public final void testGetCurrertSectionTitle() {
 		SetterTestController stc = new SetterTestController();
@@ -184,5 +184,5 @@ public class SetterTestControllerTest {
 		int expResult = 0;
 		assertEquals(expResult, stc.getCurrentQuestion());
 	}
-
+	*/
 }

@@ -8,6 +8,12 @@ public abstract class SubsectionContainer
   //note that any subsectionContainer can only hold one of each at a time
 	private String title;
 	private Object parent;
+	
+	public SubsectionContainer()
+	{
+		super();
+	}
+	
 	public SubsectionContainer(Object parent)
 	{
 		this.parent = parent;

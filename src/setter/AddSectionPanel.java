@@ -17,6 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.tree.DefaultMutableTreeNode;
+
+import backend.Section;
 
 import java.awt.Font;
 
@@ -188,16 +191,17 @@ public class AddSectionPanel extends JPanel {
 				 
 				 
 				if(flag==false){	
+					Section s;
 				
 				if(bEdit==true)
 				{
-					obj.editSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));
+					s=obj.editSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));
 				}
 				else
 				{	
-					obj.addSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));			
+					s=obj.addSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));			
 				}
-				ViewSectionPanel panel=new ViewSectionPanel(obj,gui);
+				ViewSectionPanel panel=new ViewSectionPanel(obj,gui,s);
 				
 				gui.centerPanel.removeAll();
 				gui.centerPanel.add(panel);
@@ -205,6 +209,8 @@ public class AddSectionPanel extends JPanel {
 				gui.centerPanel.validate();
 				gui.centerPanel.repaint();
 				
+				
+				gui.setTree(s);
 				} 
 			}
 			});
@@ -212,13 +218,14 @@ public class AddSectionPanel extends JPanel {
 	
 	public void setTetxts()
 	{
-		ArrayList<String> list = new ArrayList<String>();
-		list=obj.getSection();
 		
-		txtSection.setText(list.get(0));
-		txtTotalTime.setText(list.get(1));
-		lblNumOfQuestions.setText(list.get(2));
-		lblTotalMarks.setText(list.get(3));
-		txtInstructions.setText(list.get(4));
+		
+		txtSection.setText(((Section)gui.current.getUserObject()).getSectionTitle());
+		txtTotalTime.setText(((Section)gui.current.getUserObject()).getSectionTime() +"");
+		lblNumOfQuestions.setText("0");
+		lblTotalMarks.setText("0");
+		txtInstructions.setText(((Section)gui.current.getUserObject()).getSectionIntroText());
 	}
+	
+	
 }

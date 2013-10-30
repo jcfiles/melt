@@ -8,6 +8,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import backend.Test_;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -64,22 +66,21 @@ public class CreateTestPanel extends JPanel {
 		
 		SpringLayout springLayout = new SpringLayout();
 		springLayout.putConstraint(SpringLayout.WEST, txtTitle, 0, SpringLayout.WEST, txtIntroduction);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtTitle, -25, SpringLayout.NORTH, txtIntroduction);
 		springLayout.putConstraint(SpringLayout.EAST, txtTitle, 0, SpringLayout.EAST, txtIntroduction);
 		centerPanel.setLayout(springLayout);
 		
 		JLabel lblTitle = new JLabel("Title:");
 		lblTitle.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		springLayout.putConstraint(SpringLayout.NORTH, lblTitle, 47, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblTitle, 10, SpringLayout.WEST, this);
 		centerPanel.add(lblTitle);
 		
 		JLabel lblIntro = new JLabel("Introduction Text:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblIntro, 92, SpringLayout.NORTH, centerPanel);
+		springLayout.putConstraint(SpringLayout.WEST, lblIntro, 10, SpringLayout.WEST, centerPanel);
+		springLayout.putConstraint(SpringLayout.WEST, lblTitle, 0, SpringLayout.WEST, lblIntro);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblTitle, -6, SpringLayout.NORTH, lblIntro);
 		lblIntro.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		springLayout.putConstraint(SpringLayout.NORTH, lblIntro, 19, SpringLayout.SOUTH, lblTitle);
-		springLayout.putConstraint(SpringLayout.WEST, lblIntro, 0, SpringLayout.WEST, lblTitle);
 		centerPanel.add(lblIntro);
-		
-		springLayout.putConstraint(SpringLayout.NORTH, txtTitle, -3, SpringLayout.NORTH, lblTitle);
 		txtTitle.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(txtTitle);
 				
@@ -127,16 +128,17 @@ public class CreateTestPanel extends JPanel {
 		    			      JOptionPane.ERROR_MESSAGE);
 			}
 			else
-			{
-				obj.createTest(txtTitle.getText(),txtIntroduction.getText());
-				obj.setCurrentSection(0);
-				obj.setCurrentQuestion(0);
+			{				
+				Test_ t=obj.createTest(txtTitle.getText(),txtIntroduction.getText());
+				
 				   
 				ViewCreatePanel panel=new ViewCreatePanel(obj,gui);
 				gui.centerPanel.removeAll();
 				gui.centerPanel.add(panel);
 				gui.centerPanel.validate();
-				gui.centerPanel.repaint();
+				gui.centerPanel.repaint();			
+				
+				gui.setTree(t);
 			}		   
 		}
 		});

@@ -22,6 +22,9 @@ import javax.swing.BoxLayout;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
 
+import backend.Section;
+import backend.Subsection;
+
 import java.awt.LayoutManager;
 
 /*
@@ -92,37 +95,55 @@ public class SubsectionContentPanel extends JPanel {
 		
 		}*/
 		
-		gbc_1 = new GridBagConstraints();
-		gbc_1.anchor = GridBagConstraints.NORTH;
-		gbc_1.gridx = 0;
-		gbc_1.gridy = 1;
-		panel_1=new EmptyPanel(obj,gui);
-		panel_1.setBorder(null);
-		panel_1.setPreferredSize(new Dimension(300,130));
-		mainList.add(panel_1,gbc_1);
 		
-		JScrollPane scrollPane = new JScrollPane(mainList);
-		centerPanel.add(scrollPane, BorderLayout.CENTER);
 				
 		
-		int content=0;
-
+		int content=obj.getContainerSize(gui.current.getUserObject() );
 		
-		if(content==1)
+		if(content==0)
 		{
-			//find the type
+			gui.parent=gui.current;
 			
+			gbc_1 = new GridBagConstraints();
+			gbc_1.anchor = GridBagConstraints.NORTH;
+			gbc_1.gridx = 0;
+			gbc_1.gridy = 1;
+			panel_1=new EmptyPanel(obj,gui);
+			panel_1.setBorder(null);
+			panel_1.setPreferredSize(new Dimension(300,130));
+			mainList.add(panel_1,gbc_1);
+			
+			JScrollPane scrollPane = new JScrollPane(mainList);
+			centerPanel.add(scrollPane, BorderLayout.CENTER);
 		}
-		
-		if(content==2)
-		{		
-			SubsectionPanel panelS= new SubsectionPanel(obj, gui);
+		else
+		{
+			/*if(gui.parent.getUserObject() instanceof Section)
+			{
+				//find the type
 			
-			gui.centerPanel.removeAll();
-			gui.centerPanel.add(panelS);
+			}
+		
+			if(gui.parent.getUserObject() instanceof Subsection)
+			{		
+				SubsectionPanel panelS= new SubsectionPanel(obj, gui,1);
+			
+				gui.centerPanel.removeAll();
+				gui.centerPanel.add(panelS);
 									
-			gui.centerPanel.validate();
-			gui.centerPanel.repaint();
+				gui.centerPanel.validate();
+				gui.centerPanel.repaint();
+			}
+			*/
+			
+			
+			SubsectionPanel panelS= new SubsectionPanel(obj, gui,1);
+					
+			centerPanel.removeAll();
+			centerPanel.add(panelS);
+								
+			centerPanel.validate();
+			centerPanel.repaint();
 		}
 		
 		

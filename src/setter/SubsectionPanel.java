@@ -1,15 +1,24 @@
 package setter;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
+
+import backend.Subsection;
 
 /*
  * @author Erotokritou Zoe
@@ -22,7 +31,7 @@ public class SubsectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SubsectionPanel(final SetterTestController obj, final SetterGUI gui) {
+	public SubsectionPanel(final SetterTestController obj, final SetterGUI gui, int type) {
 			
 		setLayout(new BorderLayout(20, 20));
 		
@@ -51,9 +60,9 @@ public class SubsectionPanel extends JPanel {
 		
 		
 		GridBagLayout gbl_mainList = new GridBagLayout();
-		gbl_mainList.columnWeights = new double[]{0.0};
+		gbl_mainList.columnWeights = new double[]{};
 		gbl_mainList.rowHeights=new int[] {0, 0};
-		JPanel mainList = new JPanel(gbl_mainList); 
+		JPanel ok = new JPanel(gbl_mainList); 
 		
 		
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -68,10 +77,13 @@ public class SubsectionPanel extends JPanel {
 		gbc_1.gridy = 1;
 		panel_1=new EmptyPanel(obj,gui);
 		panel_1.setPreferredSize(new Dimension(300,130));
-		mainList.add(panel_1,gbc_1);
+		ok.add(panel_1,gbc_1);
 	*/
 		
-		for (int i=0; i<3; i++){
+		
+			int count=obj.getContainerSize(gui.current.getUserObject());
+		
+		for (int i=0; i<count; i++){
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.NORTH;
@@ -80,24 +92,51 @@ public class SubsectionPanel extends JPanel {
 		//panel=new EmptyPanel(obj,gui);
 		ViewSubsectionPanel panel=new ViewSubsectionPanel();
 		panel.setPreferredSize(new Dimension(400,140));
-		mainList.add(panel,gbc);
-		
+		ok.add(panel,gbc);
 		}
-		gbc = new GridBagConstraints();
+		
+		
+		
+		if(type==0)
+		{gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		//panel=new EmptyPanel(obj,gui);
-		AddSubsectionPanel panel=new AddSubsectionPanel();
+		AddSubsectionPanel panel=new AddSubsectionPanel(gui,obj,false,0);
 		panel.setPreferredSize(new Dimension(400,140));
-		mainList.add(panel,gbc);
+		ok.add(panel,gbc);
+		}
 		
-		
-		
-		JScrollPane scrollPane = new JScrollPane(mainList);
+		JScrollPane scrollPane = new JScrollPane(ok);
+		//scrollPane.setBorder(null);
 		centerPanel.add(scrollPane, BorderLayout.CENTER);
 		
+		JPanel panel = new JPanel();
+		centerPanel.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnAdd = new JButton("");
+		btnAdd.setIcon(new ImageIcon(SubsectionPanel.class.getResource("/lib/images/plus.png")));
+		btnAdd.setBackground(new Color(0, 153, 0));
+		btnAdd.setPreferredSize(new Dimension(40,40));
+		panel.add(btnAdd, BorderLayout.EAST);
+		
+		
+		btnAdd.addActionListener(new ActionListener(){	//button to add new subsection
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				SubsectionPanel addPanel=new SubsectionPanel(obj,gui,0);
+				
+				gui.centerPanel.removeAll();
+				gui.centerPanel.add(addPanel);
+				
+				gui.centerPanel.validate();
+				gui.centerPanel.repaint();
+			}
+		});
 
 	}
 

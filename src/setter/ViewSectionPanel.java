@@ -21,6 +21,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+
+import backend.Section;
+
 import java.awt.Font;
 
 /*
@@ -47,7 +50,7 @@ public class ViewSectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ViewSectionPanel(final SetterTestController obj, final SetterGUI gui) {
+	public ViewSectionPanel(final SetterTestController obj, final SetterGUI gui, final Section section) {
 		setLayout(new BorderLayout(0, 0));
 		
 		//Title panel
@@ -166,7 +169,7 @@ public class ViewSectionPanel extends JPanel {
 		centerPanel.add(btnAdd);
 		
 		//Set the test into the labels
-		setTexts(obj);
+		setTexts(obj,section);
 				
 		
 		btnAdd.addActionListener(new ActionListener(){	//button to add new section
@@ -187,6 +190,7 @@ public class ViewSectionPanel extends JPanel {
 			btnDelete.addActionListener(new ActionListener(){  //Delete the question
 			public void actionPerformed(ActionEvent e) {
 				
+				/*
 				//default icon, custom title
 				int n = JOptionPane.showConfirmDialog(
 				    gui,
@@ -203,7 +207,7 @@ public class ViewSectionPanel extends JPanel {
 						obj.setCurrentSection(obj.getCurrentSection()-1);
 					}
 				
-					ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui);
+					ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui,null);
 					
 					gui.centerPanel.removeAll();
 					gui.centerPanel.add(viewPanel);
@@ -211,13 +215,14 @@ public class ViewSectionPanel extends JPanel {
 					gui.validate();
 					gui.repaint();
 				}
-				
+				*/
 				}	
+				
 			});
 			
 			btnEdit.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
-				
+				/*
 				addPanel=new AddSectionPanel(obj,gui,true);
 				
 				gui.centerPanel.removeAll();
@@ -225,12 +230,14 @@ public class ViewSectionPanel extends JPanel {
 				
 				gui.centerPanel.validate();
 				gui.centerPanel.repaint();
+				*/
 			 }
 			});
 			
 			btnContent.addActionListener(new ActionListener(){  //Add new question
 				public void actionPerformed(ActionEvent e) {
 					
+					//gui.type=1;
 					SubsectionContentPanel panel= new SubsectionContentPanel(obj,gui);
 					gui.centerPanel.removeAll();
 					gui.centerPanel.add(panel);
@@ -242,8 +249,11 @@ public class ViewSectionPanel extends JPanel {
 		}
 	
 	
-	public void setTexts(SetterTestController obj)
+	public void setTexts(SetterTestController obj, Section section)
 	{
+		/*
+		if(section==null)
+		{
 		if(obj.countSection()!=0){
 			ArrayList<String> list = new ArrayList<String>();
 			list=obj.getSection();
@@ -256,8 +266,19 @@ public class ViewSectionPanel extends JPanel {
 			StringBuilder sb = new StringBuilder(64);
 			sb.append("<html>"+list.get(4)+"</html>");
 			
-			lblInstructions.setText(sb.toString()); //= new JLabel(sb.toString());
-			
+			lblInstructions.setText(sb.toString()); //= new JLabel(sb.toString());			
 		}
+		}
+		*/
+		
+		lblSection.setText(section.getSectionTitle()); 
+		lblTotalTime.setText(section.getSectionTime() + " mins"); 
+		lblNumOfQuestions.setText("0"); 
+		lblTotalMarks.setText("0"); 
+		
+		StringBuilder sb = new StringBuilder(64);
+		sb.append("<html>"+section.getSectionIntroText()+"</html>");
+		
+		lblInstructions.setText(sb.toString()); 
 	}
 }

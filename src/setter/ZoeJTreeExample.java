@@ -18,6 +18,7 @@ import javax.swing.tree.TreeModel;
 import backend.Question;
 import backend.Section;
 import backend.Subsection;
+import backend.Test_;
 
 import javax.swing.JButton;
 
@@ -122,11 +123,11 @@ public class ZoeJTreeExample extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(tree.getSelectionPath()!=null){
-					System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
+					//System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
 				
 					mainObject=((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject();
 					
-					mainObject=null;
+					//mainObject=null;
 				
 				}
 				
@@ -150,7 +151,7 @@ public class ZoeJTreeExample extends JFrame {
 				   
 				   if(node.isRoot()==true)
 				   {
-					   Section s=new Section("Section 1", "blah blah intro", 3);
+					   Test_ s=new Test_("test1", "");
 					   DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
 					   treeModel.insertNodeInto(temp, node, node.getChildCount());
 					   node=temp;

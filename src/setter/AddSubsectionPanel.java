@@ -8,11 +8,15 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+
+import backend.Section;
+import backend.Subsection;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -21,10 +25,12 @@ import java.awt.event.ActionListener;
 public class AddSubsectionPanel extends JPanel {
 		
 	private JTextField txtSubsection;
+	public int type=1;
+	
 	/**
 	 * Create the panel.
 	 */
-	public AddSubsectionPanel() {
+	public AddSubsectionPanel(final SetterGUI gui, final SetterTestController obj, final Boolean bEdit, final int type) {
 		
 		Border raised= BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		JPanel centerPanel=new JPanel();
@@ -67,6 +73,31 @@ public class AddSubsectionPanel extends JPanel {
 		btnSave.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
+		    	//get count of container
+		    	int count=0;
+		    	
+		    	if(txtSubsection.getText().equals(""))
+				 {
+		    			//insert all the information, error icon
+		    			JOptionPane.showMessageDialog(gui,
+		    			      "You have to insert the title of the Subsection.",
+		    			      "Save Subsection Error",
+		    			      JOptionPane.ERROR_MESSAGE);
+				 }
+		    	else
+		    	{
+		    		gui.setTree(txtSubsection.getText(),bEdit, type);
+		    		
+		    		SubsectionPanel panel=new SubsectionPanel(obj,gui,1);
+		    		
+		    		gui.centerPanel.removeAll();
+		    		gui.centerPanel.add(panel);
+		    		
+		    		gui.centerPanel.validate();
+		    		gui.centerPanel.repaint();
+		    		
+		    	}
+		    	
 		    
 		    	/*lblFill.setVisible(false);	    	
 		    	typeQuestion=2;		

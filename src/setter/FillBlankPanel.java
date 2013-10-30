@@ -110,12 +110,12 @@ public class FillBlankPanel extends JPanel {
 					if(n==JOptionPane.YES_OPTION)
 					{
 						obj.deleteQuestion();
-						
+						/*
 						if(obj.getCurrentQuestion()==obj.countQuestion())
 						{
 							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
 						}
-						
+						*/
 						if(obj.getQuestionType()==0)
 						{
 							MultichoicePanel panel=new MultichoicePanel(obj,gui);

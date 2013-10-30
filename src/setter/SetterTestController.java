@@ -14,6 +14,7 @@ import backend.MCQ;
 import backend.Question;
 import backend.Section;
 import backend.StudentTestController;
+import backend.Subsection;
 import backend.SubsectionContainer;
 import backend.Test_;
 
@@ -22,7 +23,7 @@ import backend.Test_;
  */
 public class SetterTestController
 {
-  private int currentSection=0,currentQuestion=0;
+ // private int currentSection=0,currentQuestion=0;
   private Test_ test;
     
   int k=0;
@@ -35,7 +36,7 @@ public class SetterTestController
   /**
    * Create Test with the name
    */
-  public void createTest(String title, String introduction)
+  public Test_  createTest(String title, String introduction)
   {
 	  if(test==null)
 	  {test=new Test_(title,introduction);}
@@ -44,6 +45,7 @@ public class SetterTestController
 		  setTitle(title);
 		  setIntroduction(introduction);
 	  }
+	  return test;
   }
   
   public void createTest(String title)
@@ -80,21 +82,29 @@ public class SetterTestController
   /**
    * Add a Section in the test
    */
-  public void addSection(String sectionTitle, String sectionIntroText, int sectionTime)
+  public Section addSection(String sectionTitle, String sectionIntroText, int sectionTime)
   {
     Section s=new Section(sectionTitle,sectionIntroText,sectionTime);
-    setCurrentSection(test.getAllSections().size());
+   // setCurrentSection(test.getAllSections().size());
     
     test.addSection(s);
+    
+    return s;
   }
   
   /**
    * Edit a section in the test
    */
-  public void editSection(String sectionTitle, String sectionIntroText, int sectionTime)
+  public Section editSection(String sectionTitle, String sectionIntroText, int sectionTime)
   {
+	  /*
 	    Section s=test.getSection(currentSection);
 	    s.editSection(sectionTitle, sectionIntroText, sectionTime);
+	    
+	    return s;
+	    */
+	  
+	  return null;
   }
 
 
@@ -102,9 +112,46 @@ public class SetterTestController
    * Delete a section in the test
    */
   public void deleteSection()
-  {
+  {/*
 	  Section s=test.getSection(currentSection);
-	  test.removeSection(s);
+	  test.removeSection(s);*/
+  }
+  
+  
+  public void addSubsection(Subsection sub)
+  {
+	  	  
+	  if(sub.getParent() instanceof Subsection)
+	  {
+		  Subsection parent=(Subsection) sub.getParent();
+		  parent.addSubsection(sub);
+	  }
+	  else
+	  {
+		  Section parent=(Section) sub.getParent();
+		  parent.addSubsection(sub);
+	  }
+	  
+  }
+  
+  
+  public int getContainerSize(Object obj)
+  {	  
+	  if(obj instanceof Subsection)
+	  {
+		  Subsection sub=(Subsection)obj;
+		  return sub.getContainer().size();
+	  }
+	  else
+	  {
+		  Section sub=(Section)obj;
+		  if(sub.getContainer()!=null)
+		  {return sub.getContainer().size();}
+		  else
+		  {
+			  return 0;
+		  }
+	  }
   }
   
   /**
@@ -112,7 +159,7 @@ public class SetterTestController
    */
   public void deleteQuestion()
   {
-	  Section s=test.getSection(currentSection);
+	//  Section s=test.getSection(currentSection);
 	  //SubsectionContainer c=s.getContainer(currentQuestion);	  
 	  
 	 // c.removeQuestion(q);
@@ -162,6 +209,7 @@ public class SetterTestController
    */
   public ArrayList<String> getSection()
   {
+	  /*
 	  int marks=0;
 	  ArrayList<String> s=new ArrayList<String>();
 	  ArrayList<Question> q=new ArrayList<Question>();
@@ -178,7 +226,9 @@ public class SetterTestController
 	  s.add(marks+"");
 	  s.add(test.getSection(currentSection).getSectionIntroText());
 	
-	  return s;
+	  return s; */
+	  
+	  return null;
   }
   
   
@@ -186,7 +236,7 @@ public class SetterTestController
    * Add a Fill Blank Question in the Section of the test
    */
   public int addFIBQ(String question, int marks)
-  {
+  {/*
 	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
 		FIBQ q=new FIBQ(question, test.getSection(currentSection));
@@ -201,6 +251,11 @@ public class SetterTestController
 	}
     
     return 1;
+    */
+	  
+	  
+	  
+	  return 9999;
   }
   
   /**
@@ -343,50 +398,9 @@ public class SetterTestController
   }
 
   
-  /**
-   * Returns the current section title
-   */
-  public String getCurrertSectionTitle()
-  {
-    return test.getSection(currentSection).getSectionTitle();
-
-  }
-  
-  /**
-   * Sets the current section number
-   */
-  public void setCurrentSection(int section)
-  {
-    currentSection=section;
-  }
-  
-  /**
-   * Sets the current question number
-   */
-  public void setCurrentQuestion(int question)
-  {
-    currentQuestion=question;
-  }
-  
-  /**
-   * Returns the current Section
-   */
-  public int getCurrentSection()
-  {
-    return currentSection;
-  }
-  
-  /**
-   * Returns the current queston
-   */
-  public int getCurrentQuestion()
-  {
-    return currentQuestion;
-  }
-  
   public int getContent()
   {
-	  Section section=test.getSection(currentSection);
+	 // Section section=test.getSection(currentSection);
 	  
 	 // section.getSubsectonContainer()
 	  

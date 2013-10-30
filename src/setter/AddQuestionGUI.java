@@ -89,7 +89,8 @@ public class AddQuestionGUI extends JFrame {
     panelTitle.setLayout(gbl_panel_1);
     
     //Set the name of the Test and Sector
-    String s=obj.getTitle()+ ": " + obj.getCurrertSectionTitle();
+    //String s=obj.getTitle()+ ": " + obj.getCurrertSectionTitle();
+    String s=null;
     JLabel lblTitle=new JLabel(s);
     JButton btnSwitch=new JButton("Switch");  //Button to switch preview
     

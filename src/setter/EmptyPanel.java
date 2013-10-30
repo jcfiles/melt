@@ -82,14 +82,14 @@ public class EmptyPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 			    
-		SubsectionPanel panelS= new SubsectionPanel(obj, gui);
+				SubsectionPanel panelS= new SubsectionPanel(obj, gui,0);
 		
-		gui.centerPanel.removeAll();
-		gui.centerPanel.add(panelS);
+				gui.centerPanel.removeAll();
+				gui.centerPanel.add(panelS);
 								
-		gui.centerPanel.validate();
-		gui.centerPanel.repaint();
-		
+				gui.centerPanel.validate();
+				gui.centerPanel.repaint();
+					
 			}
 		});
 	}
