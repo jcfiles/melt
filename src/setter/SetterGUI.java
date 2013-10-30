@@ -60,7 +60,8 @@ public class SetterGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new SetterGUI();
+					//frame = new SetterGUI(Test_.getDemoTest2());
+				  frame = new SetterGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -419,12 +420,26 @@ public class SetterGUI extends JFrame {
       
       //to this section node add all its subsections recursively
       ArrayList<SubsectionContainer> s = ((Section)section.getUserObject()).getContainer();
-      for(int j=0; j < s.size(); j++)
+      
+      //check if section is empty
+      if(s.size() == 0)
+        continue;
+      else if(s.get(0) instanceof Question) //check if this section contains questions directly
       {
-      	DefaultMutableTreeNode currentNode = new DefaultMutableTreeNode(s.get(j));
-      	treeModel.insertNodeInto(currentNode, section, i);
-      	recursiveAdd(section, currentNode);
+        for(int j=0; j < s.size(); j++)
+        {
+          //add questions
+          DefaultMutableTreeNode currentNode = new DefaultMutableTreeNode(s.get(j));
+          treeModel.insertNodeInto(currentNode, section, j);
+        }
       }
+      else // it will contain subsections so add them recursively
+        for(int j=0; j < s.size(); j++)
+        {
+          DefaultMutableTreeNode currentNode = new DefaultMutableTreeNode(s.get(j));
+          treeModel.insertNodeInto(currentNode, section, j);
+          recursiveAdd(section, currentNode);
+        }
     }   
 		
 		// Tree Panel
