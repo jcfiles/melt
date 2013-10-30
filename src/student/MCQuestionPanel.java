@@ -36,8 +36,9 @@ public class MCQuestionPanel extends QuestionPanel {
         private JPanel panel_1;
         private int questionNumber = 0;
         private JLabel labelQuestionNumber;
-	/**
-	 * Create the panel.
+        
+        /**
+	 * Create the panel for the student to take the test.
 	 */
 	public MCQuestionPanel(MCQ question) {
             this.question = question;
@@ -120,12 +121,51 @@ public class MCQuestionPanel extends QuestionPanel {
 		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
-		
-                createRadioButtons();
+		createCheckBoxes();
 	
 	}
+        public MCQuestionPanel(MCQ question, boolean hasStudentAnswers){
+        	new MCQuestionPanel(question);
+        	disableCheckBoxes();
+                if(hasStudentAnswers){
+                	getStudentAnswers();
+                }
+                else{
+                	getRightAnswers();
+                }
+        }
 
-    private void createRadioButtons() {
+   
+    private void disableCheckBoxes() {
+    	for(int i=0; i<answers.size(); i++){
+			if(panel_1.getComponent(i) instanceof JCheckBox){
+				((JCheckBox)panel_1.getComponent(i)).setEnabled(false);
+            }
+		}
+    }
+	private void getRightAnswers() {
+    	for(int i=0; i<answers.size(); i++){
+    		if(answers.get(i).getIsRight()){
+    			if(panel_1.getComponent(i) instanceof JCheckBox){
+    				((JCheckBox)panel_1.getComponent(i)).setSelected(true);
+                }
+    		}
+    	}
+    }
+
+
+	private void getStudentAnswers() {
+    	for(int i=0; i<answers.size(); i++){
+    		if(answers.get(i).getIsSelected()){
+    			if(panel_1.getComponent(i) instanceof JCheckBox){
+    				((JCheckBox)panel_1.getComponent(i)).setSelected(true);
+                }
+    		}
+    	}
+    }
+
+
+	private void createCheckBoxes() {
         Iterator<Answer> it = answers.iterator();
         int i=0;
         while(it.hasNext()){

@@ -78,6 +78,17 @@ public class FTBQuestionPanel extends QuestionPanel {
 	
     }
     
+    public FTBQuestionPanel(FIBQ ftbq, boolean hasStudentAnswers) {
+    	new FTBQuestionPanel(ftbq);
+    	textField.setEditable(false);
+    	if(hasStudentAnswers){
+    		textField.setText(ftbq.getGivenAnswer());
+    	}
+    	else{
+    		textField.setText(ftbq.getIndexedAnswer(0).getAnswerText());
+    	}
+    }
+    
    /**
     * Sets the answer to the text entered
     */
