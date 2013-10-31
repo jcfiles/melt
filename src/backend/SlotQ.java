@@ -112,7 +112,7 @@ public class SlotQ extends Question {
 
 	//a total of all the individual blanks
 	@Override
-	protected int getMarksAwarded() {
+	public int getMarksAwarded() {
 		return studentAnswer.getMarksAwarded();
 	}
 
