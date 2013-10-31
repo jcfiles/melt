@@ -81,6 +81,7 @@ public class StudentStartJPanel extends JPanel {
 	panel_1.setLayout(gbl_panel_1);
 	
 	JButton buttonEdit = new JButton("Edit");
+	buttonEdit.setFont(new Font("MV Boli", Font.ITALIC, 15));
 	GridBagConstraints gbc_buttonEdit = new GridBagConstraints();
 	gbc_buttonEdit.anchor = GridBagConstraints.EAST;
 	gbc_buttonEdit.gridx = 0;

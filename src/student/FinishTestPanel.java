@@ -177,6 +177,7 @@ public class FinishTestPanel extends JPanel {
 		
 		//save whole test for marking
 		JButton saveTestButton = new JButton("Save Test");
+		saveTestButton.setFont(new Font("MV Boli", Font.ITALIC, 15));
 
 		saveTestButton.addActionListener(new ActionListener() 
 		{
