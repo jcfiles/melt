@@ -177,7 +177,7 @@ public class SlotQTest {
 		
 	}
 	
-	/** Can someone help me with this?
+	/** Can someone help sme with this?
 	 * 
 	 * @throws InvalidSlotQFormatException
 	 */
