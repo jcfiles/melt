@@ -42,7 +42,7 @@ public class EssayQ extends Question {
 	
 	
 	@Override
-	protected int getMarksAwarded() 
+	public int getMarksAwarded() 
 	{		
 		return studentAnswer.getMarksAwarded();
 	}
