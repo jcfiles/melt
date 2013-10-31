@@ -247,31 +247,48 @@ public class SetterGUI extends JFrame {
 							
 								if(current.getUserObject() instanceof MCQ)
 								{
+									MultichoicePanel panel=new MultichoicePanel(obj,frame);
+									
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 									
 								}
 								
 								if(current.getUserObject() instanceof FIBQ)
 								{
-									
+									FillBlankPanel panel=new FillBlankPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 								}
 								
-								if(current.getUserObject() instanceof Question)
+								if(current.getUserObject() instanceof EssayQ)
 								{
-									
+									EssayQuestionPanel panel=new EssayQuestionPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 								}
 								
-								if(current.getUserObject() instanceof Question)
+								if(current.getUserObject() instanceof SlotQ)
 								{
-									
+									SlotQPanel panel=new SlotQPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 								}
-								
-								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
-								
-								centerPanel.removeAll();
-								centerPanel.add(panel);
-						
-								centerPanel.validate();
-								centerPanel.repaint();
 							}
 							else
 							{
