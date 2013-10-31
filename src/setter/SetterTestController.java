@@ -421,6 +421,63 @@ public class SetterTestController
 	  */
   }
   
+  
+  /**
+   * Add a Fill Blank Question in the Section of the test
+   */
+  public Question addEssayQ(Object parent,String question, int marks)
+  {
+	  try {
+			FIBQ q=new FIBQ(question, parent);
+			q.setPossibleMarks(marks);
+			
+			if(parent instanceof Subsection)
+			  {
+				  Subsection sub=(Subsection)parent;
+				  sub.addQuestion(q);
+			  }
+			  else
+			  {
+				  Section sub=(Section)parent;
+				  sub.addQuestion(q);
+			  }
+			return q;
+			
+		} catch (InvalidFTBQFormatException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			
+			return null;
+		}
+	  
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  /*
+	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
+    try {
+		FIBQ q=new FIBQ(question, test.getSection(currentSection));
+		q.setPossibleMarks(marks);
+		test.getSection(currentSection).addQuestion(q);
+		
+	} catch (InvalidFTBQFormatException e) {
+		// TODO Auto-generated catch block
+		//e.printStackTrace();
+		
+		return 0;
+	}
+    
+    return 1;
+    */
+	  
+	  
+  }
+  
   /**
    * Return the current Question with the user is in with all the information
    */
