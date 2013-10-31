@@ -109,11 +109,13 @@ public class SlotQuestionPanel extends QuestionPanel {
 		if(hasStudentAnswers){
 			for(int i=0; i<textFields.size(); i++){
 				textFields.get(i).setText(slotq.getStudentAnswers().get(i));
+				textFields.get(i).setEditable(false);
 			}
 		}
 		else{
 			for(int i=0; i<textFields.size(); i++){
 				textFields.get(i).setText(slotq.getExpectedAnswers().get(i));
+				textFields.get(i).setEditable(false);
 			}
 		}
 	}
