@@ -9,6 +9,7 @@ public class EssayQ extends Question {
 	StudentAnswer studentAnswer;
 	private int maxWords; //0 meaning infinity
 	String label = "";
+	int height,width;
 	
   public EssayQ(String questionText, Object parent) {
 		super(questionText, parent);
@@ -84,5 +85,23 @@ public class EssayQ extends Question {
 	{
 		return "EssayQ " + label;
 	}
+	
+	public void setHeight(int h)
+	{
+		height=h;
+	}
 
+	public void setWidth(int w)
+	{
+		width=w;
+	}
+	public int getHeight()
+	{
+		return height;
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
 }

@@ -10,8 +10,10 @@ import java.awt.Font;
  * @author Erotokritou Zoe
  */
 public class AddEssay extends JPanel {
-	private JTextField txtSize;
+	private JTextField txtHeight;
 	private JTextField txtWordLimit;
+	private JLabel lblHeight;
+	private JTextField txtWidth;
 
 	/**
 	 * Create the panel.
@@ -26,17 +28,17 @@ public class AddEssay extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblSize, 10, SpringLayout.WEST, this);
 		add(lblSize);
 		
-		txtSize = new JTextField();
-		txtSize.setFont(new Font("Verdana", Font.PLAIN, 13));
-		springLayout.putConstraint(SpringLayout.NORTH, txtSize, -3, SpringLayout.NORTH, lblSize);
-		springLayout.putConstraint(SpringLayout.WEST, txtSize, 34, SpringLayout.EAST, lblSize);
-		springLayout.putConstraint(SpringLayout.EAST, txtSize, -33, SpringLayout.EAST, this);
-		add(txtSize);
-		txtSize.setColumns(10);
+		txtHeight = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, txtHeight, 18, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, txtHeight, 34, SpringLayout.EAST, lblSize);
+		springLayout.putConstraint(SpringLayout.EAST, txtHeight, -174, SpringLayout.EAST, this);
+		txtHeight.setFont(new Font("Verdana", Font.PLAIN, 13));
+		add(txtHeight);
+		txtHeight.setColumns(10);
 		
 		JLabel lblWordLimit = new JLabel("Word limit:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblWordLimit, 60, SpringLayout.SOUTH, lblSize);
 		lblWordLimit.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		springLayout.putConstraint(SpringLayout.NORTH, lblWordLimit, 21, SpringLayout.SOUTH, lblSize);
 		springLayout.putConstraint(SpringLayout.WEST, lblWordLimit, 0, SpringLayout.WEST, lblSize);
 		add(lblWordLimit);
 		
@@ -47,11 +49,32 @@ public class AddEssay extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, txtWordLimit, -33, SpringLayout.EAST, this);
 		add(txtWordLimit);
 		txtWordLimit.setColumns(10);
+		
+		lblHeight = new JLabel("height");
+		springLayout.putConstraint(SpringLayout.WEST, lblHeight, 6, SpringLayout.EAST, txtHeight);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblHeight, -253, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, lblHeight, -126, SpringLayout.EAST, this);
+		lblHeight.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		add(lblHeight);
+		
+		txtWidth = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, txtWidth, 20, SpringLayout.SOUTH, txtHeight);
+		springLayout.putConstraint(SpringLayout.WEST, txtWidth, 0, SpringLayout.WEST, txtHeight);
+		springLayout.putConstraint(SpringLayout.EAST, txtWidth, 0, SpringLayout.EAST, txtHeight);
+		add(txtWidth);
+		txtWidth.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("width");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.SOUTH, lblHeight);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, lblHeight);
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, 39, SpringLayout.WEST, lblHeight);
+		lblNewLabel.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		add(lblNewLabel);
 	}
 	
 	public String getBoxSize()
 	{
-		return txtSize.getText();
+		return txtHeight.getText();
 	}
 	
 	public String getWords()
