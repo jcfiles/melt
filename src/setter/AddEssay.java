@@ -58,6 +58,7 @@ public class AddEssay extends JPanel {
 		add(lblHeight);
 		
 		txtWidth = new JTextField();
+		txtWidth.setFont(new Font("Verdana", Font.PLAIN, 13));
 		springLayout.putConstraint(SpringLayout.NORTH, txtWidth, 20, SpringLayout.SOUTH, txtHeight);
 		springLayout.putConstraint(SpringLayout.WEST, txtWidth, 0, SpringLayout.WEST, txtHeight);
 		springLayout.putConstraint(SpringLayout.EAST, txtWidth, 0, SpringLayout.EAST, txtHeight);
