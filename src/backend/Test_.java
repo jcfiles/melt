@@ -99,7 +99,7 @@ public class Test_ implements java.io.Serializable
     {
         File destination = new File(destinationFile);
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(destination));
-        os.writeObject(this);
+        os.writeObject(Test_.this);
         os.close();
     }
         
