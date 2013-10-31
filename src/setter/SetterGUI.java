@@ -422,6 +422,45 @@ public class SetterGUI extends JFrame {
 		   
 	}
 	
+	public void removeQuestion()
+	{
+		/*
+		treeModel.removeNodeFromParent(current);
+		
+		//DefaultMutableTreeNode temp=new DefaultMutableTreeNode(current);
+		while(current.getUserObject() instanceof Question)
+		{current=(DefaultMutableTreeNode) current.getParent();}
+		*/
+		
+		treeModel.removeNodeFromParent(current);
+		
+		current=(DefaultMutableTreeNode) current.getParent();
+		
+		if(current.getUserObject() instanceof Subsection)
+		{
+		//type=1;
+		SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+	
+		centerPanel.removeAll();
+		centerPanel.add(panel);
+	
+		centerPanel.validate();
+		centerPanel.repaint();
+		}
+		
+		if(current.getUserObject() instanceof Section)
+		{
+			ViewSectionPanel panel=new ViewSectionPanel(obj,frame,(Section)current.getUserObject());
+			
+			centerPanel.removeAll();
+			centerPanel.add(panel);
+		
+			centerPanel.validate();
+			centerPanel.repaint();
+		}
+		
+	}
+	
 	public void setTree(Question s)
 	{
 		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);

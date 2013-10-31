@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JTable;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import student.MainGui;
 import student.TestSectionPanel;
@@ -185,12 +186,15 @@ public class SetterTestController
   /**
    * Delete a question in the test
    */
-  public void deleteQuestion()
+  public void deleteQuestion(Object current)
   {
-	//  Section s=test.getSection(currentSection);
-	  //SubsectionContainer c=s.getContainer(currentQuestion);	  
+	  /*
+	 Section s=test.getSection(currentSection);
+	  SubsectionContainer c=s.getContainer(currentQuestion);	  
 	  
-	 // c.removeQuestion(q);
+	 c.removeQuestion(q);
+	 */
+	  current=null;
   }
   
   /**

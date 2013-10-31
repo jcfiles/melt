@@ -150,7 +150,8 @@ public class EssayQuestionPanel extends JPanel {
 					
 					if(n==JOptionPane.YES_OPTION)
 					{
-						obj.deleteQuestion();
+						obj.deleteQuestion(gui.current.getUserObject());
+						gui.removeQuestion();
 						/*
 						if(obj.getCurrentQuestion()==obj.countQuestion())
 						{
