@@ -64,8 +64,8 @@ public class SetterGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new SetterGUI(Test_.getDemoTest2());
-				  //frame = new SetterGUI();
+					//frame = new SetterGUI(Test_.getDemoTest2());
+				  frame = new SetterGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -765,7 +765,9 @@ public class SetterGUI extends JFrame {
 		else 
 		{
 			//it will have more subsections so add them recursively
+			// there is a bug here i cant find
 			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
+			//treeModel.insertNodeInto(newChild, currentChild, i);
 			for(int i=0; i < sc.size(); i++)
 			{
 				System.out.println(currentSub.toString());
