@@ -44,13 +44,11 @@ public class Subsection extends SubsectionContainer implements java.io.Serializa
   public void addQuestion(Question q)
   {
   	subsectionContainer.add(q);
-     // possibleSectionMarks += q.getPossibleMarks();
   }
   
   public void removeQuestion(Question q)
   {
   	subsectionContainer.remove(q);
-      //possibleSectionMarks -= q.getPossibleMarks();
   }
 
   public void addSubsection(Subsection s)
