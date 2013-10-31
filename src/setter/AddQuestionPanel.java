@@ -435,14 +435,79 @@ public class AddQuestionPanel extends JPanel {
 		    			      JOptionPane.ERROR_MESSAGE);
 		    			  flag=true;
 		    		  }
+	    			if(flag==false)
+	    			{
+	    				 try {
+	       				  Integer.parseInt(essayPanel.txtHeight.getText());
+	       					
+	       				} catch (Exception ex) {
+	       					//insert number for a mark, error icon
+	       					JOptionPane.showMessageDialog(gui,
+	       		    			      "You have to insert a numbers for the Extra information of the Essay Question.",
+	       		    			      "Save Mark for Question Error",
+	       		    			      JOptionPane.ERROR_MESSAGE);
+	       					flag=true;
+	       				}	
+	    			}
+	    			if(flag==false)
+	    			{
+	    				 try {
+	       				  Integer.parseInt(essayPanel.txtWordLimit.getText());
+	       					
+	       				} catch (Exception ex) {
+	       					//insert number for a mark, error icon
+	       					JOptionPane.showMessageDialog(gui,
+	       							"You have to insert a numbers for the Extra information of the Essay Question.",
+	       		    			      "Save Mark for Question Error",
+	       		    			      JOptionPane.ERROR_MESSAGE);
+	       					flag=true;
+	       				}	
+	    			}
 	    			
+	    			if(flag==false)
+	    			{
+	    				 try {
+	       				  Integer.parseInt(essayPanel.txtWidth.getText());
+	       					
+	       				} catch (Exception ex) {
+	       					//insert number for a mark, error icon
+	       					JOptionPane.showMessageDialog(gui,
+	       							"You have to insert a numbers for the Extra information of the Essay Question.",
+	       		    			      "Save Mark for Question Error",
+	       		    			      JOptionPane.ERROR_MESSAGE);
+	       					flag=true;
+	       				}	
+	    			}
 	    			
-	    			Question q=obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
-	    			gui.setTree(q);
-	    			MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);	        	
-	    			gui.centerPanel.removeAll();
-	    			gui.centerPanel.add(multiPanel);
+	    			if(flag==false)
+	    			{
+	    				Question q=obj.addEssayQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()),Integer.parseInt(essayPanel.txtHeight.getText()), Integer.parseInt(essayPanel.txtWidth.getText()),Integer.parseInt(essayPanel.txtWordLimit.getText()));
+	    				gui.setTree(q);
+	    				EssayQuestionPanel panel=new EssayQuestionPanel(obj,gui);	        	
+	    				gui.centerPanel.removeAll();
+	    				gui.centerPanel.add(panel);
+	    			}
 	    	   }
+	    		
+	    		if(typeQuestion==3){
+	    			
+		    		  Question q=obj.addSlotQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+		    		  if(q==null)
+		    		  	{
+		    			  JOptionPane.showMessageDialog(gui,
+			    			      "You have to insert the answer of the Slot Question like eg.[answer]",
+			    			      "Question parsing Error",
+			    			      JOptionPane.ERROR_MESSAGE);
+		    		  	}	 
+		    		  	else
+		    		  	{
+		    		  		gui.setTree(q);
+		    			  	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
+		    			  	gui.centerPanel.removeAll();
+		  	        		gui.centerPanel.add(fillPanel);
+		    		  	}
+		    		  
+		        	}
 	    		
 	        
 	    	  gui.centerPanel.validate();

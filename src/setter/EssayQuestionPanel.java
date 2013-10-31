@@ -175,5 +175,18 @@ setLayout(new BorderLayout(20, 20));
 	       }
 	    });
 		
+		btnAdd.addActionListener(new ActionListener(){  //Edit the question
+	        public void actionPerformed(ActionEvent e) {
+
+	        	AddQuestionPanel addPanel=new AddQuestionPanel(obj,gui,false);
+	        	gui.centerPanel.removeAll();
+	        	gui.centerPanel.add(addPanel);
+	         
+	        	gui.centerPanel.validate();
+	        	gui.centerPanel.repaint();
+	        
+	       }
+	    });
+		
 		}
 }
