@@ -348,7 +348,6 @@ public class Section implements java.io.Serializable
 				}
 				parent = ((SubsectionContainer) parent).getParent();
 			}
-			//path=((Section)parent).getSectionTitle()+" > "+path;
 			questionAndPath[0][1]=path;
 			questionsAndPathsWithoutSection.add(questionAndPath);
 			return (Question) sc;
