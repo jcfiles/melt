@@ -13,8 +13,8 @@ import java.util.regex.*;
 /*
  * This is a manually marked question
  */
-public class SlotQ extends Question {
 
+public class SlotQ extends Question {
 	public StudentAnswer studentAnswer;
 	//TODO ^ not sure if this is a good idea. it is definitely memory inefficient and less flexible (as every blank has a mark)
 	//a different way to do this is to let StudentAnswer store a list of answers or to make a subclass of StudentAnswer for each type of manually marked question.
@@ -201,10 +201,8 @@ public class SlotQ extends Question {
 	}*/
 
 	@Override
-	public int setMarksAwarded() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setMarksAwarded(int marks) {
+		this.studentAnswer.setMarksAwarded(marks);
 	}
-	
 
 }

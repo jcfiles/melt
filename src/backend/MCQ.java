@@ -158,8 +158,7 @@ public class MCQ extends Question {
      }
 
 	@Override
-	public int setMarksAwarded() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setMarksAwarded(int marks) {
+		
 	}
 }

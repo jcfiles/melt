@@ -151,6 +151,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 	    table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				SaveMarking();
 				index = table.rowAtPoint(e.getPoint());
 				scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
 				scrollPaneStudent.setViewportView(questionPanels.get(index)[0][1]);
@@ -314,6 +315,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if(index>0){
 					SaveMarking();
+					UpdateTable();
 					index--;
 					scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
 					scrollPaneStudent.setViewportView(questionPanels.get(index)[0][1]);
@@ -326,6 +328,8 @@ public class TestSectionForMarkingPanel extends JPanel {
 		nextButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				SaveMarking();
+				UpdateTable();
 				if(index<questionPanels.size()-1){
 					index++;
 					scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
@@ -345,6 +349,13 @@ public class TestSectionForMarkingPanel extends JPanel {
 		bottomPanel.setLayout(gbl_bottomPanel);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SaveMarking();
+				
+			}
+		});
 		btnBack.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.anchor = GridBagConstraints.SOUTHEAST;
@@ -357,7 +368,12 @@ public class TestSectionForMarkingPanel extends JPanel {
 	
 	private void SaveMarking() {
 		questions.get(index).setFeedback(textFieldMarks.getText());
-		//questions.get(index)
+		if(questions.get(index) instanceof SlotQ){
+			((SlotQ)(questions.get(index))).setMarksAwarded(Integer.parseInt(textFieldMarks.getText().equals("")?"0":textFieldMarks.getText()));
+		}
+		if(questions.get(index) instanceof EssayQ){
+			((EssayQ)(questions.get(index))).setMarksAwarded(Integer.parseInt(textFieldMarks.getText().equals("")?"0":textFieldMarks.getText()));
+		}
 	}
 
 	private void UpdateTable() {
