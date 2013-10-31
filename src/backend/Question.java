@@ -14,7 +14,9 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     protected int possibleMarks = 1;
     protected int marksAwarded = 0;
     Object parent;
-   // protected String subsectionTitle = "";
+    protected String feedback;
+		// protected String subsectionTitle = "";
+    
     protected ArrayList<Answer> answers;  
     
     /**
@@ -25,6 +27,7 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     	super(parent);
     	this.parent = parent;
         this.questionText = questionText;
+        this.feedback = "";
         answers = new ArrayList<Answer>();
     }
 
@@ -73,6 +76,17 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     {
         answers.add(answer);
     }
+    
+    public String getFeedback()
+		{
+			return feedback;
+		}
+
+		public void setFeedback(String feedback)
+		{
+			this.feedback = feedback;
+		}
+
     
     /**
      * Sets an answer to the question by index, e.g. 0 is the first answer. 

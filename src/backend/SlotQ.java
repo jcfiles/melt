@@ -141,6 +141,18 @@ public class SlotQ extends Question {
 		return this.studentAnswer.getFeedback();
 	}
 	
+	@Override
+	public void setFeedback(String feedback)
+	{
+		this.studentAnswer.setFeedback(feedback);
+	}
+	
+	@Override
+	public String getFeedback()
+	{
+		return this.studentAnswer.getFeedback();
+	}
+	
 	public void setStudentMark(int mark) {
 		this.studentAnswer.setMarksAwarded(mark);
 	}

@@ -66,11 +66,13 @@ public class EssayQ extends Question {
 	  return studentAnswer;
 	}
 	
+	@Override
 	public String getFeedback()
 	{
 	  return studentAnswer.getFeedback();
 	}
 	
+	@Override
 	public void setFeedback(String feedback)
 	{
 	  studentAnswer.setFeedback(feedback);
