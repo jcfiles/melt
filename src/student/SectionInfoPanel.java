@@ -198,8 +198,7 @@ public class SectionInfoPanel extends JPanel {
    	public void actionPerformed(ActionEvent e) {
    		
    		//open the setter GUI
-			SetterGUI gui=new SetterGUI(controller.getTest());
-	    gui.setVisible(true);
+	    MainGui.parent.setVisible(true);
 	    
 	    //suspend this
 	    MainGui.frame.setVisible(false);

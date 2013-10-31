@@ -355,8 +355,7 @@ public class TestSectionPanel extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 
 			//open the setter GUI
-			SetterGUI gui=new SetterGUI(controller.getTest());
-	    gui.setVisible(true);
+	    MainGui.parent.setVisible(true);
 	    
 	    //suspend this
 	    MainGui.frame.setVisible(false);

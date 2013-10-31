@@ -12,6 +12,8 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 
+import setter.SetterGUI;
+
 import backend.StudentTestController;
 
 /**
@@ -25,7 +27,7 @@ public class MainGui {
     public static JFrame frame;
     public static boolean isSetter = false;
     private Test_ test;
-    
+    public static SetterGUI parent;
     
     public static JFrame getFrame() {
         return frame;
@@ -68,9 +70,10 @@ public class MainGui {
     	initialize();
     }
     
-    public MainGui(Test_ test, boolean isSetter){
+    public MainGui(Test_ test, boolean isSetter, SetterGUI parent){
     	this.test = test;
     	this.isSetter = isSetter;
+    	this.parent = parent;
     	controller = new StudentTestController();
         controller.setTest(test);
     	initialize();

@@ -163,7 +163,7 @@ public class ViewCreatePanel extends JPanel {
 		btnPreview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//open preview
-				MainGui window = new MainGui(obj.getTest(), true);
+				MainGui window = new MainGui(obj.getTest(), true, gui);
 				window.frame.setVisible(true);
 				
 				//dispose this
