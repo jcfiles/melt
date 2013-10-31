@@ -120,10 +120,9 @@ public class SetterTestController
   /**
    * Delete a section in the test
    */
-  public void deleteSection()
-  {/*
-	  Section s=test.getSection(currentSection);
-	  test.removeSection(s);*/
+  public void deleteSection(Object section)
+  {  
+	 test.removeSection((Section)section);
   }
   
   

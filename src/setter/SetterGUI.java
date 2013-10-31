@@ -316,6 +316,11 @@ public class SetterGUI extends JFrame {
 		revalidate();
 	}
 	
+	public void removeSection()
+	{
+		treeModel.removeNodeFromParent(current);
+	}
+	
 	public void setTree(Section s)
 	{
 		 /*if(parent.isRoot()==true)
