@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import student.MainGui;
 import student.TestSectionPanel;
 import backend.Answer;
+import backend.EssayQ;
 import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
 import backend.MCQ;
@@ -425,30 +426,27 @@ public class SetterTestController
   /**
    * Add a Fill Blank Question in the Section of the test
    */
-  public Question addEssayQ(Object parent,String question, int marks)
+  public Question addEssayQ(Object parent,String question, int marks, int height, int widht, int wordLimit)
   {
-	  try {
-			FIBQ q=new FIBQ(question, parent);
-			q.setPossibleMarks(marks);
-			
-			if(parent instanceof Subsection)
-			  {
-				  Subsection sub=(Subsection)parent;
-				  sub.addQuestion(q);
-			  }
-			  else
-			  {
-				  Section sub=(Section)parent;
-				  sub.addQuestion(q);
-			  }
-			return q;
-			
-		} catch (InvalidFTBQFormatException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			
-			return null;
-		}
+	  EssayQ q=new EssayQ(question,parent);
+	  q.setPossibleMarks(marks);
+	  q.setHeight(height);
+	  q.setWidth(widht);
+	  q.setMaxWords(wordLimit);
+	
+	  
+	  if(parent instanceof Subsection)
+	  {
+		  Subsection sub=(Subsection)parent;
+		  sub.addQuestion(q);
+	  }
+	  else
+	  {
+		  Section sub=(Section)parent;
+		  sub.addQuestion(q);
+	  }
+	  
+	  return q;
 	  
 
 	  
