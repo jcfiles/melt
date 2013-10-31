@@ -205,19 +205,30 @@ public class SetterTestController
   /**
    * Delete a question in the test
    */
-  public void deleteSubsection(Object current, int index)
+  public Subsection deleteSubsection(Object current, int index)
   {	 
-	  Question q=(Question)current;
+	  Subsection s=null;
 	  
-	  if(q.getParent() instanceof Section)
+	  if(current instanceof Section)
 	  {
-		  ((Section)q.getParent()).getContainer().remove(q);
+		  SubsectionContainer sc=((Section)current).getContainer().get(index);
+		  s=(Subsection)sc;
+		  ((Section)current).getContainer().remove(s);
+		  
+		  return s;		  
 	  }
 	  
-	  if(q.getParent() instanceof Subsection)
+	  if(current instanceof Subsection)
 	  {
-		  ((Subsection)q.getParent()).getContainer().remove(q);
+		  SubsectionContainer sc=((Subsection)current).getContainer().get(index);
+		  s=(Subsection)sc;
+		  ((Subsection)current).getContainer().remove(s);
+		  
+		  return s;
+
 	  }
+	  
+	  return null;
 	  
   }
   
