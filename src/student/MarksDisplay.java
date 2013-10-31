@@ -24,6 +24,7 @@ import backend.*;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class MarksDisplay extends JFrame
 {
@@ -73,6 +74,7 @@ public class MarksDisplay extends JFrame
 		marksOutput.setViewportView(reportPane);
 		
 		JButton btnSaveResults = new JButton("Save Results");
+		btnSaveResults.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		contentPane.add(btnSaveResults, BorderLayout.SOUTH);
 		
 		JLabel testLabel = new JLabel("");

@@ -78,6 +78,13 @@ public class SetterPanel extends JPanel {
 		gbc_btnMark.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnMark.gridx = 1;
 		gbc_btnMark.gridy = 3;
+		btnMark.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				MarkingGui markingGui = new MarkingGui();
+				markingGui.main(null);
+			}
+		});
 		add(btnMark, gbc_btnMark);
 	}
 }
