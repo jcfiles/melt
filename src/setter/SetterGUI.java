@@ -513,6 +513,141 @@ public class SetterGUI extends JFrame {
 		});
 
 		//TODO add mouseListener for tree like in the constructor above
+		tree.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				/*
+				if(tree.getSelectionPath()!=null){
+					//System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
+				
+					currentObject=tree.getSelectionPath().getLastPathComponent();
+							
+					currentObject=((DefaultMutableTreeNode)currentObject).getUserObject();
+							
+					//parentObject=((DefaultMutableTreeNode)currentObject).getParent();	
+					
+					parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+							
+					/*		
+					currentObject=((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject();
+		
+					parentObject=((DefaultMutableTreeNode) currentObject).getParent();
+					*
+					
+					//parentObject=null;
+					
+					if(currentObject instanceof Test_)
+					{
+						
+					}				
+					if(currentObject instanceof Section)
+					{
+						ViewSectionPanel panelS= new ViewSectionPanel(obj,frame,(Section)currentObject );
+					
+						centerPanel.removeAll();
+						centerPanel.add(panelS);
+										
+						centerPanel.validate();
+						centerPanel.repaint();
+					}
+					
+					if(currentObject instanceof Subsection)
+					{
+						
+					}
+					
+					if(currentObject instanceof Question)
+					{
+						
+					}
+					
+					
+					
+				}*/
+				
+				if(tree.getSelectionPath()!=null){
+					//System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
+				
+					current=(DefaultMutableTreeNode) tree.getSelectionPath().getLastPathComponent();
+					
+					parent=(DefaultMutableTreeNode) current.getParent();
+							
+					//currentObject=((DefaultMutableTreeNode)currentObject).getUserObject();
+							
+					//parentObject=((DefaultMutableTreeNode)currentObject).getParent();	
+					
+					//parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+					
+					
+					if(current.getUserObject() instanceof Section)
+					{
+						ViewSectionPanel panel=new ViewSectionPanel(obj,frame,(Section)current.getUserObject());
+						
+						centerPanel.removeAll();
+						centerPanel.add(panel);
+					
+						centerPanel.validate();
+						centerPanel.repaint();
+					}
+					else
+						if(current.getUserObject() instanceof Subsection)
+							{
+							//type=1;
+							SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+						
+							centerPanel.removeAll();
+							centerPanel.add(panel);
+						
+							centerPanel.validate();
+							centerPanel.repaint();
+							}
+						else
+							if(current.getUserObject() instanceof Question)
+							{
+							
+								if(current.getUserObject() instanceof MCQ)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof FIBQ)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof Question)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof Question)
+								{
+									
+								}
+								
+								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+								
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+						
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
+							else
+							{
+								ViewCreatePanel panel=new ViewCreatePanel(obj,frame);
+							
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+						
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
+				}
+				
+			}
+		});
 		
 	}
 	
