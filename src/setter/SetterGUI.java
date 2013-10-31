@@ -802,6 +802,7 @@ public class SetterGUI extends JFrame {
 			//it will have more subsections so add them recursively
 			// there is a bug here i cant find
 			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
+			//treeModel.insertNodeInto(newChild, currentChild, i);
 			for(int i=0; i < sc.size(); i++)
 					//treeModel.insertNodeInto(newChild, currentChild, i);
 	{
