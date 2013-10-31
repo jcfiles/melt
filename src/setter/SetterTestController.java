@@ -481,26 +481,6 @@ public class SetterTestController
   }
   
   
-  /**
-   * Return the current Question with the user is in with all the information
-   */
-  public int getQuestionType()
-  {
-	/*  ArrayList<String> s=new ArrayList<String>();
-	  ArrayList<Answer> a=new ArrayList<Answer>();
-	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
-  
-	  if (q instanceof FIBQ)
-	  {		  		
-		  return 1;
-	  }
-	  else if(q instanceof MCQ)
-	  {
-		  return 0;
-	  }*/
-	  return 0;
-	  
-  }
   
   /**
    * Edit the current Fill Blank Question
@@ -537,8 +517,23 @@ public class SetterTestController
 		  return s;
 	  }
 	  
+	  if(q instanceof EssayQ)
+	  {
+		  FIBQ f=(FIBQ) q;
+		  s.add(((FIBQ) q).getQFirstPart());
+		  Answer an=f.getIndexedAnswer(0);
+		  s.add(an.getAnswerText());
+		  s.add(((FIBQ) q).getQSecondPart());
+		  
+		  return s;
+	  }
 	  
-	  
+	  if(q instanceof SlotQ)
+	  {
+		  SlotQ slot=(SlotQ) q;
+		  
+		  return s;
+	  }
 	  
 	  
 	  /*
@@ -574,6 +569,8 @@ public class SetterTestController
 	  */
 	  return null;
   }
+  
+  
 
   
   public ArrayList<String> getQuestionPath(Object obj)

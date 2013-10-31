@@ -151,7 +151,7 @@ public class FillBlankPanel extends JPanel {
 							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
 						}
 						*/
-						if(obj.getQuestionType()==0)
+						/*if(obj.getQuestionType()==0)
 						{
 							MultichoicePanel panel=new MultichoicePanel(obj,gui);
 							gui.centerPanel.removeAll();
@@ -162,7 +162,7 @@ public class FillBlankPanel extends JPanel {
 							FillBlankPanel panel=new FillBlankPanel(obj,gui);
 							gui.centerPanel.removeAll();
 							gui.centerPanel.add(panel);
-						}
+						}*/
 					
 						
 						gui.validate();
