@@ -26,10 +26,12 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import backend.EssayQ;
 import backend.FIBQ;
 import backend.MCQ;
 import backend.Question;
 import backend.Section;
+import backend.SlotQ;
 import backend.Subsection;
 import backend.SubsectionContainer;
 import backend.Test_;
@@ -395,11 +397,8 @@ public class SetterGUI extends JFrame {
 	public void setTree(Question s)
 	{
 		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-		 treeModel.insertNodeInto(temp, (MutableTreeNode) current, current.getChildCount());
-		 if(!(current.getUserObject() instanceof Question))
-		 {
-			 parent=current;
-		 }		 
+		 treeModel.insertNodeInto(temp, (MutableTreeNode) parent, parent.getChildCount());
+		
 		 current=temp;
 		 
 		/*
