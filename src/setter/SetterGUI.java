@@ -155,68 +155,12 @@ public class SetterGUI extends JFrame {
 		tree.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				/*
+
 				if(tree.getSelectionPath()!=null){
-					//System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
-				
-					currentObject=tree.getSelectionPath().getLastPathComponent();
-							
-					currentObject=((DefaultMutableTreeNode)currentObject).getUserObject();
-							
-					//parentObject=((DefaultMutableTreeNode)currentObject).getParent();	
-					
-					parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
-							
-					/*		
-					currentObject=((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject();
-		
-					parentObject=((DefaultMutableTreeNode) currentObject).getParent();
-					*
-					
-					//parentObject=null;
-					
-					if(currentObject instanceof Test_)
-					{
-						
-					}				
-					if(currentObject instanceof Section)
-					{
-						ViewSectionPanel panelS= new ViewSectionPanel(obj,frame,(Section)currentObject );
-					
-						centerPanel.removeAll();
-						centerPanel.add(panelS);
-										
-						centerPanel.validate();
-						centerPanel.repaint();
-					}
-					
-					if(currentObject instanceof Subsection)
-					{
-						
-					}
-					
-					if(currentObject instanceof Question)
-					{
-						
-					}
-					
-					
-					
-				}*/
-				
-				if(tree.getSelectionPath()!=null){
-					//System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
 				
 					current=(DefaultMutableTreeNode) tree.getSelectionPath().getLastPathComponent();
 					
 					parent=(DefaultMutableTreeNode) current.getParent();
-							
-					//currentObject=((DefaultMutableTreeNode)currentObject).getUserObject();
-							
-					//parentObject=((DefaultMutableTreeNode)currentObject).getParent();	
-					
-					//parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 					
 					
 					if(current.getUserObject() instanceof Section)
@@ -232,14 +176,28 @@ public class SetterGUI extends JFrame {
 					else
 						if(current.getUserObject() instanceof Subsection)
 							{
-							//type=1;
-							SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+							int count=obj.getContainerSize(current.getUserObject());
+							if(count==0)
+							{
+								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
 						
-							centerPanel.removeAll();
-							centerPanel.add(panel);
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+							
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
+							else
+							{
+								SubsectionPanel panel=new SubsectionPanel(obj,frame,1);
+								
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+							
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
 						
-							centerPanel.validate();
-							centerPanel.repaint();
 							}
 						else
 							if(current.getUserObject() instanceof Question)
@@ -329,23 +287,6 @@ public class SetterGUI extends JFrame {
 	
 	public void setTree(Section s)
 	{
-		 /*if(parent.isRoot()==true)
-		   {
-			   DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-			   treeModel.insertNodeInto(temp, parent, parent.getChildCount());
-			   parent=temp;
-		   }
-		   else
-		   {
-			   DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-			   
-			   DefaultMutableTreeNode z=new DefaultMutableTreeNode();
-				z=(DefaultMutableTreeNode) parent.getParent();
-				
-				DefaultMutableTreeNode temp1=new DefaultMutableTreeNode(s);
-				treeModel.insertNodeInto(temp1, z, z.getChildCount());
-				parent=temp;
-		   }*/
 		
 		if(parent==null)
 		{
@@ -368,13 +309,11 @@ public class SetterGUI extends JFrame {
 		   
 	}
 	
-	public void removeSubsection()
-	{		
-		treeModel.removeNodeFromParent(current);
-
+	public void removeSubsection(Subsection sub)
+	{	
 		while(true)
 		{
-			Object father=obj.getParent(current.getUserObject());
+			Object father=current.getUserObject();
 			
 			current=new DefaultMutableTreeNode(father);
 			
@@ -404,9 +343,14 @@ public class SetterGUI extends JFrame {
 		}
 	}
 	
+	
+	public void updateSubsection(Subsection sub)
+	{
+		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(sub);
+		treeModel.reload(temp);
+	}
 	public void setTree(String title, Boolean bEdit, int type)
 	{
-		//parent=current;
 		
 		Subsection s=null;
 		
@@ -415,41 +359,20 @@ public class SetterGUI extends JFrame {
 			s=new Subsection(title,current.getUserObject());
 			obj.addSubsection(s);
 		}
-		else
-		{
-			//s=new Subsection(title,parent.getParent());
-			//type=obj.addSubsection(s);
-		}
 		
 			
 		if(type!=0)
-		{/*
-			DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-			   
-			DefaultMutableTreeNode z=new DefaultMutableTreeNode();
-			z=(DefaultMutableTreeNode) parent.getParent();
-				
-			DefaultMutableTreeNode temp1=new DefaultMutableTreeNode(s);
-			treeModel.insertNodeInto(temp1, z, z.getChildCount());
-			parent=temp;
-			*/
+		{
 			DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
 			 treeModel.insertNodeInto(temp, (MutableTreeNode) current, current.getChildCount());
-			 //parent=current;
-			// current=temp;
+			
 		}
 		else
 		{
-			/*DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-				
-			DefaultMutableTreeNode temp1=new DefaultMutableTreeNode(s);
-			treeModel.insertNodeInto(temp1, parent, parent.getChildCount());
-			parent=temp;*/
 			
 			DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
 			 treeModel.insertNodeInto(temp, (MutableTreeNode) current, current.getChildCount());
 			 
-			 //current=temp;
 		}
 		
 		   
@@ -507,22 +430,7 @@ public class SetterGUI extends JFrame {
 		
 		 current=temp;
 		 current.setParent(parent);
-		 
-		/*
-		  DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-			   
-		  DefaultMutableTreeNode z=new DefaultMutableTreeNode();
-		  z=(DefaultMutableTreeNode) parent.getParent();
-				
-		  DefaultMutableTreeNode temp1=new DefaultMutableTreeNode(s);
-		  treeModel.insertNodeInto(temp1, z, z.getChildCount());
-		  parent=temp;
 
-		  
-		   treeModel.reload();
-		   
-		   */
-		   
 	}
 
 	
@@ -803,7 +711,8 @@ public class SetterGUI extends JFrame {
 			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
 			//treeModel.insertNodeInto(newChild, currentChild, i);
 			for(int i=0; i < sc.size(); i++)
-			{
+					//treeModel.insertNodeInto(newChild, currentChild, i);
+	{
 				System.out.println(currentSub.toString());
 				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode(sc.get(i));
 				

@@ -205,20 +205,38 @@ public class SetterTestController
   /**
    * Delete a question in the test
    */
-  public void deleteSubsection(Object current, int index)
+  public Subsection deleteSubsection(Object current, int index)
   {	 
-	  Question q=(Question)current;
+	  Subsection s=(Subsection)current;
 	  
-	  if(q.getParent() instanceof Section)
+	  if(current instanceof Section)
 	  {
-		  ((Section)q.getParent()).getContainer().remove(q);
+		  SubsectionContainer sc=((Section)current).getContainer().get(index);
+		  s=(Subsection)sc;
+		  ((Section)current).getContainer().remove(s);
+		  
+		  return s;		  
 	  }
 	  
-	  if(q.getParent() instanceof Subsection)
+	  if(current instanceof Subsection)
 	  {
-		  ((Subsection)q.getParent()).getContainer().remove(q);
+		  SubsectionContainer sc=((Subsection)current).getContainer().get(index);
+		  s=(Subsection)sc;
+		  ((Subsection)current).getContainer().remove(s);
+		  
+		  return s;
+
 	  }
 	  
+	  return null;
+	  
+  }
+  
+  public Subsection editSubsection(Object current, String title)
+  {
+	  Subsection s=(Subsection)current;
+	  s.setSubsectionTitle(title);	  
+	  return s;
   }
   
   /**
@@ -250,7 +268,6 @@ public class SetterTestController
 	  
 	  if(test!=null)
 	  {
-		//  q=test.getSection(currentSection).getQuestionsList();
 		  return q.size();
 	  
 	  }
@@ -260,33 +277,7 @@ public class SetterTestController
 	  }	  
   }
   
-  /**
-   * Return the current Section with the user is in with all the information
-   */
-  public ArrayList<String> getSection()
-  {
-	  /*
-	  int marks=0;
-	  ArrayList<String> s=new ArrayList<String>();
-	  ArrayList<Question> q=new ArrayList<Question>();
-	//  q=test.getSection(currentSection).getQuestionsList();
-	  
-	  for(int i=0; i<q.size(); i++)
-	  {
-		  marks=marks+q.get(i).getPossibleMarks();
-	  }
-	  
-	  s.add(test.getSection(currentSection).getSectionTitle());
-	  s.add(test.getSection(currentSection).getSectionTime()+"");
-	  s.add(q.size()+"");
-	  s.add(marks+"");
-	  s.add(test.getSection(currentSection).getSectionIntroText());
-	
-	  return s; */
-	  
-	  return null;
-  }
-  
+ 
   
   /**
    * Add a Fill Blank Question in the Section of the test
@@ -315,32 +306,7 @@ public class SetterTestController
 			
 			return null;
 		}
-	  
 
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  /*
-	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
-    try {
-		FIBQ q=new FIBQ(question, test.getSection(currentSection));
-		q.setPossibleMarks(marks);
-		test.getSection(currentSection).addQuestion(q);
-		
-	} catch (InvalidFTBQFormatException e) {
-		// TODO Auto-generated catch block
-		//e.printStackTrace();
-		
-		return 0;
-	}
-    
-    return 1;
-    */
-	  
 	  
   }
   

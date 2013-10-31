@@ -83,20 +83,7 @@ public class SubsectionContentPanel extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		EmptyPanel  panel=new EmptyPanel(obj,gui);
-	
-		/*
-		for (int i=0; i<5; i++){
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = i+1;
-		panel=new EmptyPanel();
-		panel.setPreferredSize(new Dimension(300,125));
-		mainList.add(panel,gbc);
-		
-		}*/
-		
-		
-				
+
 		
 		int content=obj.getContainerSize(gui.current.getUserObject() );
 		
@@ -118,25 +105,7 @@ public class SubsectionContentPanel extends JPanel {
 		}
 		else
 		{
-			/*if(gui.parent.getUserObject() instanceof Section)
-			{
-				//find the type
-			
-			}
 		
-			if(gui.parent.getUserObject() instanceof Subsection)
-			{		
-				SubsectionPanel panelS= new SubsectionPanel(obj, gui,1);
-			
-				gui.centerPanel.removeAll();
-				gui.centerPanel.add(panelS);
-									
-				gui.centerPanel.validate();
-				gui.centerPanel.repaint();
-			}
-			*/
-			
-			
 			SubsectionPanel panelS= new SubsectionPanel(obj, gui,1);
 					
 			centerPanel.removeAll();
@@ -144,32 +113,7 @@ public class SubsectionContentPanel extends JPanel {
 								
 			centerPanel.validate();
 			centerPanel.repaint();
-		}
-		
-		
-		
-		
-		
-		
-		/*
-		//Buttons Panel
-		add(buttonsPanel, BorderLayout.SOUTH);
-		GridBagLayout gbl_buttonsPanel = new GridBagLayout();
-		gbl_buttonsPanel.columnWidths = new int[]{0};
-		gbl_buttonsPanel.rowHeights = new int[]{0};
-		gbl_buttonsPanel.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_buttonsPanel.rowWeights = new double[]{Double.MIN_VALUE};
-		buttonsPanel.setLayout(gbl_buttonsPanel);
-		
-		GridBagConstraints gbc_btn = new GridBagConstraints();
-		gbc_btn.insets = new Insets(0, 0, 5, 5);
-		gbc_btn.gridx = 0;
-		gbc_btn.gridy = 1;	
-		buttonsPanel.add(btnSave,gbc_btn);
-		btnSave.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		btnSave.setPreferredSize(new Dimension(100, 35));
-		 */
-
+		}		
 	}
 
 }

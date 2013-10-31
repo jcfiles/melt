@@ -96,15 +96,22 @@ public class FIBQTest
   public final void testToString() throws InvalidFTBQFormatException
   {
     FIBQ testfibq = new FIBQ("This is a [test] question.", null);
-    String expResult = "This is a <BLANK> question.\n";
+    String expResult = "FIBQ ";
     assertEquals(expResult, testfibq.toString());
+  }
+  
+  public final void testgetFIBQ() throws InvalidFTBQFormatException
+  {
+    FIBQ testfibq = new FIBQ("This is a [test] question.", null);
+    String expResult = "This is a <BLANK> question.\n";
+    assertEquals(expResult, testfibq.getFIBQ());
   }
 
   @Test (expected = InvalidFTBQFormatException.class)
   public final void testGetQuestionTextforThrowingInvalidFTBQFormatException() throws InvalidFTBQFormatException
   {
-    FIBQ testfibq = new FIBQ("Fuck this question!", null);
-    String expResult = "I'm fucked!";
+    FIBQ testfibq = new FIBQ("test question!", null);
+    String expResult = "test!";
     assertEquals(expResult, testfibq.getQuestionText());
   }
   

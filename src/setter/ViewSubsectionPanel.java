@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+import backend.Subsection;
+
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -29,7 +31,8 @@ public class ViewSubsectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ViewSubsectionPanel(String title) {
+	public ViewSubsectionPanel(final SetterGUI  gui,final SetterTestController obj, String title) {
+		
 	
 		Border raised= BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		JPanel centerPanel=new JPanel();
@@ -80,21 +83,6 @@ public class ViewSubsectionPanel extends JPanel {
 		btnEdit.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
-		    	String index=e.getActionCommand();
-		    	int num=Integer.parseInt(index);
-		    	
-		    	/*lblFill.setVisible(false);	    	
-		    	typeQuestion=2;		
-		    	
-		    	AddEssay essayPanel=new AddEssay(obj);
-		    	
-		    	panel_mult.removeAll();
-		    	panel_mult.add(essayPanel);
-												
-				panel_mult.validate();
-				panel_mult.repaint();*/
-		    	
-		    	
 		    	
 			    }
 		});
@@ -105,16 +93,9 @@ public class ViewSubsectionPanel extends JPanel {
 		    	String index=e.getActionCommand();
 		    	int num=Integer.parseInt(index);
 		    	
-		    	/*lblFill.setVisible(false);	    	
-		    	typeQuestion=2;		
+		    	Subsection s=obj.deleteSubsection(gui.current.getUserObject(),num);
 		    	
-		    	AddEssay essayPanel=new AddEssay(obj);
-		    	
-		    	panel_mult.removeAll();
-		    	panel_mult.add(essayPanel);
-												
-				panel_mult.validate();
-				panel_mult.repaint();*/
+		    	gui.removeSubsection(s);
 		    	
 			    }
 		});

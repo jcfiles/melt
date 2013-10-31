@@ -110,10 +110,18 @@ public class FillBlankPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, lblMarks);
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		centerPanel.add(buttonsPanel);
+		
 		btnDelete.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnDelete);
 		btnEdit.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		buttonsPanel.add(btnEdit);
+		
+		btnDelete.setPreferredSize(new Dimension(100, 35));
+		btnDelete.setBackground(new Color(204, 0, 0));
+		btnDelete.setIcon(new ImageIcon(FillBlankPanel.class.getResource("/lib/images/cross.png")));
+		btnEdit.setIcon(new ImageIcon(FillBlankPanel.class.getResource("/lib/images/edit.png")));
+		btnEdit.setPreferredSize(new Dimension(100, 35));
+		btnEdit.setBackground(Color.ORANGE);
 		
 		JButton btnAdd = new JButton("");
 		btnAdd.setIcon(new ImageIcon(FillBlankPanel.class.getResource("/lib/images/plus.png")));
@@ -146,30 +154,7 @@ public class FillBlankPanel extends JPanel {
 					{
 						obj.deleteQuestion(gui.current.getUserObject());
 						gui.removeQuestion();
-						
-						
-						/*
-						if(obj.getCurrentQuestion()==obj.countQuestion())
-						{
-							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
-						}
-						*/
-						/*if(obj.getQuestionType()==0)
-						{
-							MultichoicePanel panel=new MultichoicePanel(obj,gui);
-							gui.centerPanel.removeAll();
-							gui.centerPanel.add(panel);
-						}
-						else
-						{
-							FillBlankPanel panel=new FillBlankPanel(obj,gui);
-							gui.centerPanel.removeAll();
-							gui.centerPanel.add(panel);
-						}*/
-					
-						
-						
-						
+	
 					}										
 		       }
 		    });
