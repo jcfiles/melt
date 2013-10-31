@@ -134,6 +134,11 @@ public class MultichoicePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, lblPath, 0, SpringLayout.EAST, lblMarks);
 		centerPanel.add(lblPath);
 		
+		ArrayList<String> path=obj.getQuestionPath(gui.current.getUserObject());
+		lblPath.setText(path.get(0));
+		lblTitle.setText(obj.getTitle()+": "+ path.get(1));
+		
+		
 		JButton btnAdd = new JButton("");
 		btnAdd.setIcon(new ImageIcon(MultichoicePanel.class.getResource("/lib/images/plus.png")));
 		btnAdd.setBackground(new Color(0, 153, 0));
