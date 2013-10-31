@@ -199,6 +199,12 @@ public class SlotQ extends Question {
 		System.out.println("the end");
 		//SlotQ testq = new SlotQ("This (is) a (test) question.");
 	}*/
+
+	@Override
+	public int setMarksAwarded() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

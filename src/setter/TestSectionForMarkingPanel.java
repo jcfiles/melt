@@ -45,6 +45,8 @@ import sun.security.jca.GetInstance.Instance;
 
 import java.awt.GridLayout;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * 
@@ -165,27 +167,7 @@ public class TestSectionForMarkingPanel extends JPanel {
     	scaledQMarkImage = QMarkImage.getScaledInstance(-1, table.getRowHeight(),  java.awt.Image.SCALE_SMOOTH);
     	scaledQMarkImageIcon = new ImageIcon(scaledQMarkImage);
     	
-    	for(int i=0;i<questions.size(); i++){
-    		if(questions.get(i) instanceof SlotQ){
-    			if(((SlotQ)questions.get(i)).isMarked()){
-    				table.setValueAt(scaledTickImageIcon, i, 1);
-    			}
-    			else{
-    				table.setValueAt(scaledQMarkImageIcon, i, 1);
-    			}
-    		}
-    		else if(questions.get(i) instanceof EssayQ){
-    			if(((EssayQ)questions.get(i)).getWholeStudentAnswer().isMarked()){
-    				table.setValueAt(scaledTickImageIcon, i, 1);
-    			}
-    			else{
-    				table.setValueAt(scaledQMarkImageIcon, i, 1);
-    			}
-    		}
-    		else{
-    			table.setValueAt(scaledQMarkImageIcon, i, 1);
-    		}
-    	}
+    	UpdateTable();
 		
 		JPanel centerPanel = new JPanel();
 		add(centerPanel, BorderLayout.CENTER);
@@ -268,6 +250,17 @@ public class TestSectionForMarkingPanel extends JPanel {
 		totalMarkPanel.add(lblTotalMarks);
 		
 		textFieldMarks = new JTextField();
+		textFieldMarks.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(questions.get(index) instanceof SlotQ){
+					((SlotQ)questions.get(index)).setMarked(true);
+	    		}
+	    		else if(questions.get(index) instanceof EssayQ){
+	    			((EssayQ)questions.get(index)).setMarked(true);
+	    		}
+			}
+		});
 		totalMarkPanel.add(textFieldMarks);
 		textFieldMarks.setColumns(10);
 		textFieldMarks.setText(Integer.toString(questions.get(index).getMarksAwarded()));
@@ -320,6 +313,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(index>0){
+					SaveMarking();
 					index--;
 					scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
 					scrollPaneStudent.setViewportView(questionPanels.get(index)[0][1]);
@@ -359,6 +353,35 @@ public class TestSectionForMarkingPanel extends JPanel {
 		bottomPanel.add(btnBack, gbc_btnBack);
 		
 		
+	}
+	
+	private void SaveMarking() {
+		questions.get(index).setFeedback(textFieldMarks.getText());
+		//questions.get(index)
+	}
+
+	private void UpdateTable() {
+		for(int i=0;i<questions.size(); i++){
+    		if(questions.get(i) instanceof SlotQ){
+    			if(((SlotQ)questions.get(i)).isMarked()){
+    				table.setValueAt(scaledTickImageIcon, i, 1);
+    			}
+    			else{
+    				table.setValueAt(scaledQMarkImageIcon, i, 1);
+    			}
+    		}
+    		else if(questions.get(i) instanceof EssayQ){
+    			if(((EssayQ)questions.get(i)).getWholeStudentAnswer().isMarked()){
+    				table.setValueAt(scaledTickImageIcon, i, 1);
+    			}
+    			else{
+    				table.setValueAt(scaledQMarkImageIcon, i, 1);
+    			}
+    		}
+    		else{
+    			table.setValueAt(scaledQMarkImageIcon, i, 1);
+    		}
+    	}
 	}
 
 }

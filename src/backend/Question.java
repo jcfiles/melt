@@ -135,6 +135,6 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     	}
     	return path;
     }
-    
+    public abstract int setMarksAwarded();
     public abstract int getMarksAwarded();
 }

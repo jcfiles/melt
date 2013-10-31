@@ -106,4 +106,13 @@ public class EssayQ extends Question {
 	{
 		return width;
 	}
+	public void setMarked(boolean marked) {
+		this.studentAnswer.setMarked(marked);
+	}
+
+	@Override
+	public int setMarksAwarded() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

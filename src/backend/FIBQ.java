@@ -149,4 +149,10 @@ public class FIBQ extends Question
     {
     	return "FIBQ " + label;
     }
+
+	@Override
+	public int setMarksAwarded() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

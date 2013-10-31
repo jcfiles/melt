@@ -156,4 +156,10 @@ public class MCQ extends Question {
      	answers.remove(ans2Position);
      	answers.add(ans2Position, ans1);
      }
+
+	@Override
+	public int setMarksAwarded() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
