@@ -213,7 +213,7 @@ public class AddQuestionPanel extends JPanel {
 	
 		if(bEdit==true)
 		{
-			
+			/*
 			list=obj.getQuestion(gui.current.getUserObject());
 			txtMarks.setText(list.get(0));
 			//txtSubsection.setText(list.get(1));
@@ -238,7 +238,7 @@ public class AddQuestionPanel extends JPanel {
 				
 				
 			}			
-			
+			*/
 		}
 		
 		
@@ -300,7 +300,7 @@ public class AddQuestionPanel extends JPanel {
 
 		    	panel_mult.setVisible(false);
 		    	lblFill.setVisible(true);	    	
-		    	typeQuestion=1;		
+		    	typeQuestion=3;		
 		    	
 		    	panel_mult.removeAll();
 												
@@ -502,9 +502,9 @@ public class AddQuestionPanel extends JPanel {
 		    		  	else
 		    		  	{
 		    		  		gui.setTree(q);
-		    			  	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
+		    			  	SlotQPanel panel=new SlotQPanel(obj,gui);
 		    			  	gui.centerPanel.removeAll();
-		  	        		gui.centerPanel.add(fillPanel);
+		  	        		gui.centerPanel.add(panel);
 		    		  	}
 		    		  
 		        	}

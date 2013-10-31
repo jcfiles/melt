@@ -149,7 +149,7 @@ public class MultichoicePanel extends JPanel {
 
 		btnDelete.addActionListener(new ActionListener(){  //Delete the question
 		       public void actionPerformed(ActionEvent e) {
-		         
+		        
 		    	 //default icon, custom title
 					int n = JOptionPane.showConfirmDialog(
 					    gui,
@@ -166,7 +166,7 @@ public class MultichoicePanel extends JPanel {
 							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
 						}
 						*/
-						if(obj.getQuestionType()==0)
+						/*if(obj.getQuestionType()==0)
 						{
 							MultichoicePanel panel=new MultichoicePanel(obj,gui);
 							gui.centerPanel.removeAll();
@@ -177,12 +177,13 @@ public class MultichoicePanel extends JPanel {
 							FillBlankPanel panel=new FillBlankPanel(obj,gui);
 							gui.centerPanel.removeAll();
 							gui.centerPanel.add(panel);
-						}
+						}*/
 					
 						
 						gui.validate();
 						gui.repaint();
-					}										
+					}	
+		       
 		       }
 		    });
 		
@@ -258,3 +259,4 @@ public class MultichoicePanel extends JPanel {
 	        }
 	    }
 }
+

@@ -142,7 +142,7 @@ setLayout(new BorderLayout(20, 20));
 							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
 						}
 						*/
-						if(obj.getQuestionType()==0)
+						/*if(obj.getQuestionType()==0)
 						{
 							MultichoicePanel panel=new MultichoicePanel(obj,gui);
 							gui.centerPanel.removeAll();
@@ -153,7 +153,7 @@ setLayout(new BorderLayout(20, 20));
 							FillBlankPanel panel=new FillBlankPanel(obj,gui);
 							gui.centerPanel.removeAll();
 							gui.centerPanel.add(panel);
-						}
+						}*/
 					
 						
 						gui.validate();

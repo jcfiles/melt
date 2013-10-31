@@ -34,7 +34,7 @@ public class SlotQPanel extends JPanel {
 	 */
 	public SlotQPanel(final SetterTestController obj, final SetterGUI gui) {
 
-setLayout(new BorderLayout(20, 20));
+		setLayout(new BorderLayout(20, 20));
 		
 		//Title panel
 		JPanel titlePanel = new JPanel();		
@@ -83,6 +83,8 @@ setLayout(new BorderLayout(20, 20));
 		lblQ.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		springLayout.putConstraint(SpringLayout.WEST, lblQ, 10, SpringLayout.WEST, centerPanel);
 		centerPanel.add(lblQ);
+		
+		slotq=(SlotQ)gui.current.getUserObject();
 		
 		JPanel panel_1 = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, lblQ);
@@ -165,7 +167,7 @@ setLayout(new BorderLayout(20, 20));
 							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
 						}
 						*/
-						if(obj.getQuestionType()==0)
+						/*if(obj.getQuestionType()==0)
 						{
 							MultichoicePanel panel=new MultichoicePanel(obj,gui);
 							gui.centerPanel.removeAll();
@@ -176,7 +178,7 @@ setLayout(new BorderLayout(20, 20));
 							FillBlankPanel panel=new FillBlankPanel(obj,gui);
 							gui.centerPanel.removeAll();
 							gui.centerPanel.add(panel);
-						}
+						}*/
 					
 						
 						gui.validate();
