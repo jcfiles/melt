@@ -310,6 +310,11 @@ public class Test_ implements java.io.Serializable
       
       su121.addQuestion(q2);
       
+      ((EssayQ)q1).setStudentAnswer("The thing I like about penguins is that they are funny and balck and white!");
+      ((SlotQ)q2).setStudentAnswer("slow", 0);
+      ((SlotQ)q2).setStudentAnswer("jumps", 1);
+      ((SlotQ)q2).setStudentAnswer("crazy", 2);
+      
       return t;
     }
     

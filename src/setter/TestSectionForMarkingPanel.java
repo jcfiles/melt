@@ -90,6 +90,8 @@ public class TestSectionForMarkingPanel extends JPanel {
 			else if((questions.get(i) instanceof FIBQ)==true){
 				FTBQuestionPanel setterPanel = new FTBQuestionPanel((FIBQ)questions.get(i), false);
 				FTBQuestionPanel studentPanel = new FTBQuestionPanel((FIBQ)questions.get(i), true);
+				setterPanel.setQuestionNumber(i);
+				studentPanel.setQuestionNumber(i);
 				questionpanel[0][0] = setterPanel;
 				questionpanel[0][1] = studentPanel;
 				questionPanels.add(questionpanel);
@@ -97,6 +99,8 @@ public class TestSectionForMarkingPanel extends JPanel {
 			else if((questions.get(i) instanceof SlotQ)==true){
 				SlotQuestionPanel setterPanel = new SlotQuestionPanel((SlotQ)questions.get(i), false);
 				SlotQuestionPanel studentPanel = new SlotQuestionPanel((SlotQ)questions.get(i), true);
+				setterPanel.setQuestionNumber(i);
+				studentPanel.setQuestionNumber(i);
 				questionpanel[0][0] = setterPanel;
 				questionpanel[0][1] = studentPanel;
 				questionPanels.add(questionpanel);
@@ -104,6 +108,8 @@ public class TestSectionForMarkingPanel extends JPanel {
 			else if((questions.get(i) instanceof EssayQ)==true){
 				EssayQuestionPanel setterPanel = new EssayQuestionPanel((EssayQ)questions.get(i), false);
 				EssayQuestionPanel studentPanel = new EssayQuestionPanel((EssayQ)questions.get(i), true);
+				setterPanel.setQuestionNumber(i);
+				studentPanel.setQuestionNumber(i);
 				questionpanel[0][0] = setterPanel;
 				questionpanel[0][1] = studentPanel;
 				questionPanels.add(questionpanel);
@@ -205,7 +211,7 @@ public class TestSectionForMarkingPanel extends JPanel {
 		panelMark.add(lblMarks, gbc_lblMarks);
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(1.1);
+		splitPane.setResizeWeight(1);
 		centerPanel.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel rightAnswerPanel = new JPanel();

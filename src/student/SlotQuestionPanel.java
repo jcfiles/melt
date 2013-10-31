@@ -105,7 +105,75 @@ public class SlotQuestionPanel extends QuestionPanel {
 	}
 	
 	public SlotQuestionPanel(SlotQ slotq, boolean hasStudentAnswers){
-		new SlotQuestionPanel(slotq);
+
+		this.slotq = slotq;
+		textFields = new ArrayList<>();
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{61, 0};
+		gridBagLayout.rowHeights = new int[]{16, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		labelQuestionNumber = new JLabel("Question " + Integer.toString(questionNumber));
+		labelQuestionNumber.setFont(new Font("Maiandra GD", Font.BOLD, 20));
+		GridBagConstraints gbc_labelQuestionNumber = new GridBagConstraints();
+		gbc_labelQuestionNumber.insets = new Insets(0, 0, 5, 0);
+		gbc_labelQuestionNumber.gridx = 0;
+		gbc_labelQuestionNumber.gridy = 0;
+		add(labelQuestionNumber, gbc_labelQuestionNumber);
+		
+		JLabel labelMarks = new JLabel("Marks: "+this.slotq.getPossibleMarks());
+		labelMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
+		GridBagConstraints gbc_labelMarks = new GridBagConstraints();
+		gbc_labelMarks.insets = new Insets(0, 0, 5, 10);
+		gbc_labelMarks.anchor = GridBagConstraints.EAST;
+		gbc_labelMarks.gridx = 0;
+		gbc_labelMarks.gridy = 1;
+		add(labelMarks, gbc_labelMarks);
+		
+		JPanel panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.anchor = GridBagConstraints.WEST;
+		gbc_panel.fill = GridBagConstraints.VERTICAL;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 2;
+		add(panel, gbc_panel);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		String delimiter = "<BLANK>";
+		String question = "";
+		for(int i=0; i<slotq.getSlotQ().length(); i++){
+			boolean found = true;
+			for(int j=0; j<delimiter.length(); j++){
+				if(i+j<slotq.getSlotQ().length()){
+					if(delimiter.charAt(j)!=slotq.getSlotQ().charAt(j+i)){
+						found = false;
+						break;
+					}
+				}
+			}
+			if(found == false){
+				question = question + Character.toString(slotq.getSlotQ().charAt(i));
+			}
+			else{
+				JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
+				questionText.setHorizontalAlignment(SwingConstants.LEFT);
+				panel.add(questionText);
+				question = "";
+				JTextField emptyField = new JTextField(10);
+				panel.add(emptyField);
+				textFields.add(emptyField);
+				i=i+delimiter.length();
+			}
+		}
+		if(!question.equals("")){
+			JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
+			questionText.setHorizontalAlignment(SwingConstants.LEFT);
+			panel.add(questionText);
+		}
+		
+	
+		//Previous code up here
 		if(hasStudentAnswers){
 			for(int i=0; i<textFields.size(); i++){
 				textFields.get(i).setText(slotq.getStudentAnswers().get(i));
