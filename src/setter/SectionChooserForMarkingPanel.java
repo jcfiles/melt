@@ -4,14 +4,22 @@ import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
+
 import java.awt.Insets;
+
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -30,7 +38,7 @@ public class SectionChooserForMarkingPanel extends JPanel {
     /**
      * Create the panel.
      */
-    public SectionChooserForMarkingPanel(final SetterTestController controller, final Section section, final SectionIndexForMarkingPanel sectionIndexForMarkingPanel) {
+    public SectionChooserForMarkingPanel(final SetterTestController controller, final Section section) {
         this.controller = controller;
         setBorder(new LineBorder(new Color(0, 0, 0)));
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -90,8 +98,10 @@ public class SectionChooserForMarkingPanel extends JPanel {
 	buttonSelect = new JButton(">");
 	buttonSelect.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-            	
+            public void mouseClicked(MouseEvent e) { 
+            	if(SwingUtilities.getRoot(SectionChooserForMarkingPanel.this) instanceof MarkingGui){
+            		((MarkingGui)SwingUtilities.getRoot(SectionChooserForMarkingPanel.this)).setComposite(new TestSectionForMarkingPanel(controller, section));
+            	}
             }
 	});
 	GridBagConstraints gbc_buttonSelect = new GridBagConstraints();

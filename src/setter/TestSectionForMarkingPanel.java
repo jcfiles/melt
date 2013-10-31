@@ -104,6 +104,9 @@ public class TestSectionForMarkingPanel extends JPanel {
 			else if((questions.get(i) instanceof EssayQ)==true){
 				EssayQuestionPanel setterPanel = new EssayQuestionPanel((EssayQ)questions.get(i), false);
 				EssayQuestionPanel studentPanel = new EssayQuestionPanel((EssayQ)questions.get(i), true);
+				questionpanel[0][0] = setterPanel;
+				questionpanel[0][1] = studentPanel;
+				questionPanels.add(questionpanel);
 			}
 		}
 		setLayout(new BorderLayout(0, 0));
