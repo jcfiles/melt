@@ -115,13 +115,26 @@ public class EssayQuestionPanel extends JPanel {
 			
 		lblMarks.setText("Marks: "+ list.get(0));
 		
+		JPanel sPanel=new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, sPanel, 21, SpringLayout.SOUTH, lblQ);
+		springLayout.putConstraint(SpringLayout.WEST, sPanel, 10, SpringLayout.WEST, centerPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, sPanel, 0, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.EAST, sPanel, 0, SpringLayout.EAST, btnAdd);
+		centerPanel.add(sPanel);
+		GridBagLayout gbl_sPanel = new GridBagLayout();
+		gbl_sPanel.columnWidths = new int[]{215, 1, 0};
+		gbl_sPanel.rowHeights = new int[]{1, 0};
+		gbl_sPanel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_sPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		sPanel.setLayout(gbl_sPanel);
+		
 		ScrollPane scroll=new ScrollPane();
-		springLayout.putConstraint(SpringLayout.NORTH, scroll, 21, SpringLayout.SOUTH, lblQ);
-		springLayout.putConstraint(SpringLayout.WEST, scroll, 10, SpringLayout.WEST, centerPanel);
-		springLayout.putConstraint(SpringLayout.SOUTH, scroll, 0, SpringLayout.NORTH, buttonsPanel);
-		springLayout.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnAdd);
-		centerPanel.add(scroll);
-		scroll.setPreferredSize(new Dimension(Integer.parseInt(list.get(1)),Integer.parseInt(list.get(2))));
+		GridBagConstraints gbc_scroll = new GridBagConstraints();
+		gbc_scroll.anchor = GridBagConstraints.NORTHWEST;
+		gbc_scroll.gridx = 0;
+		gbc_scroll.gridy = 0;
+		sPanel.add(scroll, gbc_scroll);
+		scroll.setPreferredSize(new Dimension(40,40));
 		JTextPane textPane = new JTextPane();
 		scroll.add(textPane);
 		
