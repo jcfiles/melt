@@ -18,6 +18,8 @@ import javax.swing.UIManager;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
+import org.omg.CORBA.Current;
+
 import student.TestSectionPanel;
 import backend.Answer;
 import backend.EssayQ;
@@ -412,19 +414,20 @@ public class AddQuestionPanel extends JPanel {
 	    		  
 	    		if(bEdit==true)
 	    		{
+	    			Question q = null;
 	    			//updateQuestion
 	    			 if(typeQuestion==0) //multiple choice question
 	   	    	  	{	
-	    				obj.editMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
+	    				q=obj.editMCQ(gui.current.getUserObject(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
 	    				 MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
 	    		        gui.centerPanel.removeAll();
 	    		        gui.centerPanel.add(multiPanel);
 	   	    	  	}
-	    			 else
-	    			 {	    			
-		    			int parsingCorrect=obj.editFIBQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    			 if(typeQuestion==1)	    			
+	    			 {
+	    				 q=obj.editFIBQ(gui.current.getUserObject(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    				 
-	    				 if(parsingCorrect==0)
+	    				 if(q==null)
 	    				 {
 	    					 JOptionPane.showMessageDialog(gui,
 	   		    			      "You have to insert the answer of the Fill the Blank Question like eg.[answer]",
@@ -437,10 +440,22 @@ public class AddQuestionPanel extends JPanel {
 		    			 gui.centerPanel.add(fillPanel);
 	    				 }
 	    				 
-		    		 }		       
+		    		 }	
 	    			 
-		    	  gui.centerPanel.validate();
-		    	  gui.centerPanel.repaint();
+	    			 if(typeQuestion==2)
+	    			 {
+	    				 q=obj.editEssayQ(gui.current.getUserObject(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText()),Integer.parseInt(essayPanel.txtHeight.getText()), Integer.parseInt(essayPanel.txtWidth.getText()),Integer.parseInt(essayPanel.txtWordLimit.getText())); 
+	    				 
+	    			 }
+	    			
+	    			 if(typeQuestion==3)
+	    			 {
+	    				 q=obj.editSlotQ(gui.current.getUserObject(), txtQuestion.getText(), Integer.parseInt(txtMarks.getText())); 
+	    				 
+	    			 }
+	    			 gui.updateQuestion(q);
+	    			 gui.centerPanel.validate();
+	    			 gui.centerPanel.repaint();
 		    	  
 	    		}
 	    		else  //bEdit==false

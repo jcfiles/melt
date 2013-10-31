@@ -368,6 +368,42 @@ public class SetterGUI extends JFrame {
 		   
 	}
 	
+	public void removeSubsection()
+	{		
+		treeModel.removeNodeFromParent(current);
+
+		while(true)
+		{
+			Object father=obj.getParent(current.getUserObject());
+			
+			current=new DefaultMutableTreeNode(father);
+			
+		if(father instanceof Subsection)
+		{
+		SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+	
+		centerPanel.removeAll();
+		centerPanel.add(panel);
+	
+		centerPanel.validate();
+		centerPanel.repaint();
+		break;
+		}
+		
+		if(father instanceof Section)
+		{
+			ViewSectionPanel panel=new ViewSectionPanel(obj,frame,(Section)current.getUserObject());
+			
+			centerPanel.removeAll();
+			centerPanel.add(panel);
+		
+			centerPanel.validate();
+			centerPanel.repaint();
+			break;
+		}
+		}
+	}
+	
 	public void setTree(String title, Boolean bEdit, int type)
 	{
 		//parent=current;
@@ -423,22 +459,17 @@ public class SetterGUI extends JFrame {
 	}
 	
 	public void removeQuestion()
-	{
-		/*
+	{		
 		treeModel.removeNodeFromParent(current);
-		
-		//DefaultMutableTreeNode temp=new DefaultMutableTreeNode(current);
-		while(current.getUserObject() instanceof Question)
-		{current=(DefaultMutableTreeNode) current.getParent();}
-		*/
-		
-		treeModel.removeNodeFromParent(current);
-		
-		current=(DefaultMutableTreeNode) current.getParent();
-		
-		if(current.getUserObject() instanceof Subsection)
+
+		while(true)
 		{
-		//type=1;
+			Object father=obj.getParent(current.getUserObject());
+			
+			current=new DefaultMutableTreeNode(father);
+			
+		if(father instanceof Subsection)
+		{
 		SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
 	
 		centerPanel.removeAll();
@@ -446,9 +477,10 @@ public class SetterGUI extends JFrame {
 	
 		centerPanel.validate();
 		centerPanel.repaint();
+		break;
 		}
 		
-		if(current.getUserObject() instanceof Section)
+		if(father instanceof Section)
 		{
 			ViewSectionPanel panel=new ViewSectionPanel(obj,frame,(Section)current.getUserObject());
 			
@@ -457,8 +489,9 @@ public class SetterGUI extends JFrame {
 		
 			centerPanel.validate();
 			centerPanel.repaint();
+			break;
 		}
-		
+		}
 	}
 	
 	public void updateQuestion(Question q)
@@ -473,6 +506,7 @@ public class SetterGUI extends JFrame {
 		 treeModel.insertNodeInto(temp, (MutableTreeNode) parent, parent.getChildCount());
 		
 		 current=temp;
+		 current.setParent(parent);
 		 
 		/*
 		  DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);

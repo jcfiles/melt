@@ -187,14 +187,38 @@ public class SetterTestController
    * Delete a question in the test
    */
   public void deleteQuestion(Object current)
-  {
-	  /*
-	 Section s=test.getSection(currentSection);
-	  SubsectionContainer c=s.getContainer(currentQuestion);	  
+  {	 
+	  Question q=(Question)current;
 	  
-	 c.removeQuestion(q);
-	 */
-	  current=null;
+	  if(q.getParent() instanceof Section)
+	  {
+		  ((Section)q.getParent()).getContainer().remove(q);
+	  }
+	  
+	  if(q.getParent() instanceof Subsection)
+	  {
+		  ((Subsection)q.getParent()).getContainer().remove(q);
+	  }
+	  
+  }
+  
+  /**
+   * Delete a question in the test
+   */
+  public void deleteSubsection(Object current, int index)
+  {	 
+	  Question q=(Question)current;
+	  
+	  if(q.getParent() instanceof Section)
+	  {
+		  ((Section)q.getParent()).getContainer().remove(q);
+	  }
+	  
+	  if(q.getParent() instanceof Subsection)
+	  {
+		  ((Subsection)q.getParent()).getContainer().remove(q);
+	  }
+	  
   }
   
   /**
@@ -323,11 +347,9 @@ public class SetterTestController
   /**
    * Edit the current Fill Blank Question
    */
-  public int editFIBQ(String question, int marks)
+  public Question editFIBQ(Object current,String question, int marks)
   {
-	/*  Section s=test.getSection(currentSection);
-	  FIBQ q=(FIBQ) s.getQuestion(currentQuestion);
-	  String[] parts=new String[3];
+	  FIBQ q=(FIBQ) current;
 	  
 	  try {
 			q.checkQuestion(question);
@@ -336,13 +358,13 @@ public class SetterTestController
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			
-			return 0;
+			return null;
 		}
 	  
 	  q.setQuestionText(question);
 	  q.setPossibleMarks(marks);
-	  */
-	  return 1;
+	  
+	  return q;
   }
   
   /**
@@ -382,38 +404,14 @@ public class SetterTestController
 	  }
 	  
 	  return q;
-	  
-	  /*setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
-	  
-	  MCQ q=new MCQ(question);
-	  q.setPossibleMarks(marks);
-	  
-	  for(int i=0; i<possibleAnswers.getRowCount(); i++)
-	  {
-		  String s=possibleAnswers.getValueAt(i, 0).toString();
-		  String img=possibleAnswers.getValueAt(i, 1).toString();
-		  
-		  if(img.contains("check"))
-		  {
-			  q.setAnswer(s,true,i);
-		  }
-		  else
-		  {
-			  q.setAnswer(s,false,i);
-		  }
-		  
-	  }
-	  
-	  test.getSection(currentSection).addQuestion(q);
-*/
   }
   
   /**
    * Edit the current Multiplechoice Question
    */
-  public void editMCQ(String question, int marks, JTable possibleAnswers)
+  public Question editMCQ(Object current, String question, int marks, JTable possibleAnswers)
   {	  
-	  /*MCQ q=(MCQ) test.getSection(currentSection).getQuestion(currentQuestion);
+	  MCQ q=(MCQ) current;
 	  
 	  q.setPossibleMarks(marks);
 	  
@@ -431,7 +429,7 @@ public class SetterTestController
 			  q.setAnswer(s,false,i);
 		  }
 	  }
-	  */
+	  return q;
   }
   
   
@@ -462,6 +460,17 @@ public class SetterTestController
 
   }
   
+  public Question editEssayQ(Object current,String question, int marks, int height, int widht, int wordLimit)
+  {
+	  EssayQ q= (EssayQ)current;
+	  
+	  q.setPossibleMarks(marks);
+	  q.setHeight(height);
+	  q.setWidth(widht);
+	  q.setMaxWords(wordLimit);
+	  
+	  return q;
+  }
   
   public Question addSlotQ(Object parent, String question, int marks)
   {
@@ -490,6 +499,14 @@ public class SetterTestController
 
   }
   
+  public Question editSlotQ(Object current, String question, int marks)
+  {
+	  SlotQ q=(SlotQ) current;
+	  q.setPossibleMarks(marks);
+	  q.setQuestionText(question);
+	  
+	  return q;	
+  }
   
   
   /**
@@ -544,39 +561,7 @@ public class SetterTestController
 		  
 		  return s;
 	  }
-	  
-	  
-	  /*
-	  ArrayList<String> s=new ArrayList<String>();
-	  ArrayList<Answer> a=new ArrayList<Answer>();
-	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
-	  
-	  s.add(q.getPossibleMarks()+"");
-	  s.add(q.getsubSectionTitle());
-	  
-	  if (getQuestionType()==1)
-	  {		  
-		  FIBQ f=(FIBQ) q;
-		  s.add(((FIBQ) q).getQFirstPart());
-		  Answer an=f.getIndexedAnswer(0);
-		  s.add(an.getAnswerText());
-		  s.add(((FIBQ) q).getQSecondPart());	
-	  }
-	  else 
-	  {
-		  s.add(q.getQuestionText());
-		  a=((MCQ) q).getAllAnswers();
-		  
-		  for(int i=0; i<a.size(); i++)
-		  {
-			  s.add(a.get(i).getAnswerText());
-			  s.add(a.get(i).getIsRight()+"");
-		  }
-		  
-	  }
-	  
-	  return s;
-	  */
+
 	  return null;
   }
   
@@ -594,6 +579,12 @@ public class SetterTestController
 	return s;
   }
   
+  public Object getParent (Object current)
+  {
+	  Question q=(Question)current;
+	  
+	  return q.getParent();
+  }
   
   
   public Test_ getTest()

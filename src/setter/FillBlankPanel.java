@@ -168,8 +168,8 @@ public class FillBlankPanel extends JPanel {
 						}*/
 					
 						
-						gui.validate();
-						gui.repaint();
+						
+						
 					}										
 		       }
 		    });
