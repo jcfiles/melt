@@ -149,7 +149,16 @@ public class SetterGUI extends JFrame {
 		    		 e.printStackTrace();
 					}
 				}//if
-		  }//actionPerformed
+		  
+				MenuGUI gui=new MenuGUI();
+			    gui.setVisible(true);		     
+			    frame.setVisible(false);
+			
+			
+			}//actionPerformed
+			
+			
+		    
 		});
 
 		tree.addMouseListener(new MouseAdapter() {

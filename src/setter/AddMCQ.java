@@ -51,46 +51,31 @@ public class AddMCQ extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblPossibleAnswers, 10, SpringLayout.WEST, this);
 		add(lblPossibleAnswers);
 		
-		JButton btnUp = new JButton("");
-		btnUp.setIcon(new ImageIcon(AddMCQ.class.getResource("/lib/images/up.png")));
-		springLayout.putConstraint(SpringLayout.NORTH, btnUp, 39, SpringLayout.SOUTH, lblPossibleAnswers);
-		springLayout.putConstraint(SpringLayout.WEST, btnUp, 0, SpringLayout.WEST, lblPossibleAnswers);
-		btnUp.setPreferredSize(new Dimension(40,40));
-		add(btnUp);
-		
-		JButton btnDown = new JButton();
-		btnDown.setIcon(new ImageIcon(AddMCQ.class.getResource("/lib/images/down.png")));
-		springLayout.putConstraint(SpringLayout.NORTH, btnDown, 6, SpringLayout.SOUTH, btnUp);
-		springLayout.putConstraint(SpringLayout.WEST, btnDown, 0, SpringLayout.WEST, lblPossibleAnswers);
-		btnDown.setPreferredSize(new Dimension(40, 40));
-		add(btnDown);
-		
 		JButton btnAdd = new JButton();
+		springLayout.putConstraint(SpringLayout.NORTH, btnAdd, 75, SpringLayout.NORTH, this);
 		btnAdd.setIcon(new ImageIcon(AddMCQ.class.getResource("/lib/images/plus.png")));
 		btnAdd.setBackground(new Color(0, 153, 0));
-		springLayout.putConstraint(SpringLayout.NORTH, btnAdd, 0, SpringLayout.NORTH, btnUp);
 		springLayout.putConstraint(SpringLayout.EAST, btnAdd, -10, SpringLayout.EAST, this);
 		btnAdd.setPreferredSize(new Dimension(40,40));
 		add(btnAdd);
 		
 		JButton btnDelete = new JButton();
+		springLayout.putConstraint(SpringLayout.NORTH, btnDelete, 6, SpringLayout.SOUTH, btnAdd);
 		btnDelete.setIcon(new ImageIcon(AddMCQ.class.getResource("/lib/images/cross.png")));
 		btnDelete.setBackground(new Color(204, 0, 0));
-		springLayout.putConstraint(SpringLayout.NORTH, btnDelete, 0, SpringLayout.NORTH, btnDown);
 		springLayout.putConstraint(SpringLayout.EAST, btnDelete, 0, SpringLayout.EAST, btnAdd);
 		btnDelete.setPreferredSize(new Dimension(40,40));
 		add(btnDelete);
 		
 		JScrollPane scrollPanel = new JScrollPane();
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPanel, 16, SpringLayout.SOUTH, lblPossibleAnswers);
-		springLayout.putConstraint(SpringLayout.WEST, scrollPanel, 6, SpringLayout.EAST, btnUp);
+		springLayout.putConstraint(SpringLayout.WEST, scrollPanel, 0, SpringLayout.WEST, lblPossibleAnswers);
 		springLayout.putConstraint(SpringLayout.SOUTH, scrollPanel, -10, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, scrollPanel, -6, SpringLayout.WEST, btnAdd);
 		add(scrollPanel);
 		
 		possibleAnswers = new JTable();
 		springLayout.putConstraint(SpringLayout.NORTH, possibleAnswers, 16, SpringLayout.SOUTH, lblPossibleAnswers);
-		springLayout.putConstraint(SpringLayout.WEST, possibleAnswers, 6, SpringLayout.EAST, btnUp);
 		springLayout.putConstraint(SpringLayout.SOUTH, possibleAnswers, -10, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, possibleAnswers, -6, SpringLayout.WEST, btnAdd);
 		
