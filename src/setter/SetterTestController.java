@@ -540,6 +540,7 @@ public class SetterTestController
 	  if(q instanceof SlotQ)
 	  {
 		  SlotQ slot=(SlotQ) q;
+		  s.add(slot.getQuestionText());
 		  
 		  return s;
 	  }

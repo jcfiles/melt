@@ -20,9 +20,12 @@ import javax.swing.table.DefaultTableModel;
 
 import student.TestSectionPanel;
 import backend.Answer;
+import backend.EssayQ;
 import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
+import backend.MCQ;
 import backend.Question;
+import backend.SlotQ;
 
 import java.awt.Checkbox;
 import java.awt.Color;
@@ -213,32 +216,79 @@ public class AddQuestionPanel extends JPanel {
 	
 		if(bEdit==true)
 		{
-			/*
+			
 			list=obj.getQuestion(gui.current.getUserObject());
 			txtMarks.setText(list.get(0));
 			//txtSubsection.setText(list.get(1));
 			
-			if(obj.getQuestionType()==1)
+			if(gui.current.getUserObject() instanceof FIBQ)
 			{
-				txtQuestion.setText(list.get(2)+ "["+list.get(3)+ "]"+list.get(4));	
 				rdbtnMultipleChoice.setSelected(false);
 				rdbtnFillBlanks.setSelected(true);
-				typeQuestion=1;
+				rdbtnEssay.setSelected(false);
+				rdbtnSlot.setSelected(false);
 				
+				txtQuestion.setText(list.get(1)+ "["+list.get(2)+ "]"+list.get(3));				
+				typeQuestion=1;				
 				panel_mult.setVisible(false);
 			}
-			else
+			if(gui.current.getUserObject() instanceof MCQ)			
 			{
-				typeQuestion=0;
 				rdbtnMultipleChoice.setSelected(true);
 				rdbtnFillBlanks.setSelected(false);
+				rdbtnEssay.setSelected(false);
+				rdbtnSlot.setSelected(false);
+				
+				typeQuestion=0;				
+				
 				panel_mult.setVisible(true);
+				mcqPanel=new AddMCQ(list,gui,bEdit);
+		    	
+		    	panel_mult.removeAll();
+				panel_mult.add(mcqPanel);
+												
+				panel_mult.validate();
+				panel_mult.repaint();
 				
-				txtQuestion.setText(list.get(2));
+				txtQuestion.setText(list.get(1));
 				
 				
-			}			
-			*/
+				
+			}		
+			if(gui.current.getUserObject() instanceof EssayQ)			
+			{
+				rdbtnMultipleChoice.setSelected(false);
+				rdbtnFillBlanks.setSelected(false);
+				rdbtnEssay.setSelected(true);
+				rdbtnSlot.setSelected(false);
+				
+				typeQuestion=2;	
+				
+				panel_mult.setVisible(true);				
+				essayPanel=new AddEssay(list,bEdit);
+		    	
+		    	panel_mult.removeAll();
+		    	panel_mult.add(essayPanel);
+												
+				panel_mult.validate();
+				panel_mult.repaint();
+				
+				txtQuestion.setText(list.get(1));
+	
+			}	
+			
+			if(gui.current.getUserObject() instanceof SlotQ)			
+			{
+				rdbtnMultipleChoice.setSelected(false);
+				rdbtnFillBlanks.setSelected(false);
+				rdbtnEssay.setSelected(false);
+				rdbtnSlot.setSelected(true);
+				
+				txtQuestion.setText(list.get(1));				
+				typeQuestion=1;				
+				panel_mult.setVisible(false);
+			}
+			
 		}
 		
 		
@@ -284,7 +334,7 @@ public class AddQuestionPanel extends JPanel {
 		    	lblFill.setVisible(false);	    	
 		    	typeQuestion=2;		
 		    	
-		    	essayPanel=new AddEssay(obj);
+		    	essayPanel=new AddEssay(list,bEdit);
 		    	
 		    	panel_mult.removeAll();
 		    	panel_mult.add(essayPanel);
@@ -362,6 +412,7 @@ public class AddQuestionPanel extends JPanel {
 	    		  
 	    		if(bEdit==true)
 	    		{
+	    			//updateQuestion
 	    			 if(typeQuestion==0) //multiple choice question
 	   	    	  	{	
 	    				obj.editMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);

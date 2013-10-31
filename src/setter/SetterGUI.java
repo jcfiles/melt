@@ -461,6 +461,12 @@ public class SetterGUI extends JFrame {
 		
 	}
 	
+	public void updateQuestion(Question q)
+	{
+		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(q);
+		treeModel.reload(temp);
+	}
+	
 	public void setTree(Question s)
 	{
 		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);

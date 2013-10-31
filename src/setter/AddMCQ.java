@@ -122,10 +122,10 @@ public class AddMCQ extends JPanel {
         	Object[][] temp = new Object[list.size()-3/2][2];
 			
 			int num=0;
-			for(int i=3; i<list.size(); i=i+2)
+			for(int i=2; i<list.size(); i=i+2)
 			{				
-				temp[num][0]=list.get(3);
-				if(list.get(4).equals(true+""))
+				temp[num][0]=list.get(i);
+				if(list.get(i+1).equals(true+""))
 				{
 					temp[num][1]=correctAnswerImage;
 				}

@@ -4,7 +4,9 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.awt.Font;
+import java.util.ArrayList;
 
 /*
  * @author Erotokritou Zoe
@@ -18,7 +20,7 @@ public class AddEssay extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AddEssay(final SetterTestController obj) {
+	public AddEssay(ArrayList<String> list, Boolean bEdit) {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
@@ -71,5 +73,12 @@ public class AddEssay extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, 39, SpringLayout.WEST, lblHeight);
 		lblNewLabel.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		add(lblNewLabel);
+		
+		 if(bEdit==true)
+		{
+			 txtHeight.setText(list.get(1));
+			 txtWidth.setText(list.get(2));
+			 txtWordLimit.setText(list.get(3));
+		}
 	}
 }
