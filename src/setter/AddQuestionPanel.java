@@ -489,6 +489,26 @@ public class AddQuestionPanel extends JPanel {
 	    			}
 	    	   }
 	    		
+	    		if(typeQuestion==3){
+	    			
+		    		  Question q=obj.addSlotQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+		    		  if(q==null)
+		    		  	{
+		    			  JOptionPane.showMessageDialog(gui,
+			    			      "You have to insert the answer of the Slot Question like eg.[answer]",
+			    			      "Question parsing Error",
+			    			      JOptionPane.ERROR_MESSAGE);
+		    		  	}	 
+		    		  	else
+		    		  	{
+		    		  		gui.setTree(q);
+		    			  	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
+		    			  	gui.centerPanel.removeAll();
+		  	        		gui.centerPanel.add(fillPanel);
+		    		  	}
+		    		  
+		        	}
+	    		
 	        
 	    	  gui.centerPanel.validate();
 	    	  gui.centerPanel.repaint();	    	        
