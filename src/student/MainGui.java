@@ -22,7 +22,7 @@ import backend.StudentTestController;
 public class MainGui {
 
     private StudentTestController controller;
-    private static JFrame frame;
+    public static JFrame frame;
     public static boolean isSetter = false;
     private Test_ test;
     
