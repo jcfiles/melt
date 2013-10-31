@@ -12,9 +12,11 @@ import backend.Answer;
 import backend.EssayQ;
 import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
+import backend.InvalidSlotQFormatException;
 import backend.MCQ;
 import backend.Question;
 import backend.Section;
+import backend.SlotQ;
 import backend.StudentTestController;
 import backend.Subsection;
 import backend.SubsectionContainer;
@@ -447,34 +449,37 @@ public class SetterTestController
 	  }
 	  
 	  return q;
-	  
 
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  /*
-	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
-    try {
-		FIBQ q=new FIBQ(question, test.getSection(currentSection));
-		q.setPossibleMarks(marks);
-		test.getSection(currentSection).addQuestion(q);
-		
-	} catch (InvalidFTBQFormatException e) {
-		// TODO Auto-generated catch block
-		//e.printStackTrace();
-		
-		return 0;
-	}
-    
-    return 1;
-    */
-	  
-	  
   }
+  
+  
+  public Question addSlotQ(Object parent, String question, int marks)
+  {
+	  
+	  try {
+		SlotQ q=new SlotQ(question, parent);
+		q.setPossibleMarks(marks);
+		
+		if(parent instanceof Subsection)
+		  {
+			  Subsection sub=(Subsection)parent;
+			  sub.addQuestion(q);
+		  }
+		  else
+		  {
+			  Section sub=(Section)parent;
+			  sub.addQuestion(q);
+		  }
+		return q;
+		
+	} catch (InvalidSlotQFormatException e) {
+		// TODO Auto-generated catch block
+		
+		return null;	
+	}
+
+  }
+  
   
   /**
    * Return the current Question with the user is in with all the information
