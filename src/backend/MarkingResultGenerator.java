@@ -118,6 +118,7 @@ public class MarkingResultGenerator
     //check if exiting node
     //ie check for no more subsections or questions
     Subsection currentSub = (Subsection) currentChild.getUserObject();
+    msb.append(currentSub.toString() + "\n");
     System.out.println(currentSub.toString());
     if(currentSub.isEmpty()) //if it is empty just return
     {
@@ -144,7 +145,7 @@ public class MarkingResultGenerator
     else //it will be a subsection so add the title to the report
     {
       //add this one to the report and
-      msb.append(currentSub.toString() + "\n\n");
+      //msb.append(currentSub.toString() + "\n\n");
       //System.out.println(currentSub.toString());
       
       //it will have more subsections so add them recursively
@@ -173,7 +174,7 @@ public class MarkingResultGenerator
       //studentAnswer
       msb.append("Your answer:\n" + ((EssayQ) currentQ).getStudentAnswer() + "\n");
       //feedback
-      msb.append("Feedback:\n " + ((EssayQ) currentQ).getFeedback() + "\n");
+      msb.append("Feedback:\n" + ((EssayQ) currentQ).getFeedback() + "\n");
       //marks
       msb.append("Marks: " + ((EssayQ) currentQ).getMarksAwarded() + "/" + ((EssayQ) currentQ).getPossibleMarks() + "\n");
     }//if essayQ
