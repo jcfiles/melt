@@ -83,35 +83,6 @@ public class ViewSubsectionPanel extends JPanel {
 		btnEdit.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 
-		    	/*String index=e.getActionCommand();
-		    	int num=Integer.parseInt(index);
-		    	
-		    	SubsectionPanel panel=new SubsectionPanel(obj,gui,0);
-		    	gui.centerPanel.removeAll();
-				gui.centerPanel.add(panel);
-												
-				gui.centerPanel.validate();
-				gui.centerPanel.repaint();
-		    	
-		    	*/
-		    	
-		    	/*Subsection s=obj.editSubsection(gui.current.getUserObject(),num);
-		    	
-		    	gui.removeSubsection(s);
-		    	*/
-		    	
-		    	/*lblFill.setVisible(false);	    	
-		    	typeQuestion=2;		
-		    	
-		    	AddEssay essayPanel=new AddEssay(obj);
-		    	
-		    	panel_mult.removeAll();
-		    	panel_mult.add(essayPanel);
-												
-				panel_mult.validate();
-				panel_mult.repaint();*/
-		    	
-		    	
 		    	
 			    }
 		});

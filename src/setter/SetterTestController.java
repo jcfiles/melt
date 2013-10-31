@@ -268,7 +268,6 @@ public class SetterTestController
 	  
 	  if(test!=null)
 	  {
-		//  q=test.getSection(currentSection).getQuestionsList();
 		  return q.size();
 	  
 	  }
@@ -278,33 +277,7 @@ public class SetterTestController
 	  }	  
   }
   
-  /**
-   * Return the current Section with the user is in with all the information
-   */
-  public ArrayList<String> getSection()
-  {
-	  /*
-	  int marks=0;
-	  ArrayList<String> s=new ArrayList<String>();
-	  ArrayList<Question> q=new ArrayList<Question>();
-	//  q=test.getSection(currentSection).getQuestionsList();
-	  
-	  for(int i=0; i<q.size(); i++)
-	  {
-		  marks=marks+q.get(i).getPossibleMarks();
-	  }
-	  
-	  s.add(test.getSection(currentSection).getSectionTitle());
-	  s.add(test.getSection(currentSection).getSectionTime()+"");
-	  s.add(q.size()+"");
-	  s.add(marks+"");
-	  s.add(test.getSection(currentSection).getSectionIntroText());
-	
-	  return s; */
-	  
-	  return null;
-  }
-  
+ 
   
   /**
    * Add a Fill Blank Question in the Section of the test
@@ -333,32 +306,7 @@ public class SetterTestController
 			
 			return null;
 		}
-	  
 
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  /*
-	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
-    try {
-		FIBQ q=new FIBQ(question, test.getSection(currentSection));
-		q.setPossibleMarks(marks);
-		test.getSection(currentSection).addQuestion(q);
-		
-	} catch (InvalidFTBQFormatException e) {
-		// TODO Auto-generated catch block
-		//e.printStackTrace();
-		
-		return 0;
-	}
-    
-    return 1;
-    */
-	  
 	  
   }
   

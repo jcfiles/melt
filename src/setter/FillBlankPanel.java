@@ -146,30 +146,7 @@ public class FillBlankPanel extends JPanel {
 					{
 						obj.deleteQuestion(gui.current.getUserObject());
 						gui.removeQuestion();
-						
-						
-						/*
-						if(obj.getCurrentQuestion()==obj.countQuestion())
-						{
-							obj.setCurrentQuestion(obj.getCurrentQuestion()-1);
-						}
-						*/
-						/*if(obj.getQuestionType()==0)
-						{
-							MultichoicePanel panel=new MultichoicePanel(obj,gui);
-							gui.centerPanel.removeAll();
-							gui.centerPanel.add(panel);
-						}
-						else
-						{
-							FillBlankPanel panel=new FillBlankPanel(obj,gui);
-							gui.centerPanel.removeAll();
-							gui.centerPanel.add(panel);
-						}*/
-					
-						
-						
-						
+	
 					}										
 		       }
 		    });

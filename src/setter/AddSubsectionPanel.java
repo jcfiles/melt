@@ -98,22 +98,7 @@ public class AddSubsectionPanel extends JPanel {
 		    		
 		    	}
 		    	
-		    
-		    	/*lblFill.setVisible(false);	    	
-		    	typeQuestion=2;		
-		    	
-		    	AddEssay essayPanel=new AddEssay(obj);
-		    	
-		    	panel_mult.removeAll();
-		    	panel_mult.add(essayPanel);
-												
-				panel_mult.validate();
-				panel_mult.repaint();*/
-		    	
 			    }
-		});
-		
-		
+		});		
 	}
-
 }

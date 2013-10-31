@@ -66,19 +66,7 @@ public class SubsectionPanel extends JPanel {
 		
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		//gbc.fill = GridBagConstraints.HORIZONTAL;
-		
-		/*EmptyPanel  panel=new EmptyPanel(obj,gui);
-		
-		/*gbc_1 = new GridBagConstraints();
-		gbc_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_1.anchor = GridBagConstraints.NORTH;
-		gbc_1.gridx = 0;
-		gbc_1.gridy = 1;
-		panel_1=new EmptyPanel(obj,gui);
-		panel_1.setPreferredSize(new Dimension(300,130));
-		ok.add(panel_1,gbc_1);
-	*/
+	
 		
 		
 			int count=obj.getContainerSize(gui.current.getUserObject());
@@ -89,7 +77,6 @@ public class SubsectionPanel extends JPanel {
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.gridx = 0;
 		gbc.gridy = i;
-		//panel=new EmptyPanel(obj,gui);
 		ViewSubsectionPanel panel=new ViewSubsectionPanel(gui,obj, obj.getSubsectionTitle(gui.current.getUserObject(), i));
 		panel.btnEdit.setActionCommand(i+"");
 		panel.btnDelete.setActionCommand(i+"");
@@ -113,7 +100,6 @@ public class SubsectionPanel extends JPanel {
 		}
 		
 		JScrollPane scrollPane = new JScrollPane(ok);
-		//scrollPane.setBorder(null);
 		centerPanel.add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
