@@ -86,11 +86,6 @@ public class SlotQuestionPanel extends QuestionPanel {
 			else{
 				JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
 				questionText.setHorizontalAlignment(SwingConstants.LEFT);
-				//GridBagConstraints gbc_questionText = new GridBagConstraints();
-				//gbc_questionText.insets = new Insets(0, 0, 5, 0);
-				//gbc_questionText.anchor = GridBagConstraints.WEST;
-				//gbc_questionText.gridx = 0;
-				//gbc_questionText.gridy = 2;
 				panel.add(questionText);
 				question = "";
 				JTextField emptyField = new JTextField(10);
@@ -100,7 +95,6 @@ public class SlotQuestionPanel extends QuestionPanel {
 			}
 		}
 		if(!question.equals("")){
-			System.out.println("end "+question);
 			JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
 			questionText.setHorizontalAlignment(SwingConstants.LEFT);
 		}
