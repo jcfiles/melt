@@ -72,12 +72,14 @@ public class SlotQuestionPanel extends QuestionPanel {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		String delimiter = "<BLANK>";
 		String question = "";
-		for(int i=0; i<slotq.getSlotQ().length()-delimiter.length(); i++){
+		for(int i=0; i<slotq.getSlotQ().length(); i++){
 			boolean found = true;
 			for(int j=0; j<delimiter.length(); j++){
-				if(delimiter.charAt(j)!=slotq.getSlotQ().charAt(j+i)){
-					found = false;
-					break;
+				if(i+j<slotq.getSlotQ().length()){
+					if(delimiter.charAt(j)!=slotq.getSlotQ().charAt(j+i)){
+						found = false;
+						break;
+					}
 				}
 			}
 			if(found == false){
@@ -91,14 +93,29 @@ public class SlotQuestionPanel extends QuestionPanel {
 				JTextField emptyField = new JTextField(10);
 				panel.add(emptyField);
 				textFields.add(emptyField);
-				i=i+delimiter.length()-1;
+				i=i+delimiter.length();
 			}
 		}
 		if(!question.equals("")){
 			JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
 			questionText.setHorizontalAlignment(SwingConstants.LEFT);
+			panel.add(questionText);
 		}
 		
+	}
+	
+	public SlotQuestionPanel(SlotQ slotq, boolean hasStudentAnswers){
+		new SlotQuestionPanel(slotq);
+		if(hasStudentAnswers){
+			for(int i=0; i<textFields.size(); i++){
+				textFields.get(i).setText(slotq.getStudentAnswers().get(i));
+			}
+		}
+		else{
+			for(int i=0; i<textFields.size(); i++){
+				textFields.get(i).setText(slotq.getExpectedAnswers().get(i));
+			}
+		}
 	}
 
 	@Override

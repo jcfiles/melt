@@ -94,12 +94,14 @@ public class SlotQPanel extends JPanel {
 		
 		String delimiter = "<BLANK>";
 		String question = "";
-		for(int i=0; i<slotq.getSlotQ().length()-delimiter.length(); i++){
+		for(int i=0; i<slotq.getSlotQ().length(); i++){
 			boolean found = true;
 			for(int j=0; j<delimiter.length(); j++){
-				if(delimiter.charAt(j)!=slotq.getSlotQ().charAt(j+i)){
-					found = false;
-					break;
+				if(i+j<slotq.getSlotQ().length()){
+					if(delimiter.charAt(j)!=slotq.getSlotQ().charAt(j+i)){
+						found = false;
+						break;
+					}
 				}
 			}
 			if(found == false){
@@ -113,12 +115,13 @@ public class SlotQPanel extends JPanel {
 				JTextField emptyField = new JTextField(10);
 				panel_1.add(emptyField);
 				textFields.add(emptyField);
-				i=i+delimiter.length()-1;
+				i=i+delimiter.length();
 			}
 		}
 		if(!question.equals("")){
 			JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
 			questionText.setHorizontalAlignment(SwingConstants.LEFT);
+			panel_1.add(questionText);
 		}
 		
 		JPanel buttonsPanel = new JPanel();
