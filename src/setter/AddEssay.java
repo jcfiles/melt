@@ -10,10 +10,10 @@ import java.awt.Font;
  * @author Erotokritou Zoe
  */
 public class AddEssay extends JPanel {
-	private JTextField txtHeight;
-	private JTextField txtWordLimit;
+	public JTextField txtHeight;
+	public JTextField txtWordLimit;
 	private JLabel lblHeight;
-	private JTextField txtWidth;
+	public JTextField txtWidth;
 
 	/**
 	 * Create the panel.
@@ -70,15 +70,5 @@ public class AddEssay extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, 39, SpringLayout.WEST, lblHeight);
 		lblNewLabel.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		add(lblNewLabel);
-	}
-	
-	public String getBoxSize()
-	{
-		return txtHeight.getText();
-	}
-	
-	public String getWords()
-	{
-		return txtWordLimit.getText();
 	}
 }

@@ -67,6 +67,10 @@ public class FillBlankPanel extends JPanel {
 		lblPath.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(lblPath);	
 		
+		ArrayList<String> path=obj.getQuestionPath(gui.current.getUserObject());
+		lblPath.setText(path.get(0));
+		lblTitle.setText(obj.getTitle()+": "+ path.get(1));
+		
 		//load the marks of the question
 		JLabel lblMarks=new JLabel("Marks");
 		springLayout.putConstraint(SpringLayout.NORTH, lblMarks, 70, SpringLayout.NORTH, centerPanel);
@@ -82,22 +86,22 @@ public class FillBlankPanel extends JPanel {
 		
 		//load the question
 		JLabel lblPartA=new JLabel("PartA");
-		springLayout.putConstraint(SpringLayout.WEST, lblPartA, 43, SpringLayout.EAST, lblQ);
+		springLayout.putConstraint(SpringLayout.NORTH, lblPartA, 4, SpringLayout.NORTH, lblQ);
 		lblPartA.setFont(new Font("Verdana", Font.PLAIN, 13));
-		springLayout.putConstraint(SpringLayout.SOUTH, lblPartA, 0, SpringLayout.SOUTH, lblQ);
 		centerPanel.add(lblPartA);
 		
 		txtQuestion = new JTextField();
+		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -139, SpringLayout.EAST, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, lblPartA, -7, SpringLayout.WEST, txtQuestion);
+		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 1, SpringLayout.NORTH, lblQ);
 		txtQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
-		springLayout.putConstraint(SpringLayout.WEST, txtQuestion, 6, SpringLayout.EAST, lblPartA);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtQuestion, 0, SpringLayout.SOUTH, lblQ);
 		centerPanel.add(txtQuestion);
 		txtQuestion.setColumns(10);
 		
 		JLabel lblPartB=new JLabel("PartB");
+		springLayout.putConstraint(SpringLayout.NORTH, lblPartB, 4, SpringLayout.NORTH, lblQ);
+		springLayout.putConstraint(SpringLayout.WEST, lblPartB, 5, SpringLayout.EAST, txtQuestion);
 		lblPartB.setFont(new Font("Verdana", Font.PLAIN, 13));
-		springLayout.putConstraint(SpringLayout.WEST, lblPartB, 6, SpringLayout.EAST, txtQuestion);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblPartB, 0, SpringLayout.SOUTH, lblQ);
 		centerPanel.add(lblPartB);
 		
 		JPanel buttonsPanel = new JPanel();

@@ -61,6 +61,7 @@ public class AddQuestionPanel extends JPanel {
 	private AddMCQ mcqPanel;
 	private ArrayList<String> list;
 	private JLabel lblTitle =new JLabel("TestA: SectionA");
+	private AddEssay essayPanel;
 
 	/**
 	 * Create the buttonsPanel.
@@ -283,7 +284,7 @@ public class AddQuestionPanel extends JPanel {
 		    	lblFill.setVisible(false);	    	
 		    	typeQuestion=2;		
 		    	
-		    	AddEssay essayPanel=new AddEssay(obj);
+		    	essayPanel=new AddEssay(obj);
 		    	
 		    	panel_mult.removeAll();
 		    	panel_mult.add(essayPanel);
@@ -422,6 +423,27 @@ public class AddQuestionPanel extends JPanel {
 	    		  	}
 	    		  
 	        	}
+	    		
+	    		if(typeQuestion==2) //multiple choice question
+	    		{	  
+	    			if(essayPanel.txtHeight.getText().equals("")|| essayPanel.txtWidth.getText().equals("") || essayPanel.txtWordLimit.getText().equals(""))
+		    		  {
+		    			//insert all the information, error icon
+		    			  JOptionPane.showMessageDialog(gui,
+		    			      "You have to insert all the information for the Question.",
+		    			      "Save Question Error",
+		    			      JOptionPane.ERROR_MESSAGE);
+		    			  flag=true;
+		    		  }
+	    			
+	    			
+	    			Question q=obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
+	    			gui.setTree(q);
+	    			MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);	        	
+	    			gui.centerPanel.removeAll();
+	    			gui.centerPanel.add(multiPanel);
+	    	   }
+	    		
 	        
 	    	  gui.centerPanel.validate();
 	    	  gui.centerPanel.repaint();	    	        

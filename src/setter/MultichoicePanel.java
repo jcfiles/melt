@@ -91,14 +91,14 @@ public class MultichoicePanel extends JPanel {
 		
 		//load the question
 		lblQuestion = new JLabel("Q1");
-		lblQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
+		springLayout.putConstraint(SpringLayout.NORTH, lblQuestion, 4, SpringLayout.NORTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 39, SpringLayout.EAST, lblQ);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblQuestion, 0, SpringLayout.SOUTH, lblQ);
+		lblQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
 		centerPanel.add(lblQuestion);
 		
 		JLabel lblAnswer = new JLabel("Answer:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblAnswer, 19, SpringLayout.SOUTH, lblQ);
 		lblAnswer.setFont(new Font("MV Boli", Font.PLAIN, 15));
-		springLayout.putConstraint(SpringLayout.NORTH, lblAnswer, 19, SpringLayout.SOUTH, lblQuestion);
 		springLayout.putConstraint(SpringLayout.WEST, lblAnswer, 10, SpringLayout.WEST, centerPanel);
 		centerPanel.add(lblAnswer);
 		
