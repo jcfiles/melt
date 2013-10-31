@@ -104,16 +104,23 @@ public class SetterTestController
   /**
    * Edit a section in the test
    */
-  public Section editSection(String sectionTitle, String sectionIntroText, int sectionTime)
+  public Section editSection(Object current, String sectionTitle, String sectionIntroText, int sectionTime)
   {
-	  /*
-	    Section s=test.getSection(currentSection);
-	    s.editSection(sectionTitle, sectionIntroText, sectionTime);
-	    
-	    return s;
-	    */
+	  ArrayList<Section> list=test.getAllSections();
+	  Section s = null;
 	  
-	  return null;
+	  for(int i=0; i<list.size(); i++)
+	  {
+		  if((Section)current==list.get(i))
+			  {
+			  s=test.getSection(i);		  
+			  s.editSection(sectionTitle, sectionIntroText, sectionTime);
+			  }
+	    
+	  }
+	    return s;
+	    
+	  
   }
 
 

@@ -219,7 +219,7 @@ public class ViewSectionPanel extends JPanel {
 			
 			btnEdit.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
-				/*
+				
 				addPanel=new AddSectionPanel(obj,gui,true);
 				
 				gui.centerPanel.removeAll();
@@ -227,7 +227,7 @@ public class ViewSectionPanel extends JPanel {
 				
 				gui.centerPanel.validate();
 				gui.centerPanel.repaint();
-				*/
+				
 			 }
 			});
 			

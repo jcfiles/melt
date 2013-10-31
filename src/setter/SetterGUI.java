@@ -321,6 +321,12 @@ public class SetterGUI extends JFrame {
 		treeModel.removeNodeFromParent(current);
 	}
 	
+	public void updateSection(Section s)
+	{
+		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
+		treeModel.reload(temp);
+	}
+	
 	public void setTree(Section s)
 	{
 		 /*if(parent.isRoot()==true)

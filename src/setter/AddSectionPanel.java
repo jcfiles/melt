@@ -195,11 +195,13 @@ public class AddSectionPanel extends JPanel {
 				
 				if(bEdit==true)
 				{
-					s=obj.editSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));
+					s=obj.editSection(gui.current.getUserObject(),txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));
+					gui.updateSection(s);
 				}
 				else
 				{	
-					s=obj.addSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));			
+					s=obj.addSection(txtSection.getText(), txtInstructions.getText(), Integer.parseInt(txtTotalTime.getText()));
+					gui.setTree(s);
 				}
 				ViewSectionPanel panel=new ViewSectionPanel(obj,gui,s);
 				
@@ -210,16 +212,14 @@ public class AddSectionPanel extends JPanel {
 				gui.centerPanel.repaint();
 				
 				
-				gui.setTree(s);
+				
 				} 
 			}
 			});
 	}
 	
 	public void setTetxts()
-	{
-		
-		
+	{	
 		txtSection.setText(((Section)gui.current.getUserObject()).getSectionTitle());
 		txtTotalTime.setText(((Section)gui.current.getUserObject()).getSectionTime() +"");
 		lblNumOfQuestions.setText("0");
