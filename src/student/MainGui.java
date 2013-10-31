@@ -67,6 +67,14 @@ public class MainGui {
         controller.setTest(test);
     	initialize();
     }
+    
+    public MainGui(Test_ test, boolean isSetter){
+    	this.test = test;
+    	this.isSetter = isSetter;
+    	controller = new StudentTestController();
+        controller.setTest(test);
+    	initialize();
+    }
 	
     public static void setComposite(Component component){
 	if(frame.getContentPane().getComponentCount()>0){
