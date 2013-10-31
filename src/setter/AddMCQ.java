@@ -119,7 +119,8 @@ public class AddMCQ extends JPanel {
         
         if(bEdit==true)
 		{
-        	Object[][] temp = new Object[list.size()-3/2][2];
+        	if(list!=null){
+        	Object[][] temp = new Object[list.size()-2/2][2];
 			
 			int num=0;
 			for(int i=2; i<list.size(); i=i+2)
@@ -138,6 +139,7 @@ public class AddMCQ extends JPanel {
 
 		     DefaultTableModel model = new DefaultTableModel(temp, header); 	
 		     possibleAnswers.setModel(model);
+        	}
 		}
         
         
