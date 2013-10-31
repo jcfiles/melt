@@ -22,6 +22,38 @@ public class SlotQTest {
 		expqParts[2] = " question.";
 
 		assertEquals(expqParts, testSlotQ.getqParts());
+	}
+	
+	@Test
+	public void testGetqParts2() throws InvalidSlotQFormatException {
+		
+		SlotQ testSlotQ = new SlotQ("[test]This [is] a [test] question[test].", null);
+		
+		String [] expqParts = new String[5];
+		expqParts[0] = "";
+		expqParts[1] = "This ";
+		expqParts[2] = " a ";
+		expqParts[3] = " question";
+		expqParts[4] = ".";
+
+		assertEquals(expqParts, testSlotQ.getqParts());
+		
+		
+		
+	}
+	
+	@Test
+	public void testGetqParts3() throws InvalidSlotQFormatException {
+		
+		SlotQ testSlotQ = new SlotQ("[test]This [is] a [test] question[test]", null);
+		
+		String [] expqParts = new String[4];
+		expqParts[0] = "";
+		expqParts[1] = "This ";
+		expqParts[2] = " a ";
+		expqParts[3] = " question";
+
+		assertEquals(expqParts, testSlotQ.getqParts());
 		
 		
 		
@@ -39,6 +71,20 @@ public class SlotQTest {
 		
 	}
 
+	@Test
+	public void testGetExpectedAnswers2() throws InvalidSlotQFormatException {
+
+		SlotQ testSlotQ = new SlotQ("This [is] a [test] question[test]", null);
+		ArrayList<String> expexpectedAnswers = new ArrayList<String>();
+		expexpectedAnswers.add("is");
+		expexpectedAnswers.add("test");
+		expexpectedAnswers.add("test");
+		
+		assertEquals(expexpectedAnswers, testSlotQ.getExpectedAnswers());
+		
+	}
+
+	
 	@Test
 	public void testGetStudentAnswers() throws InvalidSlotQFormatException {
 		

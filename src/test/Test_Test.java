@@ -97,7 +97,7 @@ public class Test_Test {
 	@Test
 	public void testToString() {
 		Test_ ttest = new Test_("testTitle", "testIntro");
-		String expResult = "testTitle\n\ntestIntro\n";
+		String expResult = "testTitle";
 		assertEquals(expResult, ttest.toString());
 	}
 
