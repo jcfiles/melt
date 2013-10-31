@@ -207,7 +207,7 @@ public class SetterTestController
    */
   public Subsection deleteSubsection(Object current, int index)
   {	 
-	  Subsection s=null;
+	  Subsection s=(Subsection)current;
 	  
 	  if(current instanceof Section)
 	  {
@@ -230,6 +230,13 @@ public class SetterTestController
 	  
 	  return null;
 	  
+  }
+  
+  public Subsection editSubsection(Object current, String title)
+  {
+	  Subsection s=(Subsection)current;
+	  s.setSubsectionTitle(title);	  
+	  return s;
   }
   
   /**

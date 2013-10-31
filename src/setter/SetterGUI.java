@@ -233,13 +233,28 @@ public class SetterGUI extends JFrame {
 						if(current.getUserObject() instanceof Subsection)
 							{
 							//type=1;
-							SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+							int count=obj.getContainerSize(current.getUserObject());
+							if(count==0)
+							{
+								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
 						
-							centerPanel.removeAll();
-							centerPanel.add(panel);
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+							
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
+							else
+							{
+								SubsectionPanel panel=new SubsectionPanel(obj,frame,1);
+								
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+							
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
 						
-							centerPanel.validate();
-							centerPanel.repaint();
 							}
 						else
 							if(current.getUserObject() instanceof Question)
@@ -369,13 +384,10 @@ public class SetterGUI extends JFrame {
 	}
 	
 	public void removeSubsection(Subsection sub)
-	{		
-		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(sub);
-		treeModel.removeNodeFromParent(temp);
-
+	{	
 		while(true)
 		{
-			Object father=obj.getParent(current.getUserObject());
+			Object father=current.getUserObject();
 			
 			current=new DefaultMutableTreeNode(father);
 			
@@ -405,6 +417,12 @@ public class SetterGUI extends JFrame {
 		}
 	}
 	
+	
+	public void updateSubsection(Subsection sub)
+	{
+		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(sub);
+		treeModel.reload(temp);
+	}
 	public void setTree(String title, Boolean bEdit, int type)
 	{
 		//parent=current;

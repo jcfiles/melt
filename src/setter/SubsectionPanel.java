@@ -100,15 +100,16 @@ public class SubsectionPanel extends JPanel {
 		
 		
 		if(type==0)
-		{gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.anchor = GridBagConstraints.NORTH;
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		//panel=new EmptyPanel(obj,gui);
-		AddSubsectionPanel panel=new AddSubsectionPanel(gui,obj,false,0);
-		panel.setPreferredSize(new Dimension(400,140));
-		ok.add(panel,gbc);
+		{
+			gbc = new GridBagConstraints();
+			gbc.fill = GridBagConstraints.HORIZONTAL;
+			gbc.anchor = GridBagConstraints.NORTH;
+			gbc.gridx = 0;
+			gbc.gridy = 3;
+			//panel=new EmptyPanel(obj,gui);
+			AddSubsectionPanel panel=new AddSubsectionPanel(gui,obj,false,0);
+			panel.setPreferredSize(new Dimension(400,140));
+			ok.add(panel,gbc);
 		}
 		
 		JScrollPane scrollPane = new JScrollPane(ok);
