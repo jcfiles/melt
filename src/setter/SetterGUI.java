@@ -64,8 +64,8 @@ public class SetterGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//frame = new SetterGUI(Test_.getDemoTest2());
-				  frame = new SetterGUI();
+					frame = new SetterGUI(Test_.getDemoTest2());
+				  //frame = new SetterGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -715,31 +715,48 @@ public class SetterGUI extends JFrame {
 							
 								if(current.getUserObject() instanceof MCQ)
 								{
+									MultichoicePanel panel=new MultichoicePanel(obj,frame);
+									
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 									
 								}
 								
 								if(current.getUserObject() instanceof FIBQ)
 								{
-									
+									FillBlankPanel panel=new FillBlankPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 								}
 								
-								if(current.getUserObject() instanceof Question)
+								if(current.getUserObject() instanceof EssayQ)
 								{
-									
+									EssayQuestionPanel panel=new EssayQuestionPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 								}
 								
-								if(current.getUserObject() instanceof Question)
+								if(current.getUserObject() instanceof SlotQ)
 								{
-									
+									SlotQPanel panel=new SlotQPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
 								}
-								
-								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
-								
-								centerPanel.removeAll();
-								centerPanel.add(panel);
-						
-								centerPanel.validate();
-								centerPanel.repaint();
 							}
 							else
 							{
@@ -755,6 +772,7 @@ public class SetterGUI extends JFrame {
 				
 			}
 		});
+
 		
 	}
 	
@@ -771,9 +789,10 @@ public class SetterGUI extends JFrame {
 		{
 			//if it has questions add them as treeNodes to the tree
 			ArrayList<SubsectionContainer> sc = currentSub.getContainer();
+			//treeModel.insertNodeInto(parent, currentChild, )
 			for(int i=0; i < sc.size(); i++)
 			{
-				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode(sc.get(i));
+				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode((Question) sc.get(i));
 				treeModel.insertNodeInto(newChild, currentChild, i); //add the question
 			}
 		}
@@ -785,6 +804,7 @@ public class SetterGUI extends JFrame {
 			{
 				System.out.println(currentSub.toString());
 				DefaultMutableTreeNode newChild = new DefaultMutableTreeNode(sc.get(i));
+				
 				recursiveAdd(currentChild, newChild); //search this subsection for more subsections so currentChild will become the new parent and newChild the current one for this iteration
 				treeModel.insertNodeInto(newChild, currentChild, i); //add the subsection
 
