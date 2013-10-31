@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import setter.SetterGUI;
+
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
@@ -28,6 +30,8 @@ import backend.Section;
 
 import java.util.Iterator;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 /**
  * @author Chondrokoukis Dimitrios
  * @contributor Steedman Bruce
@@ -345,6 +349,21 @@ public class TestSectionPanel extends JPanel {
 			break;
 		}
 	}
+	
+	//editButtonListener
+	buttonEdit.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+
+			//open the setter GUI
+			SetterGUI gui=new SetterGUI(controller.getTest());
+	    gui.setVisible(true);
+	    
+	    //suspend this
+	    MainGui.frame.setVisible(false);
+			
+		}
+	});
+	
     }
     
     public ArrayList<QuestionPanel> getQuestionPanels() {

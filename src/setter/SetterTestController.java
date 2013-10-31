@@ -519,11 +519,10 @@ public class SetterTestController
 	  
 	  if(q instanceof EssayQ)
 	  {
-		  FIBQ f=(FIBQ) q;
-		  s.add(((FIBQ) q).getQFirstPart());
-		  Answer an=f.getIndexedAnswer(0);
-		  s.add(an.getAnswerText());
-		  s.add(((FIBQ) q).getQSecondPart());
+		  EssayQ e=(EssayQ) q;
+		  s.add(e.getHeight()+"");
+		  s.add(e.getWidth()+"");
+		  s.add(e.getMaxWords()+"");
 		  
 		  return s;
 	  }

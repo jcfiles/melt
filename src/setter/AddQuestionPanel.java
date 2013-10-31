@@ -397,7 +397,7 @@ public class AddQuestionPanel extends JPanel {
 	    			
 	    		if(typeQuestion==0) //multiple choice question
 	    		{	        	
-	    			Question q=obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
+	    			Question q=obj.addMCQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
 	    			gui.setTree(q);
 	    			MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);	        	
 	    			gui.centerPanel.removeAll();
@@ -406,7 +406,7 @@ public class AddQuestionPanel extends JPanel {
 	    	  
 	    		if(typeQuestion==1){
 	    			
-	    		  Question q=obj.addFIBQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    		  Question q=obj.addFIBQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 	    		  if(q==null)
 	    		  	{
 	    			  JOptionPane.showMessageDialog(gui,
@@ -481,7 +481,7 @@ public class AddQuestionPanel extends JPanel {
 	    			
 	    			if(flag==false)
 	    			{
-	    				Question q=obj.addEssayQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()),Integer.parseInt(essayPanel.txtHeight.getText()), Integer.parseInt(essayPanel.txtWidth.getText()),Integer.parseInt(essayPanel.txtWordLimit.getText()));
+	    				Question q=obj.addEssayQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()),Integer.parseInt(essayPanel.txtHeight.getText()), Integer.parseInt(essayPanel.txtWidth.getText()),Integer.parseInt(essayPanel.txtWordLimit.getText()));
 	    				gui.setTree(q);
 	    				EssayQuestionPanel panel=new EssayQuestionPanel(obj,gui);	        	
 	    				gui.centerPanel.removeAll();
@@ -491,7 +491,7 @@ public class AddQuestionPanel extends JPanel {
 	    		
 	    		if(typeQuestion==3){
 	    			
-		    		  Question q=obj.addSlotQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+		    		  Question q=obj.addSlotQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
 		    		  if(q==null)
 		    		  	{
 		    			  JOptionPane.showMessageDialog(gui,

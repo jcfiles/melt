@@ -32,7 +32,7 @@ public class EssayQuestionPanel extends JPanel {
 	 */
 	public EssayQuestionPanel(final SetterTestController obj, final SetterGUI gui) {
 
-setLayout(new BorderLayout(20, 20));
+		setLayout(new BorderLayout(20, 20));
 		
 		//Title panel
 		JPanel titlePanel = new JPanel();		
@@ -118,8 +118,10 @@ setLayout(new BorderLayout(20, 20));
 		ScrollPane scroll=new ScrollPane();
 		springLayout.putConstraint(SpringLayout.NORTH, scroll, 21, SpringLayout.SOUTH, lblQ);
 		springLayout.putConstraint(SpringLayout.WEST, scroll, 10, SpringLayout.WEST, centerPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, scroll, 0, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnAdd);
 		centerPanel.add(scroll);
-		scroll.setPreferredSize(new Dimension(30,30));
+		scroll.setPreferredSize(new Dimension(Integer.parseInt(list.get(1)),Integer.parseInt(list.get(2))));
 		JTextPane textPane = new JTextPane();
 		scroll.add(textPane);
 		

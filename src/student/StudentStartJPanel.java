@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
 import setter.MenuGUI;
+import setter.SetterGUI;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -101,5 +102,18 @@ public class StudentStartJPanel extends JPanel {
 	panel_1.add(lblNewLabel, gbc_lblNewLabel);
 	
 	
+	buttonEdit.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			//open the setter GUI
+			SetterGUI gui=new SetterGUI(controller.getTest());
+	    gui.setVisible(true);
+	    
+	    //suspend this
+	    MainGui.frame.setVisible(false);
+		}
+	});
+	
     }
+    
 }
