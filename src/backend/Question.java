@@ -111,13 +111,13 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     	String path="";
     	Object outerObject = parent;
     	while((outerObject instanceof Section)==false){
-    		outerObject = ((SubsectionContainer)outerObject).getParent();
     		if(!path.equals("")){
     			path = ((Subsection)outerObject).getSubsectionTitle() + " > " + path;
     		}
     		else{
     			path = ((Subsection)outerObject).getSubsectionTitle();
     		}
+    		outerObject = ((SubsectionContainer)outerObject).getParent();
     	}
     	return path;
     }

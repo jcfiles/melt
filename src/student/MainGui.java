@@ -1,5 +1,6 @@
 package student;
 
+import backend.InvalidSlotQFormatException;
 import backend.StudentTestController;
 import backend.Subsection;
 import backend.Test_;
@@ -50,18 +51,13 @@ public class MainGui {
      * Create the application.
      */
     public MainGui() {
+    	controller = new StudentTestController();
     	try {
-			this.test = Test_.readFromFile("test2");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+			controller.setTest(Test_.getDemoTest2());
+		} catch (InvalidSlotQFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	controller = new StudentTestController();
-    	controller.setTest(test);
-    	System.out.println(((Subsection)test.getSection(0).getContainer().get(0)).getSubsectionTitle());
         initialize();
     }
     
