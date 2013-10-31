@@ -516,14 +516,18 @@ public class SetterTestController
   }
 
   
-  public int getContent()
+  public ArrayList<String> getQuestionPath(Object obj)
   {
-	 // Section section=test.getSection(currentSection);
+	  ArrayList<String> s=new ArrayList<String>();
 	  
-	 // section.getSubsectonContainer()
-	  
-	  return 0;
+	Question q=(Question)obj;
+	s.add(q.getQuestionPath());
+	s.add(q.getParentSection().getSectionTitle());
+	
+	return s;
   }
+  
+  
   
   public Test_ getTest()
   {
