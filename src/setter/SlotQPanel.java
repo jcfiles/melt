@@ -27,7 +27,7 @@ public class SlotQPanel extends JPanel {
 	private JButton btnDelete = new JButton("Delete");
 	private JButton btnEdit = new JButton("Edit");
 	private JLabel lblTitle=new JLabel("Test");
-	private JTextField textFields;
+	private ArrayList<JTextField> textFields;
 	private SlotQ slotq;
 	/**
 	 * Create the panel.
@@ -35,7 +35,7 @@ public class SlotQPanel extends JPanel {
 	public SlotQPanel(final SetterTestController obj, final SetterGUI gui) {
 
 		setLayout(new BorderLayout(20, 20));
-		
+		textFields = new ArrayList<>();
 		//Title panel
 		JPanel titlePanel = new JPanel();		
 		add(titlePanel, BorderLayout.NORTH);
