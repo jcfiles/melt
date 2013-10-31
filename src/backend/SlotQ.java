@@ -112,7 +112,7 @@ public class SlotQ extends Question {
 
 	//a total of all the individual blanks
 	@Override
-	protected int getMarksAwarded() {
+	public int getMarksAwarded() {
 		return studentAnswer.getMarksAwarded();
 	}
 
@@ -137,7 +137,19 @@ public class SlotQ extends Question {
 		this.studentAnswer.setFeedback(feedback);
 	}
 	
-	public String getStudentFeedback(int index) {
+	public String getStudentFeedback() {
+		return this.studentAnswer.getFeedback();
+	}
+	
+	@Override
+	public void setFeedback(String feedback)
+	{
+		this.studentAnswer.setFeedback(feedback);
+	}
+	
+	@Override
+	public String getFeedback()
+	{
 		return this.studentAnswer.getFeedback();
 	}
 	

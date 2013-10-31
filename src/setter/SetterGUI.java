@@ -26,8 +26,12 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import backend.EssayQ;
+import backend.FIBQ;
+import backend.MCQ;
 import backend.Question;
 import backend.Section;
+import backend.SlotQ;
 import backend.Subsection;
 import backend.SubsectionContainer;
 import backend.Test_;
@@ -241,13 +245,50 @@ public class SetterGUI extends JFrame {
 							if(current.getUserObject() instanceof Question)
 							{
 							
-								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+								if(current.getUserObject() instanceof MCQ)
+								{
+									MultichoicePanel panel=new MultichoicePanel(obj,frame);
+									
+									centerPanel.removeAll();
+									centerPanel.add(panel);
 								
-								centerPanel.removeAll();
-								centerPanel.add(panel);
-						
-								centerPanel.validate();
-								centerPanel.repaint();
+									centerPanel.validate();
+									centerPanel.repaint();
+									
+								}
+								
+								if(current.getUserObject() instanceof FIBQ)
+								{
+									FillBlankPanel panel=new FillBlankPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
+								}
+								
+								if(current.getUserObject() instanceof EssayQ)
+								{
+									EssayQuestionPanel panel=new EssayQuestionPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
+								}
+								
+								if(current.getUserObject() instanceof SlotQ)
+								{
+									SlotQPanel panel=new SlotQPanel(obj,frame);
+								
+									centerPanel.removeAll();
+									centerPanel.add(panel);
+								
+									centerPanel.validate();
+									centerPanel.repaint();
+								}
 							}
 							else
 							{
@@ -273,6 +314,17 @@ public class SetterGUI extends JFrame {
 		treeModel.reload();
 		repaint();
 		revalidate();
+	}
+	
+	public void removeSection()
+	{
+		treeModel.removeNodeFromParent(current);
+	}
+	
+	public void updateSection(Section s)
+	{
+		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
+		treeModel.reload(temp);
 	}
 	
 	public void setTree(Section s)
@@ -370,10 +422,57 @@ public class SetterGUI extends JFrame {
 		   
 	}
 	
+	public void removeQuestion()
+	{
+		/*
+		treeModel.removeNodeFromParent(current);
+		
+		//DefaultMutableTreeNode temp=new DefaultMutableTreeNode(current);
+		while(current.getUserObject() instanceof Question)
+		{current=(DefaultMutableTreeNode) current.getParent();}
+		*/
+		
+		treeModel.removeNodeFromParent(current);
+		
+		current=(DefaultMutableTreeNode) current.getParent();
+		
+		if(current.getUserObject() instanceof Subsection)
+		{
+		//type=1;
+		SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+	
+		centerPanel.removeAll();
+		centerPanel.add(panel);
+	
+		centerPanel.validate();
+		centerPanel.repaint();
+		}
+		
+		if(current.getUserObject() instanceof Section)
+		{
+			ViewSectionPanel panel=new ViewSectionPanel(obj,frame,(Section)current.getUserObject());
+			
+			centerPanel.removeAll();
+			centerPanel.add(panel);
+		
+			centerPanel.validate();
+			centerPanel.repaint();
+		}
+		
+	}
+	
+	public void updateQuestion(Question q)
+	{
+		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(q);
+		treeModel.reload(temp);
+	}
+	
 	public void setTree(Question s)
 	{
 		DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
-		 treeModel.insertNodeInto(temp, (MutableTreeNode) current, current.getChildCount());
+		 treeModel.insertNodeInto(temp, (MutableTreeNode) parent, parent.getChildCount());
+		
+		 current=temp;
 		 
 		/*
 		  DefaultMutableTreeNode temp=new DefaultMutableTreeNode(s);
@@ -487,6 +586,141 @@ public class SetterGUI extends JFrame {
 		});
 
 		//TODO add mouseListener for tree like in the constructor above
+		tree.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				/*
+				if(tree.getSelectionPath()!=null){
+					//System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
+				
+					currentObject=tree.getSelectionPath().getLastPathComponent();
+							
+					currentObject=((DefaultMutableTreeNode)currentObject).getUserObject();
+							
+					//parentObject=((DefaultMutableTreeNode)currentObject).getParent();	
+					
+					parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+							
+					/*		
+					currentObject=((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject();
+		
+					parentObject=((DefaultMutableTreeNode) currentObject).getParent();
+					*
+					
+					//parentObject=null;
+					
+					if(currentObject instanceof Test_)
+					{
+						
+					}				
+					if(currentObject instanceof Section)
+					{
+						ViewSectionPanel panelS= new ViewSectionPanel(obj,frame,(Section)currentObject );
+					
+						centerPanel.removeAll();
+						centerPanel.add(panelS);
+										
+						centerPanel.validate();
+						centerPanel.repaint();
+					}
+					
+					if(currentObject instanceof Subsection)
+					{
+						
+					}
+					
+					if(currentObject instanceof Question)
+					{
+						
+					}
+					
+					
+					
+				}*/
+				
+				if(tree.getSelectionPath()!=null){
+					//System.out.println(((Section)((DefaultMutableTreeNode)tree.getSelectionPath().getLastPathComponent()).getUserObject()).getSectionTime());
+				
+					current=(DefaultMutableTreeNode) tree.getSelectionPath().getLastPathComponent();
+					
+					parent=(DefaultMutableTreeNode) current.getParent();
+							
+					//currentObject=((DefaultMutableTreeNode)currentObject).getUserObject();
+							
+					//parentObject=((DefaultMutableTreeNode)currentObject).getParent();	
+					
+					//parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+					
+					
+					if(current.getUserObject() instanceof Section)
+					{
+						ViewSectionPanel panel=new ViewSectionPanel(obj,frame,(Section)current.getUserObject());
+						
+						centerPanel.removeAll();
+						centerPanel.add(panel);
+					
+						centerPanel.validate();
+						centerPanel.repaint();
+					}
+					else
+						if(current.getUserObject() instanceof Subsection)
+							{
+							//type=1;
+							SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+						
+							centerPanel.removeAll();
+							centerPanel.add(panel);
+						
+							centerPanel.validate();
+							centerPanel.repaint();
+							}
+						else
+							if(current.getUserObject() instanceof Question)
+							{
+							
+								if(current.getUserObject() instanceof MCQ)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof FIBQ)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof Question)
+								{
+									
+								}
+								
+								if(current.getUserObject() instanceof Question)
+								{
+									
+								}
+								
+								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
+								
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+						
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
+							else
+							{
+								ViewCreatePanel panel=new ViewCreatePanel(obj,frame);
+							
+								centerPanel.removeAll();
+								centerPanel.add(panel);
+						
+								centerPanel.validate();
+								centerPanel.repaint();
+							}
+				}
+				
+			}
+		});
 		
 	}
 	

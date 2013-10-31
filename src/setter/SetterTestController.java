@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JTable;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import student.MainGui;
 import student.TestSectionPanel;
 import backend.Answer;
+import backend.EssayQ;
 import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
+import backend.InvalidSlotQFormatException;
 import backend.MCQ;
 import backend.Question;
 import backend.Section;
+import backend.SlotQ;
 import backend.StudentTestController;
 import backend.Subsection;
 import backend.SubsectionContainer;
@@ -101,26 +105,32 @@ public class SetterTestController
   /**
    * Edit a section in the test
    */
-  public Section editSection(String sectionTitle, String sectionIntroText, int sectionTime)
+  public Section editSection(Object current, String sectionTitle, String sectionIntroText, int sectionTime)
   {
-	  /*
-	    Section s=test.getSection(currentSection);
-	    s.editSection(sectionTitle, sectionIntroText, sectionTime);
-	    
-	    return s;
-	    */
+	  ArrayList<Section> list=test.getAllSections();
+	  Section s = null;
 	  
-	  return null;
+	  for(int i=0; i<list.size(); i++)
+	  {
+		  if((Section)current==list.get(i))
+			  {
+			  s=test.getSection(i);		  
+			  s.editSection(sectionTitle, sectionIntroText, sectionTime);
+			  }
+	    
+	  }
+	    return s;
+	    
+	  
   }
 
 
   /**
    * Delete a section in the test
    */
-  public void deleteSection()
-  {/*
-	  Section s=test.getSection(currentSection);
-	  test.removeSection(s);*/
+  public void deleteSection(Object section)
+  {  
+	 test.removeSection((Section)section);
   }
   
   
@@ -176,12 +186,15 @@ public class SetterTestController
   /**
    * Delete a question in the test
    */
-  public void deleteQuestion()
+  public void deleteQuestion(Object current)
   {
-	//  Section s=test.getSection(currentSection);
-	  //SubsectionContainer c=s.getContainer(currentQuestion);	  
+	  /*
+	 Section s=test.getSection(currentSection);
+	  SubsectionContainer c=s.getContainer(currentQuestion);	  
 	  
-	 // c.removeQuestion(q);
+	 c.removeQuestion(q);
+	 */
+	  current=null;
   }
   
   /**
@@ -254,8 +267,40 @@ public class SetterTestController
   /**
    * Add a Fill Blank Question in the Section of the test
    */
-  public int addFIBQ(String question, int marks)
-  {/*
+  public Question addFIBQ(Object parent,String question, int marks)
+  {
+	  try {
+			FIBQ q=new FIBQ(question, parent);
+			q.setPossibleMarks(marks);
+			
+			if(parent instanceof Subsection)
+			  {
+				  Subsection sub=(Subsection)parent;
+				  sub.addQuestion(q);
+			  }
+			  else
+			  {
+				  Section sub=(Section)parent;
+				  sub.addQuestion(q);
+			  }
+			return q;
+			
+		} catch (InvalidFTBQFormatException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			
+			return null;
+		}
+	  
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  /*
 	 // setCurrentQuestion(test.getSection(currentSection).getQuestionsList().size());
     try {
 		FIBQ q=new FIBQ(question, test.getSection(currentSection));
@@ -273,8 +318,6 @@ public class SetterTestController
     */
 	  
 	  
-	  
-	  return 9999;
   }
   
   /**
@@ -391,33 +434,120 @@ public class SetterTestController
 	  */
   }
   
-  /**
-   * Return the current Question with the user is in with all the information
-   */
-  public int getQuestionType()
-  {
-	/*  ArrayList<String> s=new ArrayList<String>();
-	  ArrayList<Answer> a=new ArrayList<Answer>();
-	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
   
-	  if (q instanceof FIBQ)
-	  {		  		
-		  return 1;
-	  }
-	  else if(q instanceof MCQ)
-	  {
-		  return 0;
-	  }*/
-	  return 0;
+  /**
+   * Add a Fill Blank Question in the Section of the test
+   */
+  public Question addEssayQ(Object parent,String question, int marks, int height, int widht, int wordLimit)
+  {
+	  EssayQ q=new EssayQ(question,parent);
+	  q.setPossibleMarks(marks);
+	  q.setHeight(height);
+	  q.setWidth(widht);
+	  q.setMaxWords(wordLimit);
+	
 	  
+	  if(parent instanceof Subsection)
+	  {
+		  Subsection sub=(Subsection)parent;
+		  sub.addQuestion(q);
+	  }
+	  else
+	  {
+		  Section sub=(Section)parent;
+		  sub.addQuestion(q);
+	  }
+	  
+	  return q;
+
   }
+  
+  
+  public Question addSlotQ(Object parent, String question, int marks)
+  {
+	  
+	  try {
+		SlotQ q=new SlotQ(question, parent);
+		q.setPossibleMarks(marks);
+		
+		if(parent instanceof Subsection)
+		  {
+			  Subsection sub=(Subsection)parent;
+			  sub.addQuestion(q);
+		  }
+		  else
+		  {
+			  Section sub=(Section)parent;
+			  sub.addQuestion(q);
+		  }
+		return q;
+		
+	} catch (InvalidSlotQFormatException e) {
+		// TODO Auto-generated catch block
+		
+		return null;	
+	}
+
+  }
+  
+  
   
   /**
    * Edit the current Fill Blank Question
    */
-  public ArrayList<String> getQuestion()
+  public ArrayList<String> getQuestion(Object obj)
   {
-	 /* ArrayList<String> s=new ArrayList<String>();
+	  ArrayList<String> s=new ArrayList<String>();
+	  ArrayList<Answer> a=new ArrayList<Answer>();
+	  Question q=(Question)obj;
+	  
+	  s.add(q.getPossibleMarks()+"");
+	  
+	  if(q instanceof MCQ)
+	  {
+		  s.add(q.getQuestionText());
+		  a=((MCQ) q).getAllAnswers();
+		  
+		  for(int i=0; i<a.size(); i++)
+		  {
+			  s.add(a.get(i).getAnswerText());
+			  s.add(a.get(i).getIsRight()+"");
+		  }
+		  return s;
+	  }
+	  
+	  if(q instanceof FIBQ)
+	  {
+		  FIBQ f=(FIBQ) q;
+		  s.add(((FIBQ) q).getQFirstPart());
+		  Answer an=f.getIndexedAnswer(0);
+		  s.add(an.getAnswerText());
+		  s.add(((FIBQ) q).getQSecondPart());
+		  
+		  return s;
+	  }
+	  
+	  if(q instanceof EssayQ)
+	  {
+		  EssayQ e=(EssayQ) q;
+		  s.add(e.getHeight()+"");
+		  s.add(e.getWidth()+"");
+		  s.add(e.getMaxWords()+"");
+		  
+		  return s;
+	  }
+	  
+	  if(q instanceof SlotQ)
+	  {
+		  SlotQ slot=(SlotQ) q;
+		  s.add(slot.getQuestionText());
+		  
+		  return s;
+	  }
+	  
+	  
+	  /*
+	  ArrayList<String> s=new ArrayList<String>();
 	  ArrayList<Answer> a=new ArrayList<Answer>();
 	  Question q=test.getSection(currentSection).getQuestion(currentQuestion);
 	  
@@ -445,19 +575,26 @@ public class SetterTestController
 		  
 	  }
 	  
-	  return s;*/
+	  return s;
+	  */
 	  return null;
   }
+  
+  
 
   
-  public int getContent()
+  public ArrayList<String> getQuestionPath(Object obj)
   {
-	 // Section section=test.getSection(currentSection);
+	  ArrayList<String> s=new ArrayList<String>();
 	  
-	 // section.getSubsectonContainer()
-	  
-	  return 0;
+	Question q=(Question)obj;
+	s.add(q.getQuestionPath());
+	s.add(q.getParentSection().getSectionTitle());
+	
+	return s;
   }
+  
+  
   
   public Test_ getTest()
   {

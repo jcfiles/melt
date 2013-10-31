@@ -136,6 +136,14 @@ public class EssayQuestionPanel extends QuestionPanel {
 		scrollPane.setViewportView(textPane);
 
 	}
+	
+	public EssayQuestionPanel(final EssayQ essayQ, boolean hasStudentAnswers){
+		new EssayQuestionPanel(essayQ);
+		textPane.setEditable(false);
+		if(hasStudentAnswers){
+			textPane.setText(essayQ.getStudentAnswer());
+		}
+	}
 
 	@Override
 	public void submitAnswer() {

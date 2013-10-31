@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
 import setter.MenuGUI;
+import setter.SetterGUI;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -74,19 +75,44 @@ public class StudentStartJPanel extends JPanel {
 	add(panel_1);
 	GridBagLayout gbl_panel_1 = new GridBagLayout();
 	gbl_panel_1.columnWidths = new int[]{175, 0};
-	gbl_panel_1.rowHeights = new int[]{16, 0};
+	gbl_panel_1.rowHeights = new int[]{16, 0, 0};
 	gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-	gbl_panel_1.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+	gbl_panel_1.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 	panel_1.setLayout(gbl_panel_1);
+	
+	JButton buttonEdit = new JButton("Edit");
+	GridBagConstraints gbc_buttonEdit = new GridBagConstraints();
+	gbc_buttonEdit.anchor = GridBagConstraints.EAST;
+	gbc_buttonEdit.gridx = 0;
+	gbc_buttonEdit.gridy = 0;
+	panel_1.add(buttonEdit, gbc_buttonEdit);
+	if(!MainGui.isSetter){
+		buttonEdit.setVisible(false);
+		buttonEdit.validate();
+    }
 	
 	StringBuilder sb = new StringBuilder();
 	sb.append("<html>"+ "<h2>" +controller.getTest().getTestTitle() + "</h2>" + "<h3>" + controller.getTest().getTestIntroText() + "</h3>" +"</html>");
 	JLabel lblNewLabel = new JLabel(sb.toString());
 	lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 18));
 	GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-	gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
+	gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 	gbc_lblNewLabel.gridx = 0;
-	gbc_lblNewLabel.gridy = 0;
+	gbc_lblNewLabel.gridy = 1;
 	panel_1.add(lblNewLabel, gbc_lblNewLabel);
+	
+	
+	buttonEdit.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			//open the setter GUI
+	    MainGui.parent.setVisible(true);
+	    
+	    //suspend this
+	    MainGui.frame.setVisible(false);
+		}
+	});
+	
     }
+    
 }

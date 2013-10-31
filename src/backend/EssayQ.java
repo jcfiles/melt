@@ -9,6 +9,7 @@ public class EssayQ extends Question {
 	StudentAnswer studentAnswer;
 	private int maxWords; //0 meaning infinity
 	String label = "";
+	int height,width;
 	
   public EssayQ(String questionText, Object parent) {
 		super(questionText, parent);
@@ -41,7 +42,7 @@ public class EssayQ extends Question {
 	
 	
 	@Override
-	protected int getMarksAwarded() 
+	public int getMarksAwarded() 
 	{		
 		return studentAnswer.getMarksAwarded();
 	}
@@ -59,6 +60,23 @@ public class EssayQ extends Question {
 	public String getStudentAnswer() {
 		return studentAnswer.getAnswer();
 	}
+	
+	public StudentAnswer getWholeStudentAnswer()
+	{
+	  return studentAnswer;
+	}
+	
+	@Override
+	public String getFeedback()
+	{
+	  return studentAnswer.getFeedback();
+	}
+	
+	@Override
+	public void setFeedback(String feedback)
+	{
+	  studentAnswer.setFeedback(feedback);
+	}
 
 	public void setStudentAnswer(String studentAnswer) {
 		this.studentAnswer.setAnswer(studentAnswer);
@@ -69,5 +87,23 @@ public class EssayQ extends Question {
 	{
 		return "EssayQ " + label;
 	}
+	
+	public void setHeight(int h)
+	{
+		height=h;
+	}
 
+	public void setWidth(int w)
+	{
+		width=w;
+	}
+	public int getHeight()
+	{
+		return height;
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
 }

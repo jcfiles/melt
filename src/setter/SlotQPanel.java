@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -16,26 +17,25 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 
-import java.awt.Font;
+import backend.SlotQ;
 
-/*
- * @author Erotokritou Zoe
- */
-public class FillBlankPanel extends JPanel {
-	
-	private JTextField txtQuestion;
+public class SlotQPanel extends JPanel {
 	private JButton btnDelete = new JButton("Delete");
 	private JButton btnEdit = new JButton("Edit");
 	private JLabel lblTitle=new JLabel("Test");
+	private ArrayList<JTextField> textFields;
+	private SlotQ slotq;
 	/**
-	 * Create the buttonsPanel.
+	 * Create the panel.
 	 */
-	public FillBlankPanel(final SetterTestController obj, final SetterGUI gui) {
+	public SlotQPanel(final SetterTestController obj, final SetterGUI gui) {
+
 		setLayout(new BorderLayout(20, 20));
-		
+		textFields = new ArrayList<>();
 		//Title panel
 		JPanel titlePanel = new JPanel();		
 		add(titlePanel, BorderLayout.NORTH);
@@ -84,27 +84,48 @@ public class FillBlankPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblQ, 10, SpringLayout.WEST, centerPanel);
 		centerPanel.add(lblQ);
 		
-		//load the question
-		JLabel lblPartA=new JLabel("PartA");
-		springLayout.putConstraint(SpringLayout.NORTH, lblPartA, 4, SpringLayout.NORTH, lblQ);
-		lblPartA.setFont(new Font("Verdana", Font.PLAIN, 13));
-		centerPanel.add(lblPartA);
+		slotq=(SlotQ)gui.current.getUserObject();
 		
-		txtQuestion = new JTextField();
-		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -139, SpringLayout.EAST, centerPanel);
-		springLayout.putConstraint(SpringLayout.EAST, lblPartA, -7, SpringLayout.WEST, txtQuestion);
-		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 1, SpringLayout.NORTH, lblQ);
-		txtQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
-		centerPanel.add(txtQuestion);
-		txtQuestion.setColumns(10);
+		JPanel panel_1 = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, lblQ);
+		springLayout.putConstraint(SpringLayout.WEST, panel_1, 10, SpringLayout.WEST, centerPanel);
+		springLayout.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, lblPath);
+		centerPanel.add(panel_1);
 		
-		JLabel lblPartB=new JLabel("PartB");
-		springLayout.putConstraint(SpringLayout.NORTH, lblPartB, 4, SpringLayout.NORTH, lblQ);
-		springLayout.putConstraint(SpringLayout.WEST, lblPartB, 5, SpringLayout.EAST, txtQuestion);
-		lblPartB.setFont(new Font("Verdana", Font.PLAIN, 13));
-		centerPanel.add(lblPartB);
+		String delimiter = "<BLANK>";
+		String question = "";
+		for(int i=0; i<slotq.getSlotQ().length(); i++){
+			boolean found = true;
+			for(int j=0; j<delimiter.length(); j++){
+				if(i+j<slotq.getSlotQ().length()){
+					if(delimiter.charAt(j)!=slotq.getSlotQ().charAt(j+i)){
+						found = false;
+						break;
+					}
+				}
+			}
+			if(found == false){
+				question = question + Character.toString(slotq.getSlotQ().charAt(i));
+			}
+			else{
+				JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
+				questionText.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_1.add(questionText);
+				question = "";
+				JTextField emptyField = new JTextField(10);
+				panel_1.add(emptyField);
+				textFields.add(emptyField);
+				i=i+delimiter.length();
+			}
+		}
+		if(!question.equals("")){
+			JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
+			questionText.setHorizontalAlignment(SwingConstants.LEFT);
+			panel_1.add(questionText);
+		}
 		
 		JPanel buttonsPanel = new JPanel();
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -6, SpringLayout.NORTH, buttonsPanel);
 		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, centerPanel);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonsPanel, -10, SpringLayout.SOUTH,centerPanel);
 		springLayout.putConstraint(SpringLayout.EAST, buttonsPanel, 0, SpringLayout.EAST, lblMarks);
@@ -129,8 +150,6 @@ public class FillBlankPanel extends JPanel {
 		list=obj.getQuestion(gui.current.getUserObject());
 			
 		lblMarks.setText("Marks: "+ list.get(0));
-		lblPartA.setText(list.get(1));
-		lblPartB.setText(list.get(3));
 		
 		btnDelete.addActionListener(new ActionListener(){  //Delete the question
 		       public void actionPerformed(ActionEvent e) {
@@ -146,8 +165,6 @@ public class FillBlankPanel extends JPanel {
 					{
 						obj.deleteQuestion(gui.current.getUserObject());
 						gui.removeQuestion();
-						
-						
 						/*
 						if(obj.getCurrentQuestion()==obj.countQuestion())
 						{

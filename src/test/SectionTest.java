@@ -48,13 +48,13 @@ public class SectionTest {
 	}
 
 	@Test
-	public void testAddQuestion() throws InvalidFTBQFormatException {
+	public void testgetContainer() throws InvalidFTBQFormatException {
 		Section testSection = new Section("testTitle", "testIntro", 1);
 		FIBQ fibq = new FIBQ("This is a [test] question.", null);
 		testSection.addQuestion(fibq);
-		ArrayList<Question> expResult = new ArrayList<Question>();
+		ArrayList<SubsectionContainer> expResult = new ArrayList<SubsectionContainer>();
 		expResult.add(fibq);
-	//	assertEquals(expResult, testSection.getQuestionsList());
+		assertEquals(expResult, testSection.getContainer());
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class SectionTest {
 		testSection.addQuestion(fibq);
 		ArrayList<Question> expResult = new ArrayList<Question>();
 		testSection.removeQuestion(fibq);
-	//	assertEquals(expResult, testSection.getQuestionsList());
+		assertEquals(expResult, testSection.getQuestions());
 	}
 
 	@Test
@@ -77,7 +77,7 @@ public class SectionTest {
 	@Test
 	public void testToString() {
 		Section testSection = new Section("testTitle", "testIntro", 1);
-		String expResult = "testTitle\ntestIntro\n\n";
+		String expResult = "testTitle";
 		assertEquals(expResult, testSection.toString());
 	}
 

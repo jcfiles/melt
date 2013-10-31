@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import setter.SetterGUI;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -15,6 +18,8 @@ import java.awt.event.MouseEvent;
 
 import backend.Section;
 import backend.StudentTestController;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -187,5 +192,20 @@ public class SectionInfoPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {controller.startSection(section);}
 	});
 	panel_1.add(buttonStart);
+	
+	//editButton listener
+	 btnEdit.addActionListener(new ActionListener() {
+   	public void actionPerformed(ActionEvent e) {
+   		
+   		//open the setter GUI
+	    MainGui.parent.setVisible(true);
+	    
+	    //suspend this
+	    MainGui.frame.setVisible(false);
+   		
+   	}
+   });
+	
+	
     }
 }

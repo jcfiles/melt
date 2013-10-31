@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import student.MainGui;
+
 public class ViewCreatePanel extends JPanel {
 
 	private JPanel titlePanel = new JPanel();
@@ -156,6 +158,17 @@ public class ViewCreatePanel extends JPanel {
 				gui.centerPanel.repaint();
 		    	
 			    }
+		});
+		
+		btnPreview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//open preview
+				MainGui window = new MainGui(obj.getTest(), true, gui);
+				window.frame.setVisible(true);
+				
+				//dispose this
+				gui.setVisible(false);
+			}
 		});
 
 	}

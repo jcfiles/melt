@@ -13,6 +13,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -71,6 +73,10 @@ public class SectionIndexPanel extends JPanel {
 	panelBack.setLayout(gbl_panelBack);
 	
 	JButton buttonBack = new JButton("Back");
+	buttonBack.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		}
+	});
 	buttonBack.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	GridBagConstraints gbc_buttonBack = new GridBagConstraints();
 	gbc_buttonBack.gridx = 0;
@@ -78,7 +84,10 @@ public class SectionIndexPanel extends JPanel {
 	panelBack.add(buttonBack, gbc_buttonBack);
 	buttonBack.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {controller.endTest();}
+            public void mouseClicked(MouseEvent e) {
+            	StudentStartJPanel studentstart = new StudentStartJPanel(controller);
+            	MainGui.setComposite(studentstart);
+            }
 	});
 	
 	int i=0;

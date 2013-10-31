@@ -4,9 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,24 +18,20 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+import javax.swing.JTextPane;
 
-import java.awt.Font;
-
-/*
- * @author Erotokritou Zoe
- */
-public class FillBlankPanel extends JPanel {
-	
-	private JTextField txtQuestion;
+public class EssayQuestionPanel extends JPanel {
 	private JButton btnDelete = new JButton("Delete");
 	private JButton btnEdit = new JButton("Edit");
 	private JLabel lblTitle=new JLabel("Test");
+	
 	/**
-	 * Create the buttonsPanel.
+	 * Create the panel.
 	 */
-	public FillBlankPanel(final SetterTestController obj, final SetterGUI gui) {
+	public EssayQuestionPanel(final SetterTestController obj, final SetterGUI gui) {
+
 		setLayout(new BorderLayout(20, 20));
 		
 		//Title panel
@@ -85,24 +83,11 @@ public class FillBlankPanel extends JPanel {
 		centerPanel.add(lblQ);
 		
 		//load the question
-		JLabel lblPartA=new JLabel("PartA");
-		springLayout.putConstraint(SpringLayout.NORTH, lblPartA, 4, SpringLayout.NORTH, lblQ);
-		lblPartA.setFont(new Font("Verdana", Font.PLAIN, 13));
-		centerPanel.add(lblPartA);
-		
-		txtQuestion = new JTextField();
-		springLayout.putConstraint(SpringLayout.EAST, txtQuestion, -139, SpringLayout.EAST, centerPanel);
-		springLayout.putConstraint(SpringLayout.EAST, lblPartA, -7, SpringLayout.WEST, txtQuestion);
-		springLayout.putConstraint(SpringLayout.NORTH, txtQuestion, 1, SpringLayout.NORTH, lblQ);
-		txtQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
-		centerPanel.add(txtQuestion);
-		txtQuestion.setColumns(10);
-		
-		JLabel lblPartB=new JLabel("PartB");
-		springLayout.putConstraint(SpringLayout.NORTH, lblPartB, 4, SpringLayout.NORTH, lblQ);
-		springLayout.putConstraint(SpringLayout.WEST, lblPartB, 5, SpringLayout.EAST, txtQuestion);
-		lblPartB.setFont(new Font("Verdana", Font.PLAIN, 13));
-		centerPanel.add(lblPartB);
+		JLabel lblQuestion = new JLabel("Q1");
+		springLayout.putConstraint(SpringLayout.NORTH, lblQuestion, 4, SpringLayout.NORTH, lblQ);
+		springLayout.putConstraint(SpringLayout.WEST, lblQuestion, 41, SpringLayout.EAST, lblQ);
+		lblQuestion.setFont(new Font("Verdana", Font.PLAIN, 13));
+		centerPanel.add(lblQuestion);
 		
 		JPanel buttonsPanel = new JPanel();
 		springLayout.putConstraint(SpringLayout.WEST, buttonsPanel, 10, SpringLayout.WEST, centerPanel);
@@ -129,8 +114,29 @@ public class FillBlankPanel extends JPanel {
 		list=obj.getQuestion(gui.current.getUserObject());
 			
 		lblMarks.setText("Marks: "+ list.get(0));
-		lblPartA.setText(list.get(1));
-		lblPartB.setText(list.get(3));
+		
+		JPanel sPanel=new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, sPanel, 21, SpringLayout.SOUTH, lblQ);
+		springLayout.putConstraint(SpringLayout.WEST, sPanel, 10, SpringLayout.WEST, centerPanel);
+		springLayout.putConstraint(SpringLayout.SOUTH, sPanel, 0, SpringLayout.NORTH, buttonsPanel);
+		springLayout.putConstraint(SpringLayout.EAST, sPanel, 0, SpringLayout.EAST, btnAdd);
+		centerPanel.add(sPanel);
+		GridBagLayout gbl_sPanel = new GridBagLayout();
+		gbl_sPanel.columnWidths = new int[]{215, 1, 0};
+		gbl_sPanel.rowHeights = new int[]{1, 0};
+		gbl_sPanel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_sPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		sPanel.setLayout(gbl_sPanel);
+		
+		ScrollPane scroll=new ScrollPane();
+		GridBagConstraints gbc_scroll = new GridBagConstraints();
+		gbc_scroll.anchor = GridBagConstraints.NORTHWEST;
+		gbc_scroll.gridx = 0;
+		gbc_scroll.gridy = 0;
+		sPanel.add(scroll, gbc_scroll);
+		scroll.setPreferredSize(new Dimension(40,40));
+		JTextPane textPane = new JTextPane();
+		scroll.add(textPane);
 		
 		btnDelete.addActionListener(new ActionListener(){  //Delete the question
 		       public void actionPerformed(ActionEvent e) {
@@ -146,8 +152,6 @@ public class FillBlankPanel extends JPanel {
 					{
 						obj.deleteQuestion(gui.current.getUserObject());
 						gui.removeQuestion();
-						
-						
 						/*
 						if(obj.getCurrentQuestion()==obj.countQuestion())
 						{

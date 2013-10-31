@@ -2,12 +2,17 @@ package setter;
 
 import javax.swing.JPanel;
 
+import backend.EssayQ;
+import backend.FIBQ;
+import backend.MCQ;
 import backend.Question;
 import backend.Section;
+import backend.SlotQ;
 import backend.StudentTestController;
 
 import java.awt.BorderLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JSplitPane;
@@ -15,6 +20,7 @@ import javax.swing.JSplitPane;
 import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -23,9 +29,20 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+
 import java.awt.Insets;
+
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+
+import student.EssayQuestionPanel;
+import student.FTBQuestionPanel;
+import student.MCQuestionPanel;
+import student.QuestionPanel;
+import student.SlotQuestionPanel;
+import student.TestSectionPanel;
+import sun.security.jca.GetInstance.Instance;
+
 import java.awt.GridLayout;
 import java.awt.Font;
 
@@ -38,23 +55,63 @@ import java.awt.Font;
 public class TestSectionForMarkingPanel extends JPanel {
 	private JTable table;
 	private ArrayList<Question> questions;
+	private ArrayList<JPanel[][]> questionPanels;
 	private SetterTestController controller;
 	private Section section;
-	private JTextField textField;
-
+	private JTextField textFieldMarks;
+	private int index=0;
+	private JScrollPane scrollPaneSetter;
+	private JScrollPane scrollPaneStudent;
+	private ImageIcon tickImageIcon, QMarkImageIcon, scaledTickImageIcon, scaledQMarkImageIcon;
+    private Image tickImage, scaledTickImage, QMarkImage, scaledQMarkImage;
+    
 	/**
 	 * Create the panel.
 	 */
-	public TestSectionForMarkingPanel(SetterTestController controller, Section section, Question question) {
+	public TestSectionForMarkingPanel(SetterTestController controller, Section section) {
+		tickImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/check_b.png"));
+    	tickImage = tickImageIcon.getImage();
+    	QMarkImageIcon = new ImageIcon(TestSectionPanel.class.getResource("/lib/images/question.png"));
+    	QMarkImage = QMarkImageIcon.getImage();
 		this.controller = controller;
 		this.section = section;
+		questions = new ArrayList<>();
+		questionPanels = new ArrayList<>();
 		questions = section.getQuestions();
+		for(int i=0; i<questions.size(); i++){
+			JPanel[][] questionpanel = new JPanel[1][2];
+			if((questions.get(i) instanceof MCQ)==true){
+				MCQuestionPanel setterPanel = new MCQuestionPanel((MCQ)questions.get(i), false);
+				MCQuestionPanel studentPanel = new MCQuestionPanel((MCQ)questions.get(i), true);
+				questionpanel[0][0] = setterPanel;
+				questionpanel[0][1] = studentPanel;
+				questionPanels.add(questionpanel);
+			}
+			else if((questions.get(i) instanceof FIBQ)==true){
+				FTBQuestionPanel setterPanel = new FTBQuestionPanel((FIBQ)questions.get(i), false);
+				FTBQuestionPanel studentPanel = new FTBQuestionPanel((FIBQ)questions.get(i), true);
+				questionpanel[0][0] = setterPanel;
+				questionpanel[0][1] = studentPanel;
+				questionPanels.add(questionpanel);
+			}
+			else if((questions.get(i) instanceof SlotQ)==true){
+				SlotQuestionPanel setterPanel = new SlotQuestionPanel((SlotQ)questions.get(i), false);
+				SlotQuestionPanel studentPanel = new SlotQuestionPanel((SlotQ)questions.get(i), true);
+				questionpanel[0][0] = setterPanel;
+				questionpanel[0][1] = studentPanel;
+				questionPanels.add(questionpanel);
+			}
+			else if((questions.get(i) instanceof EssayQ)==true){
+				EssayQuestionPanel setterPanel = new EssayQuestionPanel((EssayQ)questions.get(i), false);
+				EssayQuestionPanel studentPanel = new EssayQuestionPanel((EssayQ)questions.get(i), true);
+			}
+		}
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel topPanel = new JPanel();
 		add(topPanel, BorderLayout.NORTH);
 		
-		JLabel lblSection = new JLabel("Section 1");
+		JLabel lblSection = new JLabel(section.getSectionTitle());
 		lblSection.setFont(new Font("Maiandra GD", Font.BOLD, 20));
 		topPanel.add(lblSection);
 		
@@ -83,7 +140,9 @@ public class TestSectionForMarkingPanel extends JPanel {
 	    table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				index = table.rowAtPoint(e.getPoint());
+				scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
+				scrollPaneStudent.setViewportView(questionPanels.get(index)[0][1]);
 			}
 		});
 	    table.setModel(new DefaultTableModel(
@@ -91,6 +150,33 @@ public class TestSectionForMarkingPanel extends JPanel {
 	            columnNames
 		));
 		leftPanel.add(table);
+		
+		scaledTickImage = tickImage.getScaledInstance(-1, table.getRowHeight(),  java.awt.Image.SCALE_SMOOTH);  
+    	scaledTickImageIcon = new ImageIcon(scaledTickImage);
+    	scaledQMarkImage = QMarkImage.getScaledInstance(-1, table.getRowHeight(),  java.awt.Image.SCALE_SMOOTH);
+    	scaledQMarkImageIcon = new ImageIcon(scaledQMarkImage);
+    	
+    	for(int i=0;i<questions.size(); i++){
+    		if(questions.get(i) instanceof SlotQ){
+    			if(((SlotQ)questions.get(i)).isMarked()){
+    				table.setValueAt(scaledTickImageIcon, i, 1);
+    			}
+    			else{
+    				table.setValueAt(scaledQMarkImageIcon, i, 1);
+    			}
+    		}
+    		else if(questions.get(i) instanceof EssayQ){
+    			if(((EssayQ)questions.get(i)).getWholeStudentAnswer().isMarked()){
+    				table.setValueAt(scaledTickImageIcon, i, 1);
+    			}
+    			else{
+    				table.setValueAt(scaledQMarkImageIcon, i, 1);
+    			}
+    		}
+    		else{
+    			table.setValueAt(scaledQMarkImageIcon, i, 1);
+    		}
+    	}
 		
 		JPanel centerPanel = new JPanel();
 		add(centerPanel, BorderLayout.CENTER);
@@ -131,8 +217,8 @@ public class TestSectionForMarkingPanel extends JPanel {
 		lblThisIsThe.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(lblThisIsThe);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		rightAnswerPanel.add(scrollPane_1, BorderLayout.CENTER);
+		scrollPaneSetter = new JScrollPane();
+		rightAnswerPanel.add(scrollPaneSetter, BorderLayout.CENTER);
 		
 		JPanel studentAnswerPanel = new JPanel();
 		splitPane.setRightComponent(studentAnswerPanel);
@@ -146,8 +232,11 @@ public class TestSectionForMarkingPanel extends JPanel {
 		lblThisIsStudents.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblThisIsStudents);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		studentAnswerPanel.add(scrollPane_2, BorderLayout.CENTER);
+		scrollPaneStudent = new JScrollPane();
+		studentAnswerPanel.add(scrollPaneStudent, BorderLayout.CENTER);
+		
+		scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
+		scrollPaneStudent.setViewportView(questionPanels.get(index)[0][1]);
 		
 		JPanel panel = new JPanel();
 		centerPanel.add(panel, BorderLayout.SOUTH);
@@ -169,9 +258,10 @@ public class TestSectionForMarkingPanel extends JPanel {
 		lblTotalMarks.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		totalMarkPanel.add(lblTotalMarks);
 		
-		textField = new JTextField();
-		totalMarkPanel.add(textField);
-		textField.setColumns(10);
+		textFieldMarks = new JTextField();
+		totalMarkPanel.add(textFieldMarks);
+		textFieldMarks.setColumns(10);
+		textFieldMarks.setText(Integer.toString(questions.get(index).getMarksAwarded()));
 		
 		JPanel feedbackPanel = new JPanel();
 		GridBagConstraints gbc_feedbackPanel = new GridBagConstraints();
@@ -203,9 +293,11 @@ public class TestSectionForMarkingPanel extends JPanel {
 		gbc_scrollPane.gridy = 1;
 		feedbackPanel.add(scrollPane, gbc_scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setRows(4);
-		scrollPane.setViewportView(textArea);
+		JTextArea textAreaFeedback = new JTextArea();
+		textAreaFeedback.setRows(4);
+		scrollPane.setViewportView(textAreaFeedback);
+		
+		textAreaFeedback.setText(questions.get(index).getFeedback());
 		
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -215,9 +307,29 @@ public class TestSectionForMarkingPanel extends JPanel {
 		panel.add(panel_1, gbc_panel_1);
 		
 		JButton backButton = new JButton("<");
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(index>0){
+					index--;
+					scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
+					scrollPaneStudent.setViewportView(questionPanels.get(index)[0][1]);
+				}
+			}
+		});
 		panel_1.add(backButton);
 		
 		JButton nextButton = new JButton(">");
+		nextButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(index<questionPanels.size()-1){
+					index++;
+					scrollPaneSetter.setViewportView(questionPanels.get(index)[0][0]);
+					scrollPaneStudent.setViewportView(questionPanels.get(index)[0][1]);
+				}
+			}
+		});
 		panel_1.add(nextButton);
 		
 		JPanel bottomPanel = new JPanel();

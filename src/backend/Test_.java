@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
+import java.sql.Savepoint;
 import java.util.ArrayList;
 
 // Importing the classes below for importing files: 
@@ -98,7 +99,7 @@ public class Test_ implements java.io.Serializable
     {
         File destination = new File(destinationFile);
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(destination));
-        os.writeObject(this);
+        os.writeObject(Test_.this);
         os.close();
     }
         
@@ -382,6 +383,12 @@ public class Test_ implements java.io.Serializable
     public static void main(String[] args) throws InvalidSlotQFormatException
     {
         Test_ t = Test_.getDemoTest2();
+        try {
+			t.saveToFile("test2");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         //System.out.println(t);
         //FTBQ q1 = (FTBQ)t.getSection(0).getQuestion(0);
         //String a = q1.getTheAnswer().getAnswerText();

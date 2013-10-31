@@ -13,7 +13,10 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     protected String questionText;
     protected int possibleMarks = 1;
     protected int marksAwarded = 0;
-   // protected String subsectionTitle = "";
+    Object parent;
+    protected String feedback;
+		// protected String subsectionTitle = "";
+    
     protected ArrayList<Answer> answers;  
     
     /**
@@ -22,7 +25,9 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
     public Question(String questionText, Object parent)
     {
     	super(parent);
+    	this.parent = parent;
         this.questionText = questionText;
+        this.feedback = "";
         answers = new ArrayList<Answer>();
     }
 
@@ -72,6 +77,17 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
         answers.add(answer);
     }
     
+    public String getFeedback()
+		{
+			return feedback;
+		}
+
+		public void setFeedback(String feedback)
+		{
+			this.feedback = feedback;
+		}
+
+    
     /**
      * Sets an answer to the question by index, e.g. 0 is the first answer. 
      */
@@ -88,5 +104,37 @@ public abstract class Question extends SubsectionContainer implements java.io.Se
         return answers.get(answerNum);
     }
     
-    protected abstract int getMarksAwarded();
+    /**
+     * Returns the parent section of the question
+     * @return Section section
+     */
+    public Section getParentSection(){
+    	Object outerObject = parent;
+    	while((outerObject instanceof Section)==false){
+    		outerObject = ((SubsectionContainer)outerObject).getParent();
+    	}
+    	return (Section)outerObject;
+    }
+    
+    
+    /**
+     * Returns the path of the question
+     * @return String path
+     */
+    public String getQuestionPath(){
+    	String path="";
+    	Object outerObject = parent;
+    	while((outerObject instanceof Section)==false){
+    		if(!path.equals("")){
+    			path = ((Subsection)outerObject).getSubsectionTitle() + " > " + path;
+    		}
+    		else{
+    			path = ((Subsection)outerObject).getSubsectionTitle();
+    		}
+    		outerObject = ((SubsectionContainer)outerObject).getParent();
+    	}
+    	return path;
+    }
+    
+    public abstract int getMarksAwarded();
 }

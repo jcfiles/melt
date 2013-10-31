@@ -51,7 +51,7 @@ public class ViewSectionPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ViewSectionPanel(final SetterTestController obj, final SetterGUI gui, final Section section) {
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(20, 20));
 		
 		//Title panel
 		add(titlePanel, BorderLayout.NORTH);
@@ -190,7 +190,7 @@ public class ViewSectionPanel extends JPanel {
 			btnDelete.addActionListener(new ActionListener(){  //Delete the question
 			public void actionPerformed(ActionEvent e) {
 				
-				/*
+				
 				//default icon, custom title
 				int n = JOptionPane.showConfirmDialog(
 				    gui,
@@ -200,14 +200,11 @@ public class ViewSectionPanel extends JPanel {
 				
 				if(n==JOptionPane.YES_OPTION)
 				{
-					obj.deleteSection();
-					
-					if(obj.getCurrentSection()==obj.countSection())
-					{
-						obj.setCurrentSection(obj.getCurrentSection()-1);
-					}
+					obj.deleteSection(gui.current.getUserObject());
 				
-					ViewSectionPanel viewPanel=new ViewSectionPanel(obj,gui,null);
+					ViewCreatePanel viewPanel=new ViewCreatePanel(obj,gui);
+					
+					gui.removeSection();
 					
 					gui.centerPanel.removeAll();
 					gui.centerPanel.add(viewPanel);
@@ -215,14 +212,14 @@ public class ViewSectionPanel extends JPanel {
 					gui.validate();
 					gui.repaint();
 				}
-				*/
+				
 				}	
 				
 			});
 			
 			btnEdit.addActionListener(new ActionListener(){  //Edit the question
 			public void actionPerformed(ActionEvent e) {
-				/*
+				
 				addPanel=new AddSectionPanel(obj,gui,true);
 				
 				gui.centerPanel.removeAll();
@@ -230,7 +227,7 @@ public class ViewSectionPanel extends JPanel {
 				
 				gui.centerPanel.validate();
 				gui.centerPanel.repaint();
-				*/
+				
 			 }
 			});
 			

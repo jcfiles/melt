@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import setter.SetterGUI;
+
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
@@ -28,6 +30,8 @@ import backend.Section;
 
 import java.util.Iterator;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 /**
  * @author Chondrokoukis Dimitrios
  * @contributor Steedman Bruce
@@ -147,11 +151,13 @@ public class TestSectionPanel extends JPanel {
 	JPanel panel_3 = new JPanel();
 	panel_2.add(panel_3, BorderLayout.NORTH);
 		
-	JLabel labelSubsection = new JLabel("Example Subsection Heading");
+	//JLabel labelSubsection = new JLabel("Example Subsection Heading");
+	JLabel labelSubsection = new JLabel("");
 	labelSubsection.setFont(new Font("MV Boli", Font.PLAIN, 15));
 	panel_3.add(labelSubsection);
 		
-	JLabel label = new JLabel(">");
+	JLabel label = new JLabel("");
+	//JLabel label = new JLabel(">");
 	panel_3.add(label);
 		
 	JPanel scrollPane_1 = new JPanel();
@@ -237,7 +243,7 @@ public class TestSectionPanel extends JPanel {
                 qp = QuestionPanelFactory.getInstance().createQuestionPanel(it.next());
                 qNum++;
                 qp.setQuestionNumber(qNum);
-                qp.setPath((String)section.getQuestionsAndPaths().get(qNum-1)[0][1]);
+                qp.setPath((String)section.getQuestionsAndPathsWithoutSection().get(qNum-1)[0][1]);
             }
             catch(Exception e) {
                 //Handle exceptions if for any reason a panel cannot be instantiated
@@ -343,6 +349,20 @@ public class TestSectionPanel extends JPanel {
 			break;
 		}
 	}
+	
+	//editButtonListener
+	buttonEdit.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+
+			//open the setter GUI
+	    MainGui.parent.setVisible(true);
+	    
+	    //suspend this
+	    MainGui.frame.setVisible(false);
+			
+		}
+	});
+	
     }
     
     public ArrayList<QuestionPanel> getQuestionPanels() {

@@ -20,9 +20,12 @@ import javax.swing.table.DefaultTableModel;
 
 import student.TestSectionPanel;
 import backend.Answer;
+import backend.EssayQ;
 import backend.FIBQ;
 import backend.InvalidFTBQFormatException;
+import backend.MCQ;
 import backend.Question;
+import backend.SlotQ;
 
 import java.awt.Checkbox;
 import java.awt.Color;
@@ -61,6 +64,7 @@ public class AddQuestionPanel extends JPanel {
 	private AddMCQ mcqPanel;
 	private ArrayList<String> list;
 	private JLabel lblTitle =new JLabel("TestA: SectionA");
+	private AddEssay essayPanel;
 
 	/**
 	 * Create the buttonsPanel.
@@ -213,30 +217,77 @@ public class AddQuestionPanel extends JPanel {
 		if(bEdit==true)
 		{
 			
-			list=obj.getQuestion();
+			list=obj.getQuestion(gui.current.getUserObject());
 			txtMarks.setText(list.get(0));
 			//txtSubsection.setText(list.get(1));
 			
-			if(obj.getQuestionType()==1)
+			if(gui.current.getUserObject() instanceof FIBQ)
 			{
-				txtQuestion.setText(list.get(2)+ "["+list.get(3)+ "]"+list.get(4));	
 				rdbtnMultipleChoice.setSelected(false);
 				rdbtnFillBlanks.setSelected(true);
-				typeQuestion=1;
+				rdbtnEssay.setSelected(false);
+				rdbtnSlot.setSelected(false);
 				
+				txtQuestion.setText(list.get(1)+ "["+list.get(2)+ "]"+list.get(3));				
+				typeQuestion=1;				
 				panel_mult.setVisible(false);
 			}
-			else
+			if(gui.current.getUserObject() instanceof MCQ)			
 			{
-				typeQuestion=0;
 				rdbtnMultipleChoice.setSelected(true);
 				rdbtnFillBlanks.setSelected(false);
+				rdbtnEssay.setSelected(false);
+				rdbtnSlot.setSelected(false);
+				
+				typeQuestion=0;				
+				
 				panel_mult.setVisible(true);
+				mcqPanel=new AddMCQ(list,gui,bEdit);
+		    	
+		    	panel_mult.removeAll();
+				panel_mult.add(mcqPanel);
+												
+				panel_mult.validate();
+				panel_mult.repaint();
 				
-				txtQuestion.setText(list.get(2));
+				txtQuestion.setText(list.get(1));
 				
 				
-			}			
+				
+			}		
+			if(gui.current.getUserObject() instanceof EssayQ)			
+			{
+				rdbtnMultipleChoice.setSelected(false);
+				rdbtnFillBlanks.setSelected(false);
+				rdbtnEssay.setSelected(true);
+				rdbtnSlot.setSelected(false);
+				
+				typeQuestion=2;	
+				
+				panel_mult.setVisible(true);				
+				essayPanel=new AddEssay(list,bEdit);
+		    	
+		    	panel_mult.removeAll();
+		    	panel_mult.add(essayPanel);
+												
+				panel_mult.validate();
+				panel_mult.repaint();
+				
+				txtQuestion.setText(list.get(1));
+	
+			}	
+			
+			if(gui.current.getUserObject() instanceof SlotQ)			
+			{
+				rdbtnMultipleChoice.setSelected(false);
+				rdbtnFillBlanks.setSelected(false);
+				rdbtnEssay.setSelected(false);
+				rdbtnSlot.setSelected(true);
+				
+				txtQuestion.setText(list.get(1));				
+				typeQuestion=1;				
+				panel_mult.setVisible(false);
+			}
 			
 		}
 		
@@ -283,7 +334,7 @@ public class AddQuestionPanel extends JPanel {
 		    	lblFill.setVisible(false);	    	
 		    	typeQuestion=2;		
 		    	
-		    	AddEssay essayPanel=new AddEssay(obj);
+		    	essayPanel=new AddEssay(list,bEdit);
 		    	
 		    	panel_mult.removeAll();
 		    	panel_mult.add(essayPanel);
@@ -299,7 +350,7 @@ public class AddQuestionPanel extends JPanel {
 
 		    	panel_mult.setVisible(false);
 		    	lblFill.setVisible(true);	    	
-		    	typeQuestion=1;		
+		    	typeQuestion=3;		
 		    	
 		    	panel_mult.removeAll();
 												
@@ -361,6 +412,7 @@ public class AddQuestionPanel extends JPanel {
 	    		  
 	    		if(bEdit==true)
 	    		{
+	    			//updateQuestion
 	    			 if(typeQuestion==0) //multiple choice question
 	   	    	  	{	
 	    				obj.editMCQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
@@ -395,31 +447,119 @@ public class AddQuestionPanel extends JPanel {
 	    		{
 	    			
 	    		if(typeQuestion==0) //multiple choice question
-	    	   {	        	
-	        	Question q=obj.addMCQ(gui.current.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
-	        	MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);
-	        	gui.setTree(q);
-	        	gui.centerPanel.removeAll();
-	        	gui.centerPanel.add(multiPanel);
+	    		{	        	
+	    			Question q=obj.addMCQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()), mcqPanel.possibleAnswers);
+	    			gui.setTree(q);
+	    			MultichoicePanel multiPanel=new MultichoicePanel(obj,gui);	        	
+	    			gui.centerPanel.removeAll();
+	    			gui.centerPanel.add(multiPanel);
 	    	   }
-	    	  else
-	    	  {	 
-	    		  int parsing=obj.addFIBQ(txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
-	    		  if(parsing==0)
-	    		  {
+	    	  
+	    		if(typeQuestion==1){
+	    			
+	    		  Question q=obj.addFIBQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+	    		  if(q==null)
+	    		  	{
 	    			  JOptionPane.showMessageDialog(gui,
 		    			      "You have to insert the answer of the Fill the Blank Question like eg.[answer]",
 		    			      "Question parsing Error",
 		    			      JOptionPane.ERROR_MESSAGE);
-	    		  }	 
-	    		  else
-	    		  {
+	    		  	}	 
+	    		  	else
+	    		  	{
+	    		  		gui.setTree(q);
 	    			  	FillBlankPanel fillPanel=new FillBlankPanel(obj,gui);
 	    			  	gui.centerPanel.removeAll();
 	  	        		gui.centerPanel.add(fillPanel);
-	    		  }
+	    		  	}
 	    		  
 	        	}
+	    		
+	    		if(typeQuestion==2) //multiple choice question
+	    		{	  
+	    			if(essayPanel.txtHeight.getText().equals("")|| essayPanel.txtWidth.getText().equals("") || essayPanel.txtWordLimit.getText().equals(""))
+		    		  {
+		    			//insert all the information, error icon
+		    			  JOptionPane.showMessageDialog(gui,
+		    			      "You have to insert all the information for the Question.",
+		    			      "Save Question Error",
+		    			      JOptionPane.ERROR_MESSAGE);
+		    			  flag=true;
+		    		  }
+	    			if(flag==false)
+	    			{
+	    				 try {
+	       				  Integer.parseInt(essayPanel.txtHeight.getText());
+	       					
+	       				} catch (Exception ex) {
+	       					//insert number for a mark, error icon
+	       					JOptionPane.showMessageDialog(gui,
+	       		    			      "You have to insert a numbers for the Extra information of the Essay Question.",
+	       		    			      "Save Mark for Question Error",
+	       		    			      JOptionPane.ERROR_MESSAGE);
+	       					flag=true;
+	       				}	
+	    			}
+	    			if(flag==false)
+	    			{
+	    				 try {
+	       				  Integer.parseInt(essayPanel.txtWordLimit.getText());
+	       					
+	       				} catch (Exception ex) {
+	       					//insert number for a mark, error icon
+	       					JOptionPane.showMessageDialog(gui,
+	       							"You have to insert a numbers for the Extra information of the Essay Question.",
+	       		    			      "Save Mark for Question Error",
+	       		    			      JOptionPane.ERROR_MESSAGE);
+	       					flag=true;
+	       				}	
+	    			}
+	    			
+	    			if(flag==false)
+	    			{
+	    				 try {
+	       				  Integer.parseInt(essayPanel.txtWidth.getText());
+	       					
+	       				} catch (Exception ex) {
+	       					//insert number for a mark, error icon
+	       					JOptionPane.showMessageDialog(gui,
+	       							"You have to insert a numbers for the Extra information of the Essay Question.",
+	       		    			      "Save Mark for Question Error",
+	       		    			      JOptionPane.ERROR_MESSAGE);
+	       					flag=true;
+	       				}	
+	    			}
+	    			
+	    			if(flag==false)
+	    			{
+	    				Question q=obj.addEssayQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()),Integer.parseInt(essayPanel.txtHeight.getText()), Integer.parseInt(essayPanel.txtWidth.getText()),Integer.parseInt(essayPanel.txtWordLimit.getText()));
+	    				gui.setTree(q);
+	    				EssayQuestionPanel panel=new EssayQuestionPanel(obj,gui);	        	
+	    				gui.centerPanel.removeAll();
+	    				gui.centerPanel.add(panel);
+	    			}
+	    	   }
+	    		
+	    		if(typeQuestion==3){
+	    			
+		    		  Question q=obj.addSlotQ(gui.parent.getUserObject(),txtQuestion.getText(), Integer.parseInt(txtMarks.getText()));
+		    		  if(q==null)
+		    		  	{
+		    			  JOptionPane.showMessageDialog(gui,
+			    			      "You have to insert the answer of the Slot Question like eg.[answer]",
+			    			      "Question parsing Error",
+			    			      JOptionPane.ERROR_MESSAGE);
+		    		  	}	 
+		    		  	else
+		    		  	{
+		    		  		gui.setTree(q);
+		    			  	SlotQPanel panel=new SlotQPanel(obj,gui);
+		    			  	gui.centerPanel.removeAll();
+		  	        		gui.centerPanel.add(panel);
+		    		  	}
+		    		  
+		        	}
+	    		
 	        
 	    	  gui.centerPanel.validate();
 	    	  gui.centerPanel.repaint();	    	        

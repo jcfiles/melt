@@ -38,7 +38,6 @@ public class SlotQuestionPanel extends QuestionPanel {
 	public SlotQuestionPanel(SlotQ slotq) {
 		this.slotq = slotq;
 		textFields = new ArrayList<>();
-
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{61, 0};
 		gridBagLayout.rowHeights = new int[]{16, 0, 0, 0};
@@ -71,43 +70,54 @@ public class SlotQuestionPanel extends QuestionPanel {
 		gbc_panel.gridy = 2;
 		add(panel, gbc_panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
 		String delimiter = "<BLANK>";
 		String question = "";
-		for(int i=0; i<slotq.toString().length()-delimiter.length(); i++){
+		for(int i=0; i<slotq.getSlotQ().length(); i++){
 			boolean found = true;
 			for(int j=0; j<delimiter.length(); j++){
-				if(delimiter.charAt(j)!=slotq.toString().charAt(j+i)){
-					found = false;
-					break;
+				if(i+j<slotq.getSlotQ().length()){
+					if(delimiter.charAt(j)!=slotq.getSlotQ().charAt(j+i)){
+						found = false;
+						break;
+					}
 				}
 			}
 			if(found == false){
-				question = question + Character.toString(slotq.toString().charAt(i));
+				question = question + Character.toString(slotq.getSlotQ().charAt(i));
 			}
 			else{
 				JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
 				questionText.setHorizontalAlignment(SwingConstants.LEFT);
-				System.out.println(question);
-				//GridBagConstraints gbc_questionText = new GridBagConstraints();
-				//gbc_questionText.insets = new Insets(0, 0, 5, 0);
-				//gbc_questionText.anchor = GridBagConstraints.WEST;
-				//gbc_questionText.gridx = 0;
-				//gbc_questionText.gridy = 2;
 				panel.add(questionText);
 				question = "";
 				JTextField emptyField = new JTextField(10);
 				panel.add(emptyField);
 				textFields.add(emptyField);
-				i=i+delimiter.length()-1;
+				i=i+delimiter.length();
 			}
 		}
 		if(!question.equals("")){
-			System.out.println("end "+question);
 			JLabel questionText = new JLabel(new StringBuilder().append(question).toString());
 			questionText.setHorizontalAlignment(SwingConstants.LEFT);
+			panel.add(questionText);
 		}
 		
+	}
+	
+	public SlotQuestionPanel(SlotQ slotq, boolean hasStudentAnswers){
+		new SlotQuestionPanel(slotq);
+		if(hasStudentAnswers){
+			for(int i=0; i<textFields.size(); i++){
+				textFields.get(i).setText(slotq.getStudentAnswers().get(i));
+				textFields.get(i).setEditable(false);
+			}
+		}
+		else{
+			for(int i=0; i<textFields.size(); i++){
+				textFields.get(i).setText(slotq.getExpectedAnswers().get(i));
+				textFields.get(i).setEditable(false);
+			}
+		}
 	}
 
 	@Override
