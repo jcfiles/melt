@@ -17,6 +17,7 @@ import javax.swing.BoxLayout;
 
 import backend.StudentTestController;
 import backend.Test_;
+import student.MarksDisplay;
 import student.StudentStartJPanel;
 
 import java.awt.Color;
@@ -115,11 +116,14 @@ public class MenuGUI extends JFrame {
 		//cliking the Student button
 		btnStudent.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
+		      /*
 		    	studentTestController = new StudentTestController();
 		    	panelCenter.removeAll();
 				panelCenter.add(new StudentStartJPanel(studentTestController));
 				panelCenter.validate();
-				panelCenter.repaint();		   	
+				panelCenter.repaint();*/
+		      MarksDisplay md = new MarksDisplay();
+		      md.setVisible(true);
 			 }
 		});
 		
