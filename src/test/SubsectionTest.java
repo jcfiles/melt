@@ -22,19 +22,6 @@ public class SubsectionTest {
 		
 	}
 
-	/**
-	 * Error: Cannot initialize Question - Question expQ = new Question ("questiontext1", o);
-	 */
-	
-	
-	@Test
-	public void testGetContainer() {
-		
-		Subsection expSubSection = new Subsection ("title1", null);
-//		expSubSection.addQuestion(new Question("question1", null));
-		
-	}
-
 	@Test
 	public void testGetSubsectionTitle() {
 		
