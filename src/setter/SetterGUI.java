@@ -185,9 +185,7 @@ public class SetterGUI extends JFrame {
 					else
 						if(current.getUserObject() instanceof Subsection)
 							{
-							int count=obj.getContainerSize(current.getUserObject());
-							if(count==0)
-							{
+							
 								SubsectionContentPanel panel=new SubsectionContentPanel(obj,frame);
 						
 								centerPanel.removeAll();
@@ -195,17 +193,8 @@ public class SetterGUI extends JFrame {
 							
 								centerPanel.validate();
 								centerPanel.repaint();
-							}
-							else
-							{
-								SubsectionPanel panel=new SubsectionPanel(obj,frame,1);
-								
-								centerPanel.removeAll();
-								centerPanel.add(panel);
+						
 							
-								centerPanel.validate();
-								centerPanel.repaint();
-							}
 						
 							}
 						else

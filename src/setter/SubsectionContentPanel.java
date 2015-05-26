@@ -85,11 +85,11 @@ public class SubsectionContentPanel extends JPanel {
 		EmptyPanel  panel=new EmptyPanel(obj,gui);
 
 		
-		int content=obj.getContainerSize(gui.current.getUserObject() );
+		int content=0;//obj.getContainerSize(gui.current.getUserObject() );
 		
 		if(content==0)
 		{
-			gui.parent=gui.current;
+			//gui.parent=gui.current;
 			
 			gbc_1 = new GridBagConstraints();
 			gbc_1.anchor = GridBagConstraints.NORTH;
